@@ -1,0 +1,8 @@
+{
+  "name": "wagoncarpool",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite",
+  "id": "5901374c"
+}

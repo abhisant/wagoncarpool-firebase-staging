@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "379793457253",
+    "project_id": "wagon-381307",
+    "storage_bucket": "wagon-381307.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379793457253:android:85a58d9940d3a68b34068c",
+        "android_client_info": {
+          "package_name": "com.wagon.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379793457253-3apo7ptokjhhudoscqmnv3o24me3lv67.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wagon.starter",
+            "certificate_hash": "fd0bcefe08d10fa26569a7c8b7d5ebc4b528f3de"
+          }
+        },
+        {
+          "client_id": "379793457253-50l5gq7ljvs53vuenakvm5thsa43ptvf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wagon.starter",
+            "certificate_hash": "c0b4793ab17aa4e428a11fc9889667c89bba4824"
+          }
+        },
+        {
+          "client_id": "379793457253-hceepa0ik2a0q7k51st8c8ud9hvelfea.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wagon.starter",
+            "certificate_hash": "422c286780ee86ae40d40fc19b90baa358d399d0"
+          }
+        },
+        {
+          "client_id": "379793457253-kkb1san39fves0srb3gsuicp5lcoge50.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wagon.starter",
+            "certificate_hash": "11be94eb9a6a70bc32bdd7e693d0cb2c1eda31cb"
+          }
+        },
+        {
+          "client_id": "379793457253-sueopfd4gcm66fam5lu28olkcahg9s3g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wagon.starter",
+            "certificate_hash": "94226b6c693ac17e45ae3f498998d1720b31ae1e"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD70_33MI9q50KMerLKE7RL6X0L7pP42_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379793457253-quhbedbbmb57amflg3asqkgtunted6kd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "379793457253-d1fbgh24tr1l3upvgausqd3sdstilp48.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.wagon.starter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

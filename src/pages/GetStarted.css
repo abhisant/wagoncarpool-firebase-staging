@@ -1,0 +1,1021 @@
+ion-row,
+ion-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+  color: light;
+}
+
+ion-content {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* ion-item {
+  margin-top: 20px;
+  width: 100%;
+} */
+
+/* ion-segment-button {
+  color: rgb(93, 93, 93);
+}
+
+ion-select ion-select-option {
+  color: rgb(253, 249, 249);
+} */
+
+ion-checkbox {
+  /* --border-color: white; */
+  margin-left: 5px;
+}
+
+.centerFeed {
+  margin-top: 45px;
+}
+
+.rideFeedbackMargin {
+  margin-top: 45px;
+}
+
+
+.verticalCenterFeed {
+  display: flex;
+  margin-top: 45px;
+  justify-content: center;
+  vertical-align: center;
+}
+
+.accordianLabel {
+  margin-left: 2px;
+  font-size: 12px;
+}
+
+
+/* .ion-accordion-toggle-icon{
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+} */
+.matchbutton {
+  margin-top: 20px;
+  width: fit-content;
+  margin-left: 20px;
+  /* width: 100%;
+  --background: rgb(66, 65, 65);
+  color: rgb(254, 254, 254);
+  display: flex;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px; */
+}
+
+.approveOrRejectRideButton {
+  width: 30%;
+}
+.calculateDetourButton {
+  width: 60%;
+}
+
+.matchRequestDetour {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.backbuttonchat {
+  width: 10%;
+}
+
+.sendMessageButton {
+  width: 40%;
+}
+
+.feedItemImg {
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  /* display: block;
+  margin: 0 auto; */
+}
+
+.feedbackImg {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  /* display: block;
+  margin: 0 auto; */
+}
+
+.feedName {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.eventName {
+  margin-left: 10px;
+  font-size: 12px;
+}
+.topSegmentLabel {
+  font-size: 11px;
+}
+.homeSegmentLabel {
+  font-size: 11px;
+}
+ion-segment-button::part(indicator-background) {
+  background-image: linear-gradient(to bottom right, #41a167, #248e4e);
+}
+
+.segment-button-checked.ios::part(native) {
+  color: #fff;
+}
+
+.returnTimeSegment {
+  font-size: 11px;
+}
+/* .returnSegmentButton {
+  width: fit-content;
+} */
+
+.swiperCom {
+  height: 100%;
+}
+
+ion-button {
+  width: 100%;
+  text-transform: none;
+}
+
+.addressbutton {
+  margin-left: -1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 100%;
+  width: fit-content;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  text-transform: none;
+  font-size: 80%;
+}
+
+.feedbackbutton {
+  width: fit-content;
+}
+ion-icon {
+  /* font-size: 500%; */
+}
+
+.closeIcon {
+  font-size: 30px;
+  color: rgb(149, 56, 56);
+}
+
+.filterCloseIcon {
+  float: right;
+  font-size: 20px;
+  /* color: rgb(149, 56, 56); */
+  margin-left: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+.tablabel {
+  font-size: 80%;
+}
+}
+
+
+/* a {
+  color: rgb(96, 94, 94)
+} */
+
+.landingpagelabel {
+  color: black;
+}
+
+.chatbubble {
+  margin-bottom: 30px;
+  padding-left: 5px;
+}
+
+.chatbubbleOtherParty {
+  border-radius: 10px;
+  background-color: #616ce1;
+  color: white;
+  padding: 5px;
+  width: fit-content;
+  height: fit-content;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  font-size: 12px;
+}
+.chatbubbleMe {
+  margin-left: 5px;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+  color: black;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  font-size: 13px;
+}
+.chatSummaryTimeMe {
+  color:rgb(76, 76, 76);
+  margin-top: 8px;
+  margin-left: 20px;
+  float: right;
+  font-size: 8px;
+}
+
+.chatsummaryItemImg {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  float: left;
+  /* display: block;
+  margin: 0 auto; */
+  margin-bottom: 10px;
+}
+
+.container {
+  float: left;
+  margin-left: 20px;
+}
+.selectCategoryImage {
+  width: 175px;
+  height: 175px;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+.selectCategoryText {
+  float: left;
+  width: 175px;
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.imagecenter {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.selectCategory {
+  background-color: #0e3c40;
+  color: rgb(218, 218, 218);
+}
+
+.chatSummaryTimeOther {
+  color:rgb(221, 220, 220);
+  margin-top: 8px;
+  margin-left: 20px;
+  float: right;
+  font-size: 8px;
+}
+
+@media only screen and (min-width: 800px) {
+.chatbox {
+  /* height: 60vh; */
+  margin: 0 auto;
+}
+}
+
+@media only screen and (max-width: 800px) {
+  .chatbox {
+    /* height: 60vh; */
+    width: 100%;
+    margin: 0 auto;
+    /* border-width: 1px;
+    border-color: #181818; */
+    /* border-style: solid; */
+  }
+  }
+
+.chattext {
+  /* border-radius: 20px; */
+  /* background-color: rgb(35, 35, 35); */
+  /* margin-left: 10px; */
+  margin-bottom: 45px;
+  text-indent: 15px;
+  height: 35px;
+}
+
+.summaryBody {
+color:#6b6b6b;
+}
+
+.summaryTime {
+  float: right;
+  padding-top: 5px;
+}
+/* .headerUnreadCount {
+  float: right;
+  margin-right: 10px;
+ 
+} */
+
+.summaryName {
+  font-size: 20px;
+}
+
+.chatavatar {
+  width: 30px;  
+    height:30px;  
+}
+.tabImage {
+  width: 20px;  
+  height:20px;
+  margin-top: 1px;
+}
+
+@media only screen and (min-width: 800px) {
+.textbuttonchat {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  margin: 0 auto;
+  --background: #232323;
+  /* border-width: 1px;
+  border-color: #181818;
+  border-style: solid; */
+}
+}
+@media only screen and (max-width: 800px) {
+  .textbuttonchat {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;  
+    width: 100%;
+    margin: 0 auto;
+    --background: #232323;
+    /* border-width: 1px;
+    border-color: #181818;
+    border-style: solid; */
+  }
+  }
+.chatSendButton {
+  width: 110px;
+  height: 35px;  
+  margin-bottom: 45px;
+}
+/* @media only screen and (max-width: 800px) { */
+.topBarHomePage {
+  margin-top: 30px;
+  margin-left: 10px;
+}
+/* } */
+
+.textchatitem{
+  border-top: 0.0001px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-left: 0px;
+    border-color: #949494;
+    border-style: solid;
+}
+
+.greenColor {
+  color: #41a167;
+}
+
+/* @media only screen and (max-width: 800px) {
+.messagingSummary {
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+}
+@media only screen and (min-width: 800px) {
+  .messagingSummary {
+    margin: 0 auto;
+    display: flex;
+    width: 70%;
+    justify-content: center;
+  }
+  } */
+  /* @media only screen and (min-width: 800px) {
+
+  .messageSummaryTime {
+    font-size:13px;
+  }
+} */
+.messagesummaryrow {
+  border-bottom: 0.001px solid rgb(77, 77, 77);
+  font-size:13px;
+}
+
+.messageSummaryAvatar {
+  margin-left: 10px;
+}
+
+.messagesummaryrow :hover {
+  cursor: pointer;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+/* @media only screen and (max-width: 800px) {
+  .messageSummaryTime {
+    font-size:11px;
+  }
+} */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.swiper-pagination-bullets {
+  display: none;
+}
+
+.swiper-slide {
+  text-align: center;
+  color:rgb(44, 44, 44);
+  /* background-image: linear-gradient(to bottom right, rgb(59, 58, 58), rgb(23, 23, 23));
+  ; */
+  /* Center slide text vertically */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+/* .customslide {
+  background-image: linear-gradient(to bottom right, #303030, #292929);
+  ;
+} */
+
+.backIcon {
+  margin-right: 10px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Terms {
+  margin-bottom: 10px;
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.termsandpolicylink {
+  margin-left: 4px;
+  margin-right: 4px;
+  color:rgb(140, 139, 139)
+}
+
+.termsandpolicylink:hover {
+  cursor: pointer;
+}
+
+.loginwithGoogle {
+  margin-top: 50px;
+  
+}
+.viewongooglemapsbutton {
+  height: 50px;
+  left: 0px;
+  width: 100%;
+}
+
+.addresslink {
+  color:rgb(110, 110, 110);
+  text-decoration: none;
+}
+
+.feedaddressbuttons {
+  width: fit-content;
+  font-size: 11px;
+}
+
+.feedbackAddressbuttons {
+  width: fit-content;
+  font-size: 9px;
+}
+
+.recommendedridebutton {
+  width: fit-content;
+  font-size: 9px;
+}
+
+
+.ionBadge {
+  margin-right: 10px;
+  --padding-end: 10px;
+  --padding-start: 10px;
+  font-size: 12px;
+  /* --background: rgb(179, 179, 179);
+  --color: rgb(39, 39, 39); */
+}
+
+.eventBadge {
+  margin-right: 10px;
+  font-size: 10px;
+}
+
+.ionBadge_addresslink {
+  text-align: left;
+}
+
+.userActivityContact {
+  width: fit-content;
+}
+
+.wagonimg {
+  margin: 0 auto;
+  height: 150px;
+  width: 150px;
+}
+
+.maketingpage {
+  color:rgb(221, 220, 220);
+  font-size: 15px;
+}
+
+.maketingpageh2 {
+  color: rgb(134, 132, 132);
+}
+
+.EmptyFeed {
+  margin: 10px;
+}
+
+.chatLabel {
+  margin-top: 30px;
+  color: gray;
+}
+
+.chatLabel :hover {
+  cursor: pointer;
+}
+
+.viewongooglemaps {
+  width: 50%;
+}
+
+.mapsIcon {
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.chatLabel {
+  color: rgb(96, 94, 94)
+}
+
+.messageSenderName {
+  color: rgb(227, 227, 227);
+  font-size: 15px;
+}
+
+.postgrid {
+  overflow: auto;
+  display: grid;
+}
+
+ion-spinner {
+  width: 75px;
+  height: 75px;
+}
+
+ion-item {
+  --padding-start: 0;
+  --border-width: 0;
+  --inner-border-width: 0;
+}
+
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+  display: flex;
+  flex-flow: column-reverse;
+}
+.carpoolingguidelinesmargin {
+  margin: 10px;
+  white-space: 'pre-wrap';
+}
+.safetyGuielinesWrap li{
+  word-wrap: break-word;
+}
+.subcard {
+  width: 100%;
+  padding: 10px;
+}
+.subcardNoPadding {
+  width: 100%;
+}
+@media only screen and (min-width: 1025px) {
+ion-card {
+  width: 30%;
+  margin: 2px;
+  /* margin-bottom: 10px; */
+  margin-left: auto;
+  margin-right: auto;
+}}
+
+.recommendedRideCard {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media only screen and (min-width: 600px) {
+.ioncardinamodal {
+  width: 55%;
+    /* margin-top: 10px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+}
+@media only screen and (min-width: 600px) {
+.buttonInAModal {
+  margin-top: 10px;
+  width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+}
+}
+
+.potentialMatchText {
+  font-size: 11px;
+}
+.flipRiderDriverHeader {
+  color: #41a167;
+}
+
+.datetimetitle {
+  text-transform: none;
+  color:rgb(1, 1, 1);
+  font-size: 15px;
+}
+
+@media only screen and (max-width: 800px) {
+  ion-card {
+    margin: 2px;
+    width: 100%;
+    /* margin-top: 10px; */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media only screen and (min-width: 800px) {
+.postcard {
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+}
+}
+
+.menuButton {
+  width: fit-content;
+  /* --background: #afafaf;
+  color:rgb(23, 23, 23); */
+  float: left;
+  font-size: 11px;
+  }
+
+.filterButton {
+  width: fit-content;
+  /* --background: #afafaf;
+  color:rgb(23, 23, 23); */
+  float: right;
+  font-size: 11px;
+  }
+  .filterButtonInPoolPage {
+    width: fit-content;
+    /* --background: #afafaf;
+    color:rgb(23, 23, 23); */
+    float: right;
+    font-size: 11px;
+    margin-top: 12px;
+  
+  }
+
+  .homePageLoginWithGoogle {
+    width: fit-content;
+    /* --background: #afafaf;
+    color:rgb(23, 23, 23); */
+    float: right;
+    margin-right: -10px;
+    font-size: 11px;
+  
+  }
+
+  .resetfilters {
+    width: fit-content;
+    /* margin-right: 15px; */
+    --background: #afafaf;
+    color:rgb(23, 23, 23);
+    float: right;
+    }
+
+@media only screen and (max-width: 800px) {
+  .postcard {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+
+  .usermenu {
+    width: 40%;
+    margin-top: 45px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  }
+
+  .usermenulabel {
+    justify-content: center;
+    --color: light;
+  }
+
+.feedRideRequest {
+  color: rgb(146, 146, 146);
+}
+
+/* .feedTripCost {
+  margin-left: 10px;
+  color: light;
+} */
+
+
+.blankScreenLabels {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  height: 100%;
+
+}
+.ionBadgeButton {
+  background-color: dark;
+}
+
+ion-modal#example-modal {
+  --height: 100%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal#example-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal#example-modal ion-toolbar {
+  /* --background: rgb(169, 169, 169);
+  --color: black; */
+}
+
+ion-tab-button.tab-selected{
+  color: #41a167;
+}
+/* ion-tab-button{
+  --color-selected: #3880ff;
+  --color-focused: #3880ff;
+} */
+.RiderOrDriver {
+  /* margin-left: 10px; */
+  font-size: 20px;
+  margin-right: 10px;
+}
+.feedbackText {
+  margin-top: 20px;
+  color: rgb(169, 239, 178);
+  font-size: 15px;
+}
+.errorLogs {
+  text-indent: 6px;  
+}
+
+.centerLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.tripchargewarning {
+  font-size: 12px;
+  margin-left: 8px;
+  font-style: italic;
+  margin-top: -15px;
+}
+
+.estimatedAmount {
+  text-indent: 6px;
+  border-radius: 5px;
+}
+
+.costbadge{
+  padding-right: 10px;
+  margin-left: 5px;
+}
+
+.filterBadge{
+  width: fit-content;
+  margin-left: 5px;
+}
+
+.verifyForFree {
+  font-size: 20px;
+}
+
+.verifyNowButton {
+  width: fit-content;
+}
+.myprofilebadge {
+  font-size: 20px;
+}
+
+.unreadCount {
+  display: flex;
+  max-width: 20px;
+  float: right;
+  margin-left: 10px;
+  justify-content: center; 
+  margin-top: 5px;
+  padding: 3px;
+}
+.timePadding {
+  margin-left: 5px;
+}
+@media (prefers-color-scheme: dark) {
+.myrides {
+  background-image: linear-gradient(to bottom right, #4f4f4f, #565856);
+  color:rgb(230, 227, 227);
+  
+}}
+@media (prefers-color-scheme: light) {
+.myrides {
+  background-image: linear-gradient(to bottom right, #cccccc, #d4d0d0);
+  color:rgb(99, 97, 97);
+}
+}
+
+@media (prefers-color-scheme: dark) {
+  .myHistoricalRides {
+    background-image: linear-gradient(to bottom right, #4f4f4f, #565856);
+    color:rgb(230, 227, 227);
+    cursor: pointer;
+  }}
+  @media (prefers-color-scheme: light) {
+  .myHistoricalRides {
+    background-image: linear-gradient(to bottom right, #cccccc, #d4d0d0);
+    color:rgb(99, 97, 97);
+    cursor: pointer;
+  }
+  }
+.fixedheight {
+  /* max-height: 50%;
+  overflow-y: auto; */
+}
+.selectgame {
+  font-size: 8px;
+  font-style: italic;
+}
+.selectgamewithmargintop {
+  font-size: 10px;
+  font-style: italic;
+}
+.italicFont {
+  font-style: italic;
+}
+.smallfont {
+  font-size: 10px;
+}
+.largefont {
+  font-size: 25px;
+  font-weight: bold;
+}
+.mediumfont {
+  font-size: 17px;
+}
+
+
+.fixedDestination {
+  text-indent: 5px;
+  height:max-content;
+  font-size: 12px;
+}
+.swapIcon {
+ display: flex;
+ justify-content: center;
+ font-size: 30px;
+}
+
+.smallspinner {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+.matchCheckbox {
+  margin-left: 10px;
+}
+.selectusecaseIcon {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.footer {
+  font-size: 8px;
+  color: gray;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.swiperCard {
+  /* height: 70%; */
+  /* margin-top: -30px; */
+  background-image: linear-gradient(to bottom right, #232323, #3e3e3e);
+}
+.swiperDiv {
+  background-image: linear-gradient(to bottom right, #232323, #3e3e3e);
+}
+
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.wagoncarpoolworks {
+  margin-top: 0px;
+ padding-left: 10px;
+}
+
+.popOverScroll {
+  overflow: auto;
+  max-height: 250px;
+}
+.popOverContent {
+  padding-right: 20px;
+}
+.feeIcon {
+  margin-bottom: 1px;
+  margin-left: -7px;
+  font-size: 17px;
+}
+.ratingIcon {
+  margin-left: 2px;
+  font-size: 17px;
+}
+.historicalRidesLabel {
+  width: 30%;
+  margin: 2px;
+  /* margin-bottom: 10px; */
+  margin-left: auto;
+  margin-right: auto;
+}
+.socialMediaIconContent {
+  display: flex;
+  justify-content: center;
+}
+.socialMediaIcons {
+  font-size: 30px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.appsAvailable {
+  width: 50px;
+  height: 50px;
+  float: left;
+  padding-left: 75px;
+  padding-right: 75px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.googlePlayIcon {
+  height: 52px;
+  margin-left: 40px;
+}
+.appleStoreIcon {
+  margin-top: 8px;
+  height: 35px;
+  margin-right: 40px;
+}
