@@ -45,7 +45,7 @@ import {
     IonSegmentButton,
     IonPopover,
 } from '@ionic/react';
-import { IonReactHashRouter } from '@ionic/react-router';
+import { IonReactHashRouter, IonReactRouter } from '@ionic/react-router';
 import { addCircle, settings, home, search, menu, location, homeOutline, homeSharp, informationCircle, car, shieldCheckmarkSharp } from 'ionicons/icons';
 import { Redirect, Route, Switch } from 'react-router';
 import App from '../App';
@@ -221,11 +221,11 @@ const MatchRequest = () => {
     return (
         <IonPage>
             {
-                !sessionExists ? <><HashRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></HashRouter></> : null
+                !sessionExists ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></IonReactRouter></> : null
 
             }
             {
-                redirectToUserActivity ? <><HashRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></HashRouter></> : null
+                redirectToUserActivity ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></IonReactRouter></> : null
             }
 
 

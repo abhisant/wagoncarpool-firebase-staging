@@ -10,6 +10,7 @@ import SafetyGuidelines from './SafetyGuidelines';
 import SupportDetails from './SupportDetails';
 import App from '../App';
 import AppLandingPage from './AppLandingPage';
+import { IonReactRouter } from '@ionic/react-router';
 
 function UserMenu() {
   const history = useHistory();
@@ -77,10 +78,10 @@ function UserMenu() {
   return (
     <IonPage>
       {
-        doSignout ? <><HashRouter><Switch><Redirect exact to={{ pathname: '/getstarted' }} /><Route path="/getstarted" component={GetStarted} /></Switch></HashRouter></> : null
+        doSignout ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/getstarted' }} /><Route path="/getstarted" component={GetStarted} /></Switch></IonReactRouter></> : null
       }
       {
-        goToHome ? <><HashRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></HashRouter></> : null
+        goToHome ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></IonReactRouter></> : null
       }
       <IonContent>
         <IonHeader>

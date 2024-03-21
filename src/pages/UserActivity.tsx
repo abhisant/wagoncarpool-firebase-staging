@@ -45,7 +45,7 @@ import {
     IonAccordion,
     useIonLoading,
 } from '@ionic/react';
-import { IonReactHashRouter } from '@ionic/react-router';
+import { IonReactHashRouter, IonReactRouter } from '@ionic/react-router';
 import { addCircle, settings, home, search, menu, locationOutline, location, shieldCheckmarkSharp, pencil, closeCircle, logOut, menuOutline } from 'ionicons/icons';
 import { Redirect, Route, Router, Switch } from 'react-router';
 import App from '../App';
@@ -592,10 +592,10 @@ const UserActivity = () => {
     return (
         <IonPage>
             {
-                redirectToNewRide ? <><HashRouter><Switch><Redirect to={{ pathname: '/scc' }} /><Route path="/App" component={SelectCarpoolCategory} /> </Switch></HashRouter></> : null
+                redirectToNewRide ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/scc' }} /><Route path="/App" component={SelectCarpoolCategory} /> </Switch></IonReactRouter></> : null
             }
             {
-                !sessionExists ? <><HashRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></HashRouter></> : null
+                !sessionExists ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></IonReactRouter></> : null
             }
 
             {/* <IonItem routerLink='/menu' routerDirection='none'>

@@ -27,6 +27,7 @@ import GetRideFeedback from './GetRideFeedback';
 import GetAdditionalProfileDetails from './GetAdditionalProfileDetails';
 import ReactGA from 'react-ga4';
 import SelectCarpoolCategory from './SelectCarpoolCategory';
+import { IonReactRouter } from '@ionic/react-router';
 
 export interface UserSession {
     created: number,
@@ -187,47 +188,47 @@ function GetStarted() {
                     switch (redirectUrl) {
                         case ('getAdditionalProfileDetails'): {
                             return (
-                                <><HashRouter><Switch><Redirect to={{ pathname: '/getAdditionalProfileDetails' }} /><Route path="/getAdditionalProfileDetails" component={GetAdditionalProfileDetails} /> </Switch></HashRouter></>
+                                <><IonReactRouter><Switch><Redirect to={{ pathname: '/getAdditionalProfileDetails' }} /><Route path="/getAdditionalProfileDetails" component={GetAdditionalProfileDetails} /> </Switch></IonReactRouter></>
                             )
                         }
                             break;
                         case ('userActivity'): {
                             return (
-                                <><HashRouter><Switch><Redirect to={{ pathname: '/userActivity' }} /><Route path="/userActivity" component={UserActivity} /> </Switch></HashRouter></>
+                                <><IonReactRouter><Switch><Redirect to={{ pathname: '/userActivity' }} /><Route path="/userActivity" component={UserActivity} /> </Switch></IonReactRouter></>
                             )
                         }
                             break;
 
                         case ('messaging'): {
                             return (
-                                <><HashRouter><Switch><Redirect to={{ pathname: '/messaging' }} /><Route path="/messaging" component={Messaging} /> </Switch></HashRouter></>
+                                <><IonReactRouter><Switch><Redirect to={{ pathname: '/messaging' }} /><Route path="/messaging" component={Messaging} /> </Switch></IonReactRouter></>
                             )
                         }
                             break;
 
                         case ('App'): {
                             return (
-                                <><HashRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></HashRouter></>
+                                <><IonReactRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></IonReactRouter></>
                             )
                         }
                             break;
 
                         case ('pendingRequests'): {
                             return (
-                                <><HashRouter><Switch><Redirect to={{ pathname: '/pendingRequests' }} /><Route path="/pendingRequests" component={MatchRequest} /> </Switch></HashRouter></>
+                                <><IonReactRouter><Switch><Redirect to={{ pathname: '/pendingRequests' }} /><Route path="/pendingRequests" component={MatchRequest} /> </Switch></IonReactRouter></>
                             )
                         }
                             break;
 
                         case ('scc'): {
                             return (
-                                <><HashRouter><Switch><Redirect to={{ pathname: '/scc' }} /><Route path="/scc" component={SelectCarpoolCategory} /> </Switch></HashRouter></>
+                                <><IonReactRouter><Switch><Redirect to={{ pathname: '/scc' }} /><Route path="/scc" component={SelectCarpoolCategory} /> </Switch></IonReactRouter></>
                             )
                         }
                             break;
                         case ('getRideFeedback'): {
                             return (
-                                <><HashRouter><Switch><Redirect to={{ pathname: '/getRideFeedback' }} /><Route path="/getRideFeedback" component={GetRideFeedback} /> </Switch></HashRouter></>
+                                <><IonReactRouter><Switch><Redirect to={{ pathname: '/getRideFeedback' }} /><Route path="/getRideFeedback" component={GetRideFeedback} /> </Switch></IonReactRouter></>
                             )
                         }
                             break;

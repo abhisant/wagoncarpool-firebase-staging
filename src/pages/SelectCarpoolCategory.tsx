@@ -19,6 +19,7 @@ import SocialMediaFooter from './SocialMediaFooter';
 import { PushNotifications } from '@capacitor/push-notifications';
 import { Capacitor } from '@capacitor/core';
 import AppDownloadWidget from './AppDownloadWidget';
+import { IonReactRouter } from '@ionic/react-router';
 
 
 const SelectCarpoolCategory = () => {
@@ -311,7 +312,7 @@ const SelectCarpoolCategory = () => {
                             : null
                     }
                     {
-                        redirectToUserActivity ? <><HashRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></HashRouter></> : null
+                        redirectToUserActivity ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></IonReactRouter></> : null
                     }
                     {
                         // !feedLoading && eventData.length> 0? 
@@ -373,7 +374,7 @@ const SelectCarpoolCategory = () => {
                                 </IonCard>
                                
                                 {
-                                    !identifyIOSApp && !identifyAndroidApp ?  <><br/><AppDownloadWidget></AppDownloadWidget></>:null
+                                    // !identifyIOSApp && !identifyAndroidApp ?  <><br/><AppDownloadWidget></AppDownloadWidget></>:null
                                 }
                                 
                                 <br />

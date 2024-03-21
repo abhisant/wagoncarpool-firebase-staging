@@ -40,7 +40,7 @@ import {
     IonRefresherContent,
     RefresherEventDetail,
 } from '@ionic/react';
-import { IonReactHashRouter } from '@ionic/react-router';
+import { IonReactHashRouter, IonReactRouter } from '@ionic/react-router';
 import { addCircle, settings, home, search, menu, locationOutline, location, star, starOutline } from 'ionicons/icons';
 import { Redirect, Route, Router, Switch } from 'react-router';
 import App from '../App';
@@ -151,7 +151,7 @@ const GetRideFeedback = () => {
         <IonPage>
             <IonContent>
                 {
-                    redirectUrl ? <><HashRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></HashRouter></> : null
+                    redirectUrl ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></IonReactRouter></> : null
                 }
                 {
                     !sessionExists ? <><Redirect exact to={{ pathname: '/getstarted' }} /><Route path="/getstarted" component={GetStarted} /></> : null

@@ -7,6 +7,7 @@ import GetStarted from './GetStarted';
 import ReactGA from 'react-ga4';
 import './GetStarted.css';
 import AppLandingPage from './AppLandingPage';
+import { IonReactRouter } from '@ionic/react-router';
 
 const Messaging = () => {
     let history = useHistory();
@@ -196,7 +197,7 @@ const Messaging = () => {
     return (
         <IonPage>
             {
-                !sessionExists ? <><HashRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></HashRouter></>: null
+                !sessionExists ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></IonReactRouter></>: null
             }
             <IonContent>
                 {/* <IonItem routerLink='/menu' routerDirection='none'>

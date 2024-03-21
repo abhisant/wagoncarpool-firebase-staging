@@ -18,6 +18,7 @@ import { Autoplay, Pagination } from 'swiper';
 import AppLandingPage from './AppLandingPage';
 import { Capacitor } from '@capacitor/core';
 import { PushNotifications } from '@capacitor/push-notifications';
+import { IonReactRouter } from '@ionic/react-router';
 
 
 const Events = () => {
@@ -1209,11 +1210,11 @@ const Events = () => {
         <>
             <IonContent>
                 {/* {
-                    !sessionExists ? <><HashRouter><Switch><Redirect exact to={{ pathname: '/getstarted' }} /><Route path="/getstarted" component={GetStarted} /></Switch></HashRouter></> : null
+                    !sessionExists ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/getstarted' }} /><Route path="/getstarted" component={GetStarted} /></Switch></IonReactRouter></> : null
 
                 } */}
                 {
-                    redirectToUserActivity ? <><HashRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></HashRouter></> : null
+                    redirectToUserActivity ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></IonReactRouter></> : null
                 }
                 {/* {
                     loading ?

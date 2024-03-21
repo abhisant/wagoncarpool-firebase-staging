@@ -8,6 +8,7 @@ import axios from 'axios';
 import Geocode from 'react-geocode';
 import ReactGA from 'react-ga4';
 import AppLandingPage from './AppLandingPage';
+import { IonReactRouter } from '@ionic/react-router';
 
 function GetAdditionalProfileDetails () {
     const [gender, setGender] = React.useState<any>('');
@@ -69,7 +70,7 @@ function GetAdditionalProfileDetails () {
 
         <IonPage>
             {
-            redirectToApp ? <><HashRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></HashRouter></>: null
+            redirectToApp ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></IonReactRouter></>: null
             }
             <div className="centerFeed">
             <IonCard>

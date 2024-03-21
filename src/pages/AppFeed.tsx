@@ -1258,7 +1258,7 @@ const AppFeed = () => {
 
 
             {/* {
-                !sessionExists ? <><HashRouter><Switch><Redirect exact to={{ pathname: '/getstarted' }} /><Route path="/getstarted" component={GetStarted} /></Switch></HashRouter></> : null
+                !sessionExists ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/getstarted' }} /><Route path="/getstarted" component={GetStarted} /></Switch></IonReactRouter></> : null
 
             } */}
             {
@@ -1311,13 +1311,13 @@ const AppFeed = () => {
                 </> : null
             }
             {
-                redirectToNewRide ? <><HashRouter><Switch><Redirect to={{ pathname: '/scc' }} /><Route path="/App" component={SelectCarpoolCategory} /> </Switch></HashRouter></> : null
+                redirectToNewRide ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/scc' }} /><Route path="/App" component={SelectCarpoolCategory} /> </Switch></IonReactRouter></> : null
             }
             {
-                redirectToFeedBackURL ? <><HashRouter><Switch><Redirect to={{ pathname: '/getRideFeedback' }} /><Route path="/getRideFeedback" component={GetRideFeedback} /> </Switch></HashRouter></> : null
+                redirectToFeedBackURL ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/getRideFeedback' }} /><Route path="/getRideFeedback" component={GetRideFeedback} /> </Switch></IonReactRouter></> : null
             }
             {
-                redirectToUserActivity ? <><HashRouter><Switch><Redirect to={{ pathname: '/userActivity' }} /><Route path="/App" component={UserActivity} /> </Switch></HashRouter></> : null
+                redirectToUserActivity ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/userActivity' }} /><Route path="/App" component={UserActivity} /> </Switch></IonReactRouter></> : null
             }
             {/* {
                 goToMenu ? <UserMenu></UserMenu> : null
