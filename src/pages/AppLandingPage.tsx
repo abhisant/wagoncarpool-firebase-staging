@@ -149,7 +149,7 @@ function AppLandingPage() {
   }
 
   return (
-    <HashRouter>
+    <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Redirect exact path="/App" to="/AppFeed" />
@@ -204,7 +204,7 @@ function AppLandingPage() {
 
         </IonTabBar>
       </IonTabs>
-    </HashRouter>
+    </IonReactRouter>
 
   );
 }

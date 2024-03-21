@@ -248,7 +248,7 @@ const MatchRequest = () => {
                                 <IonCardContent>
 
                                     <h3>You don't have any new match requests!</h3>
-                                    <h3>Go to <a href="#/App"><IonIcon icon={car}></IonIcon> Rides </a>to view your rides or approved requests!</h3>
+                                    <h3>Go to <a href="/App"><IonIcon icon={car}></IonIcon> Rides </a>to view your rides or approved requests!</h3>
                                 </IonCardContent>
                             </IonCard>
                         </div>

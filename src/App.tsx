@@ -65,7 +65,7 @@ ReactGA.initialize([
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactHashRouter>
+    <IonReactRouter>
       <IonRouterOutlet>
         <Route path="/getstarted" component={GetStarted} />
         <Route path="/getAdditionalProfileDetails" component={GetAdditionalProfileDetails} />
@@ -91,7 +91,7 @@ const App: React.FC = () => (
         <Route exact path="/camera" component={VerifyUser} />
         <Redirect exact from="/" to="/scc" />
       </IonRouterOutlet>
-    </IonReactHashRouter>
+    </IonReactRouter>
   </IonApp>
 );
 

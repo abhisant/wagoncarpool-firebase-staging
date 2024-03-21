@@ -2148,7 +2148,7 @@ const Work = () => {
                                                                 </IonLabel>
                                                                 <div className="Terms">
                                                                     By Signing in you accept our
-                                                                    <a className="termsandpolicylink" target="_blank" href="#/terms" >Terms of use </a> and <a className="termsandpolicylink" target="_blank" href="#/privacy-policy">privacy policy</a>
+                                                                    <a className="termsandpolicylink" target="_blank" href="/terms" >Terms of use </a> and <a className="termsandpolicylink" target="_blank" href="/privacy-policy">privacy policy</a>
                                                                 </div>
                                                             </> : null
                                                     )
