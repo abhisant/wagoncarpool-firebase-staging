@@ -124,7 +124,8 @@ const MatchRequest = () => {
             })
         } else  {
             console.log("Session doesn't exist");
-            history.push('/App');
+            // history.push('/App');
+            window.location.replace('/App');
             localStorage.setItem("redirected_from", 'pendingRequests');
             setSessionExists(false);
             return;
@@ -163,7 +164,9 @@ const MatchRequest = () => {
                     message: 'Ride Approved.',
                     duration: 1000,
                 });
-                setRedirectToUserActivity(true);
+                //history.push('App');
+                window.location.replace('/App');
+                //setRedirectToUserActivity(true);
             })
             .catch((reason: AxiosError) => {
                 ReactGA.event({
@@ -197,7 +200,9 @@ const MatchRequest = () => {
 
         const session = JSON.parse(localStorage.getItem('session') || "");
         setUserId(session.userId);
-        setRedirectToUserActivity(true);
+        //history.push('App');
+        window.location.replace('/App');
+        //setRedirectToUserActivity(true);
     }
 
     function googleMapsAddressRedirection(startAdd: any, destAdd: any) {

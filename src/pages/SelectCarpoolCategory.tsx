@@ -45,7 +45,8 @@ const SelectCarpoolCategory = () => {
             action: "UserSelectsCarpoolForWork",
         });
         localStorage.setItem("carpool_category", 'work');
-        history.push("/carpoolForWork");
+        // history.push("/carpoolForWork");
+        window.location.replace('/carpoolForWork');
     }
 
     function carpoolingForEvents() {
@@ -54,7 +55,8 @@ const SelectCarpoolCategory = () => {
             action: "UserSelectsCarpoolForEvents",
         });
         localStorage.setItem("carpool_category", 'events');
-        history.push("/carpoolForEvents");
+        // history.push("/carpoolForEvents");
+        window.location.replace('/carpoolForEvents');
     }
 
     function loadFeedbackDetails() {
@@ -302,6 +304,11 @@ const SelectCarpoolCategory = () => {
             })
     }
 
+    function myRidesClicked() {
+        //history.push('App');
+        window.location.replace('/App');
+    }
+
 
     return (
         <>
@@ -323,7 +330,7 @@ const SelectCarpoolCategory = () => {
                                 }
                                 {
                                     sessionExists ?
-                                        localStorage.getItem('session') != null ? <><IonButton size="small" onClick={() => { setRedirectToUserActivity(true) }} color="success" fill="outline" className="filterButtonInPoolPage">My Rides</IonButton><IonLabel><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null ? "assets/img/avatar.svg" : JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></> : null
+                                        localStorage.getItem('session') != null ? <><IonButton size="small" onClick={() => { myRidesClicked() }} color="success" fill="outline" className="filterButtonInPoolPage">My Rides</IonButton><IonLabel><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null ? "assets/img/avatar.svg" : JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></> : null
                                         :
                                         loginLoading ?
                                             <IonButton disabled size="small" onClick={() => signIn()} color="success" fill="outline" className="homePageLoginWithGoogle">Login With Google
@@ -374,7 +381,7 @@ const SelectCarpoolCategory = () => {
                                 </IonCard>
                                
                                 {
-                                    // !identifyIOSApp && !identifyAndroidApp ?  <><br/><AppDownloadWidget></AppDownloadWidget></>:null
+                                    !identifyIOSApp && !identifyAndroidApp ?  <><br/><AppDownloadWidget></AppDownloadWidget></>:null
                                 }
                                 
                                 <br />

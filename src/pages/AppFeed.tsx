@@ -62,7 +62,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline } from 'ionicons/icons';
 import { Redirect, Route, Switch } from 'react-router';
 import App from '../App';
-import { useLocation, useHistory, HashRouter } from 'react-router-dom';
+import { useLocation, useHistory, HashRouter, BrowserRouter } from 'react-router-dom';
 import { Geolocation } from '@capacitor/geolocation';
 import Geocode from 'react-geocode';
 import axios, { AxiosError, AxiosResponse } from 'axios';
@@ -80,6 +80,7 @@ import SwiperComponent from './SwiperComponent';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { PushNotifications } from '@capacitor/push-notifications';
 import { Capacitor } from '@capacitor/core';
+
 
 const AppFeed = () => {
     let userRequestArr = [];
@@ -885,7 +886,9 @@ const AppFeed = () => {
             category: "new_ride_clicked_from_home",
             action: "new_ride_clicked_from_home",
         });
-        setRedirectToNewRide(true);
+        window.location.replace('/scc');
+        // history.push('scc');
+        //setRedirectToNewRide(true);
     }
 
     async function findRecommendedRides(item: any, index: any) {
@@ -1311,7 +1314,7 @@ const AppFeed = () => {
                 </> : null
             }
             {
-                redirectToNewRide ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/scc' }} /><Route path="/App" component={SelectCarpoolCategory} /> </Switch></IonReactRouter></> : null
+                redirectToNewRide ? <IonReactRouter><Route path="/scc" component={SelectCarpoolCategory} /> </IonReactRouter>: null
             }
             {
                 redirectToFeedBackURL ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/getRideFeedback' }} /><Route path="/getRideFeedback" component={GetRideFeedback} /> </Switch></IonReactRouter></> : null

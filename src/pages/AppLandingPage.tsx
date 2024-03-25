@@ -121,16 +121,20 @@ function AppLandingPage() {
     await PushNotifications.addListener('pushNotificationActionPerformed', notification => {
       console.log('NOTIFICATION TAP', notification.notification.data);
       if (notification.notification.data.type == 'REQUEST') {
-        history.push('/pendingRequests');
+        //history.push('/pendingRequests');
+        window.location.replace('/pendingRequests');
 
       } else if (notification.notification.data.type == 'RIDES') {
-        history.push('/App');
+        //history.push('/App');
+        window.location.replace('/App');
 
       } else if (notification.notification.data.type == 'INBOX') {
-        history.push('/messaging');
+        //history.push('/messaging');
+        window.location.replace('/messaging');
         
       } else if (notification.notification.data.type == 'SETTINGS') {
-        history.push('/userActivity');
+        //history.push('/userActivity');
+        window.location.replace('/userActivity');
       } 
       console.log('Push notification action performed', notification.actionId, notification.inputValue);
     });

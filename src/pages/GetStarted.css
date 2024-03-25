@@ -1011,11 +1011,10 @@ ion-tab-button.tab-selected{
   cursor: pointer;
 }
 .googlePlayIcon {
-  height: 52px;
+  height: 35px;
   margin-left: 40px;
 }
 .appleStoreIcon {
-  margin-top: 8px;
   height: 35px;
   margin-right: 40px;
 }

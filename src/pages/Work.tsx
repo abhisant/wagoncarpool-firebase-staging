@@ -1,7 +1,7 @@
 import { IonAlert, IonBadge, IonButton, IonButtons, IonCard, IonCardContent, IonCheckbox, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonIcon, IonImg, IonInput, IonItem, IonLabel, IonList, IonModal, IonNavLink, IonPage, IonRange, IonRow, IonSegment, IonSegmentButton, IonSelect, IonSelectOption, IonSpinner, IonText, IonTitle, IonToast, IonToolbar, useIonAlert, useIonLoading, useIonViewDidEnter } from '@ionic/react';
 import React, { CSSProperties, FC, MutableRefObject, RefObject, useEffect, useRef, useState } from "react";
 import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
-import { Redirect, useHistory, Route, HashRouter, Switch } from 'react-router-dom';
+import { Redirect, useHistory, Route, HashRouter, Switch, BrowserRouter } from 'react-router-dom';
 import './GetStarted.css';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { add, addCircleSharp, body, car, closeCircle, infinite, location, logoStencil, menu, people, peopleCircle, peopleOutline, returnUpBackOutline, settings, shieldCheckmarkSharp, swapVertical } from 'ionicons/icons';
@@ -782,7 +782,8 @@ const Work = () => {
     function closeRecommendedRideModalModal() {
         setShowRecommendedRideModal(false);
         setShowRideCreationModal(false);
-        history.push('/App');
+        //history.push('/App');
+        window.location.replace('/App');
     }
 
     const disablePastDates = (dateString: string) => {
@@ -1167,7 +1168,9 @@ const Work = () => {
                 });
                 setShowRideCreationModal(false);
                 setLoading(false);
-                setRedirectToUserActivity(true);
+                //history.push('App');
+                window.location.replace('/App');
+                //setRedirectToUserActivity(true);
             } else {
                 ReactGA.event({
                     category: 'events_ride_match_found',
@@ -1207,7 +1210,9 @@ const Work = () => {
 
     function routeToUserActivity() {
         setShowRecommendedRideModal(false);
-        setRedirectToUserActivity(true);
+        // setRedirectToUserActivity(true);
+        //history.push('App');
+        window.location.replace('/App');
     }
 
     function resetForm() {
@@ -1498,7 +1503,8 @@ const Work = () => {
                 action: 'ToggleCategoryToEvents',
             });
             localStorage.setItem("carpool_category", 'events');
-            history.push('/carpoolForEvents');
+            window.location.replace('/carpoolForEvents');
+            //history.push('/carpoolForEvents');
         }
     }
 
@@ -1544,6 +1550,10 @@ const Work = () => {
 
             })
 
+    }
+
+    function goToMyRides() {
+        window.location.replace('/App');
     }
 
 
@@ -1651,7 +1661,7 @@ const Work = () => {
 
                 } */}
                 {
-                    redirectToUserActivity ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></IonReactRouter></> : null
+                    redirectToUserActivity ? <Switch><Route path="/App" exact component={AppLandingPage} /> </Switch> : null
                 }
 
                 {
@@ -1671,7 +1681,7 @@ const Work = () => {
 
                                             {
 
-                                                localStorage.getItem('session') != null && (JSON.parse(localStorage.getItem('session') || '').wagon_token != undefined) ? <><IonButton size="small" onClick={() => { setRedirectToUserActivity(true) }} color="success" fill="outline" className="filterButtonInPoolPage">My Rides</IonButton><IonLabel><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null ? "assets/img/avatar.svg" : JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></> : null
+                                                localStorage.getItem('session') != null && (JSON.parse(localStorage.getItem('session') || '').wagon_token != undefined) ? <><IonButton size="small" onClick={() => { goToMyRides() }} color="success" fill="outline" className="filterButtonInPoolPage">My Rides</IonButton><IonLabel><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null ? "assets/img/avatar.svg" : JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></> : null
 
                                             }
                                             {/* <IonButton size="small"  onClick={() => { setRedirectToUserActivity(true) }} color="medium" className="filterButton">People Around You</IonButton> */}

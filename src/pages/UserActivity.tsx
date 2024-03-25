@@ -258,7 +258,8 @@ const UserActivity = () => {
                 }
             })
         } else {
-            history.push('/App');
+            // history.push('/App');
+            window.location.replace('/App');
             localStorage.setItem("redirected_from", 'userActivity');
             setSessionExists(false);
         }

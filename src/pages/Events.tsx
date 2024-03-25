@@ -87,9 +87,9 @@ const Events = () => {
     const [city, setCity] = useState('San Jose');
     // let checkedItems:any = {};
     const [eventId, setEventId] = useState('');
-    const [termToggle, setTermToggle] = useState('0');
+    const [termToggle, setTermToggle] = useState('3');
     let terms= '';
-    let globalTermToggle = '1';
+    let globalTermToggle = '3';
     let urlTerms= '';
     let globalSessionObj:any;
 
@@ -454,7 +454,8 @@ const Events = () => {
     function closeRecommendedRideModalModal() {
         setShowRecommendedRideModal(false);
         setShowRideCreationModal(false);
-        history.push('/App');
+        //history.push('/App');
+        window.location.replace('/App');
     }
 
     const disablePastDates = (dateString: string) => {
@@ -846,7 +847,9 @@ const Events = () => {
                 });
                 setShowRideCreationModal(false);
                 setLoading(false);
-                setRedirectToUserActivity(true);
+                //history.push('App');
+                window.location.replace('/App');
+                //setRedirectToUserActivity(true);
             } else {
                 ReactGA.event({
                     category: 'events_ride_match_found',
@@ -886,7 +889,9 @@ const Events = () => {
 
     function routeToUserActivity() {
         setShowRecommendedRideModal(false);
-        setRedirectToUserActivity(true);
+        //setRedirectToUserActivity(true);
+        //history.push('App');
+        window.location.replace('/App');
     }
 
     function resetForm() {
@@ -1127,7 +1132,8 @@ const Events = () => {
                 action: 'toggle_cat_to_work',
             });
             localStorage.setItem("carpool_category", 'work');
-            history.push('/carpoolForWork');
+            //history.push('/carpoolForWork');
+            window.location.replace('/carpoolForWork');
         }
     }
 
@@ -1206,6 +1212,10 @@ const Events = () => {
         setIsTouched(true);
       };
 
+    function goToMyRides() {
+        window.location.replace('/App');
+    }
+
     return (
         <>
             <IonContent>
@@ -1236,7 +1246,7 @@ const Events = () => {
                                         
                                         {
                                         
-                                        localStorage.getItem('session') != null && (JSON.parse(localStorage.getItem('session') || '').wagon_token != undefined)?  <><IonButton size="small" onClick={() => { setRedirectToUserActivity(true) }} color="success" fill="outline" className="filterButtonInPoolPage">My Rides</IonButton><IonLabel><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null? "assets/img/avatar.svg" :  JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></>: null
+                                        localStorage.getItem('session') != null && (JSON.parse(localStorage.getItem('session') || '').wagon_token != undefined)?  <><IonButton size="small" onClick={() => { goToMyRides() }} color="success" fill="outline" className="filterButtonInPoolPage">My Rides</IonButton><IonLabel><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null? "assets/img/avatar.svg" :  JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></>: null
                                          
                                     }
                                         {/* <IonButton size="small"  onClick={() => { setRedirectToUserActivity(true) }} color="medium" className="filterButton">People Around You</IonButton> */}

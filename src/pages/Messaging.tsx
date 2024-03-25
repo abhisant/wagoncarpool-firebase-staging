@@ -55,7 +55,8 @@ const Messaging = () => {
             loadChatDetails();
         } else {
             console.log("Session doesn't exist");
-            history.push('/App');
+            //history.push('/App');
+            window.location.replace('/App');
             localStorage.setItem("redirected_from", 'messaging');
             setSessionExists(false);
         }  
