@@ -108,11 +108,11 @@ const UserActivity = () => {
 
     function loadChatModal(item: any, subItem: any) {
         // TODO:  Check whether a ride already exists
-        setIsOpen(true);
-        setReceiver({});
-        setSender({});
-        setMessageBody('');
-        loadChat(item.user, subItem.user);
+        // setIsOpen(true);
+        // setReceiver({});
+        // setSender({});
+        // setMessageBody('');
+        // loadChat(item.user, subItem.user);
     }
 
     // const generateItems = () => {
@@ -135,42 +135,42 @@ const UserActivity = () => {
     //     setuserActivityFeedLoading(false);
     // }
 
-    async function loadChat(senderObj: any, receiverObj: any) {
-        ReactGA.event({
-            category: "Chat",
-            action: "LoadChat",
-        });
-        console.log(senderObj);
-        console.log(receiverObj);
-        console.log('****');
-        setReceiver(receiverObj);
-        setSender(senderObj);
-        const queryParams = {
-            fromUserId: receiverObj.id,
-        }
+    // async function loadChat(senderObj: any, receiverObj: any) {
+    //     ReactGA.event({
+    //         category: "Chat",
+    //         action: "LoadChat",
+    //     });
+    //     console.log(senderObj);
+    //     console.log(receiverObj);
+    //     console.log('****');
+    //     setReceiver(receiverObj);
+    //     setSender(senderObj);
+    //     const queryParams = {
+    //         fromUserId: receiverObj.id,
+    //     }
 
-        while (true) {
-            if (infiniteLoop) {
-                const getResponseInLoop = await axios.get(import.meta.env.VITE_APP_API + '/messages?user_id=' + senderObj.id
-                    , { params: queryParams });
+    //     while (true) {
+    //         if (infiniteLoop) {
+    //             const getResponseInLoop = await axios.get(import.meta.env.VITE_APP_API + '/messages?user_id=' + senderObj.id
+    //                 , { params: queryParams });
 
-                console.log(getResponseInLoop.data);
-                setConversationDetails(getResponseInLoop.data);
-                await new Promise(r => setTimeout(r, 5000));
-            } else {
-                break;
-            }
-        }
+    //             console.log(getResponseInLoop.data);
+    //             setConversationDetails(getResponseInLoop.data);
+    //             await new Promise(r => setTimeout(r, 5000));
+    //         } else {
+    //             break;
+    //         }
+    //     }
 
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API + '/messages?user_id=' + senderObj.id
-            , { params: queryParams });
+    //     const getResponse = await axios.get(import.meta.env.VITE_APP_API + '/messages?user_id=' + senderObj.id
+    //         , { params: queryParams });
 
-        console.log(getResponse.data);
-        setConversationDetails(getResponse.data);
+    //     console.log(getResponse.data);
+    //     setConversationDetails(getResponse.data);
 
-        const postResponse = await axios.post(import.meta.env.VITE_APP_API + '/messages/seen?sendUserId=' + receiverObj.id + '&user_id=' + senderObj.id  + '&lastSeenMessageId=' + getResponse.data[getResponse.data.length - 1].messageId);
-        console.log(postResponse.data);
-    }
+    //     const postResponse = await axios.post(import.meta.env.VITE_APP_API + '/messages/seen?sendUserId=' + receiverObj.id + '&user_id=' + senderObj.id  + '&lastSeenMessageId=' + getResponse.data[getResponse.data.length - 1].messageId);
+    //     console.log(postResponse.data);
+    // }
 
     window.addEventListener('ionModalDidDismiss', (event) => {
         infiniteLoop = false;
@@ -181,26 +181,26 @@ const UserActivity = () => {
         setIsOpen(false);
     });
 
-    async function sendMessage() {
-        console.log("sender:" + sender);
-        console.log("receiver:" + receiver);
-        if (sender == "{}" || receiver == "{}") {
-            console.log("Throw validation error");
-            return;
-        }
+    // async function sendMessage() {
+    //     console.log("sender:" + sender);
+    //     console.log("receiver:" + receiver);
+    //     if (sender == "{}" || receiver == "{}") {
+    //         console.log("Throw validation error");
+    //         return;
+    //     }
 
-        const postRequestBody = {
-            senderUserId: sender.id,
-            receiverUserId: receiver.id,
-            sendTime: new Date().toISOString(),
-            body: message,
-        };
-        setMessageBody("");
-        console.log(postRequestBody);
-        const postResponse = await axios.post(import.meta.env.VITE_APP_API + '/messages', postRequestBody);
-        console.log(postResponse.data);
-        loadChat(sender, receiver);
-    }
+    //     const postRequestBody = {
+    //         senderUserId: sender.id,
+    //         receiverUserId: receiver.id,
+    //         sendTime: new Date().toISOString(),
+    //         body: message,
+    //     };
+    //     setMessageBody("");
+    //     console.log(postRequestBody);
+    //     const postResponse = await axios.post(import.meta.env.VITE_APP_API + '/messages', postRequestBody);
+    //     console.log(postResponse.data);
+    //     loadChat(sender, receiver);
+    // }
 
     function messageBody(message: any) {
         console.log('message', message)
@@ -984,7 +984,7 @@ const UserActivity = () => {
                     </IonContent>
                 </IonModal>
 
-                <IonModal id="example-modal" isOpen={isOpen}>
+                {/* <IonModal id="example-modal" isOpen={isOpen}>
                     <IonHeader>
                         <IonToolbar>
                             <IonTitle color="dark">Message {receiver.name}</IonTitle>
@@ -1044,7 +1044,7 @@ const UserActivity = () => {
                                 message == "" ? <IonButton disabled color="tertiary" className="chatSendButton" onClick={() => sendMessage()}>send</IonButton>: <IonButton color="tertiary" className="chatSendButton" onClick={() => sendMessage()}>send</IonButton>
                         }
                     </IonItem>
-                </IonModal>
+                </IonModal> */}
 
                 <IonModal id="example-modal" isOpen={goToMenu}>
                     <IonHeader>

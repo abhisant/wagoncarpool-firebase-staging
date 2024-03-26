@@ -4,7 +4,7 @@ import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 import { Redirect, useHistory, Route, HashRouter, Switch } from 'react-router-dom';
 import './GetStarted.css';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { add, addCircleSharp, arrowBackSharp, backspace, body, car, closeCircle, home, location, menu, menuOutline, people, peopleCircle, peopleOutline, shieldCheckmarkSharp, swapVertical } from 'ionicons/icons';
+import { add, addCircleSharp, arrowBackSharp, backspace, body, car, clipboard, closeCircle, home, location, menu, menuOutline, people, peopleCircle, peopleOutline, pin, pinOutline, shieldCheckmarkSharp, swapVertical } from 'ionicons/icons';
 import GetStarted from './GetStarted';
 import { GoogleMap, Marker } from '@react-google-maps/api';
 import UserActivity from './UserActivity';
@@ -184,17 +184,17 @@ const Events = () => {
 
         if ((localTerms == null || localTerms == '') && globalTermToggle!= "3") {
             console.log('localTerms null');
-            const getResponse = await axios.get(import.meta.env.VITE_APP_API + '/events/search?terms=sports' + '&locationLat=' + lat + '&locationLong=' + lng);
+            const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/events/search?terms=sports' + '&locationLat=' + lat + '&locationLong=' + lng);
             setFeedLoading(false);
             setEventData(getResponse.data);
         } else if ((localTerms == null || localTerms == '') && globalTermToggle == "3") {
             console.log('localTerms null');
-            const getResponse = await axios.get(import.meta.env.VITE_APP_API + '/events/search?locationLat=' + lat + '&locationLong=' + lng);
+            const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/events/search?locationLat=' + lat + '&locationLong=' + lng);
             setFeedLoading(false);
             setEventData(getResponse.data);
         } else {
             console.log('localTerms has data');
-            const getResponse = await axios.get(import.meta.env.VITE_APP_API + '/events/search?terms=' + localTerms + '&locationLat=' + lat + '&locationLong=' + lng);
+            const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/events/search?terms=' + localTerms + '&locationLat=' + lat + '&locationLong=' + lng);
             setFeedLoading(false);
             setEventData(getResponse.data);
         }
@@ -1384,6 +1384,7 @@ const Events = () => {
                                     item.eventId != eventId ?
                                         <IonCard className="cursorPointer" onClick={() => rideCreationModal(item)} key={index}>
                                             <IonCardContent>
+                                            
                                                 {
                                                     <img className="feedItemImg" src={item.imageUrl} alt="" referrerPolicy='no-referrer' />
                                                 }
@@ -1409,9 +1410,11 @@ const Events = () => {
                                         :
                                         <IonCard color="medium" className="cursorPointer" onClick={() => rideCreationModal(item)} key={index}>
                                             <IonCardContent>
+                                               
                                                 {
                                                     <img className="feedItemImg" src={item.imageUrl} alt="" referrerPolicy='no-referrer' />
                                                 }
+                                                 
 
                                                 <IonLabel className="eventName">{item.eventName}</IonLabel>
                                                 <hr />

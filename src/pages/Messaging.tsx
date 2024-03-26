@@ -25,6 +25,7 @@ const Messaging = () => {
     let infiniteLoop = true;
     let wagon_token = '';
     let session_imageUrl = '';
+    let globalSessionObj:any;
 
 
     const openChat = (item: any) => (event: any) => {
@@ -32,6 +33,15 @@ const Messaging = () => {
     }
 
     async function loadChatDetails() {
+        if (localStorage.getItem('session')  == null) {
+            setSessionExists(false);
+            return;
+        }
+        globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+            setSessionExists(false);
+            return;
+        }
         ReactGA.event({
             category: "Chat",
             action: "LoadChatHeaders",
@@ -39,7 +49,7 @@ const Messaging = () => {
         const session = JSON.parse(localStorage.getItem('session') || "");
         setcurrUserId(session.userId);
         setFeedLoading(true);
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API + '/messages/headers?user_id=' + session.userId );
+        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/messages/headers', {headers: { 'Authorization': globalSessionObj.wagon_token } });
         console.log(getResponse);
         setFeedLoading(false);
         setMessageData(getResponse.data);
@@ -92,32 +102,41 @@ const Messaging = () => {
         setReceiver(receiverObj);
         setSender(senderObj);
         const queryParams = {
-            fromUserId: receiverObj.id,
+            fromUserToken: receiverObj.token,
         }
-
+        let count = 0
         while(true) {
-            if (infiniteLoop) {
-                const getResponseInLoop = await axios.get(import.meta.env.VITE_APP_API + '/messages?user_id=' + senderObj.id
-                , { params: queryParams });
+            console.log(count);
+            
+            if (infiniteLoop && count <60) {
+                const getResponseInLoop = 
+                await axios.get(import.meta.env.VITE_APP_API_V2 + '/messages?fromUserToken=' + receiverObj.token
+                , {headers: { 'Authorization': senderObj.token } });
+
+                const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages/seen?sender='+ receiverObj.token + '&lastSeenMessageId=' +  getResponseInLoop.data[getResponseInLoop.data.length-1].messageId, {} 
+                , {headers: { 'Authorization': senderObj.token } });
     
             console.log(getResponseInLoop.data);
             setConversationDetails(getResponseInLoop.data);
                 await new Promise(r => setTimeout(r, 5000));
             } else {
+                setIsOpen(false);
                 break;
             }
+            count++;
         }
 
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API + '/messages?user_id=' + senderObj.id
-            , { params: queryParams });
+        // const getResponse =  await axios.get(import.meta.env.VITE_APP_API_V2 + '/messages?fromUserToken=' + receiverObj.token
+        // , {headers: { 'Authorization': senderObj.token } });
 
-        console.log(getResponse.data);
-        setConversationDetails(getResponse.data);
+        // console.log(getResponse.data);
+       // setConversationDetails(getResponse.data);
 
-        const postResponse = await axios.post(import.meta.env.VITE_APP_API + '/messages/seen?sendUserId='+ receiverObj.id + '&user_id=' + senderObj.id + '&lastSeenMessageId=' +  getResponse.data[getResponse.data.length-1].messageId);
-        console.log(postResponse.data);
+        // const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages/seen?sender='+ receiverObj.token + '&lastSeenMessageId=' +  getResponse.data[getResponse.data.length-1].messageId, {} , {headers: { 'Authorization': senderObj.token } });
+        // console.log(postResponse.data);
         // reload headers to wipeout the count
-        loadChatDetails();
+        
+        //loadChatDetails();
     }
 
     window.addEventListener('ionModalDidDismiss', (event) => {
@@ -144,13 +163,13 @@ const Messaging = () => {
         setMessageBody("");
 
         const postRequestBody = {
-            senderUserId: sender.id,
-            receiverUserId: receiver.id,
+            // senderUserId: sender.token,
+            // receiverUserId: receiver.token,
             sendTime: new Date().toISOString(),
             body: message,
         };
         console.log(postRequestBody);
-        const postResponse = await axios.post(import.meta.env.VITE_APP_API + '/messages', postRequestBody);
+        const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages?receiver=' + receiver.token, postRequestBody , {headers: { 'Authorization': sender.token } });
         console.log(postResponse.data);
       
         loadChat(sender, receiver);
@@ -192,6 +211,9 @@ const Messaging = () => {
 
     function closeChatModal() {
         infiniteLoop = false;
+        // reload headers to wipeout the count
+        
+        loadChatDetails();
         setIsOpen(false);
     }
 
@@ -278,7 +300,7 @@ const Messaging = () => {
                 <IonModal id="example-modal" isOpen={isOpen}>
                     <IonHeader>
                         <IonToolbar>
-                            <IonTitle>{sender.name}</IonTitle>
+                            <IonTitle>{receiver.name}</IonTitle>
                             <IonButtons slot="end">
                                 <IonButton onClick={() => closeChatModal()}><IonIcon className="closeIcon" icon={closeCircle}></IonIcon></IonButton>
                             </IonButtons>

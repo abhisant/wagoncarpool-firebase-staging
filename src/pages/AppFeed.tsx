@@ -762,13 +762,22 @@ const AppFeed = () => {
     }, []);
 
     function cancelRide(rideId: number) {
+        if (localStorage.getItem('session')  == null) {
+            setSessionExists(false);
+            return;
+        }
+        globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+            setSessionExists(false);
+            return;
+        }
         ReactGA.event({
             category: "CancelRide",
             action: "CancelRide",
         });
         console.log(rideId);
         setLoading(true);
-        axios.delete(import.meta.env.VITE_APP_API + '/rides?id=' + rideId)
+        axios.delete(import.meta.env.VITE_APP_API_V2 + '/rides?id=' + rideId, {headers: { 'Authorization': globalSessionObj.wagon_token } })
             .then(() => {
                 loadUserActivityFeed();
                 loadHistoricalRides();
@@ -800,27 +809,34 @@ const AppFeed = () => {
             fromUserId: receiverObj.id,
         }
 
+        let count = 0
         while (true) {
-            if (infiniteLoop) {
-                const getResponseInLoop = await axios.get(import.meta.env.VITE_APP_API + '/messages?user_id=' + senderObj.id
-                    , { params: queryParams });
+            if (infiniteLoop && count <60) {
+                const getResponseInLoop = 
+                await axios.get(import.meta.env.VITE_APP_API_V2 + '/messages?fromUserToken=' + receiverObj.token
+                , {headers: { 'Authorization': senderObj.token } });
+
+                const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages/seen?sender='+ receiverObj.token + '&lastSeenMessageId=' + 
+                getResponseInLoop.data[getResponseInLoop.data.length-1].messageId, {} , {headers: { 'Authorization': senderObj.token } });
 
                 console.log(getResponseInLoop.data);
                 setConversationDetails(getResponseInLoop.data);
                 await new Promise(r => setTimeout(r, 5000));
             } else {
+                setIsOpen(false);
                 break;
             }
+            count++;
         }
 
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API + '/messages?user_id=' + senderObj.id
-            , { params: queryParams });
+        // const getResponse =  await axios.get(import.meta.env.VITE_APP_API_V2 + '/messages?fromUserToken=' + receiverObj.token
+        // , {headers: { 'Authorization': senderObj.token } });
 
-        console.log(getResponse.data);
-        setConversationDetails(getResponse.data);
+        // console.log(getResponse.data);
+        // setConversationDetails(getResponse.data);
 
-        const postResponse = await axios.post(import.meta.env.VITE_APP_API + '/messages/seen?sendUserId=' + receiverObj.id + '&user_id=' + senderObj.id + '&lastSeenMessageId=' + getResponse.data[getResponse.data.length - 1].messageId);
-        console.log(postResponse.data);
+        // const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages/seen?sender='+ receiverObj.token + '&lastSeenMessageId=' +  getResponse.data[getResponse.data.length-1].messageId, {} , {headers: { 'Authorization': senderObj.token } });
+        // console.log(postResponse.data);
     }
 
     function closeChatModal() {
@@ -844,7 +860,7 @@ const AppFeed = () => {
         };
         setMessageBody("");
         console.log(postRequestBody);
-        const postResponse = await axios.post(import.meta.env.VITE_APP_API + '/messages', postRequestBody);
+        const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages?receiver=' + receiver.token, postRequestBody , {headers: { 'Authorization': sender.token } });
         console.log(postResponse.data);
         loadChat(sender, receiver);
     }

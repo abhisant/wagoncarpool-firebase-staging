@@ -145,6 +145,15 @@ const MatchRequest = () => {
     }, []);
 
     async function approveMatch(item: any) {
+        if (localStorage.getItem('session')  == null) {
+            setSessionExists(false);
+            return;
+        }
+        globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+            setSessionExists(false);
+            return;
+        }
         setFeedLoading(true);
         ReactGA.event({
             category: "match_req_approve_attempt",
@@ -152,7 +161,7 @@ const MatchRequest = () => {
         });
         setErrorLogs('');
         setRedirectToUserActivity(false);
-        axios.post(import.meta.env.VITE_APP_API + '/rides/match/approve?approver_ride_id=' + item.tobeApprovedRide.rideId + '&requester_ride_id=' + item.requesterRideDetails.rideRequest.rideId)
+        axios.post(import.meta.env.VITE_APP_API_V2 + '/rides/match/approve?approver_ride_id=' + item.tobeApprovedRide.rideId + '&requester_ride_id=' + item.requesterRideDetails.rideRequest.rideId, {}, {headers: { 'Authorization': globalSessionObj.wagon_token } })
             .then(async (postResponse: AxiosResponse) => {
                 ReactGA.event({
                     category: "match_req_approve_success",
@@ -186,12 +195,21 @@ const MatchRequest = () => {
     }
 
     async function rejectMatch(item: any) {
+        if (localStorage.getItem('session')  == null) {
+            setSessionExists(false);
+            return;
+        }
+        globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+            setSessionExists(false);
+            return;
+        }
         ReactGA.event({
             category: "match_req_reject",
             action: "match_req_reject",
         });
         setErrorLogs('');
-        const postResponse = await axios.post(import.meta.env.VITE_APP_API + '/rides/match/reject?approver_ride_id=' + item.tobeApprovedRide.rideId + '&requester_ride_id=' + item.requesterRideDetails.rideRequest.rideId);
+        const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/rides/match/reject?approver_ride_id=' + item.tobeApprovedRide.rideId + '&requester_ride_id=' + item.requesterRideDetails.rideRequest.rideId, {}, {headers: { 'Authorization': globalSessionObj.wagon_token } });
         console.log('reject', postResponse.data);
         present({
             message: 'Ride Rejected.',
