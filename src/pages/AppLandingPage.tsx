@@ -34,6 +34,8 @@ import GetRideFeedback from './GetRideFeedback';
 import { PushNotifications } from '@capacitor/push-notifications';
 import { Capacitor } from '@capacitor/core';
 import ReactGA from 'react-ga4';
+import BlogHeadlines from './BlogsHeadlines';
+import BlogDetails from './BlogsDetails';
 
 function AppLandingPage() {
   let history = useHistory();
@@ -167,6 +169,8 @@ function AppLandingPage() {
           <Route path="/messaging" render={() => <Messaging />} exact={true} />
           <Route path="/pendingRequests" render={() => <MatchRequest />} exact={true} />
           <Route path="/userActivity" render={() => <UserActivity />} exact={true} />
+          <Route path="/blogs" render={() => <BlogHeadlines />} exact={true} />
+          <Route path="/blogDetail" render={() => <BlogDetails />} exact={true} />
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">

@@ -50,6 +50,7 @@ import SelectCarpoolCategory from './pages/SelectCarpoolCategory';
 import Work from './pages/Work';
 import Events from './pages/Events';
 import CarPoolingGuidelines from './pages/CarpoolingGuidelines';
+import BlogHeadlines from './pages/BlogsHeadlines';
 
 setupIonicReact();
 axios.defaults.headers.common['X-API-KEY'] = import.meta.env.VITE_APP_API_KEY;
@@ -89,6 +90,8 @@ const App: React.FC = () => (
         {/* <Route exact path="/menu" component={UserMenu} /> */}
         <Route exact path="/getRideFeedback" component={GetRideFeedback} />
         <Route exact path="/camera" component={VerifyUser} />
+        <Route exact path="/blogs" component={AppLandingPage} />
+        <Route exact path="/blogDetail" component={AppLandingPage} />
         <Redirect exact from="/" to="/scc" />
       </IonRouterOutlet>
     </IonReactRouter>

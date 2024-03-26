@@ -20,6 +20,7 @@ import { PushNotifications } from '@capacitor/push-notifications';
 import { Capacitor } from '@capacitor/core';
 import AppDownloadWidget from './AppDownloadWidget';
 import { IonReactRouter } from '@ionic/react-router';
+import BlogSection from './BlogSection';
 
 
 const SelectCarpoolCategory = () => {
@@ -390,6 +391,8 @@ const SelectCarpoolCategory = () => {
                                 <WagonCarpoolWorks></WagonCarpoolWorks>
                                 <br />
                                 <WhyWagonCarpool></WhyWagonCarpool>
+                                <br />
+                                <BlogSection></BlogSection>
                                 <br />
                                 <SocialMediaFooter></SocialMediaFooter>
                                 <br />
