@@ -6,7 +6,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-background-color: #e7e7e7;
   --ion-card-background: #ffffff;
   /** primary **/
-  --ion-color-primary: #3880FF;
+  --ion-color-primary: #217aa9;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -86,7 +86,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   body {
-    --ion-color-primary: #afccff;
+    --ion-color-primary: #3c7a8f;
     --ion-color-primary-rgb: 175, 204, 255;
     --ion-color-primary-contrast: #000000;
     --ion-color-primary-contrast-rgb: 0, 0, 0;

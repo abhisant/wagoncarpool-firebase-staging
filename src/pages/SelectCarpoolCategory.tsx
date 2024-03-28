@@ -177,8 +177,9 @@ const SelectCarpoolCategory = () => {
             }
         }
         ReactGA.send({ hitType: "pageview", page: "/select-carpool-category", title: "Select Carpool Category" });
-        let urlParams = new URLSearchParams(window.location.hash);
+        let urlParams = new URLSearchParams(window.location.href);
         if (urlParams.get('es') !== null) {
+            console.log('es');
             ReactGA.event({
                 category: "entry_source=" + urlParams.get('es') || '',
                 action: "entry_source=" + urlParams.get('es') || '',
@@ -190,6 +191,7 @@ const SelectCarpoolCategory = () => {
                 });
             }
         } else {
+            console.log('organic');
             ReactGA.event({
                 category: "entry_source=organic",
                 action: "entry_source=organic",
@@ -391,9 +393,9 @@ const SelectCarpoolCategory = () => {
                                 <WagonCarpoolWorks></WagonCarpoolWorks>
                                 <br />
                                 <WhyWagonCarpool></WhyWagonCarpool>
-                                <br />
+                                {/* <br />
                                 <BlogSection></BlogSection>
-                                <br />
+                                <br /> */}
                                 <SocialMediaFooter></SocialMediaFooter>
                                 <br />
 
