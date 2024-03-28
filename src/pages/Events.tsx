@@ -982,6 +982,41 @@ const Events = () => {
             setZipCode(JSON.parse(localStorage.getItem('current_location') || '').zipcode);
             getGamesAndEvents(cachedLat, cacheLng);
             setErrorLogs('');
+
+            // go ahead and get current location & cache it for next time.
+            const coordinates = await Geolocation.getCurrentPosition();
+            const lat = coordinates.coords.latitude;
+            console.log(lat);
+            const lng = coordinates.coords.longitude;
+            console.log(lng);
+
+            let response = await Geocode.fromLatLng((coordinates.coords.latitude).toString(), (coordinates.coords.longitude).toString());
+            console.log('zipcode', response.results[0].address_components[7].long_name);
+            setZipCode(response.results[0].address_components[7].long_name);
+            console.log('detail', response.results[0].address_components[3].long_name);
+            let addressArray = response.results[0].formatted_address.split(",");
+            setCity(addressArray[addressArray.length - 3]);
+            //response => {
+            const address = response.results[0].formatted_address;
+            console.log('Address', address);
+            console.log(address);
+            currAddress = address;
+
+            setStartAddress(address);
+            setStartAddressName(address);
+            setUserFromLocation({
+                ...fromLocation, latitude: coordinates.coords.latitude || 0,
+                longitude: coordinates.coords.longitude || 0,
+            });
+
+            const newCurrentLocation = {
+                zipcode: response.results[0].address_components[7].long_name,
+                lat: lat,
+                lng: lng
+            }
+            localStorage.removeItem("current_location");
+            localStorage.setItem("current_location", JSON.stringify(newCurrentLocation));
+
         }
         // inputStartAddressRef.current.value = response.results[0].formatted_address;
     }

@@ -95,6 +95,15 @@ const Messaging = () => {
     }
     
     async function loadChat(senderObj: any, receiverObj: any) {
+        if (localStorage.getItem('session')  == null) {
+            setSessionExists(false);
+            return;
+        }
+        globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+            setSessionExists(false);
+            return;
+        }
         ReactGA.event({
             category: "Chat",
             action: "LoadChatDetails",
@@ -111,10 +120,10 @@ const Messaging = () => {
             if (infiniteLoop && count <60) {
                 const getResponseInLoop = 
                 await axios.get(import.meta.env.VITE_APP_API_V2 + '/messages?fromUserToken=' + receiverObj.token
-                , {headers: { 'Authorization': senderObj.token } });
+                , {headers: { 'Authorization': globalSessionObj.wagon_token } });
 
                 const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages/seen?sender='+ receiverObj.token + '&lastSeenMessageId=' +  getResponseInLoop.data[getResponseInLoop.data.length-1].messageId, {} 
-                , {headers: { 'Authorization': senderObj.token } });
+                , {headers: { 'Authorization': globalSessionObj.wagon_token } });
     
             console.log(getResponseInLoop.data);
             setConversationDetails(getResponseInLoop.data);
@@ -154,6 +163,16 @@ const Messaging = () => {
             category: "messaging",
             action: "SendMessage",
           });
+
+        if (localStorage.getItem('session')  == null) {
+            setSessionExists(false);
+            return;
+        }
+        globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+            setSessionExists(false);
+            return;
+        }
         console.log("sender:" , sender);
         console.log("receiver:" ,receiver);
         if (sender == "{}" || receiver == "{}") {
@@ -169,7 +188,7 @@ const Messaging = () => {
             body: message,
         };
         console.log(postRequestBody);
-        const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages?receiver=' + receiver.token, postRequestBody , {headers: { 'Authorization': sender.token } });
+        const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages?receiver=' + receiver.token, postRequestBody , {headers: { 'Authorization': globalSessionObj.wagon_token } });
         console.log(postResponse.data);
       
         loadChat(sender, receiver);
