@@ -822,10 +822,10 @@ const AppFeed = () => {
         while (true) {
             if (infiniteLoop && count <60) {
                 const getResponseInLoop = 
-                await axios.get(import.meta.env.VITE_APP_API_V2 + '/messages?fromUserToken=' + receiverObj.token
-                , {headers: { 'Authorization': globalSessionObj.wagon_tokentoken } });
+                await axios.get(import.meta.env.VITE_APP_API_V2 + '/messages?receiverNAT=' + receiverObj.nat
+                , {headers: { 'Authorization': globalSessionObj.wagon_token } });
 
-                const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages/seen?sender='+ receiverObj.token + '&lastSeenMessageId=' + 
+                const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages/seen?senderNat='+ receiverObj.nat + '&lastSeenMessageId=' + 
                 getResponseInLoop.data[getResponseInLoop.data.length-1].messageId, {} , {headers: { 'Authorization': globalSessionObj.wagon_token } });
 
                 console.log(getResponseInLoop.data);
@@ -878,7 +878,7 @@ const AppFeed = () => {
         };
         setMessageBody("");
         console.log(postRequestBody);
-        const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages?receiver=' + receiver.token, postRequestBody , {headers: { 'Authorization': globalSessionObj.wagon_token } });
+        const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages?receiverNat=' + receiver.nat, postRequestBody , {headers: { 'Authorization': globalSessionObj.wagon_token } });
         console.log(postResponse.data);
         loadChat(sender, receiver);
     }

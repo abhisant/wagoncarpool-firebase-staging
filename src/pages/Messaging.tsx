@@ -110,26 +110,25 @@ const Messaging = () => {
           });
         setReceiver(receiverObj);
         setSender(senderObj);
-        const queryParams = {
-            fromUserToken: receiverObj.token,
-        }
+       
         let count = 0
         while(true) {
             console.log(count);
+            console.log(infiniteLoop);
             
             if (infiniteLoop && count <60) {
                 const getResponseInLoop = 
-                await axios.get(import.meta.env.VITE_APP_API_V2 + '/messages?fromUserToken=' + receiverObj.token
+                await axios.get(import.meta.env.VITE_APP_API_V2 + '/messages?receiverNAT=' + receiverObj.nat
                 , {headers: { 'Authorization': globalSessionObj.wagon_token } });
 
-                const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages/seen?sender='+ receiverObj.token + '&lastSeenMessageId=' +  getResponseInLoop.data[getResponseInLoop.data.length-1].messageId, {} 
+                const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages/seen?senderNat='+ receiverObj.nat + '&lastSeenMessageId=' +  getResponseInLoop.data[getResponseInLoop.data.length-1].messageId, {} 
                 , {headers: { 'Authorization': globalSessionObj.wagon_token } });
     
             console.log(getResponseInLoop.data);
             setConversationDetails(getResponseInLoop.data);
                 await new Promise(r => setTimeout(r, 5000));
             } else {
-                setIsOpen(false);
+                //setIsOpen(false);
                 break;
             }
             count++;
@@ -188,7 +187,7 @@ const Messaging = () => {
             body: message,
         };
         console.log(postRequestBody);
-        const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages?receiver=' + receiver.token, postRequestBody , {headers: { 'Authorization': globalSessionObj.wagon_token } });
+        const postResponse = await axios.post(import.meta.env.VITE_APP_API_V2 + '/messages?receiverNat=' + receiver.nat, postRequestBody , {headers: { 'Authorization': globalSessionObj.wagon_token } });
         console.log(postResponse.data);
       
         loadChat(sender, receiver);
