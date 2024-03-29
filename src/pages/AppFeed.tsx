@@ -792,6 +792,7 @@ const AppFeed = () => {
         setReceiver({});
         setSender({});
         setMessageBody('');
+        infiniteLoop = true;
         loadChat(item.user, subItem.user);
     }
 
