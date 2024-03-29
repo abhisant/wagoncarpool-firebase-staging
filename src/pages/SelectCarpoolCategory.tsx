@@ -232,25 +232,41 @@ const SelectCarpoolCategory = () => {
             grantOfflineAccess: true,
         });
         init();
-        // registerNotifications();
-        
 
-        // if (localStorage.getItem("session") != null && localStorage.getItem('carpool_category') == 'work') {
-        //     ReactGA.event({
-        //         category: "AutoRedirectToCarpoolForWork",
-        //         action: "AutoRedirectToCarpoolForWork",
-        //     });
-        //     history.push("/carpoolForWork");
-        //     setLoading(false);
-        // } else if (localStorage.getItem("session") != null && localStorage.getItem('carpool_category') == 'events') {
-        //     ReactGA.event({
-        //         category: "AutoRedirectToCarpoolForEvents",
-        //         action: "AutoRedirectToCarpoolForEvents",
-        //     });
-        //     history.push("/carpoolForEvents");
-        //     setLoading(false);
-        // }
-        // setLoading(false);
+        if (localStorage.getItem('session')  == null) {
+            setSessionExists(false);
+            return;
+        }
+        globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+            setSessionExists(false);
+            return;
+        }
+
+        let clientType = 'web';
+
+        if (Capacitor.isNativePlatform()) {
+            if (Capacitor.getPlatform() == 'ios') {
+                clientType = 'ios';
+            }
+            if (Capacitor.getPlatform() == 'android') {
+                clientType = 'android';
+            }
+        }
+        let utm = '';
+        let urlParams = new URLSearchParams(window.location.href);
+        if (urlParams.get('es') !== null) {
+            utm = urlParams.get('es') || '';
+            
+        } else {
+            utm = 'organic'
+        }
+        
+        axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + utm, {}, {headers: { 'Authorization': globalSessionObj.wagon_token } }).then(async (response) => {
+            console.log('User Visits success');
+        }).catch((reason) => {
+                console.log('User Visits Failed');
+            })
     }, []);
 
     useIonViewDidEnter(() => {
