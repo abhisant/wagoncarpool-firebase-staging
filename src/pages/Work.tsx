@@ -1367,6 +1367,31 @@ const Work = () => {
                 setHomeWorkAddressExists(true);
             }
             setSessionExists(true);
+            // sent visit count.
+            let clientType = 'web';
+
+            if (Capacitor.isNativePlatform()) {
+                if (Capacitor.getPlatform() == 'ios') {
+                    clientType = 'ios';
+                }
+                if (Capacitor.getPlatform() == 'android') {
+                    clientType = 'android';
+                }
+            }
+            let utm = '';
+            let urlParams = new URLSearchParams(window.location.href);
+            if (urlParams.get('es') !== null) {
+                utm = urlParams.get('es') || '';
+                
+            } else {
+                utm = 'organic'
+            }
+            
+            axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + utm, {}, {headers: { 'Authorization': response.data.token } }).then(async (response) => {
+                console.log('User Visits success');
+            }).catch((reason) => {
+                    console.log('User Visits Failed');
+            })
         })
             .catch((reason) => {
 

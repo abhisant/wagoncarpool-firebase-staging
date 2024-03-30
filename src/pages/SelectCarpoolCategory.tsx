@@ -36,6 +36,8 @@ const SelectCarpoolCategory = () => {
     const [redirectToUserActivity, setRedirectToUserActivity] = React.useState(false);
     const [identifyIOSApp, setIdentifyIOSApp] = React.useState(false);
     const [identifyAndroidApp, setIdentifyAndroidApp] = React.useState(false);
+
+    const [globalEntrySource, setGlobalEntrySource] = useState('');
     
     let globalSessionObj:any;
     // let forceDismissFeedBackModal = false;
@@ -46,8 +48,14 @@ const SelectCarpoolCategory = () => {
             action: "UserSelectsCarpoolForWork",
         });
         localStorage.setItem("carpool_category", 'work');
+        console.log('global entry source' + globalEntrySource);
         // history.push("/carpoolForWork");
-        window.location.replace('/carpoolForWork');
+        if (globalEntrySource == '') {
+            window.location.replace('/carpoolForWork');
+        } else {
+            window.location.replace('/carpoolForWork?&es=' + globalEntrySource);
+        }
+        
     }
 
     function carpoolingForEvents() {
@@ -57,7 +65,12 @@ const SelectCarpoolCategory = () => {
         });
         localStorage.setItem("carpool_category", 'events');
         // history.push("/carpoolForEvents");
-        window.location.replace('/carpoolForEvents');
+        console.log('global entry source' + globalEntrySource);
+        if (globalEntrySource == '') {
+            window.location.replace('/carpoolForEvents');
+        } else {
+            window.location.replace('/carpoolForEvents?&es=' + globalEntrySource);
+        }
     }
 
     function loadFeedbackDetails() {
@@ -179,8 +192,9 @@ const SelectCarpoolCategory = () => {
         ReactGA.send({ hitType: "pageview", page: "/select-carpool-category", title: "Select Carpool Category" });
         let urlParams = new URLSearchParams(window.location.href);
         if (urlParams.get('es') !== null) {
-            console.log('es');
-            ReactGA.event({
+            console.log('globalEntrySource= '+ urlParams.get('es' )); 
+            setGlobalEntrySource(urlParams.get('es' )|| '');
+            ReactGA.event({ 
                 category: "entry_source=" + urlParams.get('es') || '',
                 action: "entry_source=" + urlParams.get('es') || '',
             });
@@ -257,6 +271,7 @@ const SelectCarpoolCategory = () => {
         let urlParams = new URLSearchParams(window.location.href);
         if (urlParams.get('es') !== null) {
             utm = urlParams.get('es') || '';
+            setGlobalEntrySource(utm);
             
         } else {
             utm = 'organic'
@@ -317,6 +332,31 @@ const SelectCarpoolCategory = () => {
                 await PushNotifications.register();
             }
             loadFeedbackDetails();
+
+            let clientType = 'web';
+
+            if (Capacitor.isNativePlatform()) {
+                if (Capacitor.getPlatform() == 'ios') {
+                    clientType = 'ios';
+                }
+                if (Capacitor.getPlatform() == 'android') {
+                    clientType = 'android';
+                }
+            }
+            let utm = '';
+            let urlParams = new URLSearchParams(window.location.href);
+            if (urlParams.get('es') !== null) {
+                utm = urlParams.get('es') || '';
+                
+            } else {
+                utm = 'organic'
+            }
+            
+            axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + utm, {}, {headers: { 'Authorization': response.data.token } }).then(async (response) => {
+                console.log('User Visits success');
+            }).catch((reason) => {
+                    console.log('User Visits Failed');
+            })
         }).catch((reason) => {
                 setLoginLoading(false);
                 console.log(reason.message)
