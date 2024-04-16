@@ -1387,7 +1387,7 @@ const Work = () => {
                 utm = 'organic'
             }
             
-            axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + utm, {}, {headers: { 'Authorization': response.data.token } }).then(async (response) => {
+            axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + (localStorage.getItem('entry_source') || 'organic'), {}, {headers: { 'Authorization': response.data.token } }).then(async (response) => {
                 console.log('User Visits success');
             }).catch((reason) => {
                     console.log('User Visits Failed');

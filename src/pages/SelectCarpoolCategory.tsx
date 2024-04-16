@@ -37,7 +37,6 @@ const SelectCarpoolCategory = () => {
     const [identifyIOSApp, setIdentifyIOSApp] = React.useState(false);
     const [identifyAndroidApp, setIdentifyAndroidApp] = React.useState(false);
 
-    const [globalEntrySource, setGlobalEntrySource] = useState('');
     
     let globalSessionObj:any;
     // let forceDismissFeedBackModal = false;
@@ -48,14 +47,7 @@ const SelectCarpoolCategory = () => {
             action: "UserSelectsCarpoolForWork",
         });
         localStorage.setItem("carpool_category", 'work');
-        console.log('global entry source' + globalEntrySource);
-        // history.push("/carpoolForWork");
-        if (globalEntrySource == '') {
-            window.location.replace('/carpoolForWork');
-        } else {
-            window.location.replace('/carpoolForWork?&es=' + globalEntrySource);
-        }
-        
+        window.location.replace('/carpoolForWork');
     }
 
     function carpoolingForEvents() {
@@ -65,12 +57,8 @@ const SelectCarpoolCategory = () => {
         });
         localStorage.setItem("carpool_category", 'events');
         // history.push("/carpoolForEvents");
-        console.log('global entry source' + globalEntrySource);
-        if (globalEntrySource == '') {
-            window.location.replace('/carpoolForEvents');
-        } else {
-            window.location.replace('/carpoolForEvents?&es=' + globalEntrySource);
-        }
+        window.location.replace('/carpoolForEvents');
+        
     }
 
     function loadFeedbackDetails() {
@@ -193,7 +181,8 @@ const SelectCarpoolCategory = () => {
         let urlParams = new URLSearchParams(window.location.href);
         if (urlParams.get('es') !== null) {
             console.log('globalEntrySource= '+ urlParams.get('es' )); 
-            setGlobalEntrySource(urlParams.get('es' )|| '');
+            localStorage.setItem("entry_source", urlParams.get('es' )|| '');
+            
             ReactGA.event({ 
                 category: "entry_source=" + urlParams.get('es') || '',
                 action: "entry_source=" + urlParams.get('es') || '',
@@ -205,6 +194,7 @@ const SelectCarpoolCategory = () => {
                 });
             }
         } else {
+            localStorage.setItem("entry_source", 'organic');
             console.log('organic');
             ReactGA.event({
                 category: "entry_source=organic",
@@ -271,10 +261,11 @@ const SelectCarpoolCategory = () => {
         let urlParams = new URLSearchParams(window.location.href);
         if (urlParams.get('es') !== null) {
             utm = urlParams.get('es') || '';
-            setGlobalEntrySource(utm);
+            localStorage.setItem("entry_source", urlParams.get('es' )|| '');
             
         } else {
             utm = 'organic'
+            localStorage.setItem("entry_source", 'organic');
         }
         
         axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + utm, {}, {headers: { 'Authorization': globalSessionObj.wagon_token } }).then(async (response) => {
@@ -352,7 +343,7 @@ const SelectCarpoolCategory = () => {
                 utm = 'organic'
             }
             
-            axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + utm, {}, {headers: { 'Authorization': response.data.token } }).then(async (response) => {
+            axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + (localStorage.getItem('entry_source') || 'organic'), {}, {headers: { 'Authorization': response.data.token } }).then(async (response) => {
                 console.log('User Visits success');
             }).catch((reason) => {
                     console.log('User Visits Failed');
@@ -449,9 +440,9 @@ const SelectCarpoolCategory = () => {
                                 <WagonCarpoolWorks></WagonCarpoolWorks>
                                 <br />
                                 <WhyWagonCarpool></WhyWagonCarpool>
-                                {/* <br />
+                                <br />
                                 <BlogSection></BlogSection>
-                                <br /> */}
+                                <br />
                                 <SocialMediaFooter></SocialMediaFooter>
                                 <br />
 

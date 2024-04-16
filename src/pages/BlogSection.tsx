@@ -13,7 +13,7 @@ const BlogSection = () => {
                 <IonCardContent>
                     <IonImg onClick={redirectToBlogs} className='cursorPointer' src="assets/img/dogblog.jpeg"></IonImg>
                     <br/>
-                    <IonButton size="small">World of Carpoling Blogs</IonButton>
+                    <IonButton onClick={redirectToBlogs} size="small">World of Carpooling Blogs</IonButton>
                
                 </IonCardContent>
             </IonCard>
