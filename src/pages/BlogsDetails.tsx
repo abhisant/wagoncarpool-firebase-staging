@@ -47,7 +47,7 @@ const BlogDetails = (id: any) => {
         </IonHeader>
         <IonContent>
             <div style={{ padding: '20px' }}>
-            {blogDetails.content}
+            <div dangerouslySetInnerHTML={{ __html: blogDetails.content }} />
             </div>
         </IonContent>
         
