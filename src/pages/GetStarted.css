@@ -1024,6 +1024,8 @@ h1, h2, h3 {
 }
 
 ion-title {
-  height: fit-content;
+  height: 80px;
+  font-size: 17px;
 }
+
 
