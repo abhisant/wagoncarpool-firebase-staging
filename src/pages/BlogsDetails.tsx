@@ -42,13 +42,12 @@ const BlogDetails = (id: any) => {
             
         <IonHeader>
             <IonToolbar color="success">
-                <IonTitle>{blogDetails.title}</IonTitle>
+                <IonTitle><div className="ion-text-wrap">{blogDetails.title}: {blogDetails.subtitle} </div></IonTitle>
+                
             </IonToolbar>
         </IonHeader>
-        <IonContent>
-            <div style={{ padding: '20px' }}>
+        <IonContent>    
             <div dangerouslySetInnerHTML={{ __html: blogDetails.content }} />
-            </div>
         </IonContent>
         
     </IonApp>

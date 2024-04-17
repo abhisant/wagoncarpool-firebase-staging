@@ -1018,3 +1018,12 @@ ion-tab-button.tab-selected{
   height: 35px;
   margin-right: 40px;
 }
+
+h1, h2, h3 {
+  color: #41a167;  
+}
+
+ion-title {
+  height: fit-content;
+}
+
