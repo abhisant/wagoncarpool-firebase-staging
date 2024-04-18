@@ -39,7 +39,6 @@ const BlogDetails = (id: any) => {
 
     return (
         <IonApp>
-            
         <IonHeader>
             <IonToolbar color="success">
                 <IonTitle><div className="ion-text-wrap">{blogDetails.title}: {blogDetails.subtitle} </div></IonTitle>
