@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonImg, IonLabel, useIonViewDidEnter } from '@ionic/react';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import { Capacitor } from '@capacitor/core';
 
 
 const BlogHeadlines = (blogId: any) => {
     const [blogHeadlines, loadBlogHeadlines] = React.useState<any[]>([]);
+    const [identifyIOSApp, setIdentifyIOSApp] = React.useState(false);
+    const [identifyAndroidApp, setIdentifyAndroidApp] = React.useState(false);
 
     function redirectToBlogDetails(blogId:any) {
     window.location.replace('blogDetail?&id=' + blogId);
@@ -19,6 +22,14 @@ const BlogHeadlines = (blogId: any) => {
     });
     
     function init() {
+        if (Capacitor.isNativePlatform()) {
+            if (Capacitor.getPlatform() == 'ios') {
+                setIdentifyIOSApp(true);
+            }
+            if (Capacitor.getPlatform() == 'android') {
+                setIdentifyAndroidApp(true);
+            }
+        }
        
         axios.get(import.meta.env.VITE_APP_API + '/blog/headers')
             .then(async (axiosResponse: AxiosResponse) => {
@@ -34,6 +45,9 @@ const BlogHeadlines = (blogId: any) => {
 
     return (
         <>
+        {
+            identifyIOSApp ? <div className="topBarHomePage"></div> : null
+        }
             <IonCard color="success">
                 <IonCardContent>
                     <IonLabel className='mediumfont' >Wagon Carpool Blogs
