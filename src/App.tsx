@@ -81,6 +81,7 @@ const App: React.FC = () => (
         <Route path="/messaging" component={AppLandingPage} />
         <Route path="/carpoolForEvents" component={AppLandingPage} />
         <Route path="/carpoolForWork" component={AppLandingPage} />
+        <Route path="/carpoolForAirport" component={AppLandingPage} />
         <Route path="/scc" component={AppLandingPage} />
         <Route path="/pendingRequests" component={AppLandingPage} />
         <Route path="/pendingRequests" component={AppLandingPage} />

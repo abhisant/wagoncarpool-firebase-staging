@@ -36,6 +36,7 @@ import { Capacitor } from '@capacitor/core';
 import ReactGA from 'react-ga4';
 import BlogHeadlines from './BlogsHeadlines';
 import BlogDetails from './BlogsDetails';
+import Airport from './Airport';
 
 function AppLandingPage() {
   let history = useHistory();
@@ -164,6 +165,7 @@ function AppLandingPage() {
           <Route path="/carpoolForEvents" render={() => <Events />} exact={true} />
           <Route path="/getRideFeedback" render={() => <GetRideFeedback />} exact={true} />
           <Route path="/carpoolForWork" render={() => <Work />} exact={true} />
+          <Route path="/carpoolForAirport" render={() => <Airport />} exact={true} />
           <Route path="/carpoolForEvents?type=event" component={Events} exact={true}/>
           <Route path="/scc" render={() => <SelectCarpoolCategory />} exact={true} />
           <Route path="/messaging" render={() => <Messaging />} exact={true} />

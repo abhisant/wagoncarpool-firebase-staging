@@ -1,4 +1,4 @@
-import { IonAlert, IonBadge, IonButton, IonButtons, IonCard, IonCardContent, IonCheckbox, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonIcon, IonImg, IonInput, IonItem, IonLabel, IonList, IonModal, IonNavLink, IonPage, IonRange, IonRow, IonSegment, IonSegmentButton, IonSelect, IonSelectOption, IonSpinner, IonText, IonTitle, IonToast, IonToolbar, useIonAlert, useIonLoading, useIonViewDidEnter } from '@ionic/react';
+import { IonAlert, IonBadge, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCheckbox, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonIcon, IonImg, IonInput, IonItem, IonLabel, IonList, IonModal, IonNavLink, IonPage, IonRange, IonRow, IonSegment, IonSegmentButton, IonSelect, IonSelectOption, IonSpinner, IonText, IonTitle, IonToast, IonToolbar, useIonAlert, useIonLoading, useIonViewDidEnter } from '@ionic/react';
 import React, { CSSProperties, FC, MutableRefObject, RefObject, useEffect, useRef, useState } from "react";
 import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 import { Redirect, useHistory, Route, HashRouter, Switch } from 'react-router-dom';
@@ -1193,6 +1193,9 @@ const Events = () => {
             localStorage.setItem("carpool_category", 'work');
             //history.push('/carpoolForWork');
             window.location.replace('/carpoolForWork');
+
+        } else if (category == 2) {
+            window.location.replace('/carpoolForAirport');
         }
     }
 
@@ -1318,13 +1321,19 @@ const Events = () => {
                             {
                                 // !feedLoading && eventData.length> 0?
                                 <IonCard>
+                                    <IonCardHeader>
+                                    <IonCardSubtitle>Carpooling UseCase</IonCardSubtitle>
+                                </IonCardHeader>
                                 <IonCardContent>
                                 <IonSegment mode="ios" value="0" onIonChange={e => setCarpoolCategory(e.detail.value)}>
                                                     <IonSegmentButton value="0">
-                                                        <IonLabel class="segmentLabel">Carpool for Events</IonLabel>
+                                                        <IonLabel class="segmentLabel">Events</IonLabel>
                                                     </IonSegmentButton>
                                                     <IonSegmentButton value="1">
-                                                        <IonLabel class="segmentLabel">Carpool for Work</IonLabel>
+                                                        <IonLabel class="segmentLabel">Work</IonLabel>
+                                                    </IonSegmentButton>
+                                                    <IonSegmentButton value="2">
+                                                        <IonLabel class="segmentLabel">Airports</IonLabel>
                                                     </IonSegmentButton>
                                                 </IonSegment>
                                 </IonCardContent>
@@ -1588,7 +1597,7 @@ const Events = () => {
                                                         <IonGrid>
 
                                                             <IonText>
-                                                                <h3>Create Ride</h3>
+                                                            <IonLabel color='light'>Create Ride for Events</IonLabel>
                                                             </IonText>
 
                                                         </IonGrid>

@@ -1,4 +1,4 @@
-import { IonAlert, IonBadge, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCheckbox, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonIcon, IonImg, IonInput, IonItem, IonLabel, IonList, IonModal, IonNavLink, IonPage, IonRange, IonRow, IonSegment, IonSegmentButton, IonSelect, IonSelectOption, IonSpinner, IonText, IonTitle, IonToast, IonToolbar, useIonAlert, useIonLoading, useIonViewDidEnter } from '@ionic/react';
+import { IonAlert, IonBadge, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCheckbox, IonCol, IonContent, IonDatetime, IonDatetimeButton, IonGrid, IonHeader, IonIcon, IonImg, IonInput, IonItem, IonLabel, IonList, IonModal, IonNavLink, IonPage, IonRange, IonRow, IonSegment, IonSegmentButton, IonSelect, IonSelectOption, IonSpinner, IonText, IonTitle, IonToast, IonToolbar, useIonAlert, useIonLoading, useIonViewDidEnter } from '@ionic/react';
 import React, { CSSProperties, FC, MutableRefObject, RefObject, useEffect, useRef, useState } from "react";
 import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 import { Redirect, useHistory, Route, HashRouter, Switch, BrowserRouter } from 'react-router-dom';
@@ -19,9 +19,10 @@ import AppLandingPage from './AppLandingPage';
 import { Capacitor } from '@capacitor/core';
 import { PushNotifications } from '@capacitor/push-notifications';
 import { IonReactRouter } from '@ionic/react-router';
+import { h } from '@ionic/pwa-elements/dist/types/stencil-public-runtime';
 
 
-const Work = () => {
+const Airport = () => {
     let currAddress: any;
     Geocode.setApiKey('AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY');
     Geocode.setLanguage("en");
@@ -40,10 +41,10 @@ const Work = () => {
     const [homeLatitude, setHomeLatitude] = useState(0);
     const [homeLongitude, setHomeLongitude] = useState(0);
 
-    const [workAddress, setWorkAddress] = useState("");
-    const [workAddressName, setWorkAddressName] = useState("");
-    const [workLatitude, setWorkLatitude] = useState(0);
-    const [workLongitude, setWorkLongitude] = useState(0);
+    const [airportAddress, setAirportAddress] = useState("");
+    const [airportAddressName, setAirportAddressName] = useState("");
+    const [airportLatitide, setAirportLatitude] = useState(0);
+    const [airportLongitude, setAirportLongitude] = useState(0);
 
     const [destinationAddress, setDestinationAddress] = useState("");
 
@@ -61,7 +62,7 @@ const Work = () => {
     const [departureTime, setDepartureTime] = useState('');
     const [returnTime, setReturnTimeStamp] = useState('');
     const [seats, setSeats] = useState("1");
-    const [tripType, setTripType] = useState<any>("2");
+    const [tripType, setTripType] = useState<any>("1");
     const [departureWindow, setDepartureWindow] = useState<any>("2");
     const [tripPurpose, setTripPurpose] = useState<any>("1");
     const [isDriving, setDriving] = useState("1");
@@ -81,7 +82,7 @@ const Work = () => {
     const [errorLogs, setErrorLogs] = useState('');
     const inputStartAddressRef = useRef() as MutableRefObject<HTMLInputElement>;
     const inputHomeAddressRef = useRef() as MutableRefObject<HTMLInputElement>;
-    const inputWorkAddressRef = useRef() as MutableRefObject<HTMLInputElement>;
+    const inputairportAddressRef = useRef() as MutableRefObject<HTMLInputElement>;
     const inputDestinationAddressRef = useRef() as MutableRefObject<HTMLInputElement>;
     const datetime = useRef() as MutableRefObject<HTMLIonDatetimeElement>;
     const [country] = useState("us");
@@ -112,7 +113,7 @@ const Work = () => {
     );
 
     const [sessionExists, setSessionExists] = React.useState(true);
-    const [homeWorkAddressExists, setHomeWorkAddressExists] = React.useState(false);
+    const [homeairportAddressExists, setHomeairportAddressExists] = React.useState(false);
     const [homeOrOfficeAddDifferent, setHomeOrOfficeAddDifferent] = React.useState(false);
     const [eventData, setEventData] = React.useState<any[]>([]);
     const [eventClassification, setEventClassification] = useState<any>('');
@@ -123,6 +124,7 @@ const Work = () => {
     const [startTimeVar, setStartTimeVar] = useState<any>('');
     const [returnTimeVar, setReturnTimeVar] = useState<any>('');
     const [departureDateVar, setDepartureDateVar] = useState<any>('');
+    // let minDate = ;
 
     useEffect(() => {
         GoogleAuth.initialize({
@@ -136,51 +138,53 @@ const Work = () => {
     }, []);
 
     function init() {
-        setFlipRiderDriver(false);
-        ReactGA.send({ hitType: "pageview", page: "/work", title: "Carpool For Work" });
-        const sessionObj = localStorage.getItem('session');
-        if (sessionObj != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != '') {
-            globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
-            console.log('globalSessionObj', globalSessionObj);
-            axios.get(import.meta.env.VITE_APP_API_V2 + '/user/addresses', { headers: { 'Authorization': globalSessionObj.wagon_token } }).
-                then(async (getResponse: AxiosResponse) => {
-                    if (getResponse.data == '' || getResponse.data == null) {
-                        console.log('address doesnt exists');
-                        setHomeWorkAddressExists(false);
-                        setFeedLoading(false);
-                    } else {
-                        console.log('Address exists');
-                        inputWorkAddressRef.current.value = getResponse.data.officeAddress;
-                        inputHomeAddressRef.current.value = getResponse.data.homeAddress;
+        // minDate = new Date();
+        // minDate.setHours(new Date().getHours() + 3);
+        // minDate = minDate.toISOString()
+        // console.log('MIN DATE *****',minDate.toISOString());
+        // setFlipRiderDriver(false);
+        // ReactGA.send({ hitType: "pageview", page: "/work", title: "Carpool For Work" });
+        // const sessionObj = localStorage.getItem('session');
+        // if (sessionObj != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != '') {
+        //     globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        //     console.log('globalSessionObj', globalSessionObj);
+        //     axios.get(import.meta.env.VITE_APP_API_V2 + '/user/addresses', { headers: { 'Authorization': globalSessionObj.wagon_token } }).
+        //         then(async (getResponse: AxiosResponse) => {
+        //             if (getResponse.data == '' || getResponse.data == null) {
+        //                 console.log('address doesnt exists');
+        //                 setHomeairportAddressExists(false);
+        //                 setFeedLoading(false);
+        //             } else {
+        //                 console.log('Address exists');
 
-                        setHomeAddress(getResponse.data.homeAddress);
-                        setHomeLatitude(getResponse.data.homeLatitude);
-                        setHomeLongitude(getResponse.data.homeLongitude);
+        //                 setHomeAddress(getResponse.data.homeAddress);
+        //                 setHomeLatitude(getResponse.data.homeLatitude);
+        //                 setHomeLongitude(getResponse.data.homeLongitude);
 
-                        setWorkAddress(getResponse.data.officeAddress);
-                        setWorkAddressName(getResponse.data.officeAddressName);
-                        setWorkLatitude(getResponse.data.officeLatitude);
-                        setWorkLongitude(getResponse.data.officeLongitude);
+        //                 setAirportAddress(getResponse.data.officeAddress);
+        //                 setAirportAddressName(getResponse.data.officeAddressName);
+        //                 setAirportLatitude(getResponse.data.officeLatitude);
+        //                 setAirportLongitude(getResponse.data.officeLongitude);
 
-                        setProfileHomeAddress(getResponse.data.homeAddress);
-                        setProfileHomeLatitude(getResponse.data.homeLatitude);
-                        setProfileHomeLongitude(getResponse.data.homeLongitude);
+        //                 setProfileHomeAddress(getResponse.data.homeAddress);
+        //                 setProfileHomeLatitude(getResponse.data.homeLatitude);
+        //                 setProfileHomeLongitude(getResponse.data.homeLongitude);
 
-                        setProfileOfficeAddress(getResponse.data.officeAddress);
-                        setProfileOfficeLatitude(getResponse.data.officeLatitude);
-                        setProfileOfficeLongitude(getResponse.data.officeLongitude);
-                        setProfileOfficeAddressName(getResponse.data.officeAddressName);
+        //                 setProfileOfficeAddress(getResponse.data.officeAddress);
+        //                 setProfileOfficeLatitude(getResponse.data.officeLatitude);
+        //                 setProfileOfficeLongitude(getResponse.data.officeLongitude);
+        //                 setProfileOfficeAddressName(getResponse.data.officeAddressName);
 
-                        setHomeWorkAddressExists(true);
-                        setFeedLoading(false);
-                    }
-                })
-                .catch((reason: AxiosError) => {
-                    //setErrorLogs('Unable to get the estimate cost. Please try again after sometime!');
-                })
-        } else {
-            setFeedLoading(false);
-        }
+        //                 setHomeairportAddressExists(true);
+        //                 setFeedLoading(false);
+        //             }
+        //         })
+        //         .catch((reason: AxiosError) => {
+        //             //setErrorLogs('Unable to get the estimate cost. Please try again after sometime!');
+        //         })
+        // } else {
+        //     setFeedLoading(false);
+        // }
     }
 
     useIonViewDidEnter(() => {
@@ -238,55 +242,17 @@ const Work = () => {
         console.log('current date day - ' + currentDate.getDay());
         console.log(currentDate.toLocaleString());
         var shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format;
-        // skip weekends
-        let currDateIsModified = false;
-        if (currentDate.getDay() == 6) {
-            currDateIsModified = true;
-            currentDate.setDate(currentDate.getDate() + 2);
-        }
-        if (currentDate.getDay() == 0) {
-            currDateIsModified = true;
-            currentDate.setDate(currentDate.getDate() + 1);
-        }
-        // var shortName = shortMonthName(currentDate);
-        // setCurrentMonth(shortName);
-
-
 
         const tomorrow = new Date(currentDate);
         tomorrow.setDate(tomorrow.getDate() + 1);
         console.log('tomorrow  day - ' + tomorrow.getDay());
-        // skip weekends
-        if (tomorrow.getDay() == 6) {
-            tomorrow.setDate(tomorrow.getDate() + 2);
-        }
-        if (tomorrow.getDay() == 0) {
-            tomorrow.setDate(tomorrow.getDate() + 1);
-        }
-        // console.log("today:", currentDate.getDate())
-        console.log("tomorrow", tomorrow.getDate());
 
         const dayAfterTomorrow = new Date(tomorrow);
         dayAfterTomorrow.setDate(tomorrow.getDate() + 1);
         console.log('day after tomorrow', dayAfterTomorrow.getDay());
-        // skip weekends
-        if (dayAfterTomorrow.getDay() == 6) {
-            dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
-        }
-        if (dayAfterTomorrow.getDay() == 0) {
-            dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
-        }
-        console.log('dayafter tomorrow  day - ' + dayAfterTomorrow.getDay());
-        console.log("day after", dayAfterTomorrow.getDate());
 
         const nextDayAfterTomorrow = new Date(dayAfterTomorrow);
         nextDayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
-        if (nextDayAfterTomorrow.getDay() == 6) {
-            nextDayAfterTomorrow.setDate(nextDayAfterTomorrow.getDate() + 2);
-        }
-        if (nextDayAfterTomorrow.getDay() == 0) {
-            nextDayAfterTomorrow.setDate(nextDayAfterTomorrow.getDate() + 1);
-        }
         console.log("nextDayAfterTomorrow", nextDayAfterTomorrow.getDate());
         const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -296,12 +262,7 @@ const Work = () => {
         const nextDayAfterTomorrowKey = daysOfWeek[nextDayAfterTomorrow.getDay()] + ' ' + shortMonthName(nextDayAfterTomorrow) + ' ' + nextDayAfterTomorrow.getDate();
 
         let dateObject: any = {};
-        if (currDateIsModified) {
-            dateObject[currDateKey] = "modCurrentDate";
-        } else {
-            dateObject[currDateKey] = "currentDate";
-        }
-        
+        dateObject[currDateKey] = "currentDate";
         dateObject[tomorrowKey] = "tomorrow";
         dateObject[dayAfterTomorrowKey] = "dayAfterTomorrow";
         dateObject[nextDayAfterTomorrowKey] = "nextDayAfterTomorrow";
@@ -317,12 +278,8 @@ const Work = () => {
         setDateObjectMap(actualDateObject);
         console.log('actualDateObject', actualDateObject);
 
-        // console.log('*** ACTUAL DATE **');
-        // console.log(actualDateObject[currDateKey].toLocaleString());
-        console.log('currDateIsModified' + currDateIsModified);
-
         let tempArray: any = [];
-        if (currDateIsModified || currentDate.getHours() + 3 < 18) {
+        if (currentDate.getHours() + 3 < 22) {
             console.log('in if');
             tempArray.push(currDateKey);
             tempArray.push(tomorrowKey);
@@ -344,22 +301,6 @@ const Work = () => {
         let tempStartTimeSlots = [];
         setDepartureDate(tempArray[1]);
 
-        // for (let i: any= currentDate.getHours() + 3 > 7 ? currentDate.getHours() + 3 : 7 ; i < 12 ; i++) {
-        //     //i = currentDate.getHours() + 3;
-        //     tempStartTimeSlots.push(i.toString() + ':00');
-        //     tempStartTimeSlots.push(i.toString() + ':30');
-        // }
-        // setStartTimeSlots(tempStartTimeSlots);
-        // setStartTimeVar(tempStartTimeSlots[2]);
-
-        // let tempReturnSlots = [];
-
-        // for (let i: any = 15; i < 20; i++) {
-        //     tempReturnSlots.push(i.toString() + ':00');
-        //     tempReturnSlots.push(i.toString() + ':30');
-        // }
-        // setReturnTimeSlots(tempReturnSlots);
-        // setReturnTimeVar(tempReturnSlots[2]);
     }
 
     async function getEstimatedTripCost() {
@@ -444,17 +385,17 @@ const Work = () => {
             })
     }
 
-    async function createRideForWork(useProfileAddress: any) {
-        if (homeAddress === '' && workAddress === '') {
-            setErrorLogs('Please Enter Home and Work Address');
+    async function createRideForAirport() {
+        if (homeAddress === '' && airportAddress === '') {
+            setErrorLogs('Please Enter Pick Up and Airport Address');
             return;
         }
-        if (homeAddress === '' && workAddress != '') {
-            setErrorLogs('Please Enter Home Address');
+        if (homeAddress === '' && airportAddress != '') {
+            setErrorLogs('Please Enter Pick Up address');
             return;
         }
-        if (homeAddress != '' && workAddress === '') {
-            setErrorLogs('Please Enter Work Address');
+        if (homeAddress != '' && airportAddress === '') {
+            setErrorLogs('Please Enter Airport Address');
             return;
         }
         console.log('globalSessionObj', globalSessionObj);
@@ -488,57 +429,25 @@ const Work = () => {
 
                 let returnDate = new Date();
 
-                if (tripType == "2") {
-                    returnDate.setDate(dateObjectMap[departureDateVar].getDate());
-                    returnDate.setMonth(dateObjectMap[departureDateVar].getMonth());
-                    returnDate.setFullYear(dateObjectMap[departureDateVar].getFullYear());
+                // if (tripType == "2") {
+                //     returnDate.setDate(dateObjectMap[departureDateVar].getDate());
+                //     returnDate.setMonth(dateObjectMap[departureDateVar].getMonth());
+                //     returnDate.setFullYear(dateObjectMap[departureDateVar].getFullYear());
 
-                    returnDate.setHours(returnTimeVar.substring(0, returnTimeVar.indexOf(":")));
-                    returnDate.setMinutes(returnTimeVar.slice(returnTimeVar.indexOf(':') + 1));
-                    returnDate.setSeconds(0);
-                    returnDate.setMilliseconds(0);
-                }
-                console.log(returnDate.toISOString().toString());
-
-                //setEstimatedCostModal(false);
-                // if (departureTime == '' ) {
-                //     if (tripType == "2" && returnTime == '') {
-                //         setErrorLogs('Please select a valid departure and return time.');
-                //     } else {
-                //         setErrorLogs('Please select a valid departure time.');
-                //     }
-                //     return;
+                //     returnDate.setHours(returnTimeVar.substring(0, returnTimeVar.indexOf(":")));
+                //     returnDate.setMinutes(returnTimeVar.slice(returnTimeVar.indexOf(':') + 1));
+                //     returnDate.setSeconds(0);
+                //     returnDate.setMilliseconds(0);
                 // }
-                // if (tripType == "2" && returnTime == '') {
-                //     setErrorLogs('Please select a valid return time.');
-                //     return;
-                // }
+                // console.log(returnDate.toISOString().toString());
 
-
-                // var today:any = new Date();
-                // console.log('today: ', today);
-
-                // var departureDate:any = new Date(departureTime);
-                // console.log('departureDate: ', departureDate);
-                // var diffHrs = Math.floor(((departureDate.getTime()-today.getTime()) % 86400000) / 3600000); 
-
-                // if (diffHrs < 1) {
-                //     setErrorLogs('Departure time should atleast one hour later than the current time!');
-                //     return;
-                // }
-
-                // if (sessionObj == null) {
-                //     setSessionExists(false);
-                //     return;
-                // }
-                // setSessionExists(true);
                 const session = JSON.parse(localStorage.getItem('session') || "");
                 let results: any;
                 let distanceInMiles: any;
                 const directionsService = new google.maps.DirectionsService()
                 results = await directionsService.route({
                     origin: homeAddress || '',
-                    destination: workAddress || '',
+                    destination: airportAddress || '',
                     travelMode: google.maps.TravelMode.DRIVING,
                 })
                 console.log('rideDistance in miles', results?.routes[0]?.legs[0]?.distance?.text);
@@ -548,8 +457,8 @@ const Work = () => {
 
                 if (distanceInMiles > 100) {
                     ReactGA.event({
-                        category: "work_ride_distace_limit_exceeded",
-                        action: "work_ride_distace_limit_exceeded",
+                        category: "airport_ridedistace_limit_exceeded",
+                        action: "airport_ridedistace_limit_exceeded",
                     });
                     setErrorLogs('Ride distance cannot be more than 100 miles.');
                     return;
@@ -559,51 +468,52 @@ const Work = () => {
 
                 setHomeOrOfficeAddDifferent(false);
 
-                if (!useProfileAddress) {
-                    submitHomeWorkAddress();
-                }
+                // if (!useProfileAddress) {
+                //     submitHomeairportAddress();
+                // }
 
-                let tempHomeLatitude = useProfileAddress ? profileHomeLatitude : homeLatitude;
-                let tempHomeLongitude = useProfileAddress ? profileHomeLongitude : homeLongitude;
-                let tempHomeAddress = useProfileAddress ? profileHomeAddress : homeAddress;
+                // let tempHomeLatitude = useProfileAddress ? profileHomeLatitude : homeLatitude;
+                // let tempHomeLongitude = useProfileAddress ? profileHomeLongitude : homeLongitude;
+                // let tempHomeAddress = useProfileAddress ? profileHomeAddress : homeAddress;
 
-                let tempWorkLatitude = useProfileAddress ? profileOfficeLatitude : workLatitude;
-                let tempWorkLongitude = useProfileAddress ? profileOfficeLongitude : workLongitude;
-                let tempWorkAddress = useProfileAddress ? profileOfficeAddress : workAddress;
-                let tempWorkAddressName = useProfileAddress ? profileOfficeAddressName : workAddressName;
+                // let tempairportLatitide = useProfileAddress ? profileOfficeLatitude : airportLatitide;
+                // let tempairportLongitude = useProfileAddress ? profileOfficeLongitude : airportLongitude;
+                // let tempairportAddress = useProfileAddress ? profileOfficeAddress : airportAddress;
+                // let tempairportAddressName = useProfileAddress ? profileOfficeAddressName : airportAddressName;
 
 
                 const postRequestBody = {
                     // userId: session.userId,
                     departureTime: departureDateObj.toISOString().toString(),
-                    start_loc_lat: !swapToggle ? tempHomeLatitude : tempWorkLatitude,
-                    start_loc_long: !swapToggle ? tempHomeLongitude : tempWorkLongitude,
-                    destination_loc_lat: !swapToggle ? tempWorkLatitude : tempHomeLatitude,
-                    destination_loc_long: !swapToggle ? tempWorkLongitude : tempHomeLongitude,
+                    start_loc_lat: homeLatitude,
+                    start_loc_long: homeLongitude,
+                    destination_loc_lat: airportLatitide,
+                    destination_loc_long: airportLongitude,
                     seatCount: seats,
                     driving: isDriving === "0" ? false : true,
-                    startAddress: !swapToggle ? tempHomeAddress : tempWorkAddress,
-                    destinationAddress: !swapToggle ? tempWorkAddress : tempHomeAddress,
-                    startAddressName: !swapToggle ? tempHomeAddress : tempWorkAddressName,
-                    destinationAddressName: !swapToggle ? tempWorkAddressName : tempHomeAddress,
+                    startAddress: homeAddress,
+                    destinationAddress: airportAddress,
+                    startAddressName: homeAddress,
+                    destinationAddressName: airportAddressName,
                     rideDistance: distanceInMiles,
                     rideCost: null,
-                    roundTrip: tripType == "2" ? true : false,
-                    rideType: 2,
-                    labelsCsv: 'work-commute',
-                    returnTime: tripType == "2" ? returnDate.toISOString().toString() : 0
+                    roundTrip: false,
+                    rideType: 3,
+                    labelsCsv: 'airport-drop-off',
+                    returnTime:  0
                 };
                 console.log(postRequestBody);
                 ReactGA.event({
-                    category: "work_ride_create_attempt",
-                    action: "work_ride_create_attempt",
+                    category: "airport_ridecreate_attempt",
+                    action: "airport_ridecreate_attempt",
                 });
+                console.log(postRequestBody);
 
                 axios.post(import.meta.env.VITE_APP_API_V2 + '/rides', postRequestBody, { headers: { 'Authorization': globalSessionObj.wagon_token } })
                     .then(async (postResponse: AxiosResponse) => {
                         ReactGA.event({
-                            category: "work_ride_create_success",
-                            action: "work_ride_create_success",
+                            category: "airport_ridecreate_success",
+                            action: "airport_ridecreate_success",
                         });
                         setStatusMessages('Ride Created Successfully!');
 
@@ -617,8 +527,8 @@ const Work = () => {
                     })
                     .catch((reason: any) => {
                         ReactGA.event({
-                            category: "work_ride_create_failed" + "&status=" + reason.response?.status,
-                            action: "work_ride_create_failed" + "&status=" + reason.response?.status,
+                            category: "airport_ridecreate_failed" + "&status=" + reason.response?.status,
+                            action: "airport_ridecreate_failed" + "&status=" + reason.response?.status,
                         });
                         setLoading(false);
                         setStatusMessages('');
@@ -660,7 +570,7 @@ const Work = () => {
         if (dateObject[departureDate] == 'currentDate') {
             const currentDate = new Date();
             let tempStartTimeSlots: any = [];
-            for (let i: any = currentDate.getHours() + 3 > 7 ? currentDate.getHours() + 3 : 7; i < (tripType == "1" ? 20: 12); i++) {
+            for (let i: any = currentDate.getHours() + 3 > 7 ? currentDate.getHours() + 3 : 7; i < (tripType == "1" ? 22: 12); i++) {
                 tempStartTimeSlots.push(i.toString() + ':00');
                 tempStartTimeSlots.push(i.toString() + ':30');
             }
@@ -678,7 +588,7 @@ const Work = () => {
                     setDisableRoundTrip(true);
                 }
 
-                for (let i: any = 15; i < 20; i++) {
+                for (let i: any = 15; i < 22; i++) {
                     // i = currentDate.getHours() + 3;
                     tempReturnSlots.push(i.toString() + ':00');
                     tempReturnSlots.push(i.toString() + ':30');
@@ -691,7 +601,7 @@ const Work = () => {
                 console.log('START TIMESLOTS  00');
                 // Trip can't start from home to office anymore
                 // create a one way trip from work to home
-                for (let i: any = currentDate.getHours() + 3 > 15 ? currentDate.getHours() + 3 : 15; i < 20; i++) {
+                for (let i: any = currentDate.getHours() + 3 > 15 ? currentDate.getHours() + 3 : 15; i < 22; i++) {
                     // i = currentDate.getHours() + 3;
                     tempStartTimeSlots.push(i.toString() + ':00');
                     tempStartTimeSlots.push(i.toString() + ':30');
@@ -717,7 +627,7 @@ const Work = () => {
             //setSwapToggle(false);
             //setTripType("2");
             let tempStartTimeSlots: any = [];
-            for (let i: any = 7; i < (tripType == "1" ? 20: 12); i++) {
+            for (let i: any = 7; i < (tripType == "1" ? 22: 12); i++) {
                 //i = currentDate.getHours() + 3;
                 tempStartTimeSlots.push(i.toString() + ':00');
                 tempStartTimeSlots.push(i.toString() + ':30');
@@ -1103,10 +1013,10 @@ const Work = () => {
         var filterCount = 0;
         let queryParams: any;
         queryParams = {
-            locationLatitude: !swapToggle ? homeLatitude : workLatitude,
-            locationLongitude: !swapToggle ? homeLongitude : workLongitude,
-            destLatitude: !swapToggle ? workLatitude : homeLatitude,
-            destLongitude: !swapToggle ? workLongitude : homeLatitude,
+            locationLatitude: homeLatitude,
+            locationLongitude: homeLongitude,
+            destLatitude: airportLatitide,
+            destLongitude: airportLongitude,
             radiusInMiles: 5,
             pageNum: 0,
             seatCount: seats,
@@ -1227,18 +1137,16 @@ const Work = () => {
         setStartAddress("");
         setDestinationAddress("");
         setTripPurpose("0");
-        setTripType("2");
+        setTripType("1");
         setCreatedRideId(0);
         setDepartureWindow(2);
-        // setHomeWorkAddressExists(false);
-        inputHomeAddressRef.current.value = '';
-        inputWorkAddressRef.current.value = '';
+        // setHomeairportAddressExists(false);
         // setHomeAddress('');
-        // setWorkAddress('');
+        // setAirportAddress('');
         // setHomeLatitude(0);
         // setHomeLongitude(0);
-        // setWorkLatitude(0);
-        // setWorkLongitude(0);
+        // setAirportLatitude(0);
+        // setAirportLongitude(0);
     }
 
     function rideCreationModal(item: any) {
@@ -1293,12 +1201,12 @@ const Work = () => {
         const currentDate = new Date();
         let tempStartTimeSlots: any = [];
         if (dateObject[departureDateVar] == 'currentDate' ) {
-            for (let i: any = currentDate.getHours() + 3 > 7 ? currentDate.getHours() + 3 : 7; i < (tripType == "2" ? 20: 12); i++) {
+            for (let i: any = currentDate.getHours() + 3 > 7 ? currentDate.getHours() + 3 : 7; i < (tripType == "2" ? 22: 12); i++) {
                 tempStartTimeSlots.push(i.toString() + ':00');
                 tempStartTimeSlots.push(i.toString() + ':30');
             }
         } else {
-            for (let i: any = 7; i < (tripType == "2" ? 20: 12); i++) {
+            for (let i: any = 7; i < (tripType == "2" ? 22: 12); i++) {
                 tempStartTimeSlots.push(i.toString() + ':00');
                 tempStartTimeSlots.push(i.toString() + ':30');
             }
@@ -1344,28 +1252,7 @@ const Work = () => {
                 }
                 await PushNotifications.register();
             }
-            const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/user/addresses', { headers: { 'Authorization': globalSessionObj.wagon_token } });
-            console.log('response.data', getResponse.data);
-            if (getResponse.data == '' || getResponse.data == null) {
-                submitHomeWorkAddress();
-                createRideForWork(false);
-            } else {
-                if (getResponse.data.homeAddress !== homeAddress || getResponse.data.officeAddress != workAddress) {
-                    setHomeOrOfficeAddDifferent(true);
-                    setProfileHomeAddress(getResponse.data.homeAddress);
-                    setProfileHomeLatitude(getResponse.data.homeLatitude);
-                    setProfileHomeLongitude(getResponse.data.homeLongitude);
-
-                    setProfileOfficeAddress(getResponse.data.officeAddress);
-                    setProfileOfficeLatitude(getResponse.data.officeLatitude);
-                    setProfileOfficeLongitude(getResponse.data.officeLongitude);
-                    setProfileOfficeAddressName(getResponse.data.officeAddressName);
-                } else {
-                    createRideForWork(false);
-                }
-                setStatusMessages('');
-                setHomeWorkAddressExists(true);
-            }
+            
             setSessionExists(true);
             // sent visit count.
             let clientType = 'web';
@@ -1398,103 +1285,6 @@ const Work = () => {
                 console.log(reason.message)
             })
 
-        // let familyName = response.familyName;
-        // if (response.familyName == undefined || response.familyName == null || response.familyName == '') {
-        //     familyName = '';
-        // }
-        // const name = response.givenName + ' ' + familyName;
-        // const postRequestBody = {
-        //     email: response.email,
-        //     name: name,
-        //     imageUrl: response.imageUrl
-        // };
-        // axios.get(import.meta.env.VITE_APP_API + '/user/email?email=' + response.email)
-        //     .then(async (axiosResponse: AxiosResponse) => {
-        //         setStatusMessages('Found Existing User!');
-        //         //setLoading(false);
-        //         ReactGA.event({
-        //             category: "work_login_success_existing_user",
-        //             action: "work_login_success_existing_user",
-        //         });
-        //         const newSession = {
-        //             created: new Date().getTime(),
-        //             token: response.email,
-        //             userId: axiosResponse.data.id,
-        //             gender: axiosResponse.data.gender,
-        //             imageUrl: axiosResponse.data.imageUrl,
-        //             name: axiosResponse.data.name
-        //         }
-        //         localStorage.removeItem("session");
-        //         localStorage.setItem("session", JSON.stringify(newSession));
-        //         setStatusMessages('Verifying Home and Work address...');
-
-        //         const getResponse = await axios.get(import.meta.env.VITE_APP_API + '/user/addresses?id=' + axiosResponse.data.id);
-        //         console.log('response.data', getResponse.data);
-        //         if (getResponse.data == '' || getResponse.data == null) {
-        //             submitHomeWorkAddress();
-        //             createRideForWork(false);
-        //             //setHomeWorkAddressExists(false);
-        //         } else {
-        //             if (getResponse.data.homeAddress !== homeAddress || getResponse.data.officeAddress != workAddress) {
-        //                 setHomeOrOfficeAddDifferent(true);
-        //                 setProfileHomeAddress(getResponse.data.homeAddress);
-        //                 setProfileHomeLatitude(getResponse.data.homeLatitude);
-        //                 setProfileHomeLongitude(getResponse.data.homeLongitude);
-
-        //                 setProfileOfficeAddress(getResponse.data.officeAddress);
-        //                 setProfileOfficeLatitude(getResponse.data.officeLatitude);
-        //                 setProfileOfficeLongitude(getResponse.data.officeLongitude);
-        //                 setProfileOfficeAddressName(getResponse.data.officeAddressName);
-        //             } else {
-        //                 createRideForWork(false);
-        //             }
-        //             setStatusMessages('');
-        //             setHomeWorkAddressExists(true);
-        //         }
-        //         setSessionExists(true);
-
-        //         //postTrip(selectedEvent);
-        //     })
-        //     .catch((reason: AxiosError) => {
-        //         if (reason.response!.status === 404) {
-        //             setStatusMessages('Creating new User Profile...');
-        //             ReactGA.event({
-        //                 category: "work_login_success_firsttime_user",
-        //                 action: "work_login_success_firsttime_user",
-        //             });
-
-        //             //const postResponse = await axios.post(import.meta.env.VITE_APP_API, postRequestBody);
-        //             axios.post(import.meta.env.VITE_APP_API + '/user', postRequestBody).then((response) => {
-        //                 console.log(response);
-        //                 setStatusMessages('User Profile Created!');
-        //                 const newSession = {
-        //                     created: new Date().getTime(),
-        //                     token: response.data.email,
-        //                     userId: response.data.id,
-        //                     gender: response.data.gender,
-        //                     imageUrl: response.data.imageUrl,
-        //                     name: name
-        //                 }
-        //                 localStorage.removeItem("session");
-        //                 localStorage.removeItem("temp_session");
-        //                 localStorage.setItem("session", JSON.stringify(newSession));
-        //                 //setHomeWorkAddressExists(false);
-        //                 setSessionExists(true);
-        //                 submitHomeWorkAddress();
-        //                 createRideForWork(false);
-        //             })
-        //                 .catch((reason) => {
-        //                     if (reason.response.status === 400) {
-        //                         // Handle 400
-        //                     } else {
-        //                         // Handle else
-        //                     }
-        //                     console.log(reason.message)
-        //                 })
-        //         } else {
-        //             console.log(reason.message)
-        //         }
-        //     })
     }
     function selectRidesToMatch(item: any) {
         console.log('called for = ', item?.rideRequest?.rideId);
@@ -1529,23 +1319,22 @@ const Work = () => {
             });
             localStorage.setItem("carpool_category", 'events');
             window.location.replace('/carpoolForEvents');
-            //history.push('/carpoolForEvents');
-        } else if (category == 2) {
-            window.location.replace('/carpoolForAirport');
+        } else if (category == 1) {
+            window.location.replace('/carpoolForWork');
         }
     }
 
-    function submitHomeWorkAddress() {
+    function submitHomeairportAddress() {
         // const session = JSON.parse(localStorage.getItem('session') || "");
         const postRequestBody = {
             // userId: session.userId,
             homeAddress: homeAddress,
             homeLatitude: homeLatitude,
             homeLongitude: homeLongitude,
-            officeAddress: workAddress,
-            officeLatitude: workLatitude,
-            officeLongitude: workLongitude,
-            officeAddressName: workAddressName,
+            officeAddress: airportAddress,
+            officeLatitude: airportLatitide,
+            officeLongitude: airportLongitude,
+            officeAddressName: airportAddressName,
         };
         console.log(postRequestBody);
         setStatusMessages('Saving Home and Work Location..');
@@ -1553,15 +1342,15 @@ const Work = () => {
             .then(async (postResponse: AxiosResponse) => {
                 // setLoading(false);
                 ReactGA.event({
-                    category: "SaveWorkAddress",
-                    action: "SaveWorkAddress",
+                    category: "SaveairportAddress",
+                    action: "SaveairportAddress",
                 });
                 present({
                     message: 'Home and Work Address Saved Successfully!',
                     duration: 1000,
                 });
                 setStatusMessages('Home and Work Location Saved!');
-                setHomeWorkAddressExists(true);
+                setHomeairportAddressExists(true);
             })
             .catch((reason: AxiosError) => {
                 //setLoading(false);
@@ -1571,8 +1360,8 @@ const Work = () => {
                     duration: 1000,
                 });
                 ReactGA.event({
-                    category: "SaveWorkAddressFailed",
-                    action: "SaveWorkAddressFailed",
+                    category: "SaveairportAddressFailed",
+                    action: "SaveairportAddressFailed",
                 });
 
             })
@@ -1623,7 +1412,7 @@ const Work = () => {
                         : null
                 } */}
                 {/* {
-                    !homeWorkAddressExists ?
+                    !homeairportAddressExists ?
                         <>
                             <div className="centerFeed">
                                 <IonCard >
@@ -1656,8 +1445,8 @@ const Work = () => {
                                         <hr />
                                         <Autocomplete
                                             style={{ width: "100%" }}
-                                            ref={inputWorkAddressRef}
-                                            defaultValue={workAddress}
+                                            ref={inputairportAddressRef}
+                                            defaultValue={airportAddress}
                                             placeholder="Enter Your Work Address"
                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                             onPlaceSelected={(selected, a, c) => {
@@ -1666,10 +1455,10 @@ const Work = () => {
                                                 console.log(selected.name);
                                                 console.log(c);
                                                 console.log(a);
-                                                setWorkAddress(selected.formatted_address || "");
-                                                setWorkAddressName(selected.name || "");
-                                                setWorkLatitude(selected.geometry?.location?.lat() || 0);
-                                                setWorkLongitude(selected.geometry?.location?.lng() || 0);
+                                                setAirportAddress(selected.formatted_address || "");
+                                                setAirportAddressName(selected.name || "");
+                                                setAirportLatitude(selected.geometry?.location?.lat() || 0);
+                                                setAirportLongitude(selected.geometry?.location?.lng() || 0);
                                             }}
                                             options={{
                                                 types: ["geocode", "establishment"],
@@ -1679,7 +1468,7 @@ const Work = () => {
                                         />
                                         <hr />
                                         {
-                                            homeAddress != '' && workAddress != '' && !loading ? <IonButton color="success" onClick={submitHomeWorkAddress} size="small">Submit</IonButton> : loading ? <IonButton disabled color="success" size="small"> Submit <IonSpinner class="smallspinner" color="primary"></IonSpinner></IonButton> : <IonButton disabled color="success" size="small">Submit</IonButton>
+                                            homeAddress != '' && airportAddress != '' && !loading ? <IonButton color="success" onClick={submitHomeairportAddress} size="small">Submit</IonButton> : loading ? <IonButton disabled color="success" size="small"> Submit <IonSpinner class="smallspinner" color="primary"></IonSpinner></IonButton> : <IonButton disabled color="success" size="small">Submit</IonButton>
                                         }
                                     </IonCardContent></IonCard>
                             </div>
@@ -1724,8 +1513,7 @@ const Work = () => {
                                     <IonCardSubtitle>Carpooling UseCase</IonCardSubtitle>
                                 </IonCardHeader>
                                 <IonCardContent >
-                                   
-                                    <IonSegment mode="ios" value="1" onIonChange={e => setCarpoolCategory(e.detail.value)}>
+                                    <IonSegment mode="ios" value="2" onIonChange={e => setCarpoolCategory(e.detail.value)}>
                                         <IonSegmentButton value="0">
                                             <IonLabel class="segmentLabel">Events</IonLabel>
                                         </IonSegmentButton>
@@ -1766,7 +1554,7 @@ const Work = () => {
                                                 <IonGrid>
 
                                                     <IonText>
-                                                        <IonLabel color='light'>Create ride for work commute</IonLabel>
+                                                    <IonLabel color='light'>Create ride for Airport Drop off</IonLabel>
                                                     </IonText>
 
                                                 </IonGrid>
@@ -1878,100 +1666,31 @@ const Work = () => {
                                     <hr />
 
                                     <IonSegment mode="ios" value={tripType} onIonChange={e => setTripTypeFunc(e.detail.value)}>
-                                        {
-                                            !disableRoundTrip ?
-                                                <IonSegmentButton value="2">
-                                                    <IonLabel class="segmentLabel">Round Trip</IonLabel>
-                                                </IonSegmentButton> : null
-                                        }
+                                       
 
                                         <IonSegmentButton value="1">
                                             <IonLabel class="segmentLabel">One Way</IonLabel>
                                         </IonSegmentButton>
 
                                     </IonSegment>
-                                    {/* <hr />
-                                        <IonLabel>Departure Time</IonLabel>
-                                        <IonSegment mode="ios" value={departureWindow} onIonChange={e => setDepartureWindow(e.detail.value)}>
-                                            <IonSegmentButton value="1">
-                                                <IonLabel class="smallfont">1 hr before event</IonLabel>
-                                            </IonSegmentButton>
-                                            <IonSegmentButton value="2">
-                                                <IonLabel class="smallfont">2 hrs before event</IonLabel>
-                                            </IonSegmentButton>
-                                            <IonSegmentButton value="3">
-                                                <IonLabel class="smallfont">3 hrs before event</IonLabel>
-                                            </IonSegmentButton>
-
-                                        </IonSegment> */}
                                     <hr />
                                     {
-                                        swapToggle ?
-                                            <> <IonLabel>Work Address</IonLabel>
+                                       
+                                            <> <IonLabel>Pick up Address</IonLabel>
+                                            
                                                 {
-                                                    homeWorkAddressExists ? <IonLabel className="selectgame"><> (</>Can be edited in Settings <IonIcon icon={settings}></IonIcon><>)</></IonLabel> : null
-                                                }
-                                                {
-                                                    homeWorkAddressExists ?
-                                                        <Autocomplete
-                                                            disabled
-                                                            style={{ width: "100%" }}
-                                                            ref={inputWorkAddressRef}
-                                                            defaultValue={workAddress}
-                                                            placeholder="Enter Work Address"
-                                                            apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
-
-                                                        /> :
+                                                    
                                                         <Autocomplete
                                                             style={{ width: "100%" }}
-                                                            ref={inputWorkAddressRef}
-                                                            defaultValue={workAddress}
-                                                            placeholder="Enter Work Address"
-                                                            apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
-                                                            onPlaceSelected={(selected, a, c) => {
-                                                                setErrorLogs('');
-                                                                setWorkAddress((selected.formatted_address || ''));
-                                                                setWorkAddressName(selected.name || '');
-                                                                setWorkLatitude((selected.geometry?.location?.lat() || 0));
-                                                                setWorkLongitude((selected.geometry?.location?.lng() || 0));
-                                                            }}
-                                                            options={{
-                                                                types: ["geocode", "establishment"],
-                                                                componentRestrictions: { country },
-                                                                fields: ['formatted_address', 'geometry.location', 'name']
-                                                            }}
-                                                        />
-                                                }
-                                            </>
-                                            :
-                                            <>
-                                                <IonLabel>Home Address</IonLabel>
-                                                {
-                                                    homeWorkAddressExists ? <IonLabel className="selectgame"><> (</>Can be edited in Settings <IonIcon icon={settings}></IonIcon><>)</></IonLabel> : null
-                                                }
-                                                {
-                                                    homeWorkAddressExists ?
-                                                        <Autocomplete
-                                                            disabled
-                                                            style={{ width: "100%" }}
-                                                            ref={inputHomeAddressRef}
                                                             defaultValue={homeAddress}
-                                                            placeholder="Enter Home Address"
-                                                            apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
-
-                                                        /> :
-                                                        <Autocomplete
-
-                                                            style={{ width: "100%" }}
-                                                            ref={inputHomeAddressRef}
-                                                            defaultValue={homeAddress}
-                                                            placeholder="Enter Home Address"
+                                                            placeholder="Enter pick up address"
                                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                                             onPlaceSelected={(selected, a, c) => {
                                                                 setErrorLogs('');
                                                                 setHomeAddress((selected.formatted_address || ''));
                                                                 setHomeLatitude((selected.geometry?.location?.lat() || 0));
                                                                 setHomeLongitude((selected.geometry?.location?.lng() || 0));
+
                                                             }}
                                                             options={{
                                                                 types: ["geocode", "establishment"],
@@ -1981,125 +1700,50 @@ const Work = () => {
                                                         />
                                                 }
                                             </>
+                                            
                                     }
+                                    <br/>
+                                    <br/>
 
-                                    <hr /><IonLabel className="swapIcon"><IonIcon className="cursorPointer" onClick={swapAddress} icon={swapVertical}></IonIcon></IonLabel>
                                     {
-                                        swapToggle ?
                                             <>
-                                                <IonLabel>Home Address</IonLabel>
-
+                                                <IonLabel>Drop off Airport </IonLabel>
                                                 {
-                                                    homeWorkAddressExists ? <IonLabel className="selectgame"><> (</>Can be edited in Settings <IonIcon icon={settings}></IonIcon><>)</></IonLabel> : null
-                                                }
-                                                {
-                                                    homeWorkAddressExists ? <Autocomplete
-                                                        style={{ width: "100%" }}
-                                                        ref={inputHomeAddressRef}
-                                                        disabled
-                                                        defaultValue={homeAddress}
-                                                        placeholder="Enter Home Address"
-                                                        apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
-
-                                                    /> :
+                                                   
                                                         <Autocomplete
                                                             style={{ width: "100%" }}
-                                                            ref={inputHomeAddressRef}
-                                                            defaultValue={homeAddress}
-                                                            placeholder="Enter Home Address"
+                                                            placeholder="Enter the airport location"
                                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                                             onPlaceSelected={(selected, a, c) => {
                                                                 setErrorLogs('');
-                                                                setHomeAddress((selected.formatted_address || ''));
-                                                                setHomeLatitude((selected.geometry?.location?.lat() || 0));
-                                                                setHomeLongitude((selected.geometry?.location?.lng() || 0));
+                                                                setAirportAddress((selected.formatted_address || ''));
+                                                                setAirportAddressName(selected.name || '');
+                                                                setAirportLatitude((selected.geometry?.location?.lat() || 0));
+                                                                setAirportLongitude((selected.geometry?.location?.lng() || 0));
                                                             }}
                                                             options={{
-                                                                types: ["geocode", "establishment"],
+                                                                types: ["airport"],
                                                                 componentRestrictions: { country },
                                                                 fields: ['formatted_address', 'geometry.location', 'name']
                                                             }}
                                                         />
                                                 }
                                             </>
-                                            :
-                                            <> <IonLabel>Work Address</IonLabel>
-                                                {
-                                                    homeWorkAddressExists ? <IonLabel className="selectgame"><> (</>Can be edited in Settings <IonIcon icon={settings}></IonIcon><>)</></IonLabel> : null
-                                                }
-                                                {
-                                                    homeWorkAddressExists ?
-                                                        <Autocomplete
-                                                            disabled
-                                                            style={{ width: "100%" }}
-                                                            ref={inputWorkAddressRef}
-                                                            defaultValue={workAddress}
-                                                            placeholder="Enter Work Address"
-                                                            apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
-
-                                                        /> :
-                                                        <Autocomplete
-
-                                                            style={{ width: "100%" }}
-                                                            ref={inputWorkAddressRef}
-                                                            defaultValue={workAddress}
-                                                            placeholder="Enter Work Address"
-                                                            apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
-                                                            onPlaceSelected={(selected, a, c) => {
-                                                                setErrorLogs('');
-                                                                setWorkAddress((selected.formatted_address || ''));
-                                                                setWorkAddressName(selected.name || '');
-                                                                setWorkLatitude((selected.geometry?.location?.lat() || 0));
-                                                                setWorkLongitude((selected.geometry?.location?.lng() || 0));
-
-                                                            }}
-                                                            options={{
-                                                                types: ["geocode", "establishment"],
-                                                                componentRestrictions: { country },
-                                                                fields: ['formatted_address', 'geometry.location', 'name']
-                                                            }}
-                                                        />
-
-                                                }
-                                            </>
+                                            
                                     }
                                     <hr />
 
-                                    {/* <IonLabel>Destination Address: </IonLabel> */}
-                                    {/* <IonDatetime ref={datetime} color="success" size="cover" presentation="date-time"
-                                            isDateEnabled={disablePastDates}
-                                            onIonChange={(e) => setDeparture(e.detail.value)}>
+                                   
 
-                                            <span slot="title">Start Date & Time</span>
-                                        </IonDatetime> */}
-                                    {/* <IonLabel>Departure date (scroll right to see more timeslots)</IonLabel>
-                                                <IonSegment scrollable={true} mode="ios" value="Nov-05" onIonChange={e => setReturnTime(e.detail.value)}>
-                                                <IonSegmentButton class="returnSegmentButton"  value="Nov-05">
-                                                        <IonLabel class="returnTimeSegment">Nov-05</IonLabel>
-                                                    </IonSegmentButton>
-                                                    <IonSegmentButton class="returnSegmentButton"  value="7:30">
-                                                        <IonLabel class="returnTimeSegment">7:30 AM</IonLabel>
-                                                    </IonSegmentButton>
-                                                    <IonSegmentButton class="returnSegmentButton"  value="8:30">
-                                                        <IonLabel class="returnTimeSegment">8:30 AM</IonLabel>
-                                                    </IonSegmentButton>
-                                                    <IonSegmentButton class="returnSegmentButton"  value="9:00">
-                                                        <IonLabel class="returnTimeSegment">9:00 AM</IonLabel>
-                                                    </IonSegmentButton>
-                                                    <IonSegmentButton value="9:30">
-                                                        <IonLabel class="returnTimeSegment">9:30 AM</IonLabel>
-                                                    </IonSegmentButton>
-                                                    <IonSegmentButton value="10:00">
-                                                        <IonLabel class="returnTimeSegment">10:00 AM</IonLabel>
-                                                    </IonSegmentButton>
-                                                    <IonSegmentButton class="returnSegmentButton" value="10:30">
-                                                        <IonLabel class="returnTimeSegment">10:30 AM</IonLabel>
-                                                    </IonSegmentButton>
-                                                    <IonSegmentButton value="11:00">
-                                                        <IonLabel class="returnTimeSegment">11:00 AM</IonLabel>
-                                                    </IonSegmentButton>
-                                                </IonSegment> */}
+                                    {/* <IonLabel>Departure date</IonLabel>
+                                    <br />
+                                    <IonLabel className="dateTimeButton">
+                                        <IonDatetimeButton datetime="datetime" ></IonDatetimeButton>
 
+                                        <IonModal keepContentsMounted={true}>
+                                            <IonDatetime min={new Date().toISOString()} id="datetime" ></IonDatetime>
+                                        </IonModal>
+                                    </IonLabel> */}
                                     <IonLabel>Departure date</IonLabel>
                                     <IonSegment scrollable={true} mode="ios" value={departureDateVar} onIonChange={e => setDepartureDate(e.detail.value)}>
                                         {departureDateArray.map((item, index) => (
@@ -2118,7 +1762,7 @@ const Work = () => {
                                         ))}
                                     </IonSegment>
                                     <hr />
-                                    {
+                                    {/* {
                                         tripType == "2" ?
                                             <>
                                                 <hr />
@@ -2132,7 +1776,7 @@ const Work = () => {
                                                 </IonSegment>
                                             </>
                                             : null
-                                    }
+                                    } */}
 
                                     <hr />
                                     <IonCheckbox onIonChange={toggleAgeCheckBox} checked={checkboxEighteenYearsOld} labelPlacement="end">I am 18 years old or over</IonCheckbox><hr />
@@ -2180,7 +1824,7 @@ const Work = () => {
                                     {
                                         !loading ?
                                             (
-                                                sessionExists ? checkboxEighteenYearsOld ? <IonButton size="small" color="success" onClick={() => createRideForWork(false)}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton> : <IonButton size="small" color="success" disabled onClick={() => createRideForWork(false)}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton>
+                                                sessionExists ? checkboxEighteenYearsOld ? <IonButton size="small" color="success" onClick={() => createRideForAirport()}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton> : <IonButton size="small" color="success" disabled onClick={() => createRideForAirport()}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton>
                                                     :
                                                     (
                                                         checkboxEighteenYearsOld ?
@@ -2207,49 +1851,7 @@ const Work = () => {
                             <IonLabel className="footer">Copyright © 2023 Procsoft LLC.</IonLabel>
                             <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr />
 
-                            {/* <IonToast color="tertiary"
-                                isOpen={displayToast && isDriving == "0"}
-                                message="Rider gets an incredibly cheap ride!"
-                                duration={3000}
-                            ></IonToast>
-                            <IonToast color="tertiary"
-                                isOpen={displayToast && isDriving == "1"}
-                                message="Driver gets paid for the ride!"
-                                duration={3000}
-                            ></IonToast> */}
-
-
-                            <IonModal id="example-modal" isOpen={homeOrOfficeAddDifferent}>
-                                <IonHeader>
-                                    <IonToolbar>
-                                        <IonTitle>Address Update?</IonTitle>
-                                        {/* <IonButtons slot="end">
-                                                <IonButton onClick={() => closeRecommendedRideModalModal()}><IonIcon color="danger" className="closeIcon" icon={closeCircle}></IonIcon></IonButton>
-                                            </IonButtons> */}
-                                    </IonToolbar>
-                                </IonHeader>
-                                <IonContent className="ion-padding">
-                                    <IonCard className="ioncardinamodal">
-                                        <IonCardContent className="potentialMatchText">
-                                            <IonLabel>We have found a different work or home address in your profile! </IonLabel><br />
-                                            <IonItem>Saved Address In Profile</IonItem>
-                                            <IonLabel> <IonBadge class="smallfont" color="success">Home Address - {profileHomeAddress}</IonBadge></IonLabel><hr />
-                                            <IonBadge color="success" class="smallfont">Work Address - {profileOfficeAddress}</IonBadge><hr />
-                                            <IonButton fill="outline" size="small" className="feedbackbutton" onClick={() => createRideForWork(true)}>Use Saved Address</IonButton>
-                                            <br />
-                                            <IonItem>New Address</IonItem>
-                                            <IonBadge class="smallfont" color="medium">Home Address - {homeAddress}</IonBadge><hr />
-                                            <IonBadge class="smallfont" color="medium">Work Address - {workAddress}</IonBadge><hr />
-                                            <IonButton fill="outline" size="small" className="feedbackbutton" onClick={() => createRideForWork(false)}>Use New Address</IonButton>
-                                        </IonCardContent>
-                                    </IonCard>
-
-                                </IonContent>
-
-
-                                <hr />
-                            </IonModal>
-
+                
 
                             <IonModal id="example-modal" isOpen={showRecommendedRideModal}>
                                 <IonHeader>
@@ -2382,4 +1984,4 @@ const Work = () => {
     );
 };
 
-export default Work;
+export default Airport;
