@@ -570,7 +570,7 @@ const Airport = () => {
         if (dateObject[departureDate] == 'currentDate') {
             const currentDate = new Date();
             let tempStartTimeSlots: any = [];
-            for (let i: any = currentDate.getHours() + 3 > 7 ? currentDate.getHours() + 3 : 7; i < (tripType == "1" ? 22: 12); i++) {
+            for (let i: any = currentDate.getHours() + 3 > 0 ? currentDate.getHours() + 3 : 0; i < (tripType == "1" ? 24: 12); i++) {
                 tempStartTimeSlots.push(i.toString() + ':00');
                 tempStartTimeSlots.push(i.toString() + ':30');
             }
@@ -627,13 +627,13 @@ const Airport = () => {
             //setSwapToggle(false);
             //setTripType("2");
             let tempStartTimeSlots: any = [];
-            for (let i: any = 7; i < (tripType == "1" ? 22: 12); i++) {
+            for (let i: any = 0; i < (tripType == "1" ? 24: 12); i++) {
                 //i = currentDate.getHours() + 3;
                 tempStartTimeSlots.push(i.toString() + ':00');
                 tempStartTimeSlots.push(i.toString() + ':30');
             }
             setStartTimeSlots(tempStartTimeSlots);
-            setStartTimeVar(tempStartTimeSlots[2]);
+            setStartTimeVar(tempStartTimeSlots[20]);
 
             let tempReturnSlots = [];
 
@@ -1202,7 +1202,7 @@ const Airport = () => {
         const currentDate = new Date();
         let tempStartTimeSlots: any = [];
         if (dateObject[departureDateVar] == 'currentDate' ) {
-            for (let i: any = currentDate.getHours() + 3 > 7 ? currentDate.getHours() + 3 : 7; i < (tripType == "2" ? 22: 12); i++) {
+            for (let i: any = currentDate.getHours() + 3 > 0 ? currentDate.getHours() + 3 : 0; i < (tripType == "2" ? 24: 12); i++) {
                 tempStartTimeSlots.push(i.toString() + ':00');
                 tempStartTimeSlots.push(i.toString() + ':30');
             }
@@ -1682,14 +1682,14 @@ const Airport = () => {
                                     <hr />
                                     {
                                        
-                                            <> <IonLabel>Home Address</IonLabel>
+                                            <> <IonLabel>Start Address</IonLabel>
                                             
                                                 {
                                                     
                                                         <Autocomplete
                                                             style={{ width: "100%" }}
                                                             defaultValue={homeAddress}
-                                                            placeholder="Enter pick up address"
+                                                            placeholder="Enter Start address"
                                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                                             onPlaceSelected={(selected, a, c) => {
                                                                 setErrorLogs('');
