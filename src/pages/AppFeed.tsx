@@ -964,6 +964,7 @@ const AppFeed = () => {
         console.log('item', item);
         let queryParams: any;
         queryParams = {
+            rideId: item.rideRequest.rideId,
             locationLatitude: item.rideRequest.start_loc_lat,
             locationLongitude: item.rideRequest.start_loc_long,
             destLatitude: item.rideRequest.destination_loc_lat,
@@ -994,7 +995,7 @@ const AppFeed = () => {
         console.log(queryParams);
 
         const session = JSON.parse(localStorage.getItem('session') || "");
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/recommend'
+        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/matches'
             , { params: queryParams, headers: { 'Authorization': globalSessionObj.wagon_token }});
 
         setRecommendedRidesLoading(false);
@@ -1363,7 +1364,7 @@ const AppFeed = () => {
                     </IonGrid> */}
                     </IonCardContent></IonCard>
                     <br/>
-                    <IonLabel className="footer">Copyright © 2023 Procsoft LLC.</IonLabel>
+                    <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                                 <IonLabel className="footer"> support@wagoncarpool.com</IonLabel>
 
                     {/* <SwiperComponent></SwiperComponent> */}
@@ -1403,8 +1404,11 @@ const AppFeed = () => {
                 {
                     sessionExists ?
                         <div>
+                            {
+                                localStorage.getItem('platform') == 'ios' ? <div className="topBarHomePage"></div> : null
+                            }
                             <IonCard >
-                                <IonCardContent class="topBarHomePage">
+                                <IonCardContent >
                                     {/* <IonButton size="small" color="medium" onClick=
                                         {() =>
                                             presentAlert({
@@ -1815,7 +1819,7 @@ const AppFeed = () => {
 
 
                 {sessionExists && displayType == "0" ? <><hr />
-                    <IonLabel className="footer">Copyright © 2023 Procsoft LLC.</IonLabel>
+                    <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr /></> : null
                 }
 
@@ -1951,7 +1955,7 @@ const AppFeed = () => {
 
 
                 {displayType == "1" ? <><hr />
-                    <IonLabel className="footer">Copyright © 2023 Procsoft LLC.</IonLabel>
+                    <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr /></> : null
                 }
                 {/* </IonList> */}

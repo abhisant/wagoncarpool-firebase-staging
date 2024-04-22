@@ -180,11 +180,15 @@ const SelectCarpoolCategory = () => {
     function init() {
         if (Capacitor.isNativePlatform()) {
             if (Capacitor.getPlatform() == 'ios') {
+                localStorage.setItem('platform', 'ios');
                 setIdentifyIOSApp(true);
             }
             if (Capacitor.getPlatform() == 'android') {
                 setIdentifyAndroidApp(true);
+                localStorage.setItem('platform', 'android');
             }
+        } else {
+            localStorage.setItem('platform', 'web');
         }
         ReactGA.send({ hitType: "pageview", page: "/select-carpool-category", title: "Select Carpool Category" });
         let urlParams = new URLSearchParams(window.location.href);
@@ -436,7 +440,7 @@ const SelectCarpoolCategory = () => {
                                     <div className="imagecenter">
                                         <IonLabel color="success" onClick={carpoolingForEvents} className='selectCategoryText'>Create a ride for <br/>Events / Games</IonLabel>
                                         <IonLabel color="success" onClick={carpoolingForWork} className='selectCategoryText'>Create a ride for <br/>Work Commute</IonLabel>
-                                        <IonLabel color="success" onClick={carpoolingForAirport} className='selectCategoryText'>Create ride for <br/>Airport Drop off</IonLabel>
+                                        <IonLabel color="success" onClick={carpoolingForAirport} className='selectCategoryText'>Create a ride for <br/>Airport Drop off</IonLabel>
                                     </div>
                                     <br />
                                     
@@ -471,7 +475,7 @@ const SelectCarpoolCategory = () => {
                             : null
                     }
                     <hr />
-                    <IonLabel className="footer">Copyright © 2023 Procsoft LLC.</IonLabel>
+                    <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr />
                     <IonLabel className="footer"><a className="termsandpolicylink" target="_blank" href="/terms" >Terms of use </a>  <a className="termsandpolicylink" target="_blank" href="privacy-policy">privacy policy</a></IonLabel><hr />
 

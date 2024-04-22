@@ -611,7 +611,7 @@ const Work = () => {
                         setCreatedRideId(postResponse.data);
                         setRequestSubmitted(true);
 
-                        loadFilteredFeed(departureDateObj.toISOString().toString());
+                        loadFilteredFeed(departureDateObj.toISOString().toString(), postResponse.data);
                         //await delay(1000);
                         //setRedirectToUserActivity(true);
                     })
@@ -1081,7 +1081,7 @@ const Work = () => {
         // })
     }
 
-    async function loadFilteredFeed(departureTimeString: any) {
+    async function loadFilteredFeed(departureTimeString: any, rideId: any) {
         setFeedData([]);
         // if (startAddress == '' || destinationAddress == '') {
         //     setErrorLogs('Please select a valid "From" or "To" address.');
@@ -1103,6 +1103,7 @@ const Work = () => {
         var filterCount = 0;
         let queryParams: any;
         queryParams = {
+            rideId: rideId,
             locationLatitude: !swapToggle ? homeLatitude : workLatitude,
             locationLongitude: !swapToggle ? homeLongitude : workLongitude,
             destLatitude: !swapToggle ? workLatitude : homeLatitude,
@@ -1111,7 +1112,7 @@ const Work = () => {
             pageNum: 0,
             seatCount: seats,
             // look for the other entity, if user is a driver look for riders and viceversa
-            //isDriving: isDriving === "0" ? true : false,
+            isDriving: isDriving === "0" ? true : false,
             pageSize: 100
         }
 
@@ -1131,7 +1132,7 @@ const Work = () => {
 
         console.log(queryParams);
 
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/recommend'
+        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/matches'
             , { params: queryParams, headers: { 'Authorization': globalSessionObj.wagon_token } });
 
         console.log(getResponse.data);
@@ -1164,7 +1165,7 @@ const Work = () => {
                 // Take to the useractivity if there are no recommended rides.
                 present({
                     message: 'Ride Created Successfully.',
-                    duration: 1000,
+                    duration: 2000,
                 });
                 setShowRideCreationModal(false);
                 setLoading(false);
@@ -1556,10 +1557,10 @@ const Work = () => {
                     category: "SaveWorkAddress",
                     action: "SaveWorkAddress",
                 });
-                present({
-                    message: 'Home and Work Address Saved Successfully!',
-                    duration: 1000,
-                });
+                // present({
+                //     message: 'Home and Work Address Saved Successfully!',
+                //     duration: 1000,
+                // });
                 setStatusMessages('Home and Work Location Saved!');
                 setHomeWorkAddressExists(true);
             })
@@ -1702,9 +1703,13 @@ const Work = () => {
                             }
 
                             {
+                                localStorage.getItem('platform') == 'ios' ? <div className="topBarHomePage"></div> : null
+                            }
+
+                            {
                                 sessionExists ?
                                     <IonCard >
-                                        <IonCardContent class="topBarHomePage">
+                                        <IonCardContent>
 
                                             {
 
@@ -2204,7 +2209,7 @@ const Work = () => {
                                 </IonCardContent>
                             </IonCard>
                             <hr />
-                            <IonLabel className="footer">Copyright © 2023 Procsoft LLC.</IonLabel>
+                            <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                             <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr />
 
                             {/* <IonToast color="tertiary"

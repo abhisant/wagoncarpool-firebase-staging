@@ -68,7 +68,7 @@ const Airport = () => {
     const [isDriving, setDriving] = useState("1");
     const [displayToast, setDisplayToast] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [feedLoading, setFeedLoading] = useState(true);
+    const [feedLoading, setFeedLoading] = useState(false);
     const [statusMessages, setStatusMessages] = useState("");
     const [estimatedCost, setEstimatedCost] = useState(0);
     const [createdRideId, setCreatedRideId] = useState(0);
@@ -521,7 +521,7 @@ const Airport = () => {
                         setCreatedRideId(postResponse.data);
                         setRequestSubmitted(true);
 
-                        loadFilteredFeed(departureDateObj.toISOString().toString());
+                        loadFilteredFeed(departureDateObj.toISOString().toString(), postResponse.data);
                         //await delay(1000);
                         //setRedirectToUserActivity(true);
                     })
@@ -991,7 +991,7 @@ const Airport = () => {
         // })
     }
 
-    async function loadFilteredFeed(departureTimeString: any) {
+    async function loadFilteredFeed(departureTimeString: any, rideId: any) {
         setFeedData([]);
         // if (startAddress == '' || destinationAddress == '') {
         //     setErrorLogs('Please select a valid "From" or "To" address.');
@@ -1013,6 +1013,7 @@ const Airport = () => {
         var filterCount = 0;
         let queryParams: any;
         queryParams = {
+            rideId: rideId, 
             locationLatitude: homeLatitude,
             locationLongitude: homeLongitude,
             destLatitude: airportLatitide,
@@ -1041,7 +1042,7 @@ const Airport = () => {
 
         console.log(queryParams);
 
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/recommend'
+        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/matches'
             , { params: queryParams, headers: { 'Authorization': globalSessionObj.wagon_token } });
 
         console.log(getResponse.data);
@@ -1254,6 +1255,7 @@ const Airport = () => {
             }
             
             setSessionExists(true);
+            createRideForAirport();
             // sent visit count.
             let clientType = 'web';
 
@@ -1489,11 +1491,15 @@ const Airport = () => {
                                     <IonLabel className="centerLabel"><IonSpinner color="primary"></IonSpinner></IonLabel>
                                     : null
                             }
+                            {
+                                localStorage.getItem('platform') == 'ios' ? <div className="topBarHomePage"></div> : null
+                            }
+
 
                             {
                                 sessionExists ?
                                     <IonCard >
-                                        <IonCardContent class="topBarHomePage">
+                                        <IonCardContent>
 
                                             {
 
@@ -1676,7 +1682,7 @@ const Airport = () => {
                                     <hr />
                                     {
                                        
-                                            <> <IonLabel>Pick up Address</IonLabel>
+                                            <> <IonLabel>Home Address</IonLabel>
                                             
                                                 {
                                                     
@@ -1848,7 +1854,7 @@ const Airport = () => {
                                 </IonCardContent>
                             </IonCard>
                             <hr />
-                            <IonLabel className="footer">Copyright © 2023 Procsoft LLC.</IonLabel>
+                            <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                             <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr />
 
                 

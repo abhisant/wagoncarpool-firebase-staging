@@ -75,6 +75,22 @@ function SwiperComponent() {
                                 <IonCol size="7">
                                     {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
                                     <IonText>
+                                        <IonLabel className='maketingpage'>Need a drop off to the airport?</IonLabel>
+                                    </IonText>
+                                    {/* <IonText class="maketingpageh2">
+                                        <h2>Get matched with one of your colleagues!</h2>
+                                    </IonText> */}
+                                </IonCol>
+                            </IonRow>
+                        </IonGrid>
+                    </SwiperSlide>
+
+                    <SwiperSlide className='customslide'>
+                        <IonGrid>
+                            <IonRow>
+                                <IonCol size="7">
+                                    {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
+                                    <IonText>
                                         <IonLabel className='maketingpage'>Drivers get paid and get free access to carpool lane!</IonLabel>
                                     </IonText>
                                     

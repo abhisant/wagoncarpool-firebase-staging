@@ -614,12 +614,14 @@ const UserActivity = () => {
                 <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
                     <IonRefresherContent></IonRefresherContent>
                 </IonRefresher>
-
+                {
+                    localStorage.getItem('platform') == 'ios' ? <div className="topBarHomePage"></div> : null
+                }
 
                 {
                     sessionExists && !userActivityFeedLoading?
                     <IonCard >
-                    <IonCardContent class="topBarHomePage">
+                    <IonCardContent >
                         <IonButton size="small" color="medium" onClick=
                         {() =>
                             presentAlert({

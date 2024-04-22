@@ -245,11 +245,11 @@ ion-icon {
   margin-left: 20px;
 }
 .selectCategoryImage {
-  width: 125px;
-  height: 125px;
+  width: 30%;
+  height: 30%;
   float: left;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
   border-radius: 10px;
 }
 .createRides {
@@ -257,10 +257,10 @@ ion-icon {
 }
 .selectCategoryText {
   float: left;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
 
-  width: 125px;
+  width: 30%;
   display: flex;
   justify-content: center;
   font-size: 10px;

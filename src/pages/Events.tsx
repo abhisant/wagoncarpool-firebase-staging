@@ -385,7 +385,7 @@ const Events = () => {
                         setCreatedRideId(postResponse.data);
                         setRequestSubmitted(true);
         
-                        loadFilteredFeed(newDepartureDate.toISOString(), selectedEvent);
+                        loadFilteredFeed(newDepartureDate.toISOString(), selectedEvent, postResponse.data);
                         //await delay(1000);
                         //setRedirectToUserActivity(true);
                     })
@@ -753,7 +753,7 @@ const Events = () => {
         // })
     }
 
-    async function loadFilteredFeed(newDepartureDate: any, selectedEvent: any) {
+    async function loadFilteredFeed(newDepartureDate: any, selectedEvent: any, rideId:any) {
         setFeedData([]);
         // if (startAddress == '' || destinationAddress == '') {
         //     setErrorLogs('Please select a valid "From" or "To" address.');
@@ -780,6 +780,7 @@ const Events = () => {
         console.log('start location', startAddress);
         let queryParams: any;
         queryParams = {
+            rideId: rideId,
             locationLatitude: !swapToggle? fromLocation.latitude: selectedEvent.venue?.latitude,
             locationLongitude: !swapToggle?  fromLocation.longitude: selectedEvent.venue?.longitude,
             destLatitude: !swapToggle? selectedEvent.venue?.latitude : fromLocation.latitude,
@@ -811,7 +812,7 @@ const Events = () => {
 
         console.log(queryParams);
 
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/recommend'
+        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/matches'
             , { params: queryParams , headers: { 'Authorization': globalSessionObj.wagon_token } });
 
         console.log(getResponse.data);
@@ -1301,10 +1302,13 @@ const Events = () => {
                                     <IonLabel className="centerLabel"><IonSpinner color="primary"></IonSpinner></IonLabel>
                                     : null
                             } */}
+                            {
+                                localStorage.getItem('platform') == 'ios' ? <div className="topBarHomePage"></div> : null
+                            }
                            {
                                 sessionExists ? 
                                 <IonCard >
-                                    <IonCardContent class="topBarHomePage">
+                                    <IonCardContent>
                                         
                                         {
                                         
@@ -1507,7 +1511,7 @@ const Events = () => {
 
                             ))}
                             <hr/>
-                                    <IonLabel className="footer">Copyright © 2023 Procsoft LLC.</IonLabel>
+                                    <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr/>
                             <IonModal id="example-modal" isOpen={showEstimatedCostModal}>
                                 <IonHeader>
@@ -1945,7 +1949,7 @@ const Events = () => {
                                         </IonCard>
                                     </div>
                                     <hr/>
-                                    <IonLabel className="footer">Copyright © 2023 Procsoft LLC.</IonLabel>
+                                    <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr/>
                                 </IonContent>
                             </IonModal>
