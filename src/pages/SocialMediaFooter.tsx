@@ -21,7 +21,7 @@ const SocialMediaFooter = () => {
         <>
             <IonCard >
                 <IonCardContent className="socialMediaIconContent">
-                    <IonIcon onClick={redirectFb} className="socialMediaIcons" icon={logoFacebook}></IonIcon>
+                    {/* <IonIcon onClick={redirectFb} className="socialMediaIcons" icon={logoTwi}></IonIcon> */}
                     <IonIcon onClick={redirectInstagram} className="socialMediaIcons"  icon={logoInstagram}></IonIcon>
                     <IonIcon onClick={redirectLinkedIn} className="socialMediaIcons"  icon={logoLinkedin}></IonIcon>
                     <IonIcon onClick={redirectYouTube} className="socialMediaIcons"  icon={logoYoutube}></IonIcon>
