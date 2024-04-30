@@ -8,6 +8,12 @@ const BlogSection = () => {
     }
     return (
         <>
+        <IonCard >
+                <IonCardContent>
+                    <IonLabel color="success" className='mediumfont' >Blogs
+                    </IonLabel>
+                </IonCardContent>
+            </IonCard>
            
             <IonCard>
                 <IonCardContent>

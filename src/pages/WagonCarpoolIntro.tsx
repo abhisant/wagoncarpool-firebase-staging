@@ -14,7 +14,7 @@ const WagonCarpoolIntro = () => {
                 <IonCardContent>
                     <div>
                         {/* <h2></h2><br/> */}
-                        <p>Wagon Carpool the service that connects you with other carpoolers for office commutes and events like sports games, music concerts and comedy shows!</p>
+                        <p>Wagon Carpool the service that connects you with other carpoolers for office commutes, airports and events like sports games, music concerts and comedy shows!</p>
                         <br />
 
                     </div>

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { IonApp, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonFooter, IonHeader, IonImg, IonItem, IonLabel, IonList, IonText, IonTitle, IonToolbar, useIonViewDidEnter } from '@ionic/react';
+import { IonApp, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonFooter, IonHeader, IonImg, IonItem, IonLabel, IonList, IonSpinner, IonText, IonTitle, IonToolbar, useIonViewDidEnter } from '@ionic/react';
 import { useParams } from 'react-router';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
 const BlogDetails = (id: any) => {
     const [blogDetails, loadBlogDetails] = React.useState<any>({});
+    const [loading, setLoading] = React.useState(true);
     console.log(id);
-    function redirectToBlogDetails() {
-        window.location.replace('details?id=xyz');
-    }
+    
     useEffect(() => {
         init();
     }, []);
@@ -18,15 +17,9 @@ const BlogDetails = (id: any) => {
     });
 
     function init() {
-    
-        let urlParams = new URLSearchParams(window.location.href);
-        let blogId='1';
-            if (urlParams.get('id') !== null) {
-                blogId = urlParams.get('id') || '';
-            }
-    
-        axios.get(import.meta.env.VITE_APP_API + '/blog?blogId=' + blogId)
+        axios.get(import.meta.env.VITE_APP_API + '/blog/' + window.location.pathname.split("/").pop())
             .then(async (axiosResponse: AxiosResponse) => {
+                setLoading(false);
                 loadBlogDetails(axiosResponse.data);
             })
             .catch((reason: AxiosError) => {
@@ -39,6 +32,9 @@ const BlogDetails = (id: any) => {
 
     return (
         <IonApp>
+        {
+            loading?  <IonLabel className="centerLabel"> <IonSpinner  color="primary"></IonSpinner></IonLabel> : null
+        }
         <IonHeader>
             <IonToolbar color="success">
                 <IonTitle><div className="ion-text-wrap">{blogDetails.title}: {blogDetails.subtitle} </div></IonTitle>

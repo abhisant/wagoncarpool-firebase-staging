@@ -1516,7 +1516,7 @@ const Airport = () => {
 
                             <IonCard>
                                 <IonCardHeader>
-                                    <IonCardSubtitle>Carpooling UseCase</IonCardSubtitle>
+                                    <IonCardSubtitle>Carpooling For</IonCardSubtitle>
                                 </IonCardHeader>
                                 <IonCardContent >
                                     <IonSegment mode="ios" value="2" onIonChange={e => setCarpoolCategory(e.detail.value)}>
@@ -1532,120 +1532,7 @@ const Airport = () => {
                                     </IonSegment>
                                 </IonCardContent>
                             </IonCard>
-                            <hr />
-                            <IonCard color='success' >
-                                <IonCardContent >
-                                    <>
-                                        <Swiper autoplay={{
-                                            delay: 3000,
-                                            disableOnInteraction: false,
-                                        }}
-                                            style={{
-                                                "--swiper-pagination-color": "#ffc409",
-                                            } as CSSProperties}
-                                            pagination={true} modules={[Pagination, Autoplay]} >
-
-
-                                            {/* <SwiperSlide >
-                                                    <IonGrid>
-
-                                                        <IonText>
-                                                            <h3>Carpool for Work</h3>
-                                                        </IonText>
-
-                                                    </IonGrid>
-                                                </SwiperSlide> */}
-
-                                            <SwiperSlide>
-                                                <IonGrid>
-
-                                                    <IonText>
-                                                    <IonLabel color='light'>Create ride for Airport Drop off</IonLabel>
-                                                    </IonText>
-
-                                                </IonGrid>
-                                            </SwiperSlide>
-
-                                            {/* <SwiperSlide>
-                                                    <IonGrid>
-
-                                                        <IonText>
-                                                            <h3>Get Matched!</h3>
-                                                        </IonText>
-
-                                                    </IonGrid>
-                                                </SwiperSlide>
-
-                                                <SwiperSlide>
-                                                    <IonGrid>
-
-                                                        <IonText>
-                                                            <h3>Riders get an incredibly cheap ride</h3>
-                                                        </IonText>
-
-                                                    </IonGrid>
-                                                </SwiperSlide>
-
-
-                                                <SwiperSlide>
-                                                    <IonGrid>
-
-                                                        <IonText>
-                                                            <p>Drivers get paid for the ride</p>
-                                                        </IonText>
-
-
-                                                    </IonGrid>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <IonGrid>
-
-                                                        <IonText>
-                                                            <p>Choose to be a Driver or a Rider!</p>
-                                                        </IonText>
-
-                                                    </IonGrid>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <IonGrid>
-
-                                                        <IonText>
-                                                            <p>Carpool with Wagon!</p>
-                                                        </IonText>
-
-                                                    </IonGrid>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <IonGrid>
-
-                                                        <IonText>
-                                                            <p>Network!</p>
-                                                        </IonText>
-
-                                                    </IonGrid>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <IonGrid>
-
-                                                        <IonText>
-                                                            <p>Save time!</p>
-                                                        </IonText>
-
-                                                    </IonGrid>
-                                                </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <IonGrid>
-
-                                                        <IonText>
-                                                            <p>Save Environment!</p>
-                                                        </IonText>
-
-                                                    </IonGrid>
-                                                </SwiperSlide> */}
-                                        </Swiper>
-                                    </>
-                                    {/* <IonLabel className="selectgame">Do you want to Find a Ride (Rider) or Offer a Ride (Driver)?<br/> Rider gets an incredibly cheap ride and driver gets paid for the ride! </IonLabel> */}
-                                </IonCardContent></IonCard>
+                            
                             <IonCard >
                                 <IonCardContent >
                                     <IonSegment mode="ios" value={isDriving} onIonChange={e => setIsDriving(e.detail.value)}>

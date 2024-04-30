@@ -172,7 +172,7 @@ function AppLandingPage() {
           <Route path="/pendingRequests" render={() => <MatchRequest />} exact={true} />
           <Route path="/userActivity" render={() => <UserActivity />} exact={true} />
           <Route path="/blogs" render={() => <BlogHeadlines />} exact={true} />
-          <Route path="/blogDetail" render={() => <BlogDetails />} exact={true} />
+          <Route path="/blogDetail/:id" render={() => <BlogDetails />} />
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">

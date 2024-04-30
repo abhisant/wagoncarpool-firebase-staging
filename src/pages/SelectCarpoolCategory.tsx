@@ -407,25 +407,27 @@ const SelectCarpoolCategory = () => {
                         </IonCard>
                         // : null
                     }
-                    {
+                    {/* {
                         !loading ?
                             <IonCard className="swiperCard">
                                 <SwiperComponent></SwiperComponent>
                             </IonCard> : null
 
-                    }
+                    } */}
 
                     {
                         !loading ?
                             <>
-                                {/* <IonCard color="success">
-                                    <IonCardContent>
-                                        <IonLabel  className="centerLabel">Select the carpooling </IonLabel>
-                                    </IonCardContent>
-                                </IonCard> */}
+                                <IonCard >
+                <IonCardContent>
+                    <IonLabel color="success" className='mediumfont' >Create a Ride
+                    </IonLabel>
+                </IonCardContent>
+            </IonCard>
                                 
 
                                 <IonCard className="cursorPointer">
+                                   
                                     {/* <br />
                                     <IonLabel color="success" className="createRides">Create Rides -</IonLabel>
                                     <br /><br /> */}
@@ -438,9 +440,9 @@ const SelectCarpoolCategory = () => {
                                     </div>
                                     <br />
                                     <div className="imagecenter">
-                                        <IonLabel color="success" onClick={carpoolingForEvents} className='selectCategoryText'>Create a ride for <br/>Events / Games</IonLabel>
-                                        <IonLabel color="success" onClick={carpoolingForWork} className='selectCategoryText'>Create a ride for <br/>Work Commute</IonLabel>
-                                        <IonLabel color="success" onClick={carpoolingForAirport} className='selectCategoryText'>Create a ride for <br/>Airport Drop off</IonLabel>
+                                        <IonLabel color="success" onClick={carpoolingForEvents} className='selectCategoryText'><IonButton className="frontPageButtons" size="small" shape='round' color="success" fill="outline">Events & Games</IonButton></IonLabel>
+                                        <IonLabel color="success" onClick={carpoolingForWork} className='selectCategoryText'><IonButton className="frontPageButtons"  size="small" shape="round" color="success" fill="outline">Work Commute </IonButton></IonLabel>
+                                        <IonLabel color="success" onClick={carpoolingForAirport} className='selectCategoryText'><IonButton  className="frontPageButtons" size="small" shape="round" color="success" fill="outline">Airport Drop off </IonButton></IonLabel>
                                     </div>
                                     <br />
                                     
@@ -451,20 +453,14 @@ const SelectCarpoolCategory = () => {
                                 </IonCard>
                                
                                 {
-                                    !identifyIOSApp && !identifyAndroidApp ?  <><br/><AppDownloadWidget></AppDownloadWidget></>:null
+                                    !identifyIOSApp && !identifyAndroidApp ?  <><AppDownloadWidget></AppDownloadWidget></>:null
                                 }
                                 
-                                <br />
                                 <WagonCarpoolIntro></WagonCarpoolIntro>
-                                <br />
                                 <WagonCarpoolWorks></WagonCarpoolWorks>
-                                <br />
                                 <WhyWagonCarpool></WhyWagonCarpool>
-                                <br />
                                 <BlogSection></BlogSection>
-                                <br />
                                 <SocialMediaFooter></SocialMediaFooter>
-                                <br />
 
 
                                 {/* <hr/>

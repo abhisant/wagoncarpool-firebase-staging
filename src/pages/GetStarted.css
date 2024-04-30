@@ -1040,4 +1040,6 @@ p {
 .dateTimeButton {
   float: left;
 }
-
+.frontPageButtons {
+  font-size: 10px;
+}

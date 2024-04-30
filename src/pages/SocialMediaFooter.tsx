@@ -14,7 +14,7 @@ const SocialMediaFooter = () => {
         window.open( "https://www.youtube.com/@WagonCarpool");
     }
     function redirectInstagram() {
-        window.open("https://www.instagram.com/wagon_carpool/");
+        window.open("https://www.instagram.com/wagoncarpool/");
         
     }
     return (

@@ -92,7 +92,7 @@ const App: React.FC = () => (
         <Route exact path="/getRideFeedback" component={GetRideFeedback} />
         <Route exact path="/camera" component={VerifyUser} />
         <Route exact path="/blogs" component={AppLandingPage} />
-        <Route exact path="/blogDetail" component={AppLandingPage} />
+        <Route exact path="/blogDetail/:id" component={AppLandingPage} />
         <Redirect exact from="/" to="/scc" />
       </IonRouterOutlet>
     </IonReactRouter>
