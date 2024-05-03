@@ -912,6 +912,9 @@ ion-tab-button.tab-selected{
 .mediumfont {
   font-size: 17px;
 }
+.largeFontNotBold {
+  font-size: 20px;
+}
 
 
 .fixedDestination {
