@@ -59,7 +59,7 @@ import {
     IonAccordion,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle } from 'ionicons/icons';
+import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle, micCircle, atCircleOutline, carOutline, carSportSharp, send } from 'ionicons/icons';
 import { Redirect, Route, Switch } from 'react-router';
 import App from '../App';
 import { useLocation, useHistory, HashRouter, BrowserRouter } from 'react-router-dom';
@@ -1594,7 +1594,7 @@ const AppFeed = () => {
                                         <IonLabel class="homeSegmentLabel">Past Rides</IonLabel>
                                     </IonSegmentButton> */}
                                     <IonSegmentButton value="1">
-                                        <IonLabel class="homeSegmentLabel">People Around Me</IonLabel>
+                                        <IonLabel class="homeSegmentLabel">People Around Me</IonLabel> 
                                     </IonSegmentButton>
                                     
                                 </IonSegment>
@@ -2088,7 +2088,8 @@ const AppFeed = () => {
                                 
                                         {
                                             matchSentForIndex.includes(index) ? 
-                                            <IonLabel className="mediumfont" color="success">Drive Request Sent <IonIcon icon={checkmarkCircle}></IonIcon></IonLabel> : null
+                                           <> <IonLabel className="mediumfont" color="success">Drive Request Sent <IonIcon icon={checkmarkCircle}></IonIcon></IonLabel>
+                                            <IonButton size="small" fill="outline" onClick={() => toggleDisplayType("0")} className='viewRideFeedbackButton' color="success">View Ride</IonButton></> : null
                                         }
                                         {
                                             item.rideRequest.driving == false && !matchSentForIndex.includes(index) ? 

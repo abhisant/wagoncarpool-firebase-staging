@@ -316,10 +316,10 @@ const MatchRequest = () => {
                                         {
                                             item.requesterRideDetails.rideRequest.driving == false ? <IonLabel color="success" >Has requested to ride with you!</IonLabel> : <IonLabel color="success" >Has offered you a ride!</IonLabel>
                                         }
-                                        <br/>
+                                        {/* <br/>
                                         {
                                           item.requesterRideDetails.rideRequest.labelsCsv != 'work-commute' ?  <IonBadge class="ionBadge" slot="end" color="medium">{item.requesterRideDetails.rideRequest.labelsCsv} </IonBadge>: null
-                                        }
+                                        } */}
 
                                         {/* <p>Passengers: {item.requesterRideDetails.rideRequest.seatCount}</p> */}
                                         <p>Departure Time: {
@@ -333,7 +333,7 @@ const MatchRequest = () => {
                                                     minute: '2-digit'
                                                 }
                                             )}</p>
-                                            <hr/>
+                                            {/* <br/> */}
                                             {
                                     item.requesterRideDetails.rideRequest.labelsCsv == 'work-commute' && item.requesterRideDetails.rideRequest.roundTrip
                                     ? 
@@ -399,7 +399,11 @@ const MatchRequest = () => {
 
                                         }
                                         <IonIcon className="feeIcon" onClick={openPopover} icon={informationCircle}></IonIcon> <br />
-                                        <IonBadge class="ionBadge" color="medium">{item.requesterRideDetails.rideRequest.labelsCsv}</IonBadge>
+                                        {
+                                            item.requesterRideDetails.rideRequest.labelsCsv != 'drive-request' ? 
+                                            <IonBadge class="ionBadge" color="medium">{item.requesterRideDetails.rideRequest.labelsCsv}</IonBadge>: null
+                                        }
+                                        
 
                                         {/* <IonAccordionGroup >
                                     <IonAccordion value="first">

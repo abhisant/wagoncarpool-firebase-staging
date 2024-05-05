@@ -1046,3 +1046,9 @@ p {
 .frontPageButtons {
   font-size: 10px;
 }
+.viewRideFeedbackButton {
+  width: fit-content;
+  margin-top: -10px;
+  margin-left: 20px;
+
+}
