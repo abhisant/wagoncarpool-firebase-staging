@@ -21,7 +21,6 @@ import { PushNotifications } from '@capacitor/push-notifications';
 import { IonReactRouter } from '@ionic/react-router';
 import { h } from '@ionic/pwa-elements/dist/types/stencil-public-runtime';
 
-
 const Airport = () => {
     let currAddress: any;
     Geocode.setApiKey('AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY');
@@ -124,6 +123,10 @@ const Airport = () => {
     const [startTimeVar, setStartTimeVar] = useState<any>('');
     const [returnTimeVar, setReturnTimeVar] = useState<any>('');
     const [departureDateVar, setDepartureDateVar] = useState<any>('');
+    const [currDatePlusNHours, setCurrDatePlusNHours] = useState<any>(new Date().toISOString());
+    const [calendarDepartureTime, setCalendarDepartureTime] = useState<any>(new Date().toISOString());
+
+    // const [calendarDepartureTime, setCalendarDepartureTime] = useState<any>('');
     // let minDate = ;
 
     useEffect(() => {
@@ -134,6 +137,14 @@ const Airport = () => {
         });
         resetForm();
         setStartReturnTime();
+
+        var datePlusNHours = new Date();
+        datePlusNHours.setHours(datePlusNHours.getHours() + 3);
+        var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+        var localISOTime = (new Date(datePlusNHours.getTime() - tzoffset)).toISOString().slice(0, 19);
+        console.log('abhishek',new Date().toISOString());
+        setCurrDatePlusNHours(localISOTime);
+        setCalendarDepartureTime(localISOTime);
         init();
     }, []);
 
@@ -398,14 +409,16 @@ const Airport = () => {
             setErrorLogs('Please Enter Airport Address');
             return;
         }
-        console.log('globalSessionObj', globalSessionObj);
-        if (localStorage.getItem('session') == null) {
-            setSessionExists(false);
-            return;
-        }
+        // console.log('globalSessionObj', globalSessionObj);
+        // if (localStorage.getItem('session') == null) {
+        //     setSessionExists(false);
+        //     return;
+        // }
 
         globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        console.log('globalSessionObj', globalSessionObj);
         if (globalSessionObj == undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+            console.log('global session', globalSessionObj);
             setSessionExists(false);
             return;
         }
@@ -414,32 +427,23 @@ const Airport = () => {
             .then(async (axiosResponse: AxiosResponse) => {
                 setSessionExists(true);
                 let departureTime = '';
-                let departureDateObj = new Date();
-                departureDateObj.setDate(dateObjectMap[departureDateVar].getDate());
-                departureDateObj.setMonth(dateObjectMap[departureDateVar].getMonth());
-                departureDateObj.setFullYear(dateObjectMap[departureDateVar].getFullYear());
+                console.log('calendar time localtimezone', calendarDepartureTime);
+                console.log('UTC time zone', new Date(calendarDepartureTime).toISOString().toString());
 
-                let hours = startTimeVar.substring(0, startTimeVar.indexOf(":"));
-                const minutes = startTimeVar.slice(startTimeVar.indexOf(':') + 1);
-                departureDateObj.setHours(hours);
-                departureDateObj.setMinutes(minutes);
-                departureDateObj.setSeconds(0);
-                departureDateObj.setMilliseconds(0);
-                console.log(departureDateObj.toISOString().toString());
 
-                let returnDate = new Date();
+                // let departureDateObj = new Date();
+                // departureDateObj.setDate(dateObjectMap[departureDateVar].getDate());
+                // departureDateObj.setMonth(dateObjectMap[departureDateVar].getMonth());
+                // departureDateObj.setFullYear(dateObjectMap[departureDateVar].getFullYear());
 
-                // if (tripType == "2") {
-                //     returnDate.setDate(dateObjectMap[departureDateVar].getDate());
-                //     returnDate.setMonth(dateObjectMap[departureDateVar].getMonth());
-                //     returnDate.setFullYear(dateObjectMap[departureDateVar].getFullYear());
+                // let hours = startTimeVar.substring(0, startTimeVar.indexOf(":"));
+                // const minutes = startTimeVar.slice(startTimeVar.indexOf(':') + 1);
+                // departureDateObj.setHours(hours);
+                // departureDateObj.setMinutes(minutes);
+                // departureDateObj.setSeconds(0);
+                // departureDateObj.setMilliseconds(0);
+                // console.log(departureDateObj.toISOString().toString());
 
-                //     returnDate.setHours(returnTimeVar.substring(0, returnTimeVar.indexOf(":")));
-                //     returnDate.setMinutes(returnTimeVar.slice(returnTimeVar.indexOf(':') + 1));
-                //     returnDate.setSeconds(0);
-                //     returnDate.setMilliseconds(0);
-                // }
-                // console.log(returnDate.toISOString().toString());
 
                 const session = JSON.parse(localStorage.getItem('session') || "");
                 let results: any;
@@ -468,23 +472,9 @@ const Airport = () => {
 
                 setHomeOrOfficeAddDifferent(false);
 
-                // if (!useProfileAddress) {
-                //     submitHomeairportAddress();
-                // }
-
-                // let tempHomeLatitude = useProfileAddress ? profileHomeLatitude : homeLatitude;
-                // let tempHomeLongitude = useProfileAddress ? profileHomeLongitude : homeLongitude;
-                // let tempHomeAddress = useProfileAddress ? profileHomeAddress : homeAddress;
-
-                // let tempairportLatitide = useProfileAddress ? profileOfficeLatitude : airportLatitide;
-                // let tempairportLongitude = useProfileAddress ? profileOfficeLongitude : airportLongitude;
-                // let tempairportAddress = useProfileAddress ? profileOfficeAddress : airportAddress;
-                // let tempairportAddressName = useProfileAddress ? profileOfficeAddressName : airportAddressName;
-
-
                 const postRequestBody = {
                     // userId: session.userId,
-                    departureTime: departureDateObj.toISOString().toString(),
+                    departureTime: new Date(calendarDepartureTime).toISOString().toString(),
                     start_loc_lat: homeLatitude,
                     start_loc_long: homeLongitude,
                     destination_loc_lat: airportLatitide,
@@ -521,7 +511,7 @@ const Airport = () => {
                         setCreatedRideId(postResponse.data);
                         setRequestSubmitted(true);
 
-                        loadFilteredFeed(departureDateObj.toISOString().toString(), postResponse.data);
+                        loadFilteredFeed(new Date(calendarDepartureTime).toISOString().toString(), postResponse.data);
                         //await delay(1000);
                         //setRedirectToUserActivity(true);
                     })
@@ -546,7 +536,9 @@ const Airport = () => {
                     })
             })
             .catch((reason: AxiosError) => {
+                console.log(reason);
                 if (reason.response?.status === 401 || reason.response?.status === undefined) {
+
                     setSessionExists(false);
                     return;
                 }
@@ -1629,15 +1621,6 @@ const Airport = () => {
                                    
 
                                     {/* <IonLabel>Departure date</IonLabel>
-                                    <br />
-                                    <IonLabel className="dateTimeButton">
-                                        <IonDatetimeButton datetime="datetime" ></IonDatetimeButton>
-
-                                        <IonModal keepContentsMounted={true}>
-                                            <IonDatetime min={new Date().toISOString()} id="datetime" ></IonDatetime>
-                                        </IonModal>
-                                    </IonLabel> */}
-                                    <IonLabel>Departure date</IonLabel>
                                     <IonSegment scrollable={true} mode="ios" value={departureDateVar} onIonChange={e => setDepartureDate(e.detail.value)}>
                                         {departureDateArray.map((item, index) => (
                                             <IonSegmentButton class="returnSegmentButton" value={item}>
@@ -1654,7 +1637,10 @@ const Airport = () => {
                                             </IonSegmentButton>
                                         ))}
                                     </IonSegment>
-                                    <hr />
+                                    <hr /> */}
+
+                                    <IonLabel>Departure date & time</IonLabel><br/>
+                                    <IonLabel className="dateTimeButton"><IonDatetimeButton  datetime="datetime" ></IonDatetimeButton></IonLabel><br/>
                                     {/* {
                                         tripType == "2" ?
                                             <>
@@ -1671,8 +1657,8 @@ const Airport = () => {
                                             : null
                                     } */}
 
-                                    <hr />
-                                    <IonCheckbox onIonChange={toggleAgeCheckBox} checked={checkboxEighteenYearsOld} labelPlacement="end">I am 18 years old or over</IonCheckbox><hr />
+                                    <hr /><br/>
+                                    <IonCheckbox onIonChange={toggleAgeCheckBox} checked={checkboxEighteenYearsOld} labelPlacement="end">I am 18 years old or over</IonCheckbox>
 
                                     {/* <Autocomplete
                                             defaultValue={destinationAddress}
@@ -1702,7 +1688,7 @@ const Airport = () => {
                                             }}
                                         /> */}
 
-                                    <hr />
+                                    <br />
                                     {
                                         errorLogs != '' ? <IonItem className="errorLogs" text-wrap color="danger">{errorLogs}</IonItem> : null
                                     }
@@ -1864,6 +1850,10 @@ const Airport = () => {
 
                                 <hr />
                             </IonModal>
+                            <IonModal keepContentsMounted={true}>
+        <IonDatetime minuteValues="0,30"   presentation="date-time"  value={calendarDepartureTime} min={currDatePlusNHours} 
+        id="datetime" onIonChange={(e) => setCalendarDepartureTime(e.detail.value)}></IonDatetime>
+      </IonModal>
                         </IonContent>
                     </IonPage>
 

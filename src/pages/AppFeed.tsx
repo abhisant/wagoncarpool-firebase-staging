@@ -59,7 +59,7 @@ import {
     IonAccordion,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle, micCircle, atCircleOutline, carOutline, carSportSharp, send } from 'ionicons/icons';
+import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle, micCircle, atCircleOutline, carOutline, carSportSharp, send, calendarClear } from 'ionicons/icons';
 import { Redirect, Route, Switch } from 'react-router';
 import App from '../App';
 import { useLocation, useHistory, HashRouter, BrowserRouter } from 'react-router-dom';
@@ -1741,9 +1741,9 @@ const AppFeed = () => {
                                         {
                                             item.requestStats.acceptedTotalSeatCount > 0 && item.rideRequest.seatCount - item.requestStats.acceptedTotalSeatCount == 1 ? <><hr /><IonBadge color="medium" class="ionBadge" slot="end">Ride Approved For {item.requestStats.acceptedTotalSeatCount} out of {item.rideRequest.seatCount} seats</IonBadge><hr /></> : null
                                         }
-                                        {
+                                        {/* {
                                             item.requestStats.requestedTotalSeatCount - item.requestStats.acceptedTotalSeatCount > 0 ? <><hr /><IonBadge color="medium" class="ionBadge" slot="end">Ride Request Sent</IonBadge></> : null
-                                        }
+                                        } */}
                                         {/* <IonAccordionGroup>
                                             <IonAccordion value="first">
                                                 <IonItem slot="header" color="light">
@@ -1752,11 +1752,14 @@ const AppFeed = () => {
 
                                         {/* <div className="ion-padding" slot="content"> */}
                                         <hr />
-                                        <IonButton onClick={() => googleMapsAddressRedirection(item.rideRequest.startAddress, item.rideRequest.destinationAddress)} className="feedaddressbuttons" color="success" size="small" fill="outline">{item.rideRequest.destinationAddressName == null ? item.rideRequest.destinationAddress : (item.rideRequest.destinationAddress.includes(item.rideRequest.destinationAddressName) ? item.rideRequest.destinationAddress : item.rideRequest.destinationAddressName + "," + item.rideRequest.destinationAddress.split(',').splice(item.rideRequest.destinationAddress.split(",").length - 3).join(',')).substring(0, 45)}<IonIcon slot="end" size="small" icon={location}></IonIcon></IonButton>
+                                        <IonButton onClick={() => googleMapsAddressRedirection(item.rideRequest.startAddress, item.rideRequest.destinationAddress)} className="feedaddressbuttons" color="medium" size="small" fill="outline">{item.rideRequest.destinationAddressName == null ? item.rideRequest.destinationAddress : (item.rideRequest.destinationAddress.includes(item.rideRequest.destinationAddressName) ? item.rideRequest.destinationAddress : item.rideRequest.destinationAddressName + "," + item.rideRequest.destinationAddress.split(',').splice(item.rideRequest.destinationAddress.split(",").length - 3).join(',')).substring(0, 45)}<IonIcon slot="end" size="small" icon={location}></IonIcon></IonButton>
                                         <hr />
                                         {/* {
                                                         item.requestStats.acceptedTotalSeatCount == 0 && item.requestStats.requestedTotalSeatCount == 0 ? <><IonBadge color="medium" class="ionBadge" slot="end">Ride Created</IonBadge></> : null
                                                     } */}
+                                        {
+                                            item.rideRequest.labelsCsv != null ? <IonBadge color="medium" class="ionBadge" slot="end">{item.rideRequest.labelsCsv}</IonBadge> : null
+                                        }
                                         <IonBadge color="medium" class="ionBadge" slot="end">Seats: {item.rideRequest.seatCount}</IonBadge>
 
                                         {
@@ -1766,9 +1769,7 @@ const AppFeed = () => {
                                             item.rideRequest.driving ? <IonBadge color="medium" class="ionBadge" slot="end">You get: ${item.rideRequest.rideCost} </IonBadge> : <IonBadge color="medium" class="ionBadge" slot="end">You Pay: ${item.rideRequest.rideCost} </IonBadge>
                                         }
                                         <IonIcon className="feeIcon" onClick={openPopover} icon={informationCircle}></IonIcon> <br />
-                                        {
-                                            item.rideRequest.labelsCsv != null ? <IonBadge color="medium" class="ionBadge" slot="end">{item.rideRequest.labelsCsv}</IonBadge> : null
-                                        }
+                                        
                                         <hr />
                                         {/* </div> */}
                                         {/* </IonAccordion>

@@ -392,6 +392,10 @@ const MatchRequest = () => {
         <div className="ion-padding" slot="content"> */}
         
                                         {
+                                            item.requesterRideDetails.rideRequest.labelsCsv != 'drive-request' ? 
+                                            <IonBadge class="ionBadge" color="medium">{item.requesterRideDetails.rideRequest.labelsCsv}</IonBadge>: null
+                                        }
+                                        {
                                             item.tobeApprovedRide.roundTrip ? <IonBadge class="ionBadge" slot="end" color="medium" >Round Trip</IonBadge> : <IonBadge class="ionBadge" slot="end" color="medium">One Way</IonBadge>
                                         }
                                         {
@@ -399,10 +403,7 @@ const MatchRequest = () => {
 
                                         }
                                         <IonIcon className="feeIcon" onClick={openPopover} icon={informationCircle}></IonIcon> <br />
-                                        {
-                                            item.requesterRideDetails.rideRequest.labelsCsv != 'drive-request' ? 
-                                            <IonBadge class="ionBadge" color="medium">{item.requesterRideDetails.rideRequest.labelsCsv}</IonBadge>: null
-                                        }
+                                        
                                         
 
                                         {/* <IonAccordionGroup >

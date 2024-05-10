@@ -322,7 +322,7 @@ const Work = () => {
         console.log('currDateIsModified' + currDateIsModified);
 
         let tempArray: any = [];
-        if (currDateIsModified || currentDate.getHours() + 3 < 18) {
+        if (currDateIsModified || currentDate.getHours() + 1 < 18) {
             console.log('in if');
             tempArray.push(currDateKey);
             tempArray.push(tomorrowKey);
@@ -660,7 +660,7 @@ const Work = () => {
         if (dateObject[departureDate] == 'currentDate') {
             const currentDate = new Date();
             let tempStartTimeSlots: any = [];
-            for (let i: any = currentDate.getHours() + 3 > 7 ? currentDate.getHours() + 3 : 7; i < (tripType == "1" ? 20: 12); i++) {
+            for (let i: any = currentDate.getHours() + 1 > 7 ? currentDate.getHours() + 1 : 7; i < (tripType == "1" ? 20: 12); i++) {
                 tempStartTimeSlots.push(i.toString() + ':00');
                 tempStartTimeSlots.push(i.toString() + ':30');
             }
@@ -691,7 +691,7 @@ const Work = () => {
                 console.log('START TIMESLOTS  00');
                 // Trip can't start from home to office anymore
                 // create a one way trip from work to home
-                for (let i: any = currentDate.getHours() + 3 > 15 ? currentDate.getHours() + 3 : 15; i < 20; i++) {
+                for (let i: any = currentDate.getHours() + 1 > 15 ? currentDate.getHours() + 1 : 15; i < 20; i++) {
                     // i = currentDate.getHours() + 3;
                     tempStartTimeSlots.push(i.toString() + ':00');
                     tempStartTimeSlots.push(i.toString() + ':30');
@@ -1294,7 +1294,7 @@ const Work = () => {
         const currentDate = new Date();
         let tempStartTimeSlots: any = [];
         if (dateObject[departureDateVar] == 'currentDate' ) {
-            for (let i: any = currentDate.getHours() + 3 > 7 ? currentDate.getHours() + 3 : 7; i < (tripType == "2" ? 20: 12); i++) {
+            for (let i: any = currentDate.getHours() + 1 > 7 ? currentDate.getHours() + 1 : 7; i < (tripType == "2" ? 20: 12); i++) {
                 tempStartTimeSlots.push(i.toString() + ':00');
                 tempStartTimeSlots.push(i.toString() + ':30');
             }
