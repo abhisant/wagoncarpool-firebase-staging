@@ -2095,14 +2095,38 @@ const AppFeed = () => {
                                 
                                         {
                                             matchSentForIndex.includes(index) ? 
-                                           <> <IonLabel className="mediumfont" color="success">Drive Request Sent <IonIcon icon={checkmarkCircle}></IonIcon></IonLabel>
-                                            <IonButton size="small" fill="outline" onClick={() => toggleDisplayType("0")} className='viewRideFeedbackButton' color="success">View Ride</IonButton></> : null
+                                           <> <IonButton color="success" className="feedbackbutton"  disabled size="small" fill="outline">Drive Request Sent <IonIcon icon={checkmarkCircle}></IonIcon></IonButton>
+                                            <IonButton size="small" fill="outline" onClick={() => toggleDisplayType("0")} className="feedbackbutton"  color="success">View Ride</IonButton></> : null
                                         }
                                         {
                                             item.rideRequest.driving == false && !matchSentForIndex.includes(index) ? 
                                             forceRideCreateIndex == index ? <IonButton disabled color="success"  className="feedbackbutton" size="small" > {statusMessages} <IonIcon icon={car}></IonIcon><IonSpinner class="smallspinner" color="primary"></IonSpinner></IonButton>
                                             :
-                                            <IonButton color="success"  className="feedbackbutton" size="small"  onClick={() => requestToDrive(item, index)}>Send Request to Drive <IonIcon icon={car}></IonIcon></IonButton> : null
+                                            <IonButton color="success"  className="feedbackbutton" size="small" 
+                                            onClick={() =>
+                                                presentAlert({
+                                                    header: 'This will create a new ride & send a match request to the rider. Do you want to proceed?',
+                                                    buttons: [
+                                                        {
+                                                            text: 'No',
+                                                            role: 'cancel',
+                                                            handler: () => {
+                                                            },
+                                                        },
+                                                        {
+                                                         
+                                                            text: 'Yes',
+                                                            role: 'confirm',
+                                                            handler: () => {
+                                                                requestToDrive(item, index);
+                                                            },
+                                                        },
+                                                    ],
+                                                    onDidDismiss: (e: CustomEvent) => null,
+                                                })
+                                            }
+                                             
+                                             >Send Request to Drive <IonIcon icon={car}></IonIcon></IonButton> : null
                                         }
 
 
