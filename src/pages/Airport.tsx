@@ -140,9 +140,15 @@ const Airport = () => {
 
         var datePlusNHours = new Date();
         datePlusNHours.setHours(datePlusNHours.getHours() + 3);
+        if (datePlusNHours.getMinutes() < 30 ) {
+            datePlusNHours.setMinutes(30);
+        } else {
+            datePlusNHours.setHours(datePlusNHours.getHours() + 1);
+            datePlusNHours.setMinutes(0);
+        }
+        //datePlusNHours.setMinutes(Math.round(datePlusNHours.getMinutes() / 30) * 30)
         var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
         var localISOTime = (new Date(datePlusNHours.getTime() - tzoffset)).toISOString().slice(0, 19);
-        console.log('abhishek',new Date().toISOString());
         setCurrDatePlusNHours(localISOTime);
         setCalendarDepartureTime(localISOTime);
         init();
@@ -1640,7 +1646,9 @@ const Airport = () => {
                                     <hr /> */}
 
                                     <IonLabel>Departure date & time</IonLabel><br/>
-                                    <IonLabel className="dateTimeButton"><IonDatetimeButton  datetime="datetime" ></IonDatetimeButton></IonLabel><br/>
+                                    <IonDatetime color="success" minuteValues="0,30"   presentation="date-time"  value={calendarDepartureTime} min={currDatePlusNHours} 
+        id="datetime" onIonChange={(e) => setCalendarDepartureTime(e.detail.value)}></IonDatetime>
+                                    {/* <IonLabel className="dateTimeButton"><IonDatetimeButton  datetime="datetime" ></IonDatetimeButton></IonLabel><br/> */}
                                     {/* {
                                         tripType == "2" ?
                                             <>
@@ -1850,10 +1858,10 @@ const Airport = () => {
 
                                 <hr />
                             </IonModal>
-                            <IonModal keepContentsMounted={true}>
+                            {/* <IonModal keepContentsMounted={true}>
         <IonDatetime minuteValues="0,30"   presentation="date-time"  value={calendarDepartureTime} min={currDatePlusNHours} 
         id="datetime" onIonChange={(e) => setCalendarDepartureTime(e.detail.value)}></IonDatetime>
-      </IonModal>
+      </IonModal> */}
                         </IonContent>
                     </IonPage>
 
