@@ -57,6 +57,8 @@ import {
     IonText,
     IonAccordionGroup,
     IonAccordion,
+    IonRadioGroup,
+    IonRadio,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle, micCircle, atCircleOutline, carOutline, carSportSharp, send, calendarClear } from 'ionicons/icons';
@@ -161,6 +163,9 @@ const AppFeed = () => {
     let matchIndexArr: any = [];
 
     const [findRideLoaderIndex, setFindRideLoaderIndex] = useState(-1);
+    const [cancelRideModalOpen, setCancelRideModalOpen] = useState(false);
+    const [rideCancellationReason, setRideCancellationReason] = useState<any>('');
+    const [cancelRideId , setCancelRideID] = useState(-1);
 
     let infiniteLoop = true;
 
@@ -454,6 +459,10 @@ const AppFeed = () => {
     window.addEventListener('ionModalDidDismiss', (event) => {
         infiniteLoop = false;
         setIsOpen(false);
+        setCancelRideModalOpen(false);
+        setRideCancellationReason('');
+        setCancelRideID(-1);
+        setErrorLogs('');
 
         // setFeedSelectionFilter("2");
         // setFilterStartLatLong({ "latitude": 0, "longitude": 0 });
@@ -776,7 +785,36 @@ const AppFeed = () => {
         init();
     }, []);
 
-    function cancelRide(rideId: number) {
+    function prepareForRideCancellation(rideId: number) {
+        setCancelRideID(rideId);
+        setCancelRideModalOpen(true);
+    }
+    
+    function rideCancellationReasonHandler(reason: any) {
+        console.log(reason);
+        setErrorLogs('');
+        setRideCancellationReason(reason);
+    }
+
+    function cancelRide() {
+        console.log('RideId', cancelRideId);
+        console.log(rideCancellationReason);
+        if (rideCancellationReason == '') {
+            setErrorLogs('Please Select Ride Cancellation Reason');
+            return;
+        }
+
+        if (rideCancellationReason == 'other') {
+            setErrorLogs('Please enter the Ride cancellation reason in the text area above!');
+            return;
+        }
+
+        if (rideCancellationReason.length < 10) {
+            setErrorLogs('Alteast 10 characters reason needed');
+            return;
+        }
+        
+        
         if (localStorage.getItem('session')  == null) {
             setSessionExists(false);
             return;
@@ -790,9 +828,10 @@ const AppFeed = () => {
             category: "CancelRide",
             action: "CancelRide",
         });
-        console.log(rideId);
+        console.log('Cancel ride id ', cancelRideId);
+        setCancelRideModalOpen(false);
         setLoading(true);
-        axios.delete(import.meta.env.VITE_APP_API_V2 + '/rides?id=' + rideId, {headers: { 'Authorization': globalSessionObj.wagon_token } })
+        axios.delete(import.meta.env.VITE_APP_API_V2 + '/rides?id=' + cancelRideId + '&reason=' + rideCancellationReason, {headers: { 'Authorization': globalSessionObj.wagon_token } })
             .then(() => {
                 loadUserActivityFeed();
                 loadHistoricalRides();
@@ -1787,27 +1826,29 @@ const AppFeed = () => {
                                                     color="danger"
                                                     fill="solid" className="userActivityContact"
                                                     size="small"
-                                                    onClick={() =>
-                                                        presentAlert({
-                                                            header: 'Do you want to cancel your ride?',
-                                                            buttons: [
-                                                                {
-                                                                    text: 'No',
-                                                                    role: 'cancel',
-                                                                    handler: () => {
-                                                                    },
-                                                                },
-                                                                {
-                                                                    text: 'Yes',
-                                                                    role: 'confirm',
-                                                                    handler: () => {
-                                                                        cancelRide(item.rideRequest.rideId);
-                                                                    },
-                                                                },
-                                                            ],
-                                                            onDidDismiss: (e: CustomEvent) => null,
-                                                        })
-                                                    }>Cancel Ride</IonButton>
+                                                    onClick={() => prepareForRideCancellation(item.rideRequest.rideId)}
+                                                    // onClick={() =>
+                                                    //     presentAlert({
+                                                    //         header: 'Do you want to cancel your ride?',
+                                                    //         buttons: [
+                                                    //             {
+                                                    //                 text: 'No',
+                                                    //                 role: 'cancel',
+                                                    //                 handler: () => {
+                                                    //                 },
+                                                    //             },
+                                                    //             {
+                                                    //                 text: 'Yes',
+                                                    //                 role: 'confirm',
+                                                    //                 handler: () => {
+                                                    //                     cancelRide(item.rideRequest.rideId);
+                                                    //                 },
+                                                    //             },
+                                                    //         ],
+                                                    //         onDidDismiss: (e: CustomEvent) => null,
+                                                    //     })
+                                                    // }
+                                                    >Cancel Ride</IonButton>
                                                 //  : null
 
                                             }
@@ -2364,6 +2405,52 @@ const AppFeed = () => {
                     </IonLabel>
                 </IonContent>
             </IonPopover>
+            <IonModal isOpen={cancelRideModalOpen}>
+          <IonHeader >
+            <IonToolbar>
+              <IonTitle>Ride Cancellation</IonTitle>
+              <IonButtons slot="end">
+                <IonButton onClick={() => setCancelRideModalOpen(false)}>Close</IonButton>
+              </IonButtons>
+            </IonToolbar>
+          </IonHeader>
+                <IonContent className="ion-padding">
+                    <h3>Select reason for ride cancellation</h3>
+                    <IonRadioGroup   onIonChange={e => rideCancellationReasonHandler(e.detail.value)}>
+                        <IonRadio color="success" value="My travel plans have changed" labelPlacement="end">My travel plans have changed</IonRadio>
+                        <br />
+                        <IonRadio color="success" value="Not satisfied with the pricing" labelPlacement="end">Not satisfied with the pricing</IonRadio>
+                        <br />
+                        <IonRadio color="success" value="Ride created accidently" labelPlacement="end">Ride created accidently</IonRadio>
+                        <br />
+                        <IonRadio color="success" value="other" labelPlacement="end">Other</IonRadio>
+                    </IonRadioGroup>
+                    {
+                        rideCancellationReason != '' &&
+                        rideCancellationReason != 'My travel plans have changed' &&
+                        rideCancellationReason != 'Not satisfied with the pricing' &&
+                        rideCancellationReason != 'Ride created accidently' 
+
+                         ?
+                        <IonInput color="success"
+                        label="Please specify the cancellation reason"
+                        labelPlacement="stacked"
+                        clearInput={true}
+                        onIonInput={e => rideCancellationReasonHandler(e.detail.value)}
+                        placeholder="Specify your reason (Aleast 10 Characters)"
+                        counter={true}
+                        maxlength={30}
+                        counterFormatter={(inputLength) => `${inputLength} characters`}
+                
+                      ></IonInput>
+                            : null
+                    }
+                    <br/>
+                    <IonLabel color="danger">{errorLogs}</IonLabel>
+                    <hr/>
+                    <IonButton className="userActivityContact" size="small" color="medium"  onClick={() => setCancelRideModalOpen(false)}>back to My Rides</IonButton><IonButton  size="small" className="userActivityContact" color="danger" onClick={() => cancelRide()}>Cancel Ride</IonButton>
+                </IonContent>
+        </IonModal>
         </IonPage>
 
     );

@@ -1848,6 +1848,7 @@ const Work = () => {
                                                             placeholder="Enter Work Address"
                                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                                             onPlaceSelected={(selected, a, c) => {
+                                                                console.log(selected);
                                                                 setErrorLogs('');
                                                                 setWorkAddress((selected.formatted_address || ''));
                                                                 setWorkAddressName(selected.name || '');
@@ -1887,6 +1888,7 @@ const Work = () => {
                                                             placeholder="Enter Home Address"
                                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                                             onPlaceSelected={(selected, a, c) => {
+                                                                console.log(selected);
                                                                 setErrorLogs('');
                                                                 setHomeAddress((selected.formatted_address || ''));
                                                                 setHomeLatitude((selected.geometry?.location?.lat() || 0));
@@ -1928,6 +1930,7 @@ const Work = () => {
                                                             placeholder="Enter Home Address"
                                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                                             onPlaceSelected={(selected, a, c) => {
+                                                                console.log(selected);
                                                                 setErrorLogs('');
                                                                 setHomeAddress((selected.formatted_address || ''));
                                                                 setHomeLatitude((selected.geometry?.location?.lat() || 0));
@@ -1965,6 +1968,7 @@ const Work = () => {
                                                             placeholder="Enter Work Address"
                                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                                             onPlaceSelected={(selected, a, c) => {
+                                                                console.log(selected);
                                                                 setErrorLogs('');
                                                                 setWorkAddress((selected.formatted_address || ''));
                                                                 setWorkAddressName(selected.name || '');
