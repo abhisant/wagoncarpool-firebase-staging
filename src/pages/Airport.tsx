@@ -1577,6 +1577,7 @@ const Airport = () => {
                                                             placeholder="Enter Start address"
                                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                                             onPlaceSelected={(selected, a, c) => {
+                                                                console.log(selected);
                                                                 setErrorLogs('');
                                                                 setHomeAddress((selected.formatted_address || ''));
                                                                 setHomeLatitude((selected.geometry?.location?.lat() || 0));
@@ -1586,7 +1587,7 @@ const Airport = () => {
                                                             options={{
                                                                 types: ["geocode", "establishment"],
                                                                 componentRestrictions: { country },
-                                                                fields: ['formatted_address', 'geometry.location', 'name']
+                                                                fields: ['formatted_address', 'geometry.location', 'name', 'type']
                                                             }}
                                                         />
                                                 }
@@ -1711,10 +1712,10 @@ const Airport = () => {
                                     {
                                         !loading ?
                                             (
-                                                sessionExists ? checkboxEighteenYearsOld ? <IonButton size="small" color="success" onClick={() => createRideForAirport()}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton> : <IonButton size="small" color="success" disabled onClick={() => createRideForAirport()}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton>
+                                                sessionExists ? checkboxEighteenYearsOld && errorLogs =='' ? <IonButton size="small" color="success" onClick={() => createRideForAirport()}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton> : <IonButton size="small" color="success" disabled onClick={() => createRideForAirport()}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton>
                                                     :
                                                     (
-                                                        checkboxEighteenYearsOld ?
+                                                        checkboxEighteenYearsOld || errorLogs != ''?
                                                             <>
                                                                 <IonLabel class="smallfont">Looks like you haven't logged in yet. </IonLabel>
                                                                 <IonLabel class="loginwithGoogle">

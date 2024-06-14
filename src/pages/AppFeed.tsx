@@ -164,7 +164,7 @@ const AppFeed = () => {
 
     const [findRideLoaderIndex, setFindRideLoaderIndex] = useState(-1);
     const [cancelRideModalOpen, setCancelRideModalOpen] = useState(false);
-    const [rideCancellationReason, setRideCancellationReason] = useState<any>('');
+    const [rideCancellationReason, setRideCancellationReason] = useState<any>('xeqg!okjw');
     const [cancelRideId , setCancelRideID] = useState(-1);
 
     let infiniteLoop = true;
@@ -460,7 +460,7 @@ const AppFeed = () => {
         infiniteLoop = false;
         setIsOpen(false);
         setCancelRideModalOpen(false);
-        setRideCancellationReason('');
+        setRideCancellationReason('xeqg!okjw');
         setCancelRideID(-1);
         setErrorLogs('');
 
@@ -799,12 +799,12 @@ const AppFeed = () => {
     function cancelRide() {
         console.log('RideId', cancelRideId);
         console.log(rideCancellationReason);
-        if (rideCancellationReason == '') {
-            setErrorLogs('Please Select Ride Cancellation Reason');
+        if (rideCancellationReason == '' ) {
+            setErrorLogs('Please select / enter the Ride Cancellation Reason');
             return;
         }
 
-        if (rideCancellationReason == 'other') {
+        if (rideCancellationReason == 'xeqg!okjw') {
             setErrorLogs('Please enter the Ride cancellation reason in the text area above!');
             return;
         }
@@ -2426,7 +2426,7 @@ const AppFeed = () => {
                         <IonRadio color="success" value="other" labelPlacement="end">Other</IonRadio>
                     </IonRadioGroup>
                     {
-                        rideCancellationReason != '' &&
+                        rideCancellationReason != 'xeqg!okjw' &&
                         rideCancellationReason != 'My travel plans have changed' &&
                         rideCancellationReason != 'Not satisfied with the pricing' &&
                         rideCancellationReason != 'Ride created accidently' 
@@ -2439,7 +2439,7 @@ const AppFeed = () => {
                         onIonInput={e => rideCancellationReasonHandler(e.detail.value)}
                         placeholder="Specify your reason (Aleast 10 Characters)"
                         counter={true}
-                        maxlength={30}
+                        maxlength={50}
                         counterFormatter={(inputLength) => `${inputLength} characters`}
                 
                       ></IonInput>
