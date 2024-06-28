@@ -1142,7 +1142,7 @@ p {
   height: 90%;
   width: 100%;
   overflow: hidden;
-  flex-direction: column;
+  flex-direction: column; 
 
 }
 
@@ -1169,7 +1169,7 @@ p {
   .homePageText1 {
     font-size: 100%;
     margin-bottom: 500px;
-    font-size: 200%;
+    font-size: 175%;
   }
 }
 
@@ -1177,7 +1177,7 @@ p {
   .homePageText1 {
     font-size: 100%;
     margin-bottom: 400px;
-    font-size: 150%;
+    font-size: 125%;
   }
 }
 
@@ -1185,7 +1185,7 @@ p {
   .homePageText2 {
     font-size: 100%;
     margin-bottom: 500px;
-    font-size: 250%;
+    font-size: 175%;
   }
 }
 
@@ -1193,7 +1193,7 @@ p {
   .homePageText2 {
     font-size: 150%;
     margin-bottom: 400px;
-    font-size: 150%;
+    font-size: 125%;
   }
 }
 
@@ -1236,6 +1236,7 @@ p {
     align-items: center;
     font-size: 200%;
     font-weight: bold;
+
   }
 }
 
@@ -1259,29 +1260,31 @@ p {
 @media (prefers-color-scheme: light) {
   .cardHome {
     background-color: rgb(193, 192, 192);
-    color:rgb(47, 47, 47);
+    color: rgb(47, 47, 47);
   }
 }
+
 @media (prefers-color-scheme: dark) {
   .cardHome {
     background-color: rgb(69, 68, 68);
-    color:rgb(230, 230, 230);
+    color: rgb(230, 230, 230);
   }
 }
 
 @media (prefers-color-scheme: light) {
-.row2 {
-  background-color: rgb(222, 221, 221);
-  border-radius: 20px;
-  padding: 20px;
+  .row2 {
+    background-color: rgb(222, 221, 221);
+    border-radius: 20px;
+    padding: 20px;
+  }
 }
-}
+
 @media (prefers-color-scheme: dark) {
-.row2 {
-  background-color: rgb(42, 42, 42);
-  border-radius: 20px;
-  padding: 20px;
-}
+  .row2 {
+    background-color: rgb(42, 42, 42);
+    border-radius: 20px;
+    padding: 20px;
+  }
 }
 
 
@@ -1337,26 +1340,96 @@ ion-col {
 .menuBarHome {
   background-color: #0e3c40;
 }
+
 .forestImg {
   border-radius: 10px;
 }
+
 @media only screen and (max-width: 1024px) {
-.sustainableFuture {
-  margin-top:30px;
-  font-size: 200%;
-  font-weight: bold;
-  float: left;
+  .sustainableFuture {
+    margin-top: 30px;
+    font-size: 200%;
+    font-weight: bold;
+    float: left;
+  }
 }
-}
+
 @media only screen and (min-width: 1025px) {
   .sustainableFuture {
-    margin-top:30px;
+    margin-top: 30px;
     font-size: 300%;
     font-weight: bold;
     float: left;
   }
-  }
-  .createARideHome {
+}
+
+.createARideHome {
+  width: fit-content;
+
+}
+
+.containerHome {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.actionImage {
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+  width: 80%;
+}
+
+@media only screen and (max-width: 1024px) {
+
+  .actionButtonsHome {
+    display: inline-block;
+    margin-top: 10px;
     width: fit-content;
-    
+    font-size: 10px;
+
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .actionButtonsHome {
+    display: inline-block;
+    margin-top: 10px;
+    width: fit-content;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .driveRide {
+    font-size: 150%;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .driveRide {
+    font-size: 250%;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}
+@media only screen and (min-width: 1025px) {
+
+.wagonBenefitOrg {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 350%;
+  font-weight: bold;
+}
+}
+
+@media only screen and (max-width: 1024px) {
+
+  .wagonBenefitOrg {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 250%;
+    font-weight: bold;
+  }
   }
