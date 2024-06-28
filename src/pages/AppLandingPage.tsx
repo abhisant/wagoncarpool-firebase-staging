@@ -17,7 +17,7 @@ import {
   useIonViewDidEnter,
 } from '@ionic/react';
 import { IonReactHashRouter, IonReactRouter } from '@ionic/react-router';
-import { addCircle, settings, home, search, information, informationCircleOutline, chatbox, maleFemaleSharp, personCircle, notifications, camera, settingsSharp, carOutline, car } from 'ionicons/icons';
+import { addCircle, settings, home, search, information, informationCircleOutline, chatbox, maleFemaleSharp, personCircle, notifications, camera, settingsSharp, carOutline, car, homeOutline, homeSharp } from 'ionicons/icons';
 import { Redirect, Route } from 'react-router';
 import App from '../App';
 import AppFeed from './AppFeed';
@@ -37,6 +37,7 @@ import ReactGA from 'react-ga4';
 import BlogHeadlines from './BlogsHeadlines';
 import BlogDetails from './BlogsDetails';
 import Airport from './Airport';
+import Home from './Home';
 
 function AppLandingPage() {
   let history = useHistory();
@@ -172,11 +173,16 @@ function AppLandingPage() {
           <Route path="/pendingRequests" render={() => <MatchRequest />} exact={true} />
           <Route path="/userActivity" render={() => <UserActivity />} exact={true} />
           <Route path="/blogs" render={() => <BlogHeadlines />} exact={true} />
+          <Route path="/home" render={() => <Home />} exact={true} />
           <Route path="/blogDetail/:id" render={() => <BlogDetails />} />
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/App">
+        <IonTabButton tab="home" href="/home">
+            <IonIcon size="small" icon={homeSharp} />
+            <IonLabel  class="tablabel">Home</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="rides" href="/App">
             <IonIcon size="small" icon={car} />
             <IonLabel  class="tablabel">Rides</IonLabel>
           </IonTabButton>

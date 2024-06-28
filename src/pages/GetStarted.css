@@ -1,4 +1,3 @@
-ion-row,
 ion-img {
   display: flex;
   align-items: center;
@@ -74,6 +73,7 @@ ion-checkbox {
 .approveOrRejectRideButton {
   width: 30%;
 }
+
 .calculateDetourButton {
   width: 60%;
 }
@@ -118,12 +118,15 @@ ion-checkbox {
   margin-left: 10px;
   font-size: 12px;
 }
+
 .topSegmentLabel {
   font-size: 11px;
 }
+
 .homeSegmentLabel {
   font-size: 11px;
 }
+
 ion-segment-button::part(indicator-background) {
   background-image: linear-gradient(to bottom right, #41a167, #248e4e);
 }
@@ -135,6 +138,7 @@ ion-segment-button::part(indicator-background) {
 .returnTimeSegment {
   font-size: 11px;
 }
+
 /* .returnSegmentButton {
   width: fit-content;
 } */
@@ -164,6 +168,7 @@ ion-button {
 .feedbackbutton {
   width: fit-content;
 }
+
 ion-icon {
   /* font-size: 500%; */
 }
@@ -181,9 +186,9 @@ ion-icon {
 }
 
 @media only screen and (max-width: 600px) {
-.tablabel {
-  font-size: 80%;
-}
+  .tablabel {
+    font-size: 80%;
+  }
 }
 
 
@@ -212,6 +217,7 @@ ion-icon {
   padding-top: 5px;
   font-size: 12px;
 }
+
 .chatbubbleMe {
   margin-left: 5px;
   border-radius: 10px;
@@ -222,8 +228,9 @@ ion-icon {
   padding-top: 5px;
   font-size: 13px;
 }
+
 .chatSummaryTimeMe {
-  color:rgb(76, 76, 76);
+  color: rgb(76, 76, 76);
   margin-top: 8px;
   margin-left: 20px;
   float: right;
@@ -244,6 +251,7 @@ ion-icon {
   float: left;
   margin-left: 20px;
 }
+
 .selectCategoryImage {
   width: 30%;
   height: 30%;
@@ -252,9 +260,11 @@ ion-icon {
   margin-right: 5px;
   border-radius: 10px;
 }
+
 .createRides {
   margin-left: 10px;
 }
+
 .selectCategoryText {
   float: left;
   margin-left: 5px;
@@ -278,7 +288,7 @@ ion-icon {
 }
 
 .chatSummaryTimeOther {
-  color:rgb(221, 220, 220);
+  color: rgb(221, 220, 220);
   margin-top: 8px;
   margin-left: 20px;
   float: right;
@@ -286,10 +296,10 @@ ion-icon {
 }
 
 @media only screen and (min-width: 800px) {
-.chatbox {
-  /* height: 60vh; */
-  margin: 0 auto;
-}
+  .chatbox {
+    /* height: 60vh; */
+    margin: 0 auto;
+  }
 }
 
 @media only screen and (max-width: 800px) {
@@ -301,7 +311,7 @@ ion-icon {
     border-color: #181818; */
     /* border-style: solid; */
   }
-  }
+}
 
 .chattext {
   /* border-radius: 20px; */
@@ -313,13 +323,14 @@ ion-icon {
 }
 
 .summaryBody {
-color:#6b6b6b;
+  color: #6b6b6b;
 }
 
 .summaryTime {
   float: right;
   padding-top: 5px;
 }
+
 /* .headerUnreadCount {
   float: right;
   margin-right: 10px;
@@ -331,32 +342,34 @@ color:#6b6b6b;
 }
 
 .chatavatar {
-  width: 30px;  
-    height:30px;  
+  width: 30px;
+  height: 30px;
 }
+
 .tabImage {
-  width: 20px;  
-  height:20px;
+  width: 20px;
+  height: 20px;
   margin-top: 1px;
 }
 
 @media only screen and (min-width: 800px) {
-.textbuttonchat {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  margin: 0 auto;
-  --background: #232323;
-  /* border-width: 1px;
+  .textbuttonchat {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    margin: 0 auto;
+    --background: #232323;
+    /* border-width: 1px;
   border-color: #181818;
   border-style: solid; */
+  }
 }
-}
+
 @media only screen and (max-width: 800px) {
   .textbuttonchat {
     position: absolute;
     bottom: 0px;
-    left: 0px;  
+    left: 0px;
     width: 100%;
     margin: 0 auto;
     --background: #232323;
@@ -364,26 +377,29 @@ color:#6b6b6b;
     border-color: #181818;
     border-style: solid; */
   }
-  }
+}
+
 .chatSendButton {
   width: 110px;
-  height: 35px;  
+  height: 35px;
   margin-bottom: 45px;
 }
+
 /* @media only screen and (max-width: 800px) { */
 .topBarHomePage {
   margin-top: 50px;
   margin-left: 10px;
 }
+
 /* } */
 
-.textchatitem{
+.textchatitem {
   border-top: 0.0001px;
   border-right: 0px;
   border-bottom: 0px;
   border-left: 0px;
-    border-color: #949494;
-    border-style: solid;
+  border-color: #949494;
+  border-style: solid;
 }
 
 .greenColor {
@@ -406,7 +422,7 @@ color:#6b6b6b;
     justify-content: center;
   }
   } */
-  /* @media only screen and (min-width: 800px) {
+/* @media only screen and (min-width: 800px) {
 
   .messageSummaryTime {
     font-size:13px;
@@ -414,7 +430,7 @@ color:#6b6b6b;
 } */
 .messagesummaryrow {
   border-bottom: 0.001px solid rgb(77, 77, 77);
-  font-size:13px;
+  font-size: 13px;
 }
 
 .messageSummaryAvatar {
@@ -438,13 +454,14 @@ color:#6b6b6b;
   width: 100%;
   height: 100%;
 }
+
 .swiper-pagination-bullets {
   display: none;
 }
 
 .swiper-slide {
   text-align: center;
-  color:rgb(44, 44, 44);
+  color: rgb(44, 44, 44);
   /* background-image: linear-gradient(to bottom right, rgb(59, 58, 58), rgb(23, 23, 23));
   ; */
   /* Center slide text vertically */
@@ -478,7 +495,7 @@ color:#6b6b6b;
 .termsandpolicylink {
   margin-left: 4px;
   margin-right: 4px;
-  color:rgb(140, 139, 139)
+  color: rgb(140, 139, 139)
 }
 
 .termsandpolicylink:hover {
@@ -487,8 +504,9 @@ color:#6b6b6b;
 
 .loginwithGoogle {
   margin-top: 50px;
-  
+
 }
+
 .viewongooglemapsbutton {
   height: 50px;
   left: 0px;
@@ -496,7 +514,7 @@ color:#6b6b6b;
 }
 
 .addresslink {
-  color:rgb(110, 110, 110);
+  color: rgb(110, 110, 110);
   text-decoration: none;
 }
 
@@ -546,7 +564,7 @@ color:#6b6b6b;
 }
 
 .maketingpage {
-  color:rgb(221, 220, 220);
+  color: rgb(221, 220, 220);
   font-size: 15px;
 }
 
@@ -606,61 +624,70 @@ ion-card-header.ios {
   display: flex;
   flex-flow: column-reverse;
 }
+
 .carpoolingguidelinesmargin {
   margin: 10px;
   white-space: 'pre-wrap';
 }
-.safetyGuielinesWrap li{
+
+.safetyGuielinesWrap li {
   word-wrap: break-word;
 }
+
 .subcard {
   width: 100%;
   padding: 10px;
 }
+
 .subcardNoPadding {
   width: 100%;
 }
+
 @media only screen and (min-width: 1025px) {
-ion-card {
-  width: 30%;
-  margin: 2px;
-  /* margin-bottom: 10px; */
-  margin-left: auto;
-  margin-right: auto;
-}}
+  ion-card {
+    width: 30%;
+    margin: 2px;
+    /* margin-bottom: 10px; */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 .recommendedRideCard {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
+
 /* @media only screen and (min-width: 600px) { */
 .ioncardinamodal {
   width: 100%;
-    /* margin-top: 10px; */
-    margin-left: auto;
-    margin-right: auto;
-}
-/* } */
-@media only screen and (min-width: 600px) {
-.buttonInAModal {
-  margin-top: 10px;
-  width: 55%;
+  /* margin-top: 10px; */
   margin-left: auto;
   margin-right: auto;
 }
+
+/* } */
+@media only screen and (min-width: 600px) {
+  .buttonInAModal {
+    margin-top: 10px;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .potentialMatchText {
   font-size: 11px;
 }
+
 .flipRiderDriverHeader {
   color: #41a167;
 }
 
 .datetimetitle {
   text-transform: none;
-  color:rgb(1, 1, 1);
+  color: rgb(1, 1, 1);
   font-size: 15px;
 }
 
@@ -673,12 +700,13 @@ ion-card {
     margin-right: auto;
   }
 }
+
 @media only screen and (min-width: 800px) {
-.postcard {
-  width: 20%;
-  margin-left: auto;
-  margin-right: auto;
-}
+  .postcard {
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .menuButton {
@@ -687,7 +715,7 @@ ion-card {
   color:rgb(23, 23, 23); */
   float: left;
   font-size: 11px;
-  }
+}
 
 .filterButton {
   width: fit-content;
@@ -695,34 +723,35 @@ ion-card {
   color:rgb(23, 23, 23); */
   float: right;
   font-size: 11px;
-  }
-  .filterButtonInPoolPage {
-    width: fit-content;
-    /* --background: #afafaf;
-    color:rgb(23, 23, 23); */
-    float: right;
-    font-size: 11px;
-    margin-top: 12px;
-  
-  }
+}
 
-  .homePageLoginWithGoogle {
-    width: fit-content;
-    /* --background: #afafaf;
+.filterButtonInPoolPage {
+  width: fit-content;
+  /* --background: #afafaf;
     color:rgb(23, 23, 23); */
-    float: right;
-    margin-right: -10px;
-    font-size: 11px;
-  
-  }
+  float: right;
+  font-size: 11px;
+  margin-top: 12px;
 
-  .resetfilters {
-    width: fit-content;
-    /* margin-right: 15px; */
-    --background: #afafaf;
-    color:rgb(23, 23, 23);
-    float: right;
-    }
+}
+
+.homePageLoginWithGoogle {
+  width: fit-content;
+  /* --background: #afafaf;
+    color:rgb(23, 23, 23); */
+  float: right;
+  margin-right: -10px;
+  font-size: 11px;
+
+}
+
+.resetfilters {
+  width: fit-content;
+  /* margin-right: 15px; */
+  --background: #afafaf;
+  color: rgb(23, 23, 23);
+  float: right;
+}
 
 @media only screen and (max-width: 800px) {
   .postcard {
@@ -741,12 +770,12 @@ ion-card {
     margin-left: auto;
     margin-right: auto;
   }
-  }
+}
 
-  .usermenulabel {
-    justify-content: center;
-    --color: light;
-  }
+.usermenulabel {
+  justify-content: center;
+  --color: light;
+}
 
 .feedRideRequest {
   color: rgb(146, 146, 146);
@@ -768,6 +797,7 @@ ion-card {
   height: 100%;
 
 }
+
 .ionBadgeButton {
   background-color: dark;
 }
@@ -788,9 +818,10 @@ ion-modal#example-modal ion-toolbar {
   --color: black; */
 }
 
-ion-tab-button.tab-selected{
+ion-tab-button.tab-selected {
   color: #41a167;
 }
+
 /* ion-tab-button{
   --color-selected: #3880ff;
   --color-focused: #3880ff;
@@ -800,13 +831,15 @@ ion-tab-button.tab-selected{
   font-size: 20px;
   margin-right: 10px;
 }
+
 .feedbackText {
   margin-top: 20px;
   color: rgb(169, 239, 178);
   font-size: 15px;
 }
+
 .errorLogs {
-  text-indent: 6px;  
+  text-indent: 6px;
 }
 
 .centerLabel {
@@ -829,12 +862,12 @@ ion-tab-button.tab-selected{
   border-radius: 5px;
 }
 
-.costbadge{
+.costbadge {
   padding-right: 10px;
   margin-left: 5px;
 }
 
-.filterBadge{
+.filterBadge {
   width: fit-content;
   margin-left: 5px;
 }
@@ -846,6 +879,7 @@ ion-tab-button.tab-selected{
 .verifyNowButton {
   width: fit-content;
 }
+
 .myprofilebadge {
   font-size: 20px;
 }
@@ -855,64 +889,78 @@ ion-tab-button.tab-selected{
   max-width: 20px;
   float: right;
   margin-left: 10px;
-  justify-content: center; 
+  justify-content: center;
   margin-top: 5px;
   padding: 3px;
 }
+
 .timePadding {
   margin-left: 5px;
 }
+
 @media (prefers-color-scheme: dark) {
-.myrides {
-  background-image: linear-gradient(to bottom right, #4f4f4f, #565856);
-  color:rgb(230, 227, 227);
-  
-}}
-@media (prefers-color-scheme: light) {
-.myrides {
-  background-image: linear-gradient(to bottom right, #cccccc, #d4d0d0);
-  color:rgb(99, 97, 97);
+  .myrides {
+    background-image: linear-gradient(to bottom right, #4f4f4f, #565856);
+    color: rgb(230, 227, 227);
+
+  }
 }
+
+@media (prefers-color-scheme: light) {
+  .myrides {
+    background-image: linear-gradient(to bottom right, #cccccc, #d4d0d0);
+    color: rgb(99, 97, 97);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   .myHistoricalRides {
     background-image: linear-gradient(to bottom right, #4f4f4f, #565856);
-    color:rgb(230, 227, 227);
+    color: rgb(230, 227, 227);
     cursor: pointer;
-  }}
-  @media (prefers-color-scheme: light) {
+  }
+}
+
+@media (prefers-color-scheme: light) {
   .myHistoricalRides {
     background-image: linear-gradient(to bottom right, #cccccc, #d4d0d0);
-    color:rgb(99, 97, 97);
+    color: rgb(99, 97, 97);
     cursor: pointer;
   }
-  }
+}
+
 .fixedheight {
   /* max-height: 50%;
   overflow-y: auto; */
 }
+
 .selectgame {
   font-size: 8px;
   font-style: italic;
 }
+
 .selectgamewithmargintop {
   font-size: 10px;
   font-style: italic;
 }
+
 .italicFont {
   font-style: italic;
 }
+
 .smallfont {
   font-size: 10px;
 }
+
 .largefont {
   font-size: 25px;
   font-weight: bold;
 }
+
 .mediumfont {
   font-size: 17px;
 }
+
 .largeFontNotBold {
   font-size: 20px;
 }
@@ -920,13 +968,14 @@ ion-tab-button.tab-selected{
 
 .fixedDestination {
   text-indent: 5px;
-  height:max-content;
+  height: max-content;
   font-size: 12px;
 }
+
 .swapIcon {
- display: flex;
- justify-content: center;
- font-size: 30px;
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
 }
 
 .smallspinner {
@@ -934,13 +983,16 @@ ion-tab-button.tab-selected{
   height: 20px;
   margin-right: 20px;
 }
+
 .matchCheckbox {
   margin-left: 10px;
 }
+
 .selectusecaseIcon {
   margin-left: 5px;
   margin-right: 5px;
 }
+
 .footer {
   font-size: 8px;
   color: gray;
@@ -949,11 +1001,13 @@ ion-tab-button.tab-selected{
   align-items: center;
   justify-content: center;
 }
+
 .swiperCard {
   /* height: 70%; */
   /* margin-top: -30px; */
   background-image: linear-gradient(to bottom right, #232323, #3e3e3e);
 }
+
 .swiperDiv {
   background-image: linear-gradient(to bottom right, #232323, #3e3e3e);
 }
@@ -972,27 +1026,32 @@ ion-tab-button.tab-selected{
   width: 100%;
   position: absolute;
 }
+
 .wagoncarpoolworks {
   margin-top: 0px;
- padding-left: 10px;
+  padding-left: 10px;
 }
 
 .popOverScroll {
   overflow: auto;
   max-height: 250px;
 }
+
 .popOverContent {
   padding-right: 20px;
 }
+
 .feeIcon {
   margin-bottom: 1px;
   margin-left: -7px;
   font-size: 17px;
 }
+
 .ratingIcon {
   margin-left: 2px;
   font-size: 17px;
 }
+
 .historicalRidesLabel {
   width: 30%;
   margin: 2px;
@@ -1000,15 +1059,18 @@ ion-tab-button.tab-selected{
   margin-left: auto;
   margin-right: auto;
 }
+
 .socialMediaIconContent {
   display: flex;
   justify-content: center;
 }
+
 .socialMediaIcons {
   font-size: 30px;
   margin-right: 20px;
   cursor: pointer;
 }
+
 .appsAvailable {
   width: 50px;
   height: 50px;
@@ -1018,17 +1080,21 @@ ion-tab-button.tab-selected{
   border-radius: 10px;
   cursor: pointer;
 }
+
 .googlePlayIcon {
   height: 35px;
   margin-left: 40px;
 }
+
 .appleStoreIcon {
   height: 35px;
   margin-right: 40px;
 }
 
-h1, h2, h3 {
-  color: #41a167;  
+h1,
+h2,
+h3 {
+  color: #41a167;
 }
 
 ion-title {
@@ -1041,15 +1107,256 @@ p {
   text-justify: auto;
   padding-right: 10px;
 }
+
 .dateTimeButton {
   float: left;
 }
+
 .frontPageButtons {
   font-size: 10px;
 }
+
 .viewRideFeedbackButton {
   width: fit-content;
   margin-top: -10px;
   margin-left: 20px;
+}
+
+.menuWagonImg {
+  width: 50px;
+  border-radius: 50px;
+}
+
+/* .homeToolBar {
+  background-color: rgb(39, 39, 39);
+} */
+.homeTitle {
+  font-size: 500%;
+  font-weight: bold;
+}
+
+.homePageContainer {
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  display: flex;
+  height: 90%;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: column;
 
 }
+
+@media only screen and (min-width: 1025px) {
+  .carpoolWithWagon {
+    font-size: 400%;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .carpoolWithWagon {
+    font-size: 300%;
+    font-weight: bold;
+    text-align: center;
+    text-justify: inter-word;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .homePageText1 {
+    font-size: 100%;
+    margin-bottom: 500px;
+    font-size: 200%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .homePageText1 {
+    font-size: 100%;
+    margin-bottom: 400px;
+    font-size: 150%;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .homePageText2 {
+    font-size: 100%;
+    margin-bottom: 500px;
+    font-size: 250%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .homePageText2 {
+    font-size: 150%;
+    margin-bottom: 400px;
+    font-size: 150%;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .homePageDiv {
+    margin-left: 10px;
+    font-weight: bold;
+    margin-top: 100px
+  }
+}
+
+.homePageDiv {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.carpoolImg {
+  border-radius: 50px;
+}
+
+.googlePlayIconHome {
+  margin-left: 10px;
+  height: 40px;
+}
+
+.appleStoreIconHome {
+  height: 40px;
+}
+
+@media only screen and (min-width: 1025px) {
+  .cardHome {
+    height: 200px;
+    width: 200px;
+    border-radius: 50px;
+    /* background-color: rgb(210, 210, 210); */
+    margin: 10px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 200%;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .cardHome {
+    height: 150px;
+    width: 150px;
+    border-radius: 20px;
+    /* background-color: rgb(210, 210, 210); */
+    margin: 5px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 150%;
+    font-weight: bold;
+  }
+
+}
+
+@media (prefers-color-scheme: light) {
+  .cardHome {
+    background-color: rgb(193, 192, 192);
+    color:rgb(47, 47, 47);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .cardHome {
+    background-color: rgb(69, 68, 68);
+    color:rgb(230, 230, 230);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+.row2 {
+  background-color: rgb(222, 221, 221);
+  border-radius: 20px;
+  padding: 20px;
+}
+}
+@media (prefers-color-scheme: dark) {
+.row2 {
+  background-color: rgb(42, 42, 42);
+  border-radius: 20px;
+  padding: 20px;
+}
+}
+
+
+@media only screen and (min-width: 1025px) {
+  .CheapestRidesTo {
+    font-size: 275%;
+    font-weight: bold;
+    padding-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .CheapestRidesTo {
+    font-size: 175%;
+    font-weight: bold;
+  }
+}
+
+ion-col {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  .wagonprocess {
+    font-size: 150%;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .wagonprocess {
+    font-size: 250%;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .homePageDivRow3 {
+    margin-left: -100px;
+    font-weight: bold;
+    margin-top: 100px;
+    font-size: 125%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .homePageDivRow3 {
+    margin-left: -100px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+}
+
+.menuBarHome {
+  background-color: #0e3c40;
+}
+.forestImg {
+  border-radius: 10px;
+}
+@media only screen and (max-width: 1024px) {
+.sustainableFuture {
+  margin-top:30px;
+  font-size: 200%;
+  font-weight: bold;
+  float: left;
+}
+}
+@media only screen and (min-width: 1025px) {
+  .sustainableFuture {
+    margin-top:30px;
+    font-size: 300%;
+    font-weight: bold;
+    float: left;
+  }
+  }
+  .createARideHome {
+    width: fit-content;
+    
+  }

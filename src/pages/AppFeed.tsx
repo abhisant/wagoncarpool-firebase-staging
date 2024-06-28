@@ -106,6 +106,7 @@ const AppFeed = () => {
     const [loading, setLoading] = useState(false);
     const [feedLoading, setFeedLoading] = useState(true);
     const [userActivityFeedLoading, setuserActivityFeedLoading] = useState(true);
+    const [loadPotentialMatchSpinner, setLoadPotentialMatches] = useState(true);
     const [signInLoader, setSignInLoader] = useState(false);
     const inputRef = useRef(null);
     const [country] = useState("us");
@@ -135,6 +136,7 @@ const AppFeed = () => {
     const [filterDestinationName, setFilterDestinationName] = React.useState("");
     const [userActivityFeedData, setuserActivityFeedData] = React.useState<any[]>([]);
     const [historicalRides, setHistoricalRides] = React.useState<any[]>([]);
+    const [potentialMatches, setPotentialMatches] = React.useState<any[]>([]);
     const [redirectToFeedBackURL, setRedirectToFeedBackURL] = React.useState(false);
 
     const [isVerifyClicked, setIsVerifyClicked] = React.useState(false);
@@ -700,6 +702,15 @@ const AppFeed = () => {
         setHistoricalRides(getResponse.data);
     }
 
+    async function loadPotentialMatches() {
+        
+        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/user/commute_match', {headers: { 'Authorization': globalSessionObj.wagon_token } });
+        setPotentialMatches(getResponse.data);
+        setLoadPotentialMatches(false)
+        console.log('potential matches', getResponse.data);
+
+    }
+
     async function loadUserActivityFeed() {
         if (localStorage.getItem('session')  == null) {
             setSessionExists(false);
@@ -745,6 +756,7 @@ const AppFeed = () => {
                     setUserId(JSON.parse(localStorage.getItem('session') || "").userId);
                     setSessionExists(true);
                     loadHistoricalRides();
+                    loadPotentialMatches();
                 })
                 .catch((reason: AxiosError) => {
                     if (reason.response?.status === 401 || reason.response?.status === undefined) {
@@ -1900,6 +1912,22 @@ const AppFeed = () => {
                             </IonCardContent>
                         </IonCard> : null
                 } */}
+
+                {
+                    sessionExists && displayType == "0" ?
+                        <IonCard className="myrides">
+                            <IonCardContent>
+                                <h2>Potential Matches</h2>
+
+                                <IonLabel className="centerLabel">
+                                    {
+                                        loadPotentialMatchSpinner ? <IonSpinner color="primary"></IonSpinner> : null
+                                    }
+                                </IonLabel>
+
+                            </IonCardContent>
+                        </IonCard> : null
+                }
                 
                 {
                     displayType == "0" && sessionExists && historicalRides.length > 0?

@@ -51,6 +51,7 @@ import Work from './pages/Work';
 import Events from './pages/Events';
 import CarPoolingGuidelines from './pages/CarpoolingGuidelines';
 import BlogHeadlines from './pages/BlogsHeadlines';
+import Home from './pages/Home';
 
 setupIonicReact();
 axios.defaults.headers.common['X-API-KEY'] = import.meta.env.VITE_APP_API_KEY;
@@ -93,6 +94,7 @@ const App: React.FC = () => (
         <Route exact path="/camera" component={VerifyUser} />
         <Route exact path="/blogs" component={AppLandingPage} />
         <Route exact path="/blogDetail/:id" component={AppLandingPage} />
+        <Route exact path="/home" component={AppLandingPage} />
         <Redirect exact from="/" to="/scc" />
       </IonRouterOutlet>
     </IonReactRouter>
