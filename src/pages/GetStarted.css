@@ -1138,11 +1138,9 @@ p {
 .homePageContainer {
   border-radius: 10px;
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-  display: flex;
   height: 90%;
+  margin-top: 20px;
   width: 100%;
-  overflow: hidden;
-  flex-direction: column; 
 
 }
 
@@ -1158,8 +1156,6 @@ p {
   .carpoolWithWagon {
     font-size: 300%;
     font-weight: bold;
-    text-align: center;
-    text-justify: inter-word;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
   }
@@ -1179,6 +1175,10 @@ p {
     margin-bottom: 400px;
     font-size: 125%;
   }
+}
+.homePageTextItalics {
+  font-size: 125%;
+  font-style: italic;
 }
 
 @media only screen and (min-width: 1025px) {
@@ -1199,14 +1199,12 @@ p {
 
 @media only screen and (min-width: 1025px) {
   .homePageDiv {
-    margin-left: 10px;
     font-weight: bold;
     margin-top: 100px
   }
 }
 
 .homePageDiv {
-  margin-left: 10px;
   font-weight: bold;
 }
 
@@ -1322,16 +1320,14 @@ ion-col {
 
 @media only screen and (min-width: 1025px) {
   .homePageDivRow3 {
-    margin-left: -100px;
     font-weight: bold;
     margin-top: 100px;
-    font-size: 125%;
+    font-size: 100%;
   }
 }
 
 @media only screen and (max-width: 1024px) {
   .homePageDivRow3 {
-    margin-left: -100px;
     font-weight: bold;
     margin-top: 10px;
   }
@@ -1371,6 +1367,7 @@ ion-col {
 .containerHome {
   text-align: center;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .actionImage {
@@ -1386,7 +1383,7 @@ ion-col {
     display: inline-block;
     margin-top: 10px;
     width: fit-content;
-    font-size: 10px;
+    font-size: 8px;
 
   }
 }
@@ -1396,6 +1393,7 @@ ion-col {
     display: inline-block;
     margin-top: 10px;
     width: fit-content;
+    font-size: 15px;
   }
 }
 
@@ -1410,7 +1408,6 @@ ion-col {
   .driveRide {
     font-size: 250%;
     font-weight: bold;
-    margin-top: 20px;
     margin-left: 20px;
   }
 }
@@ -1432,4 +1429,34 @@ ion-col {
     font-size: 250%;
     font-weight: bold;
   }
+  }
+
+  .footerBoldLabels {
+    font-weight: bold;
+    font-size: 120%;
+  }
+
+
+  @media (prefers-color-scheme: light) {
+    .footerSocialContainer {
+      border-top: solid;
+      border-bottom: solid;
+      border-width: 1px;
+      border-color: #949494;
+    }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .footerSocialContainer {
+      border-top: solid;
+      border-bottom: solid;
+      border-width: 1px;
+      border-color: #6d6d6d;
+    
+    }
+  }
+  .llc {
+    display: flex;
+    vertical-align: center;
+    justify-content: center;
   }
