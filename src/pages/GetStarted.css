@@ -1268,7 +1268,7 @@ p {
   .row2 {
     background-color: rgb(222, 221, 221);
     border-radius: 20px;
-    padding: 20px;
+    padding: 2px;
   }
 }
 
@@ -1276,7 +1276,7 @@ p {
   .row2 {
     background-color: rgb(42, 42, 42);
     border-radius: 20px;
-    padding: 20px;
+    padding: 2px;
   }
 }
 .howWagonCarpoolWorks {
@@ -1344,7 +1344,6 @@ ion-col {
 @media only screen and (max-width: 1024px) {
   .wagonprocess {
     font-size: 150%;
-    margin-left: 15px;
     font-weight: bold;
   }
 }
@@ -1352,7 +1351,6 @@ ion-col {
 @media only screen and (min-width: 1025px) {
   .wagonprocess {
     font-size: 250%;
-    margin-left: 5px;
     font-weight: bold;
   }
 }

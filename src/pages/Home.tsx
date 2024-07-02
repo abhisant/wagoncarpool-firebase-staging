@@ -88,7 +88,7 @@ function Home() {
                                         <hr /><hr />
                                     </div>
                                 </IonCol>
-                                <IonCol size="12" size-sm="6"><IonItem><img className="carpoolImg" src="assets/img/carpooling.jpeg"></img></IonItem></IonCol>
+                                <IonCol size="12" size-sm="6"><img className="carpoolImg" src="assets/img/carpooling.jpeg"></img></IonCol>
                             </IonRow>
                         </div>
                         <hr /><hr />
@@ -141,7 +141,7 @@ function Home() {
                                     <hr />
                                 </div>
                             </IonCol>
-                            <IonCol size="12" size-sm="6"><IonItem><img className="carpoolImg" src="assets/img/driveRide.jpeg"></img></IonItem></IonCol>
+                            <IonCol size="12" size-sm="6"><img className="carpoolImg" src="assets/img/driveRide.jpeg"></img></IonCol>
 
 
                         </IonRow>
@@ -170,7 +170,7 @@ function Home() {
                                         <hr />
                                     </div>
                                 </IonCol>
-                                <IonCol size="12" size-sm="6"><IonItem><img className="carpoolImg" src="assets/img/GirlUsingMobile.jpeg"></img></IonItem></IonCol>
+                                <IonCol size="12" size-sm="6"><img className="carpoolImg" src="assets/img/GirlUsingMobile.jpeg"></img></IonCol>
                             </IonRow>
 
 
@@ -185,19 +185,19 @@ function Home() {
                                 <IonRow>
                                     <IonCol size="12" size-sm="6">
 
-                                        <div className="homePageDiv">
-                                            <IonLabel className="homePageText1" color="medium">Businesses help their employees discover <IonLabel color="success">Wagon Carpool </IonLabel> </IonLabel>
+                                        <div className="">
+                                            <IonLabel className="wagonprocess" >Businesses help their employees discover <IonLabel color="success">Wagon Carpool </IonLabel> </IonLabel>
                                             <hr /><hr />
-                                            <IonLabel className="homePageText1" color="medium">Employees use <IonLabel color="success">Wagon Carpool</IonLabel></IonLabel>
+                                            <IonLabel className="wagonprocess" >Employees use <IonLabel color="success">Wagon Carpool</IonLabel></IonLabel>
                                             <hr /><hr />
-                                            <IonLabel className="homePageText1" color="medium">Employees save <IonLabel color="success">Time & Money </IonLabel></IonLabel><hr /><hr />
-                                            <IonLabel className="homePageText2"> <IonLabel>Businesses need less </IonLabel><IonLabel color="success">Parking Infrastructure </IonLabel>  </IonLabel><hr /><hr /><hr /><hr />
+                                            <IonLabel className="wagonprocess" >Employees save <IonLabel color="success">Time & Money </IonLabel></IonLabel><hr /><hr />
+                                            <IonLabel className="wagonprocess"> <IonLabel>Businesses need less </IonLabel><IonLabel color="success">Parking Infrastructure </IonLabel>  </IonLabel><hr /><hr /><hr /><hr />
                                             <IonLabel className="wagonprocess"> <IonLabel> <IonLabel color="success">Everybody Wins </IonLabel>  </IonLabel>
                                             </IonLabel>
 
                                         </div>
                                     </IonCol>
-                                    <IonCol size="12" size-sm="6"><IonItem><img className="officeImage" src="assets/img/corporateOffice.jpeg"></img></IonItem></IonCol>
+                                    <IonCol size="12" size-sm="6"><img className="carpoolImg" src="assets/img/corporateOffice.jpeg"></img></IonCol>
                                 </IonRow>
                             </div>
                         </div>

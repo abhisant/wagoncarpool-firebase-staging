@@ -756,7 +756,7 @@ const AppFeed = () => {
                     setUserId(JSON.parse(localStorage.getItem('session') || "").userId);
                     setSessionExists(true);
                     loadHistoricalRides();
-                    loadPotentialMatches();
+                    //loadPotentialMatches();
                 })
                 .catch((reason: AxiosError) => {
                     if (reason.response?.status === 401 || reason.response?.status === undefined) {
@@ -1912,7 +1912,7 @@ const AppFeed = () => {
                             </IonCardContent>
                         </IonCard> : null
                 } */}
-
+{/* 
                 {
                     sessionExists && displayType == "0" ?
                         <IonCard className="myrides">
@@ -1927,7 +1927,7 @@ const AppFeed = () => {
 
                             </IonCardContent>
                         </IonCard> : null
-                }
+                } */}
                 
                 {
                     displayType == "0" && sessionExists && historicalRides.length > 0?
