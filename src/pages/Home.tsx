@@ -74,12 +74,13 @@ function Home() {
                                         <IonLabel className="carpoolWithWagon" > <IonLabel color="dark">Carpool</IonLabel> <IonLabel color="dark">With</IonLabel> <IonLabel color='success'>Wagon</IonLabel></IonLabel> <hr />
                                         <hr />
                                         <hr />
-                                        <IonLabel className="homePageTextItalics" color="medium"> Save <IonLabel color="success">Money</IonLabel>, Save <IonLabel color="success">Time</IonLabel>, Save the <IonLabel color="success">Planet</IonLabel> </IonLabel>
-                                        <hr /><hr /><hr />
                                         <IonButton color="dark" shape='round' fill="outline" size="large" className='createARideHome' onClick={selectCarpoolCategory}>Create a Ride</IonButton>
                                         
                                         <hr />
                                         <hr />
+                                        <IonLabel className="homePageText1" color="medium"> Save <IonLabel color="success">Money</IonLabel>, Save <IonLabel color="success">Time</IonLabel>, Save the <IonLabel color="success">Planet</IonLabel> </IonLabel>
+                                        <hr /><hr /><hr />
+                                        
                                         <IonLabel className="homePageText1" color="medium">Get a <IonLabel color="success">$20  </IonLabel>gift card on your first ride completion.
                                         </IonLabel>
                                         <hr /><hr />
