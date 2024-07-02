@@ -1,4 +1,4 @@
-ion-img {
+ion-row, ion-img {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1200,12 +1200,13 @@ p {
 @media only screen and (min-width: 1025px) {
   .homePageDiv {
     font-weight: bold;
-    margin-top: 100px
+   
   }
 }
-
+@media only screen and (max-width: 1025px) {
 .homePageDiv {
   font-weight: bold;
+}
 }
 
 .carpoolImg {
@@ -1284,6 +1285,46 @@ p {
     padding: 20px;
   }
 }
+.howWagonCarpoolWorks {
+  padding:20px;
+}
+
+@media (prefers-color-scheme: light) {
+  .rowSCC {
+    background-color: rgb(222, 221, 221);
+    border-radius: 20px;
+    padding: 20px;
+    width: 500px;
+    display: flex;
+    display: flex;
+    height: 300px;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    font-size: 110%;
+
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .rowSCC {
+    background-color: rgb(42, 42, 42);
+    border-radius: 20px;
+    padding: 20px;
+    width: 500px;
+    display: flex;
+    display: flex;
+    height: 300px;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    font-size: 110%;
+  }
+}
 
 
 @media only screen and (min-width: 1025px) {
@@ -1309,12 +1350,16 @@ ion-col {
 @media only screen and (max-width: 1024px) {
   .wagonprocess {
     font-size: 150%;
+    margin-left: 15px;
+    font-weight: bold;
   }
 }
 
 @media only screen and (min-width: 1025px) {
   .wagonprocess {
     font-size: 250%;
+    margin-left: 5px;
+    font-weight: bold;
   }
 }
 
@@ -1369,6 +1414,7 @@ ion-col {
   margin-top: 20px;
   cursor: pointer;
 }
+
 
 .actionImage {
   display: block;

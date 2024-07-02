@@ -37,8 +37,8 @@ const SelectCarpoolCategory = () => {
     const [identifyIOSApp, setIdentifyIOSApp] = React.useState(false);
     const [identifyAndroidApp, setIdentifyAndroidApp] = React.useState(false);
 
-    
-    let globalSessionObj:any;
+
+    let globalSessionObj: any;
     // let forceDismissFeedBackModal = false;
 
     function carpoolingForAirport() {
@@ -67,20 +67,20 @@ const SelectCarpoolCategory = () => {
         localStorage.setItem("carpool_category", 'events');
         // history.push("/carpoolForEvents");
         window.location.replace('/carpoolForEvents');
-        
+
     }
 
     function loadFeedbackDetails() {
-        if (localStorage.getItem('session')  == null) {
+        if (localStorage.getItem('session') == null) {
             setSessionExists(false);
             return;
         }
         globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
-        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+        if (globalSessionObj == undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
             setSessionExists(false);
             return;
         }
-        axios.get(import.meta.env.VITE_APP_API_V2 + '/feedback', {headers: { 'Authorization': globalSessionObj.wagon_token } })
+        axios.get(import.meta.env.VITE_APP_API_V2 + '/feedback', { headers: { 'Authorization': globalSessionObj.wagon_token } })
             .then((axiosResponse1: AxiosResponse) => {
                 console.log('***feedback....GET DONE1');
                 setLoading(false);
@@ -108,12 +108,12 @@ const SelectCarpoolCategory = () => {
     }
 
     function tookRide(item: any, index: number) {
-        if (localStorage.getItem('session')  == null) {
+        if (localStorage.getItem('session') == null) {
             setSessionExists(false);
             return;
         }
         globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
-        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+        if (globalSessionObj == undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
             setSessionExists(false);
             return;
         }
@@ -122,7 +122,7 @@ const SelectCarpoolCategory = () => {
             return;
         }
 
-        axios.post(import.meta.env.VITE_APP_API_V2 + '/feedback?' + 'ride_match_id=' + item.rideMatchId + "&was_completed=true" + '&rating=' + rating, {} , {headers: { 'Authorization': globalSessionObj.wagon_token } })
+        axios.post(import.meta.env.VITE_APP_API_V2 + '/feedback?' + 'ride_match_id=' + item.rideMatchId + "&was_completed=true" + '&rating=' + rating, {}, { headers: { 'Authorization': globalSessionObj.wagon_token } })
             .then((axiosResponse1: AxiosResponse) => {
                 ReactGA.event({
                     category: "user_feedback_took_ride",
@@ -142,16 +142,16 @@ const SelectCarpoolCategory = () => {
     }
 
     function didntTakeRide(item: any) {
-        if (localStorage.getItem('session')  == null) {
+        if (localStorage.getItem('session') == null) {
             setSessionExists(false);
             return;
         }
         globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
-        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+        if (globalSessionObj == undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
             setSessionExists(false);
             return;
         }
-        axios.post(import.meta.env.VITE_APP_API_V2 + '/feedback?' + 'ride_match_id=' + item.rideMatchId + "&was_completed=false" + '&rating=' + rating, {} , {headers: { 'Authorization': globalSessionObj.wagon_token } })
+        axios.post(import.meta.env.VITE_APP_API_V2 + '/feedback?' + 'ride_match_id=' + item.rideMatchId + "&was_completed=false" + '&rating=' + rating, {}, { headers: { 'Authorization': globalSessionObj.wagon_token } })
             .then((axiosResponse1: AxiosResponse) => {
                 ReactGA.event({
                     category: "user_feedback_didnt_take_ride",
@@ -193,10 +193,10 @@ const SelectCarpoolCategory = () => {
         ReactGA.send({ hitType: "pageview", page: "/select-carpool-category", title: "Select Carpool Category" });
         let urlParams = new URLSearchParams(window.location.href);
         if (urlParams.get('es') !== null) {
-            console.log('globalEntrySource= '+ urlParams.get('es' )); 
-            localStorage.setItem("entry_source", urlParams.get('es' )|| '');
-            
-            ReactGA.event({ 
+            console.log('globalEntrySource= ' + urlParams.get('es'));
+            localStorage.setItem("entry_source", urlParams.get('es') || '');
+
+            ReactGA.event({
                 category: "entry_source=" + urlParams.get('es') || '',
                 action: "entry_source=" + urlParams.get('es') || '',
             });
@@ -217,25 +217,25 @@ const SelectCarpoolCategory = () => {
         const sessionObj = localStorage.getItem('session');
         if (sessionObj != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != '') {
             globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
-            axios.get(import.meta.env.VITE_APP_API_V2 + '/user', {headers: { 'Authorization': globalSessionObj.wagon_token } })
-            .then(async (axiosResponse: AxiosResponse) => {
-                ReactGA.event({
-                    category: "session_active_token_valid",
-                    action: "session_active_token_valid",
-                });
-                setSessionExists(true);
-                loadFeedbackDetails();
-            })
-            .catch((reason: AxiosError) => {
-                console.log('test', reason?.status);
-                console.log('test', reason?.message);
-                if (reason.response?.status === 401 || reason.response?.status === undefined) {
-                    setSessionExists(false);
-                    setLoading(false);
-                    return;
-                }
-                
-            })
+            axios.get(import.meta.env.VITE_APP_API_V2 + '/user', { headers: { 'Authorization': globalSessionObj.wagon_token } })
+                .then(async (axiosResponse: AxiosResponse) => {
+                    ReactGA.event({
+                        category: "session_active_token_valid",
+                        action: "session_active_token_valid",
+                    });
+                    setSessionExists(true);
+                    loadFeedbackDetails();
+                })
+                .catch((reason: AxiosError) => {
+                    console.log('test', reason?.status);
+                    console.log('test', reason?.message);
+                    if (reason.response?.status === 401 || reason.response?.status === undefined) {
+                        setSessionExists(false);
+                        setLoading(false);
+                        return;
+                    }
+
+                })
         } else {
             setSessionExists(false);
             setLoading(false);
@@ -250,12 +250,12 @@ const SelectCarpoolCategory = () => {
         });
         init();
 
-        if (localStorage.getItem('session')  == null) {
+        if (localStorage.getItem('session') == null) {
             setSessionExists(false);
             return;
         }
         globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
-        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+        if (globalSessionObj == undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
             setSessionExists(false);
             return;
         }
@@ -274,18 +274,18 @@ const SelectCarpoolCategory = () => {
         let urlParams = new URLSearchParams(window.location.href);
         if (urlParams.get('es') !== null) {
             utm = urlParams.get('es') || '';
-            localStorage.setItem("entry_source", urlParams.get('es' )|| '');
-            
+            localStorage.setItem("entry_source", urlParams.get('es') || '');
+
         } else {
             utm = 'organic'
             localStorage.setItem("entry_source", 'organic');
         }
-        
-        axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + utm, {}, {headers: { 'Authorization': globalSessionObj.wagon_token } }).then(async (response) => {
+
+        axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + utm, {}, { headers: { 'Authorization': globalSessionObj.wagon_token } }).then(async (response) => {
             console.log('User Visits success');
         }).catch((reason) => {
-                console.log('User Visits Failed');
-            })
+            console.log('User Visits Failed');
+        })
     }, []);
 
     useIonViewDidEnter(() => {
@@ -327,11 +327,11 @@ const SelectCarpoolCategory = () => {
             if (Capacitor.isNativePlatform()) {
                 let permStatus = await PushNotifications.checkPermissions();
                 if (permStatus.receive === 'prompt') {
-                  permStatus = await PushNotifications.requestPermissions();
+                    permStatus = await PushNotifications.requestPermissions();
                 }
                 if (permStatus.receive !== 'granted') {
                     console.log('User Denied Push Notifications');
-                  throw new Error('User denied permissions!');
+                    throw new Error('User denied permissions!');
                 }
                 await PushNotifications.register();
             }
@@ -351,20 +351,20 @@ const SelectCarpoolCategory = () => {
             let urlParams = new URLSearchParams(window.location.href);
             if (urlParams.get('es') !== null) {
                 utm = urlParams.get('es') || '';
-                
+
             } else {
                 utm = 'organic'
             }
-            
-            axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + (localStorage.getItem('entry_source') || 'organic'), {}, {headers: { 'Authorization': response.data.token } }).then(async (response) => {
+
+            axios.post(import.meta.env.VITE_APP_API_V2 + '/user/visit?ct=' + clientType + '&utm=' + (localStorage.getItem('entry_source') || 'organic'), {}, { headers: { 'Authorization': response.data.token } }).then(async (response) => {
                 console.log('User Visits success');
             }).catch((reason) => {
-                    console.log('User Visits Failed');
+                console.log('User Visits Failed');
             })
         }).catch((reason) => {
-                setLoginLoading(false);
-                console.log(reason.message)
-            })
+            setLoginLoading(false);
+            console.log(reason.message)
+        })
     }
 
     function myRidesClicked() {
@@ -384,8 +384,23 @@ const SelectCarpoolCategory = () => {
                     {
                         redirectToUserActivity ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></IonReactRouter></> : null
                     }
-                    {
-                        // !feedLoading && eventData.length> 0? 
+                    <IonHeader>
+                        <IonToolbar>
+                            <IonTitle><div className="ion-text-wrap">
+                                {
+                                    sessionExists ?
+                                        localStorage.getItem('session') != null ? <><IonButton size="small" onClick={() => { myRidesClicked() }} color="success" fill="outline" className="filterButtonInPoolPage">My Rides</IonButton><IonLabel><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null ? "assets/img/avatar.svg" : JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></> : null
+                                        :
+                                        loginLoading ?
+                                            <IonButton disabled size="small" onClick={() => signIn()} color="success" fill="outline" className="homePageLoginWithGoogle">Login With Google
+                                                <IonSpinner className="smallspinner" color="primary"></IonSpinner> </IonButton>
+                                            :
+                                            <IonButton size="small" onClick={() => signIn()} color="success" fill="outline" className="homePageLoginWithGoogle">Login With Google </IonButton>
+                                } </div></IonTitle>
+
+                        </IonToolbar>
+                    </IonHeader>
+                    {/* {
                         <IonCard>
                             <IonCardContent >
                                 {
@@ -401,12 +416,9 @@ const SelectCarpoolCategory = () => {
                                             :
                                             <IonButton size="small" onClick={() => signIn()} color="success" fill="outline" className="homePageLoginWithGoogle">Login With Google </IonButton>
                                 }
-                                {/* <IonButton size="small"  onClick={() => { setRedirectToUserActivity(true) }} color="medium" className="filterButton">People Around You</IonButton> */}
-                                {/* <IonButton size="small"  onClick={carpoolingForWork} color="medium" className="filterButton">Carpool for Work</IonButton> */}
                             </IonCardContent>
                         </IonCard>
-                        // : null
-                    }
+                    } */}
                     {/* {
                         !loading ?
                             <IonCard className="swiperCard">
@@ -418,21 +430,123 @@ const SelectCarpoolCategory = () => {
                     {
                         !loading ?
                             <>
-                                <IonCard >
-                <IonCardContent>
-                    <IonLabel color="success" className='mediumfont' >Create a Ride
-                    </IonLabel>
-                </IonCardContent>
-            </IonCard>
-                                
+                                <IonGrid>
+                                    <div className="row2">
+                                    <IonRow >
+                                            <IonLabel className="CheapestRidesTo" ><IonLabel color="success">  Create a Ride</IonLabel><IonLabel> </IonLabel> </IonLabel> <hr />
+                                        </IonRow>
+                                        <IonRow>
+
+                                            <IonCol size="6" size-sm="3">
+                                                <div onClick={carpoolingForWork} className="containerHome">
+                                                    <img className="actionImage" src="assets/img/work-art.jpeg"></img>
+                                                    <IonButton color="dark" fill="outline" shape="round" size="small" className='actionButtonsHome'>Work Commute</IonButton>
+                                                </div>
+                                            </IonCol>
+
+                                            <IonCol size="6" size-sm="3">
+                                                <div onClick={carpoolingForAirport} className="containerHome">
+                                                    <img className="actionImage" src="assets/img/airport-art.jpeg"></img>
+                                                    <IonButton color="dark" fill="outline" shape="round" size="small" className='actionButtonsHome'>Airport Drop off</IonButton>
+                                                </div>
+                                            </IonCol>
+                                            <IonCol size="6" size-sm="3">
+                                                <div onClick={carpoolingForEvents} className="containerHome">
+                                                    <img className="actionImage" src="assets/img/event-art.jpeg"></img>
+                                                    <IonButton color="dark" fill="outline" shape="round" size="small" className='actionButtonsHome'>Events & Games</IonButton>
+                                                </div>
+                                            </IonCol>
+                                            <IonCol size="6" size-sm="3">
+                                                <div className="containerHome">
+                                                    <img className="actionImage" src="assets/img/intercity-art.jpeg"></img>
+                                                    <IonButton color="dark" fill="outline" disabled shape="round" size="small" className='actionButtonsHome'>Intercity Trips (Coming soon) </IonButton>
+                                                </div>
+                                            </IonCol>
+                                        </IonRow>
+
+                                        
+
+                                    </div>
+                                </IonGrid>
+                                {/* <br/> */}
+
+                                <IonGrid>
+                                    <div className="howWagonCarpoolWorks">
+                                    <IonRow >
+                                            <IonLabel className="CheapestRidesTo" ><IonLabel color="success">  How Wagon Carpool Works</IonLabel><IonLabel> </IonLabel> </IonLabel> <hr />
+                                        </IonRow>
+                                        <IonRow>
+
+                                            <IonCol size="6" size-sm="3">
+                                                <div onClick={carpoolingForWork} className="rowSCC">
+                                                    Create a Ride
+                                                    {/* <img className="actionImage" src="assets/img/work-art.jpeg"></img> */}
+                                                    {/* <IonButton color="dark" fill="outline" shape="round" size="small" className='actionButtonsHome'>Work Commute</IonButton> */}
+                                                </div>
+                                            </IonCol>
+
+                                            <IonCol size="6" size-sm="3">
+                                                <div onClick={carpoolingForAirport} className="rowSCC">
+                                                    Find users with matching rides and send them match request and wait for them to accept your request.
+
+                                                </div>
+                                            </IonCol>
+
+                                            <IonCol size="6" size-sm="3">
+                                                <div onClick={carpoolingForAirport} className="rowSCC">
+                                                    Or, wait for other users to send a match request and then accept their request.
+
+                                                </div>
+                                            </IonCol>
+                                            <IonCol size="6" size-sm="3">
+                                                <div onClick={carpoolingForEvents} className="rowSCC">
+                                                    Your ride match is complete. Now you can message your matched carpool partner for any change of plans or additional details.
+
+                                                </div>
+                                            </IonCol>
+                                            <IonCol size="6" size-sm="3">
+                                                <div className="rowSCC">
+                                                    Read community guidelines and be a good carpooler, read the safety guidelines and be safe.
+                                                </div>
+                                            </IonCol>
+                                            <IonCol size="6" size-sm="3">
+                                                <div className="rowSCC">
+                                                    Make the ride happen, don't forget to pay if you are the rider before you are dropped off.
+
+                                                </div>
+                                            </IonCol>
+                                            <IonCol size="6" size-sm="3">
+                                                <div className="rowSCC">
+                                                    Come back on the app to provide feedback on your ride experience. This is what creates a trust worthy community.
+
+                                                </div>
+
+                                            </IonCol>
+                                            <IonCol size="6" size-sm="3">
+                                                <div className="rowSCC">
+                                                    Rinse and repeat.
+
+
+                                                </div>
+
+                                            </IonCol>
+                                        </IonRow>
+
+
+
+                                    </div>
+                                </IonGrid>
+                                {/* <IonCard >
+                                    <IonCardContent>
+                                        <IonLabel color="success" className='mediumfont' >Create a Ride
+                                        </IonLabel>
+                                    </IonCardContent>
+                                </IonCard>
+
 
                                 <IonCard className="cursorPointer">
-                                   
-                                    {/* <br />
-                                    <IonLabel color="success" className="createRides">Create Rides -</IonLabel>
-                                    <br /><br /> */}
-                                    {/* <IonCardContent> */}
-                                    <br/>
+
+                                    <br />
                                     <div className="imagecenter">
                                         <img className="selectCategoryImage" onClick={carpoolingForEvents} src="assets/img/events.jpeg" />
                                         <img className="selectCategoryImage" onClick={carpoolingForWork} src="assets/img/work.jpeg" />
@@ -441,32 +555,21 @@ const SelectCarpoolCategory = () => {
                                     <br />
                                     <div className="imagecenter">
                                         <IonLabel color="success" onClick={carpoolingForEvents} className='selectCategoryText'><IonButton className="frontPageButtons" size="small" shape='round' color="success" fill="outline">Events & Games</IonButton></IonLabel>
-                                        <IonLabel color="success" onClick={carpoolingForWork} className='selectCategoryText'><IonButton className="frontPageButtons"  size="small" shape="round" color="success" fill="outline">Work Commute </IonButton></IonLabel>
-                                        <IonLabel color="success" onClick={carpoolingForAirport} className='selectCategoryText'><IonButton  className="frontPageButtons" size="small" shape="round" color="success" fill="outline">Airport Drop off </IonButton></IonLabel>
+                                        <IonLabel color="success" onClick={carpoolingForWork} className='selectCategoryText'><IonButton className="frontPageButtons" size="small" shape="round" color="success" fill="outline">Work Commute </IonButton></IonLabel>
+                                        <IonLabel color="success" onClick={carpoolingForAirport} className='selectCategoryText'><IonButton className="frontPageButtons" size="small" shape="round" color="success" fill="outline">Airport Drop off </IonButton></IonLabel>
                                     </div>
                                     <br />
-                                    
-
-
-                                    {/* <IonLabel class="centerLabel"><IonIcon className='selectusecaseIcon' icon={car}></IonIcon>Carpooling for Events & Games <IonIcon className='selectusecaseIcon' icon={basketball}></IonIcon></IonLabel> */}
-                                    {/* </IonCardContent> */}
                                 </IonCard>
-                               
+
                                 {
-                                    !identifyIOSApp && !identifyAndroidApp ?  <><AppDownloadWidget></AppDownloadWidget></>:null
+                                    !identifyIOSApp && !identifyAndroidApp ? <><AppDownloadWidget></AppDownloadWidget></> : null
                                 }
-                                
+
                                 <WagonCarpoolIntro></WagonCarpoolIntro>
                                 <WagonCarpoolWorks></WagonCarpoolWorks>
                                 <WhyWagonCarpool></WhyWagonCarpool>
                                 <BlogSection></BlogSection>
-                                <SocialMediaFooter></SocialMediaFooter>
-
-
-                                {/* <hr/>
-                                <IonCard className="cursorPointer" onClick={carpoolingForWork}>
-                                <IonImg className="selectCategoryImage" src="/assets/img/carpoolforwork.jpg"></IonImg>
-                                </IonCard> */}
+                                <SocialMediaFooter></SocialMediaFooter> */}
                             </>
                             : null
                     }

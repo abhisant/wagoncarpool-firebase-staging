@@ -134,10 +134,10 @@ function Home() {
                             <IonCol size="12" size-sm="6">
                                 <div className="homePageContainer">
                                     <hr /><hr />
-                                    <IonLabel className="driveRide" > Share Your<IonLabel color="dark"><IonLabel color='success'> Gas & Parking</IonLabel> Expense</IonLabel> <IonLabel color='success'> </IonLabel></IonLabel> <hr /><hr />
-                                    <IonLabel className="driveRide" > <IonLabel color="dark">Build your</IonLabel> <IonLabel color='success'>NETWORK</IonLabel></IonLabel> <hr /><hr />
-                                    <IonLabel className="driveRide" > <IonLabel color="dark">Get  </IonLabel> <IonLabel color='success'>Get HOV/CARPOOL </IonLabel>lane access</IonLabel> <hr /><hr />
-                                    <IonLabel className="driveRide" > Feel good about helping the <IonLabel color="dark"> </IonLabel> <IonLabel color='success'>Environment</IonLabel><IonLabel color="dark"></IonLabel></IonLabel> <hr /><hr />
+                                    <IonLabel className="wagonprocess" > Share Your<IonLabel color="dark"><IonLabel color='success'> Gas & Parking</IonLabel> Expense</IonLabel> <IonLabel color='success'> </IonLabel></IonLabel> <hr /><hr />
+                                    <IonLabel className="wagonprocess" > <IonLabel color="dark">Build your</IonLabel> <IonLabel color='success'>NETWORK</IonLabel></IonLabel> <hr /><hr />
+                                    <IonLabel className="wagonprocess" > <IonLabel color="dark">Get  </IonLabel> <IonLabel color='success'>Get HOV/CARPOOL </IonLabel>lane access</IonLabel> <hr /><hr />
+                                    <IonLabel className="wagonprocess" > Feel good about helping the <IonLabel color="dark"> </IonLabel> <IonLabel color='success'>Environment</IonLabel><IonLabel color="dark"></IonLabel></IonLabel> <hr /><hr />
                                     <hr />
                                 </div>
                             </IonCol>
