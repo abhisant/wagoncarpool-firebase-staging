@@ -76,14 +76,13 @@ function Home() {
                                         <hr />
                                         <IonButton color="dark" shape='round' fill="outline" size="large" className='createARideHome' onClick={selectCarpoolCategory}>Create a Ride</IonButton>
                                         
-                                        <hr />
-                                        <hr />
-                                        <IonLabel className="homePageText1" color="medium"> Save <IonLabel color="success">Money</IonLabel>, Save <IonLabel color="success">Time</IonLabel>, Save the <IonLabel color="success">Planet</IonLabel> </IonLabel>
                                         <hr /><hr /><hr />
+                                        <IonLabel className="homePageText1" color="medium"> Save <IonLabel color="success">Money</IonLabel>, Save <IonLabel color="success">Time</IonLabel>, Save the <IonLabel color="success">Planet</IonLabel> </IonLabel>
+                                        <hr />
                                         
                                         <IonLabel className="homePageText1" color="medium">Get a <IonLabel color="success">$20  </IonLabel>gift card on your first ride completion.
                                         </IonLabel>
-                                        <hr /><hr />
+                                        <hr /><hr /><hr />
                                         <a target="_blank" href="https://apps.apple.com/us/app/wagon-carpool/id6478844608"><img className="appleStoreIconHome" src="assets/img/AppStore.png" alt="bn45" /></a>
                                         <a target="_blank" href="https://play.google.com/store/apps/details?id=com.wagon.starter"><img className="googlePlayIconHome" src="assets/img/GooglePlay.png" alt="bn45" /></a>
                                         <hr /><hr />
@@ -164,7 +163,8 @@ function Home() {
                                     <div className="homePageDivRow3">
                                         
                                         <IonLabel className="wagonprocess" > <IonLabel color="dark">Create a</IonLabel> <IonLabel color='success'>Ride</IonLabel></IonLabel> <hr /><hr /><hr />
-                                        <IonLabel className="wagonprocess" > <IonLabel color="dark">Find Matches </IonLabel> and send  <IonLabel color='success'>  Match Request <IonLabel color="dark">or </IonLabel>  Accept Match Request </IonLabel>that you receive</IonLabel> <hr /><hr /><hr />
+                                        <IonLabel className="wagonprocess" > <IonLabel color="dark">Find Matches </IonLabel> and send  <IonLabel color='success'>  Match Request <IonLabel color="dark"> 
+                                        <hr/>OR<hr/> </IonLabel>  Accept Match Request </IonLabel>that you receive</IonLabel> <hr /><hr /><hr />
                                         <IonLabel className="wagonprocess" > <IonLabel color="dark">Complete the </IonLabel> <IonLabel color='success'>Ride</IonLabel></IonLabel> <hr /><hr /><hr />
                                         <IonLabel className="wagonprocess" > <IonLabel color="dark">Provide the</IonLabel> <IonLabel color='success'>Feedback</IonLabel></IonLabel> <hr /><hr /><hr />
                                         <IonLabel className="wagonprocess" > <IonLabel color="dark">Rinse & Repeat </IonLabel> <IonLabel color='success'></IonLabel></IonLabel> <hr /><hr /><hr />
