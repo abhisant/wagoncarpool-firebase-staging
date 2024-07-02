@@ -71,7 +71,7 @@ function Home() {
                                 <IonCol size="12" size-sm="6">
 
                                     <div className="homePageDiv">
-                                        <IonLabel className="carpoolWithWagon" > <IonLabel color="dark">Carpool</IonLabel> <IonLabel color="dark">With</IonLabel> <IonLabel color='success'>Wagon</IonLabel></IonLabel> <hr />
+                                        <IonLabel className="carpoolWithWagon" > <IonLabel color="dark">Wagon</IonLabel> <IonLabel color="dark"></IonLabel> <IonLabel color='success'> Carpool</IonLabel></IonLabel> <hr />
                                         <hr />
                                         <hr />
                                         <IonButton color="dark" shape='round' fill="outline" size="large" className='createARideHome' onClick={selectCarpoolCategory}>Create a Ride</IonButton>

@@ -1141,7 +1141,7 @@ p {
 
 @media only screen and (min-width: 1025px) {
   .carpoolWithWagon {
-    font-size: 400%;
+    font-size: 500%;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
@@ -1149,7 +1149,7 @@ p {
 
 @media only screen and (max-width: 1024px) {
   .carpoolWithWagon {
-    font-size: 300%;
+    font-size: 270%;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
