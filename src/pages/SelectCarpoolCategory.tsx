@@ -386,17 +386,26 @@ const SelectCarpoolCategory = () => {
                     }
                     <IonHeader>
                         <IonToolbar>
-                            <IonTitle><div className="ion-text-wrap">
+                            <IonTitle>
+                            </IonTitle>
+                            
                                 {
                                     sessionExists ?
-                                        localStorage.getItem('session') != null ? <><IonButton size="small" onClick={() => { myRidesClicked() }} color="success" fill="outline" className="filterButtonInPoolPage">My Rides</IonButton><IonLabel><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null ? "assets/img/avatar.svg" : JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></> : null
+                                        localStorage.getItem('session') != null ? <>
+                                        <IonButtons slot="end"><IonButton size="small" onClick={() => { myRidesClicked() }} color="success" fill="outline" className="homePageLoginWithGoogle">My Rides</IonButton></IonButtons>
+                                        <IonButtons slot="start"><IonLabel className="homePageLoginWithGoogle"><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null ? "assets/img/avatar.svg" : JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></IonButtons></> : null
                                         :
                                         loginLoading ?
-                                            <IonButton disabled size="small" onClick={() => signIn()} color="success" fill="outline" className="homePageLoginWithGoogle">Login With Google
-                                                <IonSpinner className="smallspinner" color="primary"></IonSpinner> </IonButton>
+                                        <IonButtons slot="end"><IonButton shape="round"  disabled size="small" onClick={() => signIn()} color="success" fill="outline" className="homePageLoginWithGoogle">Login With Google
+                                                <IonSpinner className="smallspinner" color="primary"></IonSpinner> </IonButton></IonButtons>
                                             :
-                                            <IonButton size="small" onClick={() => signIn()} color="success" fill="outline" className="homePageLoginWithGoogle">Login With Google </IonButton>
-                                } </div></IonTitle>
+                                           
+                                            <IonButtons slot="end"> <IonButton size="small" onClick={() => signIn()} shape="round" color="success" fill="outline" className="homePageLoginWithGoogle">Login With Google </IonButton></IonButtons>
+                                           
+                                            
+                                } 
+                                 
+                                
 
                         </IonToolbar>
                     </IonHeader>
