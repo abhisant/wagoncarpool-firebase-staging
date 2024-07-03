@@ -52,6 +52,7 @@ import Events from './pages/Events';
 import CarPoolingGuidelines from './pages/CarpoolingGuidelines';
 import BlogHeadlines from './pages/BlogsHeadlines';
 import Home from './pages/Home';
+import SupportDetails from './pages/SupportDetails';
 
 setupIonicReact();
 axios.defaults.headers.common['X-API-KEY'] = import.meta.env.VITE_APP_API_KEY;
@@ -95,6 +96,9 @@ const App: React.FC = () => (
         <Route exact path="/blogs" component={AppLandingPage} />
         <Route exact path="/blogDetail/:id" component={AppLandingPage} />
         <Route exact path="/home" component={AppLandingPage} />
+        <Route exact path="/about" component={AppLandingPage} />
+        <Route exact path="/support" component={AppLandingPage} />
+        <Route exact path="/why-wagon-carpool" component={AppLandingPage} />
         <Redirect exact from="/" to="/scc" />
       </IonRouterOutlet>
     </IonReactRouter>

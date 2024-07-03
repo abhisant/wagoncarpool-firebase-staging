@@ -3,7 +3,7 @@ import { IonButton, IonButtons, IonCol, IonContent, IonFooter, IonGrid, IonHeade
 import AppDownloadWidget from './AppDownloadWidget';
 import { arrowForwardCircle, arrowForwardCircleOutline, logoInstagram, logoLinkedin, logoYoutube } from 'ionicons/icons';
 import ReactGA from 'react-ga4';
-function Home() {
+function About() {
     function selectCarpoolCategory() {
         ReactGA.event({
             category: "UserSelectsCarpoolForAirport",
@@ -39,12 +39,8 @@ function Home() {
         localStorage.setItem("carpool_category", 'events');
         // history.push("/carpoolForEvents");
         window.location.replace('/carpoolForEvents');
+        
     }
-
-    // function aboutUs() {
-
-    // }
-    
     return (
         <>
             <IonMenu side="end" contentId="main-content">
@@ -220,7 +216,7 @@ function Home() {
                             </IonRow> <br /><br />
                             <IonRow>
                                 <IonCol size="6" size-sm="6">
-                                    <IonLabel >About Us</IonLabel>
+                                    <IonLabel>About Us</IonLabel>
                                 </IonCol>
                                 <IonCol size="6" size-sm="6">
                                     <IonLabel>Terms of Use</IonLabel>
@@ -276,6 +272,6 @@ function Home() {
         </>
     );
 }
-export default Home;
+export default About;
 
 

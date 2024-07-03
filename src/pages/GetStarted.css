@@ -1060,11 +1060,7 @@ ion-tab-button.tab-selected {
   justify-content: center;
 }
 
-.socialMediaIcons {
-  font-size: 30px;
-  margin-right: 20px;
-  cursor: pointer;
-}
+
 
 .appsAvailable {
   width: 50px;
@@ -1493,8 +1489,26 @@ ion-col {
     
     }
   }
-  .llc {
-    display: flex;
-    vertical-align: center;
-    justify-content: center;
-  }
+
+.footerToolbar {
+  --background: transparent;
+      border-width: 1px;
+      border: 1px solid rgba(123, 123, 123, 0.3);
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    opacity: 1;
+    border-style: solid;
+    box-shadow: none;
+
+}
+.copyrightHome {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.socialMediaIcons {
+  cursor: pointer;
+  margin-right: 5px;
+
+}
