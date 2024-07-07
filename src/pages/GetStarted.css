@@ -485,6 +485,7 @@ ion-icon {
 
 .customslide {
   background-image: linear-gradient(to bottom right, #4682b3, #54b447);
+  border-radius: 30px
   ;
 }
 
