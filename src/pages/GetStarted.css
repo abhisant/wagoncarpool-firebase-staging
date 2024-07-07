@@ -146,6 +146,9 @@ ion-segment-button::part(indicator-background) {
 .swiperCom {
   height: 100%;
 }
+.swiperDivRideFlow {
+  height: 350px;
+}
 
 ion-button {
   width: 100%;
@@ -455,9 +458,9 @@ ion-icon {
   height: 100%;
 }
 
-.swiper-pagination-bullets {
+/* .swiper-pagination-bullets {
   display: none;
-}
+} */
 
 .swiper-slide {
   text-align: center;
@@ -470,10 +473,20 @@ ion-icon {
   align-items: center; */
 }
 
-/* .customslide {
-  background-image: linear-gradient(to bottom right, #303030, #292929);
+.vertcenter {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+}
+
+
+.customslide {
+  background-image: linear-gradient(to bottom right, #4682b3, #54b447);
   ;
-} */
+}
 
 .backIcon {
   margin-right: 10px;
@@ -1510,5 +1523,7 @@ ion-col {
 .socialMediaIcons {
   cursor: pointer;
   margin-right: 5px;
-
+}
+.wagonHref {
+  color: rgb(204, 204, 204);
 }

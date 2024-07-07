@@ -21,6 +21,12 @@ import { Capacitor } from '@capacitor/core';
 import AppDownloadWidget from './AppDownloadWidget';
 import { IonReactRouter } from '@ionic/react-router';
 import BlogSection from './BlogSection';
+import { SwiperSlide, Swiper } from 'swiper/react';
+// import Swiper, { EffectCards } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/effect-cards';
+import SwiperRideFlow from './SwiperRideFlow';
+
 
 
 const SelectCarpoolCategory = () => {
@@ -482,10 +488,10 @@ const SelectCarpoolCategory = () => {
                                 <IonGrid>
                                     <div className="howWagonCarpoolWorks">
                                     
-                                            <IonLabel className="CheapestRidesTo" ><IonLabel color="success">  How Wagon Carpool Works</IonLabel><IonLabel> </IonLabel> </IonLabel> <hr />
+                                            <IonLabel className="CheapestRidesTo" ><IonLabel color="success">  How Wagon Carpool Works</IonLabel><IonLabel> </IonLabel> </IonLabel>
                                         
                                             <IonLabel className="homePageText1" >
-                        <ul className="">
+                        {/* <ul className="">
                             <li>
                             Create a ride for work commute or an event.
                             </li>
@@ -500,7 +506,7 @@ const SelectCarpoolCategory = () => {
                             <li>Make the ride happen, don't forget to pay if you are the rider before you are dropped off.</li>
                             <li>Come back to <a href="https://www.wagoncarpool.com/">wagoncarpool.com</a> to provide feedback on your ride experience. This is what creates a trust worthy community.</li>
                             <li>Rinse and repeat.</li>
-                        </ul>
+                        </ul> */}
                         
                     </IonLabel>
                    
@@ -600,6 +606,8 @@ const SelectCarpoolCategory = () => {
                             </>
                             : null
                     }
+                    <SwiperRideFlow></SwiperRideFlow>
+                     
                     <hr />
                     <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr />
