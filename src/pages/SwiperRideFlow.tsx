@@ -23,7 +23,7 @@ function SwiperRideFlow() {
                 className="mySwiper"
 
 
-                    pagination={true} modules={[Pagination, Autoplay]} >
+                    pagination={true} modules={[Pagination]} >
                     <SwiperSlide className='customslide'>
                         <IonGrid>
                             <IonRow>
