@@ -16,19 +16,19 @@ function SwiperComponent() {
             <div className="swiperDiv">
             <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg>
             <>
-                <Swiper autoplay={{
+                <Swiper loop={true} autoplay={{
                     delay: 3000,
                     disableOnInteraction: false,
                 }}
 
                     pagination={true} modules={[Pagination, Autoplay]} >
-                    <SwiperSlide className='customslide'>
+                    <SwiperSlide className=''>
                         <IonGrid>
                             <IonRow>
                             <IonCol size="7">
                                     {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
                                     <IonText>
-                                        <IonLabel className='maketingpage'>Carpool with Wagon!</IonLabel>
+                                        <IonLabel className='maketingpage'>Carpool with Wagon! <br/></IonLabel>
                                     </IonText>
                                     
                                 </IonCol>
@@ -37,7 +37,7 @@ function SwiperComponent() {
                     </SwiperSlide>
 
 
-                    <SwiperSlide className='customslide'>
+                    <SwiperSlide className=''>
                         <IonGrid>
                             <IonRow>
                                 <IonCol size="7">
@@ -53,7 +53,7 @@ function SwiperComponent() {
                         </IonGrid>
                     </SwiperSlide>
 
-                    <SwiperSlide className='customslide'>
+                    <SwiperSlide className=''>
                         <IonGrid>
                             <IonRow>
                                 <IonCol size="7">
@@ -69,13 +69,13 @@ function SwiperComponent() {
                         </IonGrid>
                     </SwiperSlide>
 
-                    <SwiperSlide className='customslide'>
+                    <SwiperSlide className=''>
                         <IonGrid>
                             <IonRow>
                                 <IonCol size="7">
                                     {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
                                     <IonText>
-                                        <IonLabel className='maketingpage'>Need a drop off to the airport?</IonLabel>
+                                        <IonLabel className='maketingpage'>Need a drop off to the airport? </IonLabel>
                                     </IonText>
                                     {/* <IonText class="maketingpageh2">
                                         <h2>Get matched with one of your colleagues!</h2>
@@ -85,7 +85,7 @@ function SwiperComponent() {
                         </IonGrid>
                     </SwiperSlide>
 
-                    <SwiperSlide className='customslide'>
+                    <SwiperSlide className=''>
                         <IonGrid>
                             <IonRow>
                                 <IonCol size="7">
@@ -101,7 +101,7 @@ function SwiperComponent() {
 
                     
 
-                    <SwiperSlide className='customslide'>
+                    <SwiperSlide className=''>
                         <IonGrid>
                             <IonRow>
                                 <IonCol size="7">
@@ -115,7 +115,7 @@ function SwiperComponent() {
                     </SwiperSlide>
 
 
-                    <SwiperSlide className='customslide'>
+                    <SwiperSlide className=''>
                         <IonGrid>
                             <IonRow>
                                 <IonCol size="7">

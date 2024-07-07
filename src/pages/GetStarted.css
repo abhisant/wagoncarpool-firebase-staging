@@ -148,6 +148,7 @@ ion-segment-button::part(indicator-background) {
 }
 .swiperDivRideFlow {
   height: 350px;
+  padding: 5px;
 }
 
 ion-button {
@@ -454,8 +455,9 @@ ion-icon {
   }
 } */
 .swiper {
-  width: 100%;
   height: 100%;
+  --swiper-theme-color: #c0c0c0;
+  
 }
 
 /* .swiper-pagination-bullets {
@@ -485,8 +487,7 @@ ion-icon {
 
 .customslide {
   background-image: linear-gradient(to bottom right, #4682b3, #54b447);
-  border-radius: 30px
-  ;
+  border-radius: 30px;
 }
 
 .backIcon {
@@ -580,6 +581,7 @@ ion-icon {
 .maketingpage {
   color: rgb(221, 220, 220);
   font-size: 15px;
+  
 }
 
 .maketingpageh2 {
@@ -1349,6 +1351,22 @@ p {
 ion-col {
   display: flex;
   justify-content: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  .rideprocess {
+    font-size: 100%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .rideprocess {
+    font-size: 150%;
+    font-weight: bold;
+    color: #ffffff;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
