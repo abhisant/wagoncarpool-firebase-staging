@@ -446,7 +446,7 @@ const SelectCarpoolCategory = () => {
                         !loading ?
                             <>
                                 <IonGrid>
-                                    <div className="row2">
+                                    <div className="rideprocess">
                                     <IonRow >
                                             <IonLabel className="CheapestRidesTo" ><IonLabel color="success">  Create a Ride</IonLabel><IonLabel> </IonLabel> </IonLabel> <hr />
                                         </IonRow>

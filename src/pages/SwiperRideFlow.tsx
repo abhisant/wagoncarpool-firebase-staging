@@ -54,7 +54,7 @@ function SwiperRideFlow() {
                                 <IonRow>
                                     <IonCol className="vertcenter">
                                         {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
-                                        <IonLabel className="rideprocess">Create a Ride</IonLabel>
+                                        <IonLabel className="rideprocess">Choose ride type (Office/Airport/Event) & create a ride</IonLabel>
 
                                     </IonCol>
                                 </IonRow>
@@ -68,7 +68,7 @@ function SwiperRideFlow() {
                                     <IonCol className="vertcenter">
                                         {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
                                         <IonText>
-                                            <IonLabel className="rideprocess">Find users with matching rides and send them match request and wait for them to accept your request</IonLabel>
+                                            <IonLabel className="rideprocess">Send match requests to any available ride matches</IonLabel>
                                         </IonText>
                                         {/* <IonText class="maketingpageh2">
                                         <h2>Get a carpool now!</h2>
@@ -84,7 +84,7 @@ function SwiperRideFlow() {
                                     <IonCol className="vertcenter">
                                         {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
                                         <IonText>
-                                            <IonLabel className="rideprocess">OR<hr /> Wait for other users to send a match request and then accept their request.</IonLabel>
+                                            <IonLabel className="rideprocess">Or, Accept match requests you receive from other users</IonLabel>
                                         </IonText>
                                         {/* <IonText class="maketingpageh2">
                                         <h2>Get matched with one of your colleagues!</h2>
@@ -100,7 +100,7 @@ function SwiperRideFlow() {
                                     <IonCol className="vertcenter">
                                         {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
                                         <IonText>
-                                            <IonLabel  className="rideprocess">Your ride match is complete. <hr />Now you can message your matched carpool partner for any change of plans or additional details.</IonLabel>
+                                            <IonLabel  className="rideprocess">The match is confirmed, coordinate with your partner using chat.</IonLabel>
                                         </IonText>
                                         {/* <IonText class="maketingpageh2">
                                         <h2>Get matched with one of your colleagues!</h2>
@@ -116,7 +116,7 @@ function SwiperRideFlow() {
                                     <IonCol className="vertcenter">
                                         {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
                                         <IonText>
-                                            <IonLabel className="rideprocess" >Read community guidelines and be a good carpooler.<hr /> Read the safety guidelines and be safe.</IonLabel>
+                                            <IonLabel className="rideprocess" >Read community and Safety guidelines, be an awesome carpooler.</IonLabel>
                                         </IonText>
 
                                     </IonCol>
@@ -132,7 +132,7 @@ function SwiperRideFlow() {
                                     <IonCol className="vertcenter">
                                         {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
                                         <IonText>
-                                            <IonLabel  className="rideprocess" >Make the ride happen, don't forget to pay if you are the rider before you are dropped off.</IonLabel>
+                                            <IonLabel  className="rideprocess" >Be on time for the ride, Pay before you get off if you are the rider.</IonLabel>
                                         </IonText>
                                     </IonCol>
                                 </IonRow>
@@ -146,7 +146,7 @@ function SwiperRideFlow() {
                                     <IonCol className="vertcenter">
                                         {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
                                         <IonText>
-                                            <IonLabel  className="rideprocess">Come back to <br /><a className="wagonHref" href="https://www.wagoncarpool.com/">wagoncarpool.com</a> <br />to provide feedback on your ride experience. <hr />This is what creates a trust worthy community.</IonLabel>
+                                            <IonLabel  className="rideprocess">Visit the app/website after the ride to provide feedback.</IonLabel>
                                         </IonText>
                                     </IonCol>
                                 </IonRow>
@@ -158,7 +158,7 @@ function SwiperRideFlow() {
                                     <IonCol className="vertcenter">
                                         {/* <IonImg class="wagonimg" src="assets/img/icon-without-bkg.png"></IonImg> */}
                                         <IonText>
-                                            <IonLabel className="rideprocess">Rinse & Repeat</IonLabel>
+                                            <IonLabel className="rideprocess">Nothing can beat it, so Rinse it and repeat it</IonLabel>
                                         </IonText>
                                     </IonCol>
                                 </IonRow>
