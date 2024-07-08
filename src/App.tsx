@@ -97,6 +97,7 @@ const App: React.FC = () => (
         <Route exact path="/blogDetail/:id" component={AppLandingPage} />
         <Route exact path="/home" component={AppLandingPage} />
         <Route exact path="/about" component={AppLandingPage} />
+        <Route exact path="/careers" component={AppLandingPage} />
         <Route exact path="/support" component={AppLandingPage} />
         <Route exact path="/why-wagon-carpool" component={AppLandingPage} />
         <Redirect exact from="/" to="/scc" />

@@ -1292,7 +1292,8 @@ p {
   }
 }
 .howWagonCarpoolWorks {
-  padding:20px;
+  padding-bottom:10px;
+  padding-top:10px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -1545,4 +1546,18 @@ ion-col {
 }
 .wagonHref {
   color: rgb(204, 204, 204);
+}
+.footerHome {
+  cursor: pointer;
+}
+.sorryNoJob {
+  font-size: 200%;
+  font-weight: bold;
+  color:#41a167;
+  padding-left: 10px;
+}
+.weAreOpen {
+  font-size: 100%;
+  font-weight: bold;
+  padding-left: 10px;
 }

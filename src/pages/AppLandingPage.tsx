@@ -41,6 +41,7 @@ import Home from './Home';
 import About from './About';
 import WhyWagonCarpool from './WhyWagonCarpool';
 import SupportDetails from './SupportDetails';
+import Careers from './Careers';
 
 function AppLandingPage() {
   let history = useHistory();
@@ -178,6 +179,7 @@ function AppLandingPage() {
           <Route path="/blogs" render={() => <BlogHeadlines />} exact={true} />
           <Route path="/home" render={() => <Home />} exact={true} />
           <Route path="/about" render={() => <About />} exact={true} />
+          <Route path="/careers" render={() => <Careers />} exact={true} />
           <Route path="/why-wagon-carpool" render={() => <WhyWagonCarpool />} exact={true} />
           <Route path="/support" render={() => <SupportDetails />} exact={true} />
           <Route path="/blogDetail/:id" render={() => <BlogDetails />} />

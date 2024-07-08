@@ -41,9 +41,45 @@ function Home() {
         window.location.replace('/carpoolForEvents');
     }
 
-    // function aboutUs() {
+    function aboutUs () {
+        window.location.replace('/about');
+    }
 
-    // }
+    function termsOfUse () {
+        window.location.replace('/terms');
+    }
+
+    function careers () {
+        window.location.replace('/careers');
+    }
+
+    function privacyPolicy () {
+        window.location.replace('/privacy-policy');
+    }
+
+    function blogs () {
+        window.location.replace('/blogs');
+    }
+
+    function communityGuidelines () {
+        window.location.replace('/community-guidelines');
+    }
+
+    function support () {
+        window.location.replace('/support');
+    }
+
+    function redirectLinkedIn() {
+        window.open( "https://www.linkedin.com/company/wagon-carpool/");
+        
+    }
+    function redirectYouTube() {
+        window.open( "https://www.youtube.com/@WagonCarpool");
+    }
+    function redirectInstagram() {
+        window.open("https://www.instagram.com/wagoncarpool/");
+        
+    }
     
     return (
         <>
@@ -220,22 +256,22 @@ function Home() {
                             </IonRow> <br /><br />
                             <IonRow>
                                 <IonCol size="6" size-sm="6">
-                                    <IonLabel >About Us</IonLabel>
+                                    <IonLabel onClick={aboutUs}>About Us</IonLabel>
                                 </IonCol>
                                 <IonCol size="6" size-sm="6">
-                                    <IonLabel>Terms of Use</IonLabel>
+                                    <IonLabel onClick={termsOfUse}>Terms of Use</IonLabel>
                                 </IonCol>
                                 <IonCol size="6" size-sm="6">
-                                    <IonLabel>Why Wagon Carpool</IonLabel>
+                                    <IonLabel onClick={careers}>Careers</IonLabel>
                                 </IonCol>
                                 <IonCol size="6" size-sm="6">
-                                    <IonLabel >Privacy Policy</IonLabel>
+                                    <IonLabel  onClick={privacyPolicy}>Privacy Policy</IonLabel>
                                 </IonCol>
                                 <IonCol size="6" size-sm="6">
-                                    <IonLabel >Blogs</IonLabel>
+                                    <IonLabel onClick={blogs}>Blogs</IonLabel>
                                 </IonCol>
                                 <IonCol size="6" size-sm="6">
-                                    <IonLabel >Community Guidelines</IonLabel>
+                                    <IonLabel onClick={communityGuidelines}>Community Guidelines</IonLabel>
                                 </IonCol>
                                 
                                 <IonCol size="6" size-sm="6">
@@ -243,7 +279,7 @@ function Home() {
                                 </IonCol>
                                
                                 <IonCol size="6" size-sm="6">
-                                    <IonLabel>Support</IonLabel>
+                                    <IonLabel onClick={support}>Support</IonLabel>
                                 </IonCol>
                             </IonRow>
                             <br />
@@ -259,9 +295,9 @@ function Home() {
                                 </IonButtons>
                                 <IonButtons slot="end">
                                     <div className='socialMediaIcons'>
-                                    <IonLabel > <IonIcon size='small'  icon={logoInstagram}></IonIcon></IonLabel>
-                                    <IonLabel > <IonIcon size='small' icon={logoLinkedin}></IonIcon></IonLabel>
-                                    <IonLabel > <IonIcon size='small'  icon={logoYoutube}></IonIcon></IonLabel>
+                                    <IonLabel > <IonIcon size='small' onClick={redirectInstagram}  icon={logoInstagram}></IonIcon></IonLabel>
+                                    <IonLabel > <IonIcon size='small' onClick={redirectLinkedIn} icon={logoLinkedin}></IonIcon></IonLabel>
+                                    <IonLabel > <IonIcon size='small' onClick={redirectYouTube}  icon={logoYoutube}></IonIcon></IonLabel>
                                     </div>
                                 </IonButtons>
                                 
