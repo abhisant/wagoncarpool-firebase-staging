@@ -40,7 +40,7 @@ function SwiperRideFlow() {
                                 spaceBetween: 50,
                             },
                         }}
-                        centeredSlides={true}
+                        // centeredSlides={true}
                         keyboard={{
                             enabled: true,
                         }}

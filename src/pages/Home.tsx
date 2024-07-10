@@ -115,16 +115,18 @@ function Home() {
                                         <hr />
                                         <hr />
                                         <IonButton color="dark" shape='round' fill="outline" size="large" className='createARideHome' onClick={selectCarpoolCategory}>Create a Ride</IonButton>
-                                        
-                                        <hr /><hr /><hr />
+                                        <hr />
+                                        <hr />
                                         <IonLabel className="homePageText1" color="medium"> Save <IonLabel color="success">Money</IonLabel>, Save <IonLabel color="success">Time</IonLabel>, Save the <IonLabel color="success">Planet</IonLabel> </IonLabel>
                                         <hr />
                                         
                                         <IonLabel className="homePageText1" color="medium">Get a <IonLabel color="success">$20  </IonLabel>gift card on your first ride completion.
                                         </IonLabel>
                                         <hr /><hr /><hr />
+                                        <div className='createARideHome' >
                                         <a target="_blank" href="https://apps.apple.com/us/app/wagon-carpool/id6478844608"><img className="appleStoreIconHome" src="assets/img/AppStore.png" alt="bn45" /></a>
                                         <a target="_blank" href="https://play.google.com/store/apps/details?id=com.wagon.starter"><img className="googlePlayIconHome" src="assets/img/GooglePlay.png" alt="bn45" /></a>
+                                        </div>
                                         <hr /><hr />
                                     </div>
                                 </IonCol>
@@ -173,11 +175,10 @@ function Home() {
 
                             <IonCol size="12" size-sm="6">
                                 <div className="homePageContainer">
-                                    <hr /><hr />
-                                    <IonLabel className="wagonprocess" > Share Your<IonLabel color="dark"><IonLabel color='success'> Gas & Parking</IonLabel> Expense</IonLabel> <IonLabel color='success'> </IonLabel></IonLabel> <hr /><hr />
-                                    <IonLabel className="wagonprocess" > <IonLabel color="dark">Build your</IonLabel> <IonLabel color='success'>NETWORK</IonLabel></IonLabel> <hr /><hr />
-                                    <IonLabel className="wagonprocess" > <IonLabel color="dark">Get  </IonLabel> <IonLabel color='success'>Get HOV/CARPOOL </IonLabel>lane access</IonLabel> <hr /><hr />
-                                    <IonLabel className="wagonprocess" > Feel good about helping the <IonLabel color="dark"> </IonLabel> <IonLabel color='success'>Environment</IonLabel><IonLabel color="dark"></IonLabel></IonLabel> <hr /><hr />
+                                  <div className="wagonprocessMorePadding" >  <IonLabel> Share Your<IonLabel color="dark"><IonLabel color='success'> Gas & Parking</IonLabel> Expense</IonLabel> <IonLabel color='success'> </IonLabel></IonLabel> </div>
+                                  <div className="wagonprocessMorePadding" >  <IonLabel  > <IonLabel color="dark">Build your</IonLabel> <IonLabel color='success'>NETWORK</IonLabel></IonLabel> </div>
+                                  <div className="wagonprocessMorePadding" > <IonLabel > <IonLabel color="dark">Get  </IonLabel> <IonLabel color='success'>Get HOV/CARPOOL </IonLabel>lane access</IonLabel> </div>
+                                  <div className="wagonprocessMorePadding" > <IonLabel > Feel good about helping the <IonLabel color="dark"> </IonLabel> <IonLabel color='success'>Environment</IonLabel><IonLabel color="dark"></IonLabel></IonLabel> </div>
                                     <hr />
                                 </div>
                             </IonCol>
@@ -202,12 +203,12 @@ function Home() {
 
                                     <div className="homePageDivRow3">
                                         
-                                        <IonLabel className="wagonprocess" > <IonLabel color="dark">Create a</IonLabel> <IonLabel color='success'>Ride</IonLabel></IonLabel> <hr /><hr /><hr />
-                                        <IonLabel className="wagonprocess" > <IonLabel color="dark">Find Matches </IonLabel> and   <IonLabel color='success'> Send Match Request <IonLabel color="dark"> 
-                                        <hr/>OR<hr/> </IonLabel>  Accept Match Request </IonLabel>that you receive</IonLabel> <hr /><hr /><hr />
-                                        <IonLabel className="wagonprocess" > <IonLabel color="dark">Complete the </IonLabel> <IonLabel color='success'>Ride</IonLabel></IonLabel> <hr /><hr /><hr />
-                                        <IonLabel className="wagonprocess" > <IonLabel color="dark">Provide the</IonLabel> <IonLabel color='success'>Feedback</IonLabel></IonLabel> <hr /><hr /><hr />
-                                        <IonLabel className="wagonprocess" > <IonLabel color="dark">Rinse & Repeat </IonLabel> <IonLabel color='success'></IonLabel></IonLabel> <hr /><hr /><hr />
+                                    <div className="wagonprocess" > <IonLabel> <IonLabel color="dark">Create a</IonLabel> <IonLabel color='success'>Ride</IonLabel></IonLabel> </div>
+                                    <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Find Matches </IonLabel> and   <IonLabel color='success'> Send Match Request <IonLabel color="dark"> 
+                                        <hr/>OR<hr/> </IonLabel>  Accept Match Request </IonLabel>that you receive</IonLabel> </div>
+                                        <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Complete the </IonLabel> <IonLabel color='success'>Ride</IonLabel></IonLabel></div>
+                                        <div className="wagonprocess" >  <IonLabel> <IonLabel color="dark">Provide the</IonLabel> <IonLabel color='success'>Feedback</IonLabel></IonLabel> </div>
+                                        <div className="wagonprocess" > <IonLabel> <IonLabel color="dark">Rinse & Repeat </IonLabel> <IonLabel color='success'></IonLabel></IonLabel> </div>
                                         <hr />
                                     </div>
                                 </IonCol>
@@ -226,15 +227,13 @@ function Home() {
                                 <IonRow>
                                     <IonCol size="12" size-sm="6">
 
-                                        <div className="">
-                                            <IonLabel className="wagonprocess" >Businesses help their employees discover <IonLabel color="success">Wagon Carpool </IonLabel> </IonLabel>
-                                            <hr /><hr />
-                                            <IonLabel className="wagonprocess" >Employees use <IonLabel color="success">Wagon Carpool</IonLabel></IonLabel>
-                                            <hr /><hr />
-                                            <IonLabel className="wagonprocess" >Employees save <IonLabel color="success">Time & Money </IonLabel></IonLabel><hr /><hr />
-                                            <IonLabel className="wagonprocess"> <IonLabel>Businesses need less </IonLabel><IonLabel color="success">Parking Infrastructure </IonLabel>  </IonLabel><hr /><hr /><hr /><hr />
-                                            <IonLabel className="wagonprocess"> <IonLabel> <IonLabel color="success">Everybody Wins </IonLabel>  </IonLabel>
-                                            </IonLabel>
+                                        <div className="homePageDivRow3">
+                                        <div className="wagonprocess" ><IonLabel>Businesses helps Employees Discover <IonLabel color="success">Wagon Carpool.</IonLabel> </IonLabel></div>
+                                        <div className="wagonprocess" >   <IonLabel>Employees use <IonLabel color="success">Wagon Carpool</IonLabel> to commute.</IonLabel></div>
+                                        <div className="wagonprocess" >   <IonLabel> <IonLabel>Businesses need less </IonLabel><IonLabel color="success">Parking Infrastructure </IonLabel>  </IonLabel></div>
+                                        <div className="wagonprocess" >    <IonLabel>Employees save <IonLabel color="success">Time & Money </IonLabel></IonLabel></div>
+                                        <div className="wagonprocess" >   <IonLabel> <IonLabel>Business gets credit towards </IonLabel><IonLabel color="success">CSR goals. </IonLabel>  </IonLabel></div>
+                                            <div className="wagonprocess" >   <IonLabel> <IonLabel> <IonLabel color="success">Everybody Wins </IonLabel>  </IonLabel></IonLabel></div>
 
                                         </div>
                                     </IonCol>

@@ -1370,10 +1370,30 @@ ion-col {
   }
 }
 
+
+@media only screen and (max-width: 1024px) {
+  .wagonprocessMorePadding {
+    font-size: 150%;
+    font-weight: bold;
+    padding-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .wagonprocessMorePadding {
+    font-size: 250%;
+    font-weight: bold;
+    padding-bottom: 50px;
+    padding-top: 50px;
+  }
+}
+
+
 @media only screen and (max-width: 1024px) {
   .wagonprocess {
     font-size: 150%;
     font-weight: bold;
+    padding-top: 10px;
   }
 }
 
@@ -1381,13 +1401,14 @@ ion-col {
   .wagonprocess {
     font-size: 250%;
     font-weight: bold;
+    padding-bottom: 30px;
   }
 }
 
 @media only screen and (min-width: 1025px) {
   .homePageDivRow3 {
     font-weight: bold;
-    margin-top: 100px;
+    margin-top: 50px;
     font-size: 100%;
   }
 }
@@ -1425,10 +1446,18 @@ ion-col {
   }
 }
 
+@media only screen and (max-width: 1024px) {
 .createARideHome {
   width: fit-content;
-
 }
+}
+@media only screen and (min-width: 1025px) {
+  .createARideHome {
+    width: fit-content;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  }
 
 .containerHome {
   text-align: center;
