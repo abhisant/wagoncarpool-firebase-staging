@@ -1401,7 +1401,7 @@ ion-col {
   .wagonprocess {
     font-size: 250%;
     font-weight: bold;
-    padding-bottom: 30px;
+    padding-bottom: 50px;
   }
 }
 
@@ -1571,7 +1571,7 @@ ion-col {
 
 .socialMediaIcons {
   cursor: pointer;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .wagonHref {
   color: rgb(204, 204, 204);

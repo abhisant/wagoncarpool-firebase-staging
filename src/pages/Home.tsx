@@ -83,26 +83,25 @@ function Home() {
     
     return (
         <>
-            <IonMenu side="end" contentId="main-content">
+            {/* <IonMenu side="end" contentId="main-content">
                 <IonHeader >
                     <IonToolbar >
                         <IonTitle>Menu Content</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <IonContent className="ion-padding">This is the menu content.</IonContent>
-            </IonMenu>
+            </IonMenu> */}
             <IonPage id="main-content">
-                <IonHeader>
+                {/* <IonHeader>
                     <IonToolbar>
                         <IonButtons slot="end">
                             <IonMenuButton></IonMenuButton>
                         </IonButtons>
                         <IonTitle class="homeToolBar">
-                            {/* <IonImg class="menuWagonImg" src="assets/img/icon-without-bkg.png"></IonImg> */}
 
                         </IonTitle>
                     </IonToolbar>
-                </IonHeader>
+                </IonHeader> */}
                 <IonContent>
 
                     <IonGrid>
@@ -203,9 +202,9 @@ function Home() {
 
                                     <div className="homePageDivRow3">
                                         
-                                    <div className="wagonprocess" > <IonLabel> <IonLabel color="dark">Create a</IonLabel> <IonLabel color='success'>Ride</IonLabel></IonLabel> </div>
-                                    <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Find Matches </IonLabel> and   <IonLabel color='success'> Send Match Request <IonLabel color="dark"> 
-                                        <hr/>OR<hr/> </IonLabel>  Accept Match Request </IonLabel>that you receive</IonLabel> </div>
+                                    <div className="wagonprocess" > <IonLabel> <IonLabel color="dark">Choose a ride type & </IonLabel> <IonLabel color='success'>Create a Ride</IonLabel></IonLabel> </div>
+                                    <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Find Matches </IonLabel> &  <IonLabel color='success'> Send Match Request  </IonLabel>/</IonLabel> </div>
+                                    <div className="wagonprocess" >   <IonLabel> Accept Match  </IonLabel> <IonLabel color="success">Requests You Receive</IonLabel> </div>
                                         <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Complete the </IonLabel> <IonLabel color='success'>Ride</IonLabel></IonLabel></div>
                                         <div className="wagonprocess" >  <IonLabel> <IonLabel color="dark">Provide the</IonLabel> <IonLabel color='success'>Feedback</IonLabel></IonLabel> </div>
                                         <div className="wagonprocess" > <IonLabel> <IonLabel color="dark">Rinse & Repeat </IonLabel> <IonLabel color='success'></IonLabel></IonLabel> </div>
@@ -233,7 +232,6 @@ function Home() {
                                         <div className="wagonprocess" >   <IonLabel> <IonLabel>Businesses need less </IonLabel><IonLabel color="success">Parking Infrastructure </IonLabel>  </IonLabel></div>
                                         <div className="wagonprocess" >    <IonLabel>Employees save <IonLabel color="success">Time & Money </IonLabel></IonLabel></div>
                                         <div className="wagonprocess" >   <IonLabel> <IonLabel>Business gets credit towards </IonLabel><IonLabel color="success">CSR goals. </IonLabel>  </IonLabel></div>
-                                            <div className="wagonprocess" >   <IonLabel> <IonLabel> <IonLabel color="success">Everybody Wins </IonLabel>  </IonLabel></IonLabel></div>
 
                                         </div>
                                     </IonCol>
@@ -252,7 +250,7 @@ function Home() {
                                 <IonCol size="6" size-sm="6">
                                     <IonLabel className="footerBoldLabels">Resources</IonLabel>
                                 </IonCol>
-                            </IonRow> <br /><br />
+                            </IonRow> <br />
                             <IonRow>
                                 <IonCol size="6" size-sm="6">
                                     <IonLabel onClick={aboutUs}>About Us</IonLabel>
@@ -278,7 +276,7 @@ function Home() {
                                 </IonCol>
                                
                                 <IonCol size="6" size-sm="6">
-                                    <IonLabel onClick={support}>Support</IonLabel>
+                                    <IonLabel onClick={support}>Contact Us</IonLabel>
                                 </IonCol>
                             </IonRow>
                             <br />
@@ -293,10 +291,10 @@ function Home() {
                                     <IonLabel className="copyrightHome">Copyright © 2024 Procsoft LLC.</IonLabel><hr />
                                 </IonButtons>
                                 <IonButtons slot="end">
-                                    <div className='socialMediaIcons'>
-                                    <IonLabel > <IonIcon size='small' onClick={redirectInstagram}  icon={logoInstagram}></IonIcon></IonLabel>
-                                    <IonLabel > <IonIcon size='small' onClick={redirectLinkedIn} icon={logoLinkedin}></IonIcon></IonLabel>
-                                    <IonLabel > <IonIcon size='small' onClick={redirectYouTube}  icon={logoYoutube}></IonIcon></IonLabel>
+                                    <div >
+                                    <IonLabel className='socialMediaIcons'> <IonIcon size='small' onClick={redirectInstagram}  icon={logoInstagram}></IonIcon></IonLabel>
+                                    <IonLabel className='socialMediaIcons'> <IonIcon size='small' onClick={redirectLinkedIn} icon={logoLinkedin}></IonIcon></IonLabel>
+                                    <IonLabel className='socialMediaIcons'> <IonIcon size='small' onClick={redirectYouTube}  icon={logoYoutube}></IonIcon></IonLabel>
                                     </div>
                                 </IonButtons>
                                 
