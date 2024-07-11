@@ -60,6 +60,8 @@ import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 import SelectCarpoolCategory from './SelectCarpoolCategory';
 import AppLandingPage from './AppLandingPage';
 import UserMenu from './UserMenu';
+import Home from './Home';
+import InternalRouter from './InternalRouter';
 const UserActivity = () => {
 
     let history = useHistory();
@@ -254,12 +256,14 @@ const UserActivity = () => {
             })
             .catch((reason: AxiosError) => {
                 if (reason.response?.status === 401 || reason.response?.status === undefined) {
+                    window.location.replace('/home');
                     setSessionExists(false);
                 }
             })
         } else {
             // history.push('/App');
-            window.location.replace('/App');
+            console.log('Redirect to App');
+            window.location.replace('/home');
             localStorage.setItem("redirected_from", 'userActivity');
             setSessionExists(false);
         }
@@ -592,12 +596,12 @@ const UserActivity = () => {
 
     return (
         <IonPage>
-            {
+            {/* {
                 redirectToNewRide ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/scc' }} /><Route path="/App" component={SelectCarpoolCategory} /> </Switch></IonReactRouter></> : null
             }
             {
-                !sessionExists ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></IonReactRouter></> : null
-            }
+                !sessionExists ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/router' }} /><Route path="/home" component={InternalRouter} /></Switch></IonReactRouter></> : null
+            } */}
 
             {/* <IonItem routerLink='/menu' routerDirection='none'>
                 <IonIcon size="large" slot="start" color="light" icon={menu}></IonIcon>
@@ -605,7 +609,7 @@ const UserActivity = () => {
 
             <IonContent>
                 {
-                    sessionExists && userActivityFeedLoading ?
+                     userActivityFeedLoading ?
                         <IonLabel class="centerLabel"><IonSpinner color="primary"></IonSpinner></IonLabel>
                         : null
                 }

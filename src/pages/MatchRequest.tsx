@@ -119,13 +119,14 @@ const MatchRequest = () => {
             })
             .catch((reason: AxiosError) => {
                 if (reason.response?.status === 401 || reason.response?.status === undefined) {
+                    window.location.replace('/home');
                     setSessionExists(false);
                 }
             })
         } else  {
             console.log("Session doesn't exist");
             // history.push('/App');
-            window.location.replace('/App');
+            window.location.replace('/home');
             localStorage.setItem("redirected_from", 'pendingRequests');
             setSessionExists(false);
             return;
@@ -243,13 +244,13 @@ const MatchRequest = () => {
 
     return (
         <IonPage>
-            {
+            {/* {
                 !sessionExists ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></IonReactRouter></> : null
 
             }
             {
                 redirectToUserActivity ? <><IonReactRouter><Switch><Redirect to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /> </Switch></IonReactRouter></> : null
-            }
+            } */}
 
 
             <IonContent>

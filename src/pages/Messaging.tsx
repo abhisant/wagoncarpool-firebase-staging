@@ -66,7 +66,7 @@ const Messaging = () => {
         } else {
             console.log("Session doesn't exist");
             //history.push('/App');
-            window.location.replace('/App');
+            window.location.replace('/home');
             localStorage.setItem("redirected_from", 'messaging');
             setSessionExists(false);
         }  
@@ -205,6 +205,7 @@ const Messaging = () => {
 //   }, []);
 
     useEffect(() => {
+        ReactGA.send({ hitType: "pageview", page: "/messaging", title: "Messaging" });
         const sessionObj = localStorage.getItem('session');
         if (sessionObj != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != '') {
             wagon_token = JSON.parse(localStorage.getItem('session') || "").wagon_token;
@@ -212,7 +213,8 @@ const Messaging = () => {
             loadChatDetails();
         } else {
             console.log("Session doesn't exist");
-            history.push('/App');
+            //history.push('/App');
+            window.location.replace('/home');
             localStorage.setItem("redirected_from", 'messaging');
             setSessionExists(false);
         }  
@@ -237,9 +239,9 @@ const Messaging = () => {
 
     return (
         <IonPage>
-            {
+            {/* {
                 !sessionExists ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/App' }} /><Route path="/App" component={AppLandingPage} /></Switch></IonReactRouter></>: null
-            }
+            } */}
             <IonContent>
                 {/* <IonItem routerLink='/menu' routerDirection='none'>
                     <IonIcon size="large" slot="start" color="light" icon={menu}></IonIcon>

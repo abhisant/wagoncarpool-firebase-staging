@@ -68,6 +68,7 @@ function AppLandingPage() {
     }
     let globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
     if (globalSessionObj == undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+      // window.location.replace('/home');
       return;
     }
     axios.get(import.meta.env.VITE_APP_API_V2 + '/user', { headers: { 'Authorization': globalSessionObj.wagon_token } })
@@ -75,6 +76,7 @@ function AppLandingPage() {
         loadFeed(globalSessionObj);
       })
       .catch((reason: AxiosError) => {
+        // window.location.replace('/home');
         // if (reason.response?.status === 401 || reason.response?.status === undefined) {
         //   setSessionExists(false);
         //   return;

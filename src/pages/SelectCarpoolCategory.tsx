@@ -609,9 +609,6 @@ const SelectCarpoolCategory = () => {
                     <SwiperRideFlow></SwiperRideFlow>
                      
                     <hr />
-                    <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
-                    <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr />
-                    <IonLabel className="footer"><a className="termsandpolicylink" target="_blank" href="/terms" >Terms of use </a>  <a className="termsandpolicylink" target="_blank" href="privacy-policy">privacy policy</a></IonLabel><hr />
 
                 </IonContent>
                 <IonModal id="example-modal" isOpen={feedbackDetails.length > 0}>
