@@ -119,14 +119,14 @@ const MatchRequest = () => {
             })
             .catch((reason: AxiosError) => {
                 if (reason.response?.status === 401 || reason.response?.status === undefined) {
-                    window.location.replace('/home');
+                    window.location.replace('/App');
                     setSessionExists(false);
                 }
             })
         } else  {
             console.log("Session doesn't exist");
             // history.push('/App');
-            window.location.replace('/home');
+            window.location.replace('/App');
             localStorage.setItem("redirected_from", 'pendingRequests');
             setSessionExists(false);
             return;

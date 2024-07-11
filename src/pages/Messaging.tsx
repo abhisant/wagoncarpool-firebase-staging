@@ -66,7 +66,7 @@ const Messaging = () => {
         } else {
             console.log("Session doesn't exist");
             //history.push('/App');
-            window.location.replace('/home');
+            window.location.replace('/App');
             localStorage.setItem("redirected_from", 'messaging');
             setSessionExists(false);
         }  
@@ -214,7 +214,7 @@ const Messaging = () => {
         } else {
             console.log("Session doesn't exist");
             //history.push('/App');
-            window.location.replace('/home');
+            window.location.replace('/App');
             localStorage.setItem("redirected_from", 'messaging');
             setSessionExists(false);
         }  

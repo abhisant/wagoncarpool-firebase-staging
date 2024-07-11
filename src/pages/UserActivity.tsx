@@ -256,14 +256,14 @@ const UserActivity = () => {
             })
             .catch((reason: AxiosError) => {
                 if (reason.response?.status === 401 || reason.response?.status === undefined) {
-                    window.location.replace('/home');
+                    window.location.replace('/App');
                     setSessionExists(false);
                 }
             })
         } else {
             // history.push('/App');
             console.log('Redirect to App');
-            window.location.replace('/home');
+            window.location.replace('/App');
             localStorage.setItem("redirected_from", 'userActivity');
             setSessionExists(false);
         }
