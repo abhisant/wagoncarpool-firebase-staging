@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonImg, IonLabel, IonSpinner, useIonViewDidEnter } from '@ionic/react';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { Capacitor } from '@capacitor/core';
+import HeaderBackBar from './HeaderBackBar';
 
 
 const BlogHeadlines = (blogId: any) => {
@@ -53,6 +54,7 @@ const BlogHeadlines = (blogId: any) => {
         {
             loading?  <IonLabel className="centerLabel"> <IonSpinner  color="primary"></IonSpinner></IonLabel> : null
         }
+        <HeaderBackBar></HeaderBackBar>
             <IonCard color="success">
                 <IonCardContent>
                     <IonLabel className='mediumfont' >Wagon Carpool Blogs

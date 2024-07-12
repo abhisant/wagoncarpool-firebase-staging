@@ -3,6 +3,7 @@ import { IonButton, IonButtons, IonCol, IonContent, IonFooter, IonGrid, IonHeade
 import AppDownloadWidget from './AppDownloadWidget';
 import { arrowForwardCircle, arrowForwardCircleOutline, logoInstagram, logoLinkedin, logoYoutube } from 'ionicons/icons';
 import ReactGA from 'react-ga4';
+import HeaderBackBar from './HeaderBackBar';
 function About() {
 
     return (
@@ -10,6 +11,7 @@ function About() {
             
             <IonPage id="main-content">
                 <IonContent>
+                    <HeaderBackBar></HeaderBackBar>
                 <hr/><hr/>
                     <IonLabel >
                     <span className='sorryNoJob'> About Us</span>

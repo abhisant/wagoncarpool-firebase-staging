@@ -1,4 +1,5 @@
 import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import HeaderBackBar from './HeaderBackBar';
 
 function CarPoolingGuidelines() {
 
@@ -11,6 +12,7 @@ function CarPoolingGuidelines() {
                 </IonToolbar>
             </IonHeader> */}
             <IonContent>
+            <HeaderBackBar></HeaderBackBar>
                 <IonList>
                     {/* <h2 className="carpoolingguidelinesmargin">Be Punctual:</h2> */}
                     <IonItem className="item-text-wrap">

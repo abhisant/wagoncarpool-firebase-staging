@@ -1,4 +1,5 @@
 import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import HeaderBackBar from './pages/HeaderBackBar';
 
 function PrivacyPolicy() {
     return (
@@ -9,6 +10,7 @@ function PrivacyPolicy() {
                 </IonToolbar>
             </IonHeader> */}
             <IonContent>
+            <HeaderBackBar></HeaderBackBar>
                 <h1>Wagon Carpool Privacy Policy</h1>
                 <IonList>
                     <h2 className="carpoolingguidelinesmargin">EFFECTIVE OCTOBER 23, 2023</h2>

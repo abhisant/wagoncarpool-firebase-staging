@@ -1,4 +1,5 @@
 import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import HeaderBackBar from './HeaderBackBar';
 
 function Terms() {
     return (
@@ -9,6 +10,7 @@ function Terms() {
                 </IonToolbar>
             </IonHeader> */}
             <IonContent>
+            <HeaderBackBar></HeaderBackBar><hr/>
                 <h1>Terms of Service</h1>
                 <IonList>
                     <h2 className="carpoolingguidelinesmargin">Overview</h2>
