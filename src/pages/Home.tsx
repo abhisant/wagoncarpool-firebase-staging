@@ -92,16 +92,16 @@ function Home() {
                 <IonContent className="ion-padding">This is the menu content.</IonContent>
             </IonMenu> */}
             <IonPage id="main-content">
-                {/* <IonHeader>
+                <IonHeader>
                     <IonToolbar>
                         <IonButtons slot="end">
-                            <IonMenuButton></IonMenuButton>
+                            {/* <IonMenuButton></IonMenuButton> */}
                         </IonButtons>
                         <IonTitle class="homeToolBar">
 
                         </IonTitle>
                     </IonToolbar>
-                </IonHeader> */}
+                </IonHeader>
                 <IonContent>
 
                     <IonGrid>

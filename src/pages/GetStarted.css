@@ -1,4 +1,5 @@
-ion-row, ion-img {
+ion-row,
+ion-img {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,10 +147,23 @@ ion-segment-button::part(indicator-background) {
 .swiperCom {
   height: 100%;
 }
-.swiperDivRideFlow {
-  height: 350px;
-  padding: 5px;
+
+@media only screen and (min-width: 1025px) {
+
+  .swiperDivRideFlow {
+    height: 300px;
+    padding: 5px;
+  }
 }
+
+@media only screen and (max-width: 1024px) {
+
+  .swiperDivRideFlow {
+    height: 200px;
+    padding: 5px;
+  }
+}
+
 
 ion-button {
   width: 100%;
@@ -457,7 +471,7 @@ ion-icon {
 .swiper {
   height: 100%;
   --swiper-theme-color: #c0c0c0;
-  
+
 }
 
 /* .swiper-pagination-bullets {
@@ -581,7 +595,7 @@ ion-icon {
 .maketingpage {
   color: rgb(221, 220, 220);
   font-size: 15px;
-  
+
 }
 
 .maketingpageh2 {
@@ -1182,6 +1196,7 @@ p {
     font-size: 125%;
   }
 }
+
 .homePageTextItalics {
   font-size: 125%;
   font-style: italic;
@@ -1206,13 +1221,14 @@ p {
 @media only screen and (min-width: 1025px) {
   .homePageDiv {
     font-weight: bold;
-   
+
   }
 }
+
 @media only screen and (max-width: 1025px) {
-.homePageDiv {
-  font-weight: bold;
-}
+  .homePageDiv {
+    font-weight: bold;
+  }
 }
 
 .carpoolImg {
@@ -1291,9 +1307,10 @@ p {
     padding: 2px;
   }
 }
+
 .howWagonCarpoolWorks {
-  padding-bottom:10px;
-  padding-top:10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -1447,17 +1464,18 @@ ion-col {
 }
 
 @media only screen and (max-width: 1024px) {
-.createARideHome {
-  width: fit-content;
+  .createARideHome {
+    width: fit-content;
+  }
 }
-}
+
 @media only screen and (min-width: 1025px) {
   .createARideHome {
     width: fit-content;
     margin-top: 25px;
     margin-bottom: 25px;
   }
-  }
+}
 
 .containerHome {
   text-align: center;
@@ -1507,14 +1525,15 @@ ion-col {
     margin-left: 20px;
   }
 }
+
 @media only screen and (min-width: 1025px) {
 
-.wagonBenefitOrg {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 350%;
-  font-weight: bold;
-}
+  .wagonBenefitOrg {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 350%;
+    font-weight: bold;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -1525,45 +1544,46 @@ ion-col {
     font-size: 250%;
     font-weight: bold;
   }
-  }
+}
 
-  .footerBoldLabels {
-    font-weight: bold;
-    font-size: 120%;
-  }
+.footerBoldLabels {
+  font-weight: bold;
+  font-size: 120%;
+}
 
 
-  @media (prefers-color-scheme: light) {
-    .footerSocialContainer {
-      border-top: solid;
-      border-bottom: solid;
-      border-width: 1px;
-      border-color: #949494;
-    }
+@media (prefers-color-scheme: light) {
+  .footerSocialContainer {
+    border-top: solid;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #949494;
   }
-  
-  @media (prefers-color-scheme: dark) {
-    .footerSocialContainer {
-      border-top: solid;
-      border-bottom: solid;
-      border-width: 1px;
-      border-color: #6d6d6d;
-    
-    }
+}
+
+@media (prefers-color-scheme: dark) {
+  .footerSocialContainer {
+    border-top: solid;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #6d6d6d;
+
   }
+}
 
 .footerToolbar {
   --background: transparent;
-      border-width: 1px;
-      border: 1px solid rgba(123, 123, 123, 0.3);
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    opacity: 1;
-    border-style: solid;
-    box-shadow: none;
+  border-width: 1px;
+  border: 1px solid rgba(123, 123, 123, 0.3);
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  opacity: 1;
+  border-style: solid;
+  box-shadow: none;
 
 }
+
 .copyrightHome {
   font-size: 12px;
   margin-left: 5px;
@@ -1573,18 +1593,22 @@ ion-col {
   cursor: pointer;
   margin-right: 10px;
 }
+
 .wagonHref {
   color: rgb(204, 204, 204);
 }
+
 .footerHome {
   cursor: pointer;
 }
+
 .sorryNoJob {
   font-size: 200%;
   font-weight: bold;
-  color:#41a167;
+  color: #41a167;
   padding-left: 10px;
 }
+
 .weAreOpen {
   font-size: 100%;
   font-weight: bold;
