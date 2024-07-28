@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonButton, IonButtons, IonCol, IonContent, IonFooter, IonGrid, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonMenu, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import AppDownloadWidget from './AppDownloadWidget';
-import { arrowForwardCircle, arrowForwardCircleOutline, logoInstagram, logoLinkedin, logoYoutube } from 'ionicons/icons';
+import { arrowForwardCircle, arrowForwardCircleOutline, car, carSport, cash, logoInstagram, logoLinkedin, logoYoutube } from 'ionicons/icons';
 import ReactGA from 'react-ga4';
 function Home() {
     function selectCarpoolCategory() {
@@ -11,6 +11,12 @@ function Home() {
         });
         localStorage.setItem("carpool_category", 'scc');
         window.location.replace('/scc');
+    }
+
+    function driveAndEarn() {
+       
+        localStorage.setItem("carpool_category", 'drive');
+        window.location.replace('/drive');
     }
 
     function carpoolingForAirport() {
@@ -113,7 +119,10 @@ function Home() {
                                         <IonLabel className="carpoolWithWagon" > <IonLabel color="dark">Wagon</IonLabel> <IonLabel color="dark"></IonLabel> <IonLabel color='success'> Carpool</IonLabel></IonLabel> <hr />
                                         <hr />
                                         <hr />
-                                        <IonButton color="dark" shape='round' fill="outline" size="large" className='createARideHome' onClick={selectCarpoolCategory}>Create a Ride</IonButton>
+                                        <IonLabel><IonButton color="success" shape='round' fill="outline" size="default" className='createARideHome' onClick={selectCarpoolCategory}>Create a Ride <IonIcon className="homeButtonIcons" color="success" icon={car}> </IonIcon></IonButton>
+                                        <IonButton color="success" shape='round' fill="outline" size="default" className='createARideHome' onClick={driveAndEarn}>Drive & Earn <IonIcon className="homeButtonIcons" color="success" icon={cash}> </IonIcon></IonButton>
+                                        </IonLabel>
+                                        
                                         <hr />
                                         <hr />
                                         <IonLabel className="homePageText1" color="medium"> Save <IonLabel color="success">Money</IonLabel>, Save <IonLabel color="success">Time</IonLabel>, Save the <IonLabel color="success">Planet</IonLabel> </IonLabel>

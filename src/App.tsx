@@ -101,6 +101,7 @@ const App: React.FC = () => (
         <Route exact path="/careers" component={AppLandingPage} />
         <Route exact path="/support" component={AppLandingPage} />
         <Route exact path="/route" component={InternalRouter} />
+        <Route exact path="/drive" component={AppLandingPage} />
         <Route exact path="/why-wagon-carpool" component={AppLandingPage} />
         <Redirect exact from="/" to="/route" />
       </IonRouterOutlet>

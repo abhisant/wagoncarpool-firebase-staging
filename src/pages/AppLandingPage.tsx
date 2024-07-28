@@ -17,7 +17,7 @@ import {
   useIonViewDidEnter,
 } from '@ionic/react';
 import { IonReactHashRouter, IonReactRouter } from '@ionic/react-router';
-import { addCircle, settings, home, search, information, informationCircleOutline, chatbox, maleFemaleSharp, personCircle, notifications, camera, settingsSharp, carOutline, car, homeOutline, homeSharp } from 'ionicons/icons';
+import { addCircle, settings, home, search, information, informationCircleOutline, chatbox, maleFemaleSharp, personCircle, notifications, camera, settingsSharp, carOutline, car, homeOutline, homeSharp, carSportOutline, cash, cashOutline, cashSharp } from 'ionicons/icons';
 import { Redirect, Route } from 'react-router';
 import App from '../App';
 import AppFeed from './AppFeed';
@@ -42,6 +42,7 @@ import About from './About';
 import WhyWagonCarpool from './WhyWagonCarpool';
 import SupportDetails from './SupportDetails';
 import Careers from './Careers';
+import Drive from './Drive';
 
 function AppLandingPage() {
   let history = useHistory();
@@ -184,17 +185,22 @@ function AppLandingPage() {
           <Route path="/careers" render={() => <Careers />} exact={true} />
           <Route path="/why-wagon-carpool" render={() => <WhyWagonCarpool />} exact={true} />
           <Route path="/support" render={() => <SupportDetails />} exact={true} />
+          <Route path="/drive" render={() => <Drive />} exact={true} />
           <Route path="/blogDetail/:id" render={() => <BlogDetails />} />
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
-        <IonTabButton tab="home" href="/home">
+        {/* <IonTabButton tab="home" href="/home">
             <IonIcon size="small" icon={homeSharp} />
             <IonLabel  class="tablabel">Home</IonLabel>
-          </IonTabButton>
+          </IonTabButton> */}
           <IonTabButton tab="rides" href="/App">
             <IonIcon size="small" icon={car} />
             <IonLabel  class="tablabel">Rides</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="drive" href="/drive">
+            <IonIcon size="small" icon={cash} />
+            <IonLabel  class="tablabel">Drive</IonLabel>
           </IonTabButton>
 
           <IonTabButton tab="pendingRequests" href="/pendingRequests">

@@ -1,6 +1,6 @@
 import { IonAvatar, IonButton, IonButtons, IonCard, IonCardContent, IonCol, IonContent, IonFooter, IonGrid, IonHeader, IonIcon, IonImg, IonInput, IonItem, IonItemDivider, IonLabel, IonList, IonMenu, IonMenuButton, IonModal, IonNavLink, IonPage, IonRow, IonSelect, IonSelectOption, IonSpinner, IonSplitPane, IonText, IonTextarea, IonTitle, IonToolbar, useIonLoading, useIonViewDidEnter } from '@ionic/react';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { basketball, car, carOutline, codeWorkingOutline, codeWorkingSharp, desktop, football, laptop, location, logoApple, menu, musicalNote, musicalNoteSharp, shirtOutline } from 'ionicons/icons';
+import { basketball, car, carOutline, carSharp, cash, codeWorkingOutline, codeWorkingSharp, desktop, football, laptop, location, logoApple, menu, musicalNote, musicalNoteSharp, shirtOutline } from 'ionicons/icons';
 import React, { useState, useEffect } from 'react';
 import { Redirect, useHistory, Route, HashRouter, Switch } from 'react-router-dom';
 import GetStarted from './GetStarted';
@@ -378,6 +378,10 @@ const SelectCarpoolCategory = () => {
         window.location.replace('/App');
     }
 
+    function driveAndEarn() {
+        localStorage.setItem("carpool_category", 'drive');
+        window.location.replace('/drive');
+    }
 
     return (
         <>
@@ -398,7 +402,9 @@ const SelectCarpoolCategory = () => {
                                 {
                                     sessionExists ?
                                         localStorage.getItem('session') != null ? <>
-                                        <IonButtons slot="end"><IonButton size="small" onClick={() => { myRidesClicked() }} color="success" fill="outline" className="homePageLoginWithGoogle">My Rides</IonButton></IonButtons>
+                                    
+                                        <IonButtons slot="end"><IonButton size="small" shape="round" onClick={() => { myRidesClicked() }} color="success" fill="outline" className="homePageLoginWithGoogle">My Rides  <IonIcon className="homeButtonIcons" color="success" icon={carSharp}></IonIcon></IonButton></IonButtons>
+                                        <IonButtons slot="end"><IonButton size="small"  shape="round"  onClick={driveAndEarn} color="success" fill="outline" className="homePageLoginWithGoogle">Drive & Earn <IonIcon className="homeButtonIcons" color="success" icon={cash}></IonIcon></IonButton></IonButtons>
                                         <IonButtons slot="start"><IonLabel className="homePageLoginWithGoogle"><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null ? "assets/img/avatar.svg" : JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></IonButtons></> : null
                                         :
                                         loginLoading ?

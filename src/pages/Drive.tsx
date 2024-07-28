@@ -61,7 +61,7 @@ import {
     IonRadio,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle, micCircle, atCircleOutline, carOutline, carSportSharp, send, calendarClear } from 'ionicons/icons';
+import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle, micCircle, atCircleOutline, carOutline, carSportSharp, send, calendarClear, cash } from 'ionicons/icons';
 import { Redirect, Route, Switch } from 'react-router';
 import App from '../App';
 import { useLocation, useHistory, HashRouter, BrowserRouter } from 'react-router-dom';
@@ -84,7 +84,7 @@ import { PushNotifications } from '@capacitor/push-notifications';
 import { Capacitor } from '@capacitor/core';
 
 
-const AppFeed = () => {
+const Drive = () => {
     let userRequestArr = [];
     let history = useHistory();
     Geocode.setApiKey('AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY');
@@ -112,7 +112,11 @@ const AppFeed = () => {
     const [country] = useState("us");
     const [userActivityData, setUserActivityData] = useState<any>({});
     const [sessionExists, setSessionExists] = React.useState(true);
-    const [displayType, setDisplayType] = React.useState<any>("0");
+    const [requestToDriveItem, setRequestToDriveItem] = React.useState<any>({});
+    const [requestToDriveIndex, setRequestToDriveIndex] = React.useState(-1);
+
+    const [openLoginModal, setOpenLoginModal] = React.useState(false);
+    const [displayType, setDisplayType] = React.useState<any>("1");
     const [userId, setUserId] = React.useState("0");
     const [invalidZipCode, setIsInvalidZipCode] = React.useState(false);
     const [loggedinUserId, setLoggedInUserId] = React.useState(0);
@@ -461,6 +465,7 @@ const AppFeed = () => {
     window.addEventListener('ionModalDidDismiss', (event) => {
         infiniteLoop = false;
         setIsOpen(false);
+        setOpenLoginModal(false);
         setCancelRideModalOpen(false);
         setRideCancellationReason('xeqg!okjw');
         setCancelRideID(-1);
@@ -581,8 +586,10 @@ const AppFeed = () => {
 
         setFilterModelOpen(false);
 
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/find'
-            , { params: queryParams, headers: { 'Authorization': globalSessionObj.wagon_token } });
+        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/ridesNearMe'
+            , { params: queryParams
+                // , headers: { 'Authorization': globalSessionObj.wagon_token } 
+            });
 
         setZipCodeFormVisible(false);
         console.log(getResponse.data);
@@ -592,6 +599,38 @@ const AppFeed = () => {
 
     async function loadFeed(lat: any, lng: any) {
         matchIndexArr = [];
+        // if (localStorage.getItem('session')  == null) {
+        //     setSessionExists(false);
+        //     return;
+        // }
+        // globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        // if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+        //     setSessionExists(false);
+        //     return;
+        // }
+        console.log("load feed triggered");
+
+        console.log(lat);
+        console.log(lng);
+        const queryParams = {
+            locationLatitude: lat,
+            locationLongitude: lng,
+            radiusInMiles: 100,
+            pageNum: 0,
+            isDriving: false,
+            pageSize: 100
+        }
+
+        setFeedLoading(true);
+        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/ridersNearMe'
+            , { params: queryParams, 
+                // headers: { 'Authorization': globalSessionObj.wagon_token } 
+            });
+        setZipCodeFormVisible(false);
+        console.log(getResponse.data);
+        setFeedData(getResponse.data);
+        setFeedLoading(false);
+
         if (localStorage.getItem('session')  == null) {
             setSessionExists(false);
             return;
@@ -601,29 +640,7 @@ const AppFeed = () => {
             setSessionExists(false);
             return;
         }
-        console.log("load feed triggered");
 
-        const session = JSON.parse(localStorage.getItem('session') || "");
-        console.log("AP FEED")
-        console.log(session.userId);
-        setLoggedInUserId(session.userId);
-        setUserGender(session.gender);
-        // const name = await storage.get('name');
-        console.log(lat);
-        console.log(lng);
-        const queryParams = {
-            locationLatitude: lat,
-            locationLongitude: lng,
-            radiusInMiles: 100,
-            pageNum: 0,
-            pageSize: 100
-        }
-
-        setFeedLoading(true);
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/find'
-            , { params: queryParams, headers: { 'Authorization': globalSessionObj.wagon_token } });
-        setZipCodeFormVisible(false);
-        console.log(getResponse.data);
         for (var i=0; i < getResponse.data.length; i++ ) {
             for (var j=0; j < getResponse.data[i].requestStats.userAndRequestStatus.length; j++) {
                 if (getResponse.data[i].requestStats.userAndRequestStatus[j].user.id == JSON.parse(localStorage.getItem('session') || "").userId) {
@@ -635,8 +652,6 @@ const AppFeed = () => {
         }
         console.log(matchIndexArr);
         setMatchSentForIndex(matchIndexArr);
-        setFeedData(getResponse.data);
-        setFeedLoading(false);
     }
 
     function getLocationByZipCode() {
@@ -654,8 +669,7 @@ const AppFeed = () => {
 
     const getCurrentLocation = async () => {
         try {
-
-            if (currLat == 0 || currLon == 0) {
+            if (localStorage.getItem('current_location') == null) {
                 console.log("Getting Location");
                 const coordinates = await Geolocation.getCurrentPosition();
                 const lat = coordinates.coords.latitude;
@@ -665,8 +679,32 @@ const AppFeed = () => {
                 setLocationReceived(true);
                 console.log('Current position:', lat + "," + lng);
                 loadFeed(lat, lng);
+                let response = await Geocode.fromLatLng((coordinates.coords.latitude).toString(), (coordinates.coords.longitude).toString());
+                const newCurrentLocation = {
+                    zipcode: response.results[0].address_components[7].long_name,
+                    lat: lat,
+                    lng: lng
+                }
+                localStorage.removeItem("current_location");
+                localStorage.setItem("current_location", JSON.stringify(newCurrentLocation));
+
             } else {
-                loadFeed(currLat, currLon);
+                let cachedLat = JSON.parse(localStorage.getItem('current_location') || '').lat;
+                let cacheLng = JSON.parse(localStorage.getItem('current_location') || '').lng;
+                loadFeed(cachedLat, cacheLng);
+                const coordinates = await Geolocation.getCurrentPosition();
+                const lat = coordinates.coords.latitude;
+                const lng = coordinates.coords.longitude;
+                let response = await Geocode.fromLatLng((coordinates.coords.latitude).toString(), (coordinates.coords.longitude).toString());
+                const newCurrentLocation = {
+                    zipcode: response.results[0].address_components[7].long_name,
+                    lat: lat,
+                    lng: lng
+                }
+                localStorage.removeItem("current_location");
+                localStorage.setItem("current_location", JSON.stringify(newCurrentLocation));
+
+
             }
 
         } catch (e: any) {
@@ -733,6 +771,10 @@ const AppFeed = () => {
         setuserActivityFeedLoading(false);
     }
 
+    function goToMyRides () {
+        window.location.replace('/App');
+    }
+
     useIonViewDidEnter(() => {
         ReactGA.send({ hitType: "pageview", page: "/app", title: "App" });
         // setShowNewRide(false);
@@ -744,47 +786,30 @@ const AppFeed = () => {
     });
 
     function init() {
-        setFlipRiderDriver(false);
-        // setDisplayType("0");
-        const sessionObj = localStorage.getItem('session');
-        if (sessionObj != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != '') {
-            globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
-            axios.get(import.meta.env.VITE_APP_API_V2 + '/user', { headers: { 'Authorization': globalSessionObj.wagon_token } })
-                .then(async (axiosResponse: AxiosResponse) => {
-                    loadUserActivityFeed();
-                    getCurrentLocation();
-                    setUserId(JSON.parse(localStorage.getItem('session') || "").userId);
-                    setSessionExists(true);
-                    loadHistoricalRides();
-                    //loadPotentialMatches();
-                })
-                .catch((reason: AxiosError) => {
-                    if (reason.response?.status === 401 || reason.response?.status === undefined) {
-                        setSessionExists(false);
-                        return;
-                    }
-                })
+        getCurrentLocation();
+        // setFlipRiderDriver(false);
+        // const sessionObj = localStorage.getItem('session');
+        // if (sessionObj != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != '') {
+        //     globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+        //     axios.get(import.meta.env.VITE_APP_API_V2 + '/user', { headers: { 'Authorization': globalSessionObj.wagon_token } })
+        //         .then(async (axiosResponse: AxiosResponse) => {
+        //             loadUserActivityFeed();
+        //             getCurrentLocation();
+        //             setUserId(JSON.parse(localStorage.getItem('session') || "").userId);
+        //             setSessionExists(true);
+        //         })
+        //         .catch((reason: AxiosError) => {
+        //             if (reason.response?.status === 401 || reason.response?.status === undefined) {
+        //                 setSessionExists(false);
+        //                 return;
+        //             }
+        //         })
             
-        } else {
-            console.log("Session doesn't exist");
-            localStorage.setItem("redirected_from", 'App');
-            setSessionExists(false);
-        }
-        // axios.get(import.meta.env.VITE_APP_API + '/feedback?user_id=' + session.userId)
-        //     .then((axiosResponse1: AxiosResponse) => {
-        //         console.log('feedback length', axiosResponse1.data.length);
-        //         if (axiosResponse1.data.length > 0) {
-        //             console.log('feedback length >0');
-        //             ReactGA.event({
-        //                 category: "feedback",
-        //                 action: "RedirectedToRideFeedback",
-        //             });
-        //             setRedirectToFeedBackURL(true);
-        //         } else {
-        //            // setfeedbackDetails(axiosResponse1.data);
-
-        //         }
-        //     });
+        // } else {
+        //     console.log("Session doesn't exist");
+        //     localStorage.setItem("redirected_from", 'App');
+        //     setSessionExists(false);
+        // }
 
     }
 
@@ -918,6 +943,10 @@ const AppFeed = () => {
     function closeChatModal() {
         infiniteLoop = false;
         setIsOpen(false);
+    }
+
+    function closeLoginModal() {
+        setOpenLoginModal(false);
     }
 
     async function sendMessage() {
@@ -1232,8 +1261,11 @@ const AppFeed = () => {
     }
 
     async function signIn(): Promise<void> {
+
+
         const response = await GoogleAuth.signIn();
         setSignInLoader(true);
+
         axios.post(import.meta.env.VITE_APP_API_V2 + '/user/token?idToken=' + response.authentication.idToken).then(async (response) => {
             console.log(response);
             const newSession = {
@@ -1248,7 +1280,7 @@ const AppFeed = () => {
             localStorage.removeItem("temp_session");
             localStorage.setItem("session", JSON.stringify(newSession));
             globalSessionObj = newSession;
-            setSessionExists(true);
+            
             if (Capacitor.isNativePlatform()) {
                 let permStatus = await PushNotifications.checkPermissions();
                 if (permStatus.receive === 'prompt') {
@@ -1261,7 +1293,7 @@ const AppFeed = () => {
                 await PushNotifications.register();
             }
           
-            init();
+           // init();
 
             let clientType = 'web';
 
@@ -1287,11 +1319,84 @@ const AppFeed = () => {
             }).catch((reason) => {
                     console.log('User Visits Failed');
             })
+
+            setSessionExists(true);
+            setOpenLoginModal(false);
+            requestToDrive(requestToDriveItem, requestToDriveIndex);
         })
             .catch((reason) => {
+                // if (reason.response.status === 400) {
+                //     // Handle 400
+                // } else {
+                //     // Handle else
+                // }
+                // console.log(reason.message)
             })
+        // axios.get(import.meta.env.VITE_APP_API + '/user/email?email=' + response.email)
+        //     .then(async (axiosResponse: AxiosResponse) => {
+        //         setLoading(false);
+        //         ReactGA.event({
+        //             category: "mainpage_login_success_existing_user",
+        //             action: "mainpage_login_success_existing_user",
+        //         });
+        //         const newSession = {
+        //             created: new Date().getTime(),
+        //             token: response.email,
+        //             userId: axiosResponse.data.id,
+        //             gender: axiosResponse.data.gender,
+        //             imageUrl: axiosResponse.data.imageUrl,
+        //             name: axiosResponse.data.name,
+        //         }
+        //         localStorage.removeItem("session");
+        //         localStorage.setItem("session", JSON.stringify(newSession));
+        //         // setStatusMessages('Verifying Home and Work address...');
+
+
+        //         setSessionExists(true);
+        //         init();
+        //         //postTrip(selectedEvent);
+        //     })
+        //     .catch((reason: AxiosError) => {
+        //         if (reason.response!.status === 404) {
+        //             ReactGA.event({
+        //                 category: "mainpage_login_success_new_user",
+        //                 action: "mainpage_login_success_new_user",
+        //             });
+
+        //             //const postResponse = await axios.post(import.meta.env.VITE_APP_API, postRequestBody);
+        //             axios.post(import.meta.env.VITE_APP_API + '/user', postRequestBody).then((response) => {
+        //                 console.log(response);
+        //                 const newSession = {
+        //                     created: new Date().getTime(),
+        //                     token: response.data.email,
+        //                     userId: response.data.id,
+        //                     gender: response.data.gender,
+        //                     imageUrl: response.data.imageUrl,
+        //                     name: name
+        //                 }
+        //                 localStorage.removeItem("session");
+        //                 localStorage.removeItem("temp_session");
+        //                 localStorage.setItem("session", JSON.stringify(newSession));
+        //                 setSessionExists(true);
+        //                 init();
+        //             })
+        //                 .catch((reason) => {
+        //                     if (reason.response.status === 400) {
+        //                         // Handle 400
+        //                     } else {
+        //                         // Handle else
+        //                     }
+        //                     console.log(reason.message)
+        //                 })
+        //         } else {
+        //             console.log(reason.message)
+        //         }
+        //     })
     }
 
+    // function googleMapsAddressRedirection(startAdd: any, destAdd: any) {
+    //     window.open('https://www.google.com/maps/dir/' + startAdd + "/" + destAdd);
+    // }
 
     function toggleDisplayType(type: any) {
         getCurrentLocation();
@@ -1301,13 +1406,17 @@ const AppFeed = () => {
     }
 
     function requestToDrive(item: any, index: any) {
+        setRequestToDriveItem(item);
+        setRequestToDriveIndex(index);
         if (localStorage.getItem('session') == null) {
             setSessionExists(false);
+            setOpenLoginModal(true);
             return;
         }
 
         globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
         if (globalSessionObj == undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+            setOpenLoginModal(true);
             setSessionExists(false);
             return;
         }
@@ -1420,6 +1529,8 @@ const AppFeed = () => {
     }
 
 
+
+
     return (
         <IonPage>
 
@@ -1428,17 +1539,13 @@ const AppFeed = () => {
                 !sessionExists ? <><IonReactRouter><Switch><Redirect exact to={{ pathname: '/getstarted' }} /><Route path="/getstarted" component={GetStarted} /></Switch></IonReactRouter></> : null
 
             } */}
-            {
+            {/* {
                 !sessionExists ? <>
                 <IonCard   className="swiperCard"><IonCardContent></IonCardContent>
 
-                    {/* <div className="swiperDiv"> */}
                         <SwiperComponent ></SwiperComponent>
                         </IonCard>
-                    {/* </div> */}
-                    {/* <IonGrid>
-                        <IonRow>
-                            <IonCol size="7"> */}
+                  
                             
                             <IonCard><IonCardContent>
                                 <IonLabel class="loginwithGoogle">
@@ -1461,22 +1568,11 @@ const AppFeed = () => {
                                     <a className="termsandpolicylink" target="_blank" href="/terms" >Terms of use </a> and <a className="termsandpolicylink" target="_blank" href="/privacy-policy">privacy policy</a>
 
                                 </div>
-                                
-
-                            {/* </IonCol>
-                        </IonRow>
-                        <br />
-                    </IonGrid> */}
-                    </IonCardContent></IonCard>
+                    </IonCardContent>
+                </IonCard>
                     <br/>
-                    <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
-                                <IonLabel className="footer"> support@wagoncarpool.com</IonLabel>
-
-                    {/* <SwiperComponent></SwiperComponent> */}
-                   
-
                 </> : null
-            }
+            } */}
             {
                 redirectToNewRide ? <IonReactRouter><Route path="/scc" component={SelectCarpoolCategory} /> </IonReactRouter>: null
             }
@@ -1512,9 +1608,9 @@ const AppFeed = () => {
                             {
                                 localStorage.getItem('platform') == 'ios' ? <div className="topBarHomePage"></div> : null
                             }
-                            <IonCard >
+                            {/* <IonCard >
                                 <IonCardContent >
-                                    
+
                                     <IonButton size="small" onClick={menuClicked} color="medium" className="menuButton"><IonIcon icon={menuOutline}></IonIcon></IonButton>
 
 
@@ -1522,7 +1618,8 @@ const AppFeed = () => {
 
                                 </IonCardContent>
 
-                            </IonCard></div>
+                            </IonCard> */}
+                            </div>
                         : null
 
                 }
@@ -1535,6 +1632,7 @@ const AppFeed = () => {
                                     <IonSegmentButton value="0">
                                         <IonLabel class="homeSegmentLabel">My Rides</IonLabel>
                                     </IonSegmentButton>
+                                    
                                     <IonSegmentButton value="1">
                                         <IonLabel class="homeSegmentLabel">People Around Me</IonLabel> 
                                     </IonSegmentButton>
@@ -1557,7 +1655,7 @@ const AppFeed = () => {
 
                 {
                     sessionExists && displayType == "0" ?
-                        <IonCard /*className="myrides"*/>
+                        <IonCard className="myrides">
                             <IonCardContent>
                                 <h2>Active Rides</h2>
 
@@ -1822,7 +1920,7 @@ const AppFeed = () => {
                         <>
                         <IonAccordionGroup>
       <IonAccordion >
-        <IonCard slot="header"/* className="myHistoricalRides"*/>
+        <IonCard slot="header" className="myHistoricalRides">
          <IonCardContent><h2>Ride History <IonIcon icon={chevronCollapse}></IonIcon></h2></IonCardContent>
         </IonCard>
         <div slot="content">
@@ -1918,17 +2016,17 @@ const AppFeed = () => {
                
 
 
-                {sessionExists && displayType == "0" ? <><hr />
+                {/* {sessionExists && displayType == "0" ? <><hr />
                     <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr /></> : null
-                }
+                } */}
 
                 {
                     sessionExists && displayType == "1" ?
-                        <IonCard className="myrides">
+                        <IonCard /*className="myrides"*/>
                             <IonCardContent>
                                 {
-                                    sessionExists ? <h2>People Around Me</h2> : null
+                                    sessionExists ? <h2>Drive & Earn <IonIcon icon={cash}></IonIcon></h2> : null
                                 }
 
                                 <IonLabel className="centerLabel">
@@ -2052,7 +2150,7 @@ const AppFeed = () => {
                                         {
                                             matchSentForIndex.includes(index) ? 
                                            <> <IonButton color="success" className="feedbackbutton"  disabled size="small" fill="outline">Drive Request Sent <IonIcon icon={checkmarkCircle}></IonIcon></IonButton>
-                                            <IonButton size="small" fill="outline" onClick={() => toggleDisplayType("0")} className="feedbackbutton"  color="success">View Ride</IonButton></> : null
+                                            <IonButton size="small" fill="outline" onClick={() => goToMyRides()} className="feedbackbutton"  color="success">View Ride</IonButton></> : null
                                         }
                                         {
                                             item.rideRequest.driving == false && !matchSentForIndex.includes(index) ? 
@@ -2061,7 +2159,7 @@ const AppFeed = () => {
                                             <IonButton color="success"  className="feedbackbutton" size="small" 
                                             onClick={() =>
                                                 presentAlert({
-                                                    header: 'This will create a new ride & send a match request to the rider. Do you want to proceed?',
+                                                    header: 'This will send a drive request to the rider. Do you want to proceed?',
                                                     buttons: [
                                                         {
                                                             text: 'No',
@@ -2093,10 +2191,10 @@ const AppFeed = () => {
                 }
 
 
-                {displayType == "1" ? <><hr />
+                {/* {displayType == "1" ? <><hr />
                     <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr /></> : null
-                }
+                } */}
                 {/* </IonList> */}
                 {/* <IonInfiniteScroll
                     onIonInfinite={(ev) => {
@@ -2121,70 +2219,38 @@ const AppFeed = () => {
                 </IonModal>
 
 
-                <IonModal id="example-modal" isOpen={isOpen}>
+                <IonModal id="loginModal" isOpen={openLoginModal}>
                     <IonHeader>
                         <IonToolbar>
-                            <IonTitle color="dark"> {receiver.name}</IonTitle>
+                            <IonTitle color="dark"> Login to send drive request</IonTitle>
                             <IonButtons slot="end">
-                                <IonButton onClick={() => closeChatModal()}><IonIcon color="danger" className="closeIcon" icon={closeCircle}></IonIcon></IonButton>
+                                <IonButton onClick={() => closeLoginModal()}><IonIcon color="danger" className="closeIcon" icon={closeCircle}></IonIcon></IonButton>
                             </IonButtons>
                         </IonToolbar>
                     </IonHeader>
                     <IonContent className="ion-padding">
-                        <IonList class="chatbox">
-                            {conversationDetails.map((item, index) => (
-                                userId == item.senderUserId ?
-                                    <IonItem className="chatbubble" key={index}>
-                                        <IonAvatar class="chatavatar" slot="end">
-                                            {
-                                                sender.imageUrl == null ? <img src="assets/img/avatar.svg" referrerPolicy='no-referrer' /> : <img src={sender.imageUrl} referrerPolicy='no-referrer' />
-                                            }
-                                        </IonAvatar>
-                                        <IonText class="chatbubbleMe" slot="end" >
-                                            {item.body}
+                    <IonLabel class="loginwithGoogle">
+                                    {
+                                        signInLoader ?
+                                            <IonButton disabled className="login-button" onClick={() => signIn()} expand="block" fill="solid" color="success">
+                                                <IonSpinner className="smallspinner" color="primary"></IonSpinner> Login with Google
+                                            </IonButton>
+                                            :
+                                            <> <IonButton className="login-button" onClick={() => signIn()} expand="block" fill="solid" color="success">
+                                                Login with Google
+                                            </IonButton>
+                                            </>
 
-                                            <p className="chatSummaryTimeMe">{
-                                                new Date(item.sendTime).toLocaleString(
-                                                    "en-US",
-                                                    {
-                                                        month: "short",
-                                                        day: "2-digit",
-                                                        year: "numeric",
-                                                        hour: '2-digit', minute: '2-digit'
-                                                    }
-                                                )}</p>
-                                        </IonText>
-                                    </IonItem> :
+                                    }
 
-                                    <IonItem className="chatbubble" key={index}>
-                                        <IonAvatar class="chatavatar" slot="start">
-                                            {
-                                                receiver.imageUrl == null ? <img src="assets/img/avatar.svg" referrerPolicy='no-referrer' /> : <img src={receiver.imageUrl} referrerPolicy='no-referrer' />
-                                            }
+                                </IonLabel>
+                                <div className="Terms">
+                                    By Signing in you accept our
+                                    <a className="termsandpolicylink" target="_blank" href="/terms" >Terms of use </a> and <a className="termsandpolicylink" target="_blank" href="/privacy-policy">privacy policy</a>
 
-                                        </IonAvatar>
-                                        <IonText class="chatbubbleOtherParty">
-                                            {item.body}
-
-                                            <p className="chatSummaryTimeOther">{
-                                                new Date(item.sendTime).toLocaleString(
-                                                    "en-US",
-                                                    {
-                                                        month: "short",
-                                                        day: "2-digit",
-                                                        year: "numeric",
-                                                        hour: '2-digit', minute: '2-digit'
-                                                    }
-                                                )}</p>
-                                        </IonText>
-                                    </IonItem>
-                            ))}
-                        </IonList>
+                                </div>
                     </IonContent>
-                    <IonItem className="textchatitem">
-                        <IonInput class="chattext" value={message} placeholder="Type something here" onIonInput={e => messageBody(e.detail.value)}></IonInput>
-                        <IonButton color="tertiary" className="chatSendButton" onClick={() => sendMessage()}>send</IonButton>
-                    </IonItem>
+                   
                 </IonModal>
 
                 <IonModal id="example-modal" isOpen={showRecommendedRideModal}>
@@ -2331,7 +2397,7 @@ const AppFeed = () => {
           </IonHeader>
                 <IonContent className="ion-padding">
                     <h3>Select reason for ride cancellation</h3>
-                    <IonRadioGroup  onIonChange={e => rideCancellationReasonHandler(e.detail.value)}>
+                    <IonRadioGroup   onIonChange={e => rideCancellationReasonHandler(e.detail.value)}>
                         <IonRadio color="success" value="My travel plans have changed" labelPlacement="end">My travel plans have changed</IonRadio>
                         <br />
                         <IonRadio color="success" value="Not satisfied with the pricing" labelPlacement="end">Not satisfied with the pricing</IonRadio>
@@ -2370,4 +2436,4 @@ const AppFeed = () => {
 
     );
 }
-export default AppFeed;
+export default Drive;

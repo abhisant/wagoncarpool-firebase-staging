@@ -46,7 +46,7 @@ import {
     useIonLoading,
 } from '@ionic/react';
 import { IonReactHashRouter, IonReactRouter } from '@ionic/react-router';
-import { addCircle, settings, home, search, menu, locationOutline, location, shieldCheckmarkSharp, pencil, closeCircle, logOut, menuOutline } from 'ionicons/icons';
+import { addCircle, settings, home, search, menu, locationOutline, location, shieldCheckmarkSharp, pencil, closeCircle, logOut, menuOutline, homeSharp } from 'ionicons/icons';
 import { Redirect, Route, Router, Switch } from 'react-router';
 import App from '../App';
 import { useLocation, useHistory, HashRouter } from 'react-router-dom';
@@ -570,6 +570,10 @@ const UserActivity = () => {
                 });
             })
     }
+
+    function goToHome() {
+        window.location.replace('/home');
+    }
     
     function logoutUser() {
         ReactGA.event({
@@ -581,7 +585,8 @@ const UserActivity = () => {
         localStorage.removeItem('redirected_from');
         localStorage.removeItem('temp_session');
         localStorage.removeItem('carpool_category');
-        window.location.reload();
+        window.location.replace('/home');
+       // window.location.reload();
         setSessionExists(false);
         
     }
@@ -626,6 +631,8 @@ const UserActivity = () => {
                     sessionExists && !userActivityFeedLoading?
                     <IonCard >
                     <IonCardContent >
+                    
+                    
                         <IonButton size="small" color="medium" onClick=
                         {() =>
                             presentAlert({
@@ -648,7 +655,8 @@ const UserActivity = () => {
                                 onDidDismiss: (e: CustomEvent) => null,
                             })
                         }
-                        className="filterButton"><IonIcon icon={logOut}></IonIcon>logout</IonButton>
+                        className="filterButton"> logout<IonIcon className="homeButtonIcons"  icon={logOut}></IonIcon></IonButton>
+                        <IonButton size="small" color="medium" onClick={goToHome} className="filterButton">Home <IonIcon className="homeButtonIcons" icon={homeSharp}></IonIcon></IonButton>
                         {/* <IonButton size="small" onClick={menuClicked} color="medium" className="menuButton"><IonIcon icon={menuOutline}></IonIcon></IonButton> */}
 
                         {/* <IonButton color="success" size="small" onClick={newRideClicked} className="filterButton">New Ride <IonIcon icon={addCircle}></IonIcon></IonButton> */}
