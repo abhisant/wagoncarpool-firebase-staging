@@ -752,7 +752,7 @@ const AppFeed = () => {
             axios.get(import.meta.env.VITE_APP_API_V2 + '/user', { headers: { 'Authorization': globalSessionObj.wagon_token } })
                 .then(async (axiosResponse: AxiosResponse) => {
                     loadUserActivityFeed();
-                    getCurrentLocation();
+                    //getCurrentLocation();
                     setUserId(JSON.parse(localStorage.getItem('session') || "").userId);
                     setSessionExists(true);
                     loadHistoricalRides();
