@@ -211,12 +211,12 @@ function Home() {
 
                                     <div className="homePageDivRow3">
                                         
-                                    <div className="wagonprocess" > <IonLabel> <IonLabel color="dark">Choose a ride type & </IonLabel> <IonLabel color='success'>Create a Ride</IonLabel></IonLabel> </div>
-                                    <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Find Matches </IonLabel> &  <IonLabel color='success'> Send Match Request  </IonLabel>/</IonLabel> </div>
-                                    <div className="wagonprocess" >   <IonLabel> Accept Match  </IonLabel> <IonLabel color="success">Requests You Receive</IonLabel> </div>
-                                        <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Complete the </IonLabel> <IonLabel color='success'>Ride</IonLabel></IonLabel></div>
-                                        <div className="wagonprocess" >  <IonLabel> <IonLabel color="dark">Provide the</IonLabel> <IonLabel color='success'>Feedback</IonLabel></IonLabel> </div>
-                                        <div className="wagonprocess" > <IonLabel> <IonLabel color="dark">Rinse & Repeat </IonLabel> <IonLabel color='success'></IonLabel></IonLabel> </div>
+                                    <div className="wagonprocess" > <IonLabel> <IonLabel color="dark">Choose a ride type & </IonLabel> <IonLabel color='success'>Create a Ride.</IonLabel></IonLabel> </div>
+                                    <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Find Matches </IonLabel> &  <IonLabel color='success'> Send Match Request.  </IonLabel>/</IonLabel> </div>
+                                    <div className="wagonprocess" >   <IonLabel> Accept Match  </IonLabel> <IonLabel color="success">Requests You Receive.</IonLabel> </div>
+                                        <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Complete the </IonLabel> <IonLabel color='success'>Ride.</IonLabel></IonLabel></div>
+                                        <div className="wagonprocess" >  <IonLabel> <IonLabel color="dark">Provide the</IonLabel> <IonLabel color='success'>Feedback.</IonLabel></IonLabel> </div>
+                                        <div className="wagonprocess" > <IonLabel> <IonLabel color="dark">Rinse & Repeat. </IonLabel> <IonLabel color='success'></IonLabel></IonLabel> </div>
                                         <hr />
                                     </div>
                                 </IonCol>
@@ -238,8 +238,8 @@ function Home() {
                                         <div className="homePageDivRow3">
                                         <div className="wagonprocess" ><IonLabel>Businesses helps Employees Discover <IonLabel color="success">Wagon Carpool.</IonLabel> </IonLabel></div>
                                         <div className="wagonprocess" >   <IonLabel>Employees use <IonLabel color="success">Wagon Carpool</IonLabel> to commute.</IonLabel></div>
-                                        <div className="wagonprocess" >   <IonLabel> <IonLabel>Businesses need less </IonLabel><IonLabel color="success">Parking Infrastructure </IonLabel>  </IonLabel></div>
-                                        <div className="wagonprocess" >    <IonLabel>Employees save <IonLabel color="success">Time & Money </IonLabel></IonLabel></div>
+                                        <div className="wagonprocess" >   <IonLabel> <IonLabel>Businesses need less </IonLabel><IonLabel color="success">Parking Infrastructure. </IonLabel>  </IonLabel></div>
+                                        <div className="wagonprocess" >    <IonLabel>Employees save <IonLabel color="success">Time & Money. </IonLabel></IonLabel></div>
                                         <div className="wagonprocess" >   <IonLabel> <IonLabel>Business gets credit towards </IonLabel><IonLabel color="success">CSR goals. </IonLabel>  </IonLabel></div>
 
                                         </div>

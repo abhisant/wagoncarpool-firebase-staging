@@ -1392,6 +1392,7 @@ p {
     font-size: 275%;
     font-weight: bold;
     padding-bottom: 30px;
+    margin-left: 10px;
   }
 }
 
@@ -1399,6 +1400,7 @@ p {
   .CheapestRidesTo {
     font-size: 175%;
     font-weight: bold;
+    margin-left: 10px;
   }
 }
 
@@ -1429,6 +1431,7 @@ ion-col {
     font-size: 150%;
     font-weight: bold;
     padding-top: 10px;
+    margin-left: 10px;
   }
 }
 
@@ -1438,6 +1441,7 @@ ion-col {
     font-weight: bold;
     padding-bottom: 50px;
     padding-top: 50px;
+    margin-left: 10px;
   }
 }
 
@@ -1447,6 +1451,7 @@ ion-col {
     font-size: 150%;
     font-weight: bold;
     padding-top: 10px;
+    margin-left: 10px;
   }
 }
 
@@ -1455,6 +1460,7 @@ ion-col {
     font-size: 250%;
     font-weight: bold;
     padding-bottom: 50px;
+    margin-left: 10px;
   }
 }
 
@@ -1651,5 +1657,5 @@ ion-col {
   padding-left: 10px;
 }
 .homeButtonIcons {
-  margin-left: 2px;
+  margin-left: 5px;
 }
