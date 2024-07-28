@@ -1998,6 +1998,7 @@ const Drive = () => {
                                         }
                                         <hr />
                                         
+                                        
                                        
 
                                         </IonCardContent>
@@ -2026,7 +2027,7 @@ const Drive = () => {
                         <IonCard /*className="myrides"*/>
                             <IonCardContent>
                                 {
-                                    sessionExists ? <h2>Drive & Earn <IonIcon icon={cash}></IonIcon></h2> : null
+                                    sessionExists ? <h2>Drive get paid <IonIcon icon={cash}></IonIcon></h2> : null
                                 }
 
                                 <IonLabel className="centerLabel">
@@ -2066,6 +2067,9 @@ const Drive = () => {
 
                                 <IonCard key={index}>
                                     <IonCardContent>
+                                    <div className="diamond">
+  <div className="content"> ${item.rideRequest.rideCost}</div>
+</div>
                                         {
                                             item.user.imageUrl == null ? <img className="feedItemImg" src="assets/img/avatar.svg" referrerPolicy='no-referrer' /> : <img className="feedItemImg" src={item.user.imageUrl} alt="" referrerPolicy='no-referrer' />
                                         }
@@ -2137,12 +2141,12 @@ const Drive = () => {
                                             item.rideRequest.roundTrip ? <IonBadge color="medium" class="ionBadge" slot="end">Round Trip</IonBadge> : <IonBadge color="medium" class="ionBadge" slot="end">One Way</IonBadge>
                                         }
 
-                                        {
+                                        {/* {
                                             item.rideRequest.driving == false ?
                                                 <IonBadge color="medium" className="ionBadge" slot="end">Drive & Get: ${item.rideRequest.rideCost}</IonBadge> :
 
                                                 <IonBadge color="medium" className="ionBadge" slot="end">Rider Pays: ${item.rideRequest.rideCost}</IonBadge>
-                                        }
+                                        } */}
                                         <IonBadge color="medium" className="ionBadge" slot="end">{item.rideRequest.labelsCsv}</IonBadge>
                                         <hr/>
                                         
@@ -2152,6 +2156,7 @@ const Drive = () => {
                                            <> <IonButton color="success" className="feedbackbutton"  disabled size="small" fill="outline">Drive Request Sent <IonIcon icon={checkmarkCircle}></IonIcon></IonButton>
                                             <IonButton size="small" fill="outline" onClick={() => goToMyRides()} className="feedbackbutton"  color="success">View Ride</IonButton></> : null
                                         }
+                                        
                                         {
                                             item.rideRequest.driving == false && !matchSentForIndex.includes(index) ? 
                                             forceRideCreateIndex == index ? <IonButton disabled color="success"  className="feedbackbutton" size="small" > {statusMessages} <IonIcon icon={car}></IonIcon><IonSpinner class="smallspinner" color="primary"></IonSpinner></IonButton>

@@ -1659,3 +1659,24 @@ ion-col {
 .homeButtonIcons {
   margin-left: 5px;
 }
+.diamond {
+  width: 50px;
+  height: 50px;
+  float: right;
+  background-image: linear-gradient(to bottom right, #41a167, #619778);
+  clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+  transform: rotate(0);
+}
+
+.diamond .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+.temp {
+  float: left;
+}
