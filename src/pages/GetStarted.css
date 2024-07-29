@@ -1687,3 +1687,12 @@ ion-col {
 .rideLabels {
   padding-left: 5px;
 }
+.cantFind {
+  font-style: italic;
+}
+.newRideHref {
+  cursor: pointer;
+  color: #41a167;
+  text-decoration: underline;
+}
+

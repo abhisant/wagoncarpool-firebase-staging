@@ -2024,10 +2024,27 @@ const Drive = () => {
 
                 {
                     sessionExists && displayType == "1" ?
-                        <IonCard /*className="myrides"*/>
+                        <IonCard color="success">
                             <IonCardContent>
                                 {
-                                    sessionExists ? <h2>Drive and get paid <IonIcon icon={cash}></IonIcon></h2> : null
+                                    sessionExists ? <IonLabel>Drive and get paid <IonIcon icon={cash}></IonIcon></IonLabel> : null
+                                }
+
+                                <IonLabel className="centerLabel">
+                                    {
+                                        sessionExists && feedLoading ? <IonSpinner color="primary"></IonSpinner> : null
+                                    }
+                                </IonLabel>
+                            </IonCardContent>
+                        </IonCard> : null
+                }
+                 {
+                    sessionExists && displayType == "1" ?
+                        <IonCard >
+                            <IonCardContent>
+                                {
+                                    sessionExists ? <> <IonLabel className="cantFind">Can't find what you need? Create a <a className="newRideHref" onClick={newRideClicked}>New Ride</a> as a Driver or Rider and get matched. </IonLabel>
+                                     </>: null
                                 }
 
                                 <IonLabel className="centerLabel">
