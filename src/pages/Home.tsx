@@ -215,7 +215,7 @@ function Home() {
                                     <div className="homePageDivRow3">
                                         
                                     <div className="wagonprocess" > <IonLabel> <IonLabel color="dark">Choose a ride type & </IonLabel> <IonLabel color='success'>Create a Ride.</IonLabel></IonLabel> </div>
-                                    <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Find Matches </IonLabel> &  <IonLabel color='success'> Send Match Request.  </IonLabel>/</IonLabel> </div>
+                                    <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Find Matches </IonLabel> &  <IonLabel color='success'> Send Match Request  </IonLabel>/</IonLabel> </div>
                                     <div className="wagonprocess" >   <IonLabel> Accept Match  </IonLabel> <IonLabel color="success">Requests You Receive.</IonLabel> </div>
                                         <div className="wagonprocess" >   <IonLabel> <IonLabel color="dark">Complete the </IonLabel> <IonLabel color='success'>Ride.</IonLabel></IonLabel></div>
                                         <div className="wagonprocess" >  <IonLabel> <IonLabel color="dark">Provide the</IonLabel> <IonLabel color='success'>Feedback.</IonLabel></IonLabel> </div>
