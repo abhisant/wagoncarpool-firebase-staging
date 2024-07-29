@@ -1680,3 +1680,6 @@ ion-col {
 .temp {
   float: left;
 }
+.rideLabels {
+  padding-left: 5px;
+}
