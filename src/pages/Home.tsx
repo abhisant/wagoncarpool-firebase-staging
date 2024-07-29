@@ -128,9 +128,9 @@ function Home() {
                                         <IonLabel className="homePageText1" color="medium"> Save <IonLabel color="success">Money</IonLabel>, Save <IonLabel color="success">Time</IonLabel>, Save the <IonLabel color="success">Planet</IonLabel> </IonLabel>
                                         <hr />
                                         
-                                        <IonLabel className="homePageText1" color="medium">Get a <IonLabel color="success">$20  </IonLabel>gift card on your first ride completion.
+                                        <IonLabel className="homePageText1" color="medium">Complete the ride and get  <IonLabel color="success">$20 gift card.</IonLabel>
                                         </IonLabel><hr />
-                                        <IonLabel className="homePageText1" color="medium">Rider pays Driver, we <IonLabel color="success"> <IonLabel color=""></IonLabel>do not charge</IonLabel> any fees.  </IonLabel>
+                                        <IonLabel className="homePageText1" color="medium">Driver keeps the money, <IonLabel color="success"> <IonLabel color=""></IonLabel>we keep the goodwill.</IonLabel> </IonLabel>
                                         <hr />
                                         
                                         <hr /><hr /><hr />
