@@ -1767,10 +1767,18 @@ const AppFeed = () => {
 
                                             {
                                                 item.requestStats.userAndRequestStatus.map((subItem: any, index: any) => (
-                                                    subItem.status == 0 ? <><IonButton disabled color="medium" fill="outline" size="small" className="userActivityContact"> {subItem.isApprover? <>Match request sent to</> : <>Received a match request from</>} {subItem.user.name}</IonButton> 
-                                                    {!subItem.isApprover? <IonButton color="success" fill="solid" onClick={() => approveRejectRequest()}  className="userActivityContact" size="small"> <>Approve / Reject Match Request</></IonButton>: null}
-                                                    <IonButton color="success" fill="solid" size="small" className="userActivityContact" onClick={() => loadChatModal(item, subItem)}>Contact {subItem.user.name}</IonButton></> : 
-                                                    subItem.status == 1 || subItem.status == 0 ? <IonButton color="success" fill="solid" size="small" className="userActivityContact" onClick={() => loadChatModal(item, subItem)}>Contact {subItem.user.name}</IonButton> : null
+                                                    subItem.status == 0 ? 
+                                                    <><IonButton disabled color="medium" fill="outline" size="small" className="userActivityContact"> {subItem.isApprover? <>Match request sent to</> 
+                                                    : <>Received a match request from</>} {subItem.user.name}</IonButton> 
+                                                    {
+                                                    !subItem.isApprover? <IonButton color="success" fill="solid" onClick={() => approveRejectRequest()}  className="userActivityContact" size="small"> <>Approve / Reject Match Request</></IonButton>
+                                                    : null
+                                                    }
+                                                    {/* <IonButton color="success" fill="solid" size="small" className="userActivityContact" onClick={() => loadChatModal(item, subItem)}>Contact {subItem.user.name}</IonButton> */}
+                                                    </> 
+                                                    : 
+                                                    // subItem.status == 1 ||
+                                                     subItem.status == 1 ? <IonButton color="success" fill="solid" size="small" className="userActivityContact" onClick={() => loadChatModal(item, subItem)}>Contact {subItem.user.name}</IonButton> : null
                                                 ))
                                             }</p>
 
