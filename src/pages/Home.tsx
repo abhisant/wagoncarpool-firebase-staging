@@ -239,7 +239,7 @@ function Home() {
                                     <IonCol size="12" size-sm="6">
 
                                         <div className="homePageDivRow3">
-                                        <div className="wagonprocess" ><IonLabel>Businesses helps Employees Discover <IonLabel color="success">Wagon Carpool.</IonLabel> </IonLabel></div>
+                                        <div className="wagonprocess" ><IonLabel>Businesses help Employees Discover <IonLabel color="success">Wagon Carpool.</IonLabel> </IonLabel></div>
                                         <div className="wagonprocess" >   <IonLabel>Employees use <IonLabel color="success">Wagon Carpool</IonLabel> to commute.</IonLabel></div>
                                         <div className="wagonprocess" >   <IonLabel> <IonLabel>Businesses need less </IonLabel><IonLabel color="success">Parking Infrastructure. </IonLabel>  </IonLabel></div>
                                         <div className="wagonprocess" >    <IonLabel>Employees save <IonLabel color="success">Time & Money. </IonLabel></IonLabel></div>
