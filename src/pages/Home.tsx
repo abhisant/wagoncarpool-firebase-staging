@@ -129,7 +129,9 @@ function Home() {
                                         <hr />
                                         
                                         <IonLabel className="homePageText1" color="medium">Get a <IonLabel color="success">$20  </IonLabel>gift card on your first ride completion.
-                                        </IonLabel>
+                                        </IonLabel><hr />
+                                        {/* <IonLabel className="homePageText1" color="medium">We don't take a cut between rides <IonLabel color="success">$20  </IonLabel>gift card on your first ride completion.
+                                        </IonLabel> */}
                                         <hr /><hr /><hr />
                                         <div className='createARideHome' >
                                         <a target="_blank" href="https://apps.apple.com/us/app/wagon-carpool/id6478844608"><img className="appleStoreIconHome" src="assets/img/AppStore.png" alt="bn45" /></a>

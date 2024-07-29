@@ -2027,7 +2027,7 @@ const Drive = () => {
                         <IonCard /*className="myrides"*/>
                             <IonCardContent>
                                 {
-                                    sessionExists ? <h2>Drive get paid <IonIcon icon={cash}></IonIcon></h2> : null
+                                    sessionExists ? <h2>Drive and get paid <IonIcon icon={cash}></IonIcon></h2> : null
                                 }
 
                                 <IonLabel className="centerLabel">

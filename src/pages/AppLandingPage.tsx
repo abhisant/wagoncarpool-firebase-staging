@@ -190,18 +190,18 @@ function AppLandingPage() {
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
-        {/* <IonTabButton tab="home" href="/home">
+        <IonTabButton tab="home" href="/home">
             <IonIcon size="small" icon={homeSharp} />
             <IonLabel  class="tablabel">Home</IonLabel>
-          </IonTabButton> */}
+          </IonTabButton>
           <IonTabButton tab="rides" href="/App">
             <IonIcon size="small" icon={car} />
             <IonLabel  class="tablabel">Rides</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="drive" href="/drive">
+          {/* <IonTabButton tab="drive" href="/drive">
             <IonIcon size="small" icon={cash} />
             <IonLabel  class="tablabel">Drive</IonLabel>
-          </IonTabButton>
+          </IonTabButton> */}
 
           <IonTabButton tab="pendingRequests" href="/pendingRequests">
             <IonIcon size="small" icon={notifications} onClick={clearNotifications} />
