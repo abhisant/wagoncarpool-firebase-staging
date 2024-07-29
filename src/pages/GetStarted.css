@@ -1508,6 +1508,8 @@ ion-col {
 @media only screen and (max-width: 1024px) {
   .createARideHome {
     width: fit-content;
+    font-size: 12px;
+    padding-left: 5px;
   }
 }
 
@@ -1516,6 +1518,8 @@ ion-col {
     width: fit-content;
     margin-top: 25px;
     margin-bottom: 25px;
+    font-size: 18px;
+    padding-left: 10px;
   }
 }
 

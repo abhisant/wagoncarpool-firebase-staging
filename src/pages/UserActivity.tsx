@@ -656,7 +656,7 @@ const UserActivity = () => {
                             })
                         }
                         className="filterButton"> logout<IonIcon className="homeButtonIcons"  icon={logOut}></IonIcon></IonButton>
-                        <IonButton size="small" color="medium" onClick={goToHome} className="filterButton">Home <IonIcon className="homeButtonIcons" icon={homeSharp}></IonIcon></IonButton>
+                        {/* <IonButton size="small" color="medium" onClick={goToHome} className="filterButton">Home <IonIcon className="homeButtonIcons" icon={homeSharp}></IonIcon></IonButton> */}
                         {/* <IonButton size="small" onClick={menuClicked} color="medium" className="menuButton"><IonIcon icon={menuOutline}></IonIcon></IonButton> */}
 
                         {/* <IonButton color="success" size="small" onClick={newRideClicked} className="filterButton">New Ride <IonIcon icon={addCircle}></IonIcon></IonButton> */}

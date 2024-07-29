@@ -119,8 +119,8 @@ function Home() {
                                         <IonLabel className="carpoolWithWagon" > <IonLabel color="dark">Wagon</IonLabel> <IonLabel color="dark"></IonLabel> <IonLabel color='success'> Carpool</IonLabel></IonLabel> <hr />
                                         <hr />
                                         <hr />
-                                        <IonLabel><IonButton color="success" shape='round' fill="outline" size="default" className='createARideHome' onClick={selectCarpoolCategory}>Create a Ride <IonIcon className="homeButtonIcons" color="success" icon={car}> </IonIcon></IonButton>
-                                        <IonButton color="success" shape='round' fill="outline" size="default" className='createARideHome' onClick={driveAndEarn}>Drive & Earn <IonIcon className="homeButtonIcons" color="success" icon={cash}> </IonIcon></IonButton>
+                                        <IonLabel><IonButton color="success" shape='round' fill="outline"  className='createARideHome' onClick={selectCarpoolCategory}>Create a Ride <IonIcon className="homeButtonIcons" color="success" icon={car}> </IonIcon></IonButton>
+                                        <IonButton color="success" shape='round' fill="outline"  className='createARideHome' onClick={driveAndEarn}>Drive & Earn <IonIcon className="homeButtonIcons" color="success" icon={cash}> </IonIcon></IonButton>
                                         </IonLabel>
                                         
                                         <hr />
@@ -130,8 +130,9 @@ function Home() {
                                         
                                         <IonLabel className="homePageText1" color="medium">Get a <IonLabel color="success">$20  </IonLabel>gift card on your first ride completion.
                                         </IonLabel><hr />
-                                        {/* <IonLabel className="homePageText1" color="medium">We don't take a cut between rides <IonLabel color="success">$20  </IonLabel>gift card on your first ride completion.
-                                        </IonLabel> */}
+                                        <IonLabel className="homePageText1" color="medium">Rider pays Driver, we <IonLabel color="success"> <IonLabel color=""></IonLabel>do not charge</IonLabel> any fees.  </IonLabel>
+                                        <hr />
+                                        
                                         <hr /><hr /><hr />
                                         <div className='createARideHome' >
                                         <a target="_blank" href="https://apps.apple.com/us/app/wagon-carpool/id6478844608"><img className="appleStoreIconHome" src="assets/img/AppStore.png" alt="bn45" /></a>
