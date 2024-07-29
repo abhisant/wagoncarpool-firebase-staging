@@ -130,7 +130,7 @@ function Home() {
                                         
                                         <IonLabel className="homePageText1" color="medium">Complete the ride and get  <IonLabel color="success">$20 gift card.</IonLabel>
                                         </IonLabel><hr />
-                                        <IonLabel className="homePageText1" color="medium">Driver keeps the money, <IonLabel color="success"> <IonLabel color=""></IonLabel>we keep the goodwill.</IonLabel> </IonLabel>
+                                        <IonLabel className="homePageText1" color="success">Driver keeps the money, <IonLabel color="success"> <IonLabel color="medium">we keep the goodwill.</IonLabel></IonLabel> </IonLabel>
                                         <hr />
                                         
                                         <hr /><hr /><hr />
@@ -186,10 +186,10 @@ function Home() {
 
                             <IonCol size="12" size-sm="6">
                                 <div className="homePageContainer">
-                                  <div className="wagonprocessMorePadding" >  <IonLabel> Share Your<IonLabel color="dark"><IonLabel color='success'> Gas & Parking</IonLabel> Expense</IonLabel> <IonLabel color='success'> </IonLabel></IonLabel> </div>
-                                  <div className="wagonprocessMorePadding" >  <IonLabel  > <IonLabel color="dark">Build your</IonLabel> <IonLabel color='success'>NETWORK</IonLabel></IonLabel> </div>
-                                  <div className="wagonprocessMorePadding" > <IonLabel > <IonLabel color="dark">Get  </IonLabel> <IonLabel color='success'>Get HOV/CARPOOL </IonLabel>lane access</IonLabel> </div>
-                                  <div className="wagonprocessMorePadding" > <IonLabel > Feel good about helping the <IonLabel color="dark"> </IonLabel> <IonLabel color='success'>Environment</IonLabel><IonLabel color="dark"></IonLabel></IonLabel> </div>
+                                  <div className="wagonprocessMorePadding" >  <IonLabel> Share Your<IonLabel color="dark"><IonLabel color='success'> Gas & Parking</IonLabel> Expense.</IonLabel> <IonLabel color='success'> </IonLabel></IonLabel> </div>
+                                  <div className="wagonprocessMorePadding" >  <IonLabel  > <IonLabel color="dark">Build your</IonLabel> <IonLabel color='success'>NETWORK.</IonLabel></IonLabel> </div>
+                                  <div className="wagonprocessMorePadding" > <IonLabel > <IonLabel color="dark">Get  </IonLabel> <IonLabel color='success'> HOV/CARPOOL </IonLabel>lane access.</IonLabel> </div>
+                                  <div className="wagonprocessMorePadding" > <IonLabel > Feel good about helping the <IonLabel color="dark"> </IonLabel> <IonLabel color='success'>Environment.</IonLabel><IonLabel color="dark"></IonLabel></IonLabel> </div>
                                     <hr />
                                 </div>
                             </IonCol>
