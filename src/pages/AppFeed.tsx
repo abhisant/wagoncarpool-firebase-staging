@@ -705,6 +705,20 @@ const AppFeed = () => {
     async function loadPotentialMatches() {
         
         const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/user/commute_match', {headers: { 'Authorization': globalSessionObj.wagon_token } });
+        for (var i=0; i < getResponse.data.length; i++ ) {
+            for (var k=0; k < getResponse.data[i].matchingRides.length; k++ ) {
+                let matchingRidesObj = getResponse.data[i].matchingRides[k];
+                for (var j=0; j < matchingRidesObj.requestStats.userAndRequestStatus.length; j++) {
+                    if (getResponse.data[i].matchingRides[k].requestStats.userAndRequestStatus[j].user.id == JSON.parse(localStorage.getItem('session') || "").userId) {
+                        console.log('INDEX= ' + i);
+                        matchIndexArr.push(i +  k);
+                        
+                    }
+                }
+            }
+        }
+        console.log(matchIndexArr);
+        setMatchSentForIndex(matchIndexArr);
         setPotentialMatches(getResponse.data);
         setLoadPotentialMatches(false)
         console.log('potential matches', getResponse.data);
@@ -752,11 +766,12 @@ const AppFeed = () => {
             axios.get(import.meta.env.VITE_APP_API_V2 + '/user', { headers: { 'Authorization': globalSessionObj.wagon_token } })
                 .then(async (axiosResponse: AxiosResponse) => {
                     loadUserActivityFeed();
+                    loadPotentialMatches();
                     //getCurrentLocation();
                     setUserId(JSON.parse(localStorage.getItem('session') || "").userId);
                     setSessionExists(true);
                     loadHistoricalRides();
-                    //loadPotentialMatches();
+                    
                 })
                 .catch((reason: AxiosError) => {
                     if (reason.response?.status === 401 || reason.response?.status === undefined) {
@@ -1301,6 +1316,7 @@ const AppFeed = () => {
     }
 
     function requestToDrive(item: any, index: any) {
+        console.log('match req index', index);
         if (localStorage.getItem('session') == null) {
             setSessionExists(false);
             return;
@@ -1331,7 +1347,7 @@ const AppFeed = () => {
             rideCost: null,
             roundTrip: item.rideRequest.roundTrip,
             rideType: item.rideRequest.rideType,
-            labelsCsv: 'drive-request',
+            labelsCsv: 'match-request',
             returnTime: item.rideRequest.returnTime
         };
         console.log(postRequestBody);
@@ -1556,8 +1572,169 @@ const AppFeed = () => {
                 } */}
 
                 {
+                    displayType == "0" && !loadPotentialMatchSpinner && potentialMatches.length > 0 && sessionExists ?
+                        <IonCard color="success">
+                            <IonCardContent>
+                                <IonLabel>Potential Matches</IonLabel>
+
+                                <IonLabel className="centerLabel">
+                                    {
+                                        loadPotentialMatchSpinner ? <IonSpinner color="primary"></IonSpinner> : null
+                                    }
+                                </IonLabel>
+
+                            </IonCardContent>
+                        </IonCard> : null
+                }
+
+{
+                    displayType == "0" && !loadPotentialMatchSpinner && potentialMatches.length > 0 && sessionExists ?
+                        <IonCard>
+                            <IonCardContent>
+                                <IonLabel className="cantFind">Based on your previous commute(s), the following ride(s) could be a good match for your office travel. Send a request to get matched.</IonLabel>
+
+                                
+
+                            </IonCardContent>
+                        </IonCard> : null
+                }
+
+                {
+                    displayType == "0" && sessionExists ?
+                        <div className="fixedheight">
+                            {
+                                potentialMatches.map((globalItem, globalIndex) => (
+                                    globalItem.matchingRides.map((item: any, index: any) => (
+
+                                    <IonCard>
+
+                                    <IonCardContent>
+                                        {
+                                            item.user.imageUrl == null ? <img className="feedItemImg" src="assets/img/avatar.svg" referrerPolicy='no-referrer' /> : <img className="feedItemImg" src={item.user.imageUrl} alt="" referrerPolicy='no-referrer' />
+                                        }
+
+                                        <span className="feedName">{item.user.name}
+                                            {
+                                                item.user.verificationStatus == 'STATUS_VERIFIED' ? <IonIcon size="small" color='success' icon={shieldCheckmarkSharp}></IonIcon> : null
+                                            }
+
+                                        </span>
+                                        <p>
+                                            {
+                                                item.user.verificationStatus == 'STATUS_VERIFIED' ? <IonIcon size="small" color='success' icon={shieldCheckmarkSharp}></IonIcon> : null
+                                            }
+                                        </p>
+                                        
+                                        {
+                                            item.rideRequest.driving == false ? <IonLabel color="success">Requesting a ride on </IonLabel> : <IonLabel color="success">Offering a ride on </IonLabel>
+                                        }
+
+
+                                        {
+                                            new Date(item.rideRequest.departureTime).toLocaleString(
+                                                "en-US",
+                                                {
+                                                    month: "short",
+                                                    day: "2-digit",
+                                                    year: "numeric",
+                                                    hour: '2-digit',
+                                                    minute: '2-digit'
+                                                }
+                                            )}
+                                        {/* {
+                                    item.rideRequest.roundTrip ?
+                                        <p className="feedDepartureTime">Tentative Return Time: {
+                                            new Date(item.rideRequest.returnTime).toLocaleString(
+                                                "en-US",
+                                                {
+                                                    month: "short",
+                                                    day: "2-digit",
+                                                    year: "numeric",
+                                                    hour: '2-digit',
+                                                    minute: '2-digit'
+                                                }
+                                            )}</p>
+                                        : null
+                                } */}
+                                        <br />
+
+
+                                        <IonButton onClick={() => googleMapsAddressRedirection(item.rideRequest.startAddress, item.rideRequest.destinationAddress)} color='medium' className="feedaddressbuttons" size="small" fill="outline">{item.rideRequest.startAddressName == null ? item.rideRequest.startAddress : item.rideRequest.startAddress.includes(item.rideRequest.startAddressName) ? item.rideRequest.startAddress : (item.rideRequest.startAddressName + "," + item.rideRequest.startAddress.split(',').splice(item.rideRequest.startAddress.split(",").length - 3).join(',')).substring(0, 45).concat('..')}<IonIcon slot="end" size="small" icon={location}></IonIcon></IonButton>
+                                        <br /><IonButton onClick={() => googleMapsAddressRedirection(item.rideRequest.startAddress, item.rideRequest.destinationAddress)} color="medium" className="feedaddressbuttons" size="small" fill="outline">{item.rideRequest.destinationAddressName == null ? item.rideRequest.destinationAddress : item.rideRequest.destinationAddress.includes(item.rideRequest.destinationAddressName) ? item.rideRequest.destinationAddress : (item.rideRequest.destinationAddressName + "," + item.rideRequest.destinationAddress.split(',').splice(item.rideRequest.destinationAddress.split(",").length - 3).join(',')).substring(0, 45).concat('..')}<IonIcon slot="end" size="small" icon={location}></IonIcon></IonButton>
+
+                                        <hr />
+                                        {
+                                            item.rideRequest.driving == false ?
+                                                item.rideRequest.seatCount != item.requestStats.acceptedTotalSeatCount ?
+                                                    <IonBadge color="medium" class="ionBadge" slot="end">Seats: {item.rideRequest.seatCount - item.requestStats.acceptedTotalSeatCount}</IonBadge> : null :
+
+                                                item.rideRequest.seatCount != item.requestStats.acceptedTotalSeatCount ?
+                                                    <IonBadge color="medium" class="ionBadge" slot="end">Seats: {item.rideRequest.seatCount - item.requestStats.acceptedTotalSeatCount}</IonBadge> : null
+                                        }
+                                        {
+                                            item.rideRequest.roundTrip ? <IonBadge color="medium" class="ionBadge" slot="end">Round Trip</IonBadge> : <IonBadge color="medium" class="ionBadge" slot="end">One Way</IonBadge>
+                                        }
+
+                                        {
+                                            item.rideRequest.driving == false ?
+                                                <IonBadge color="medium" className="ionBadge" slot="end">You Get: ${item.rideRequest.rideCost}</IonBadge> :
+
+                                                <IonBadge color="medium" className="ionBadge" slot="end">You Pay: ${item.rideRequest.rideCost}</IonBadge>
+                                        }
+                                        <IonBadge color="medium" className="ionBadge" slot="end">{item.rideRequest.labelsCsv}</IonBadge>
+                                        <hr/>
+                                        
+                                
+                                        {
+                                            matchSentForIndex.includes(globalIndex + index) ? 
+                                           <> <IonButton color="success" className="feedbackbutton"  disabled size="small" fill="outline">Match Request Sent <IonIcon icon={checkmarkCircle}></IonIcon></IonButton>
+                                            </> : null
+                                        }
+                                        {
+                                            // item.rideRequest.driving == false && 
+                                            !matchSentForIndex.includes(globalIndex + index) ? 
+                                            forceRideCreateIndex == (globalIndex + index) ? <IonButton disabled color="success"  className="feedbackbutton" size="small" > {statusMessages} <IonIcon icon={car}></IonIcon><IonSpinner class="smallspinner" color="primary"></IonSpinner></IonButton>
+                                            :
+                                            <IonButton color="success"  className="feedbackbutton" size="small" 
+                                            onClick={() =>
+                                                presentAlert({
+                                                    header: 'This will create a new ride & send a match request to another user. Do you want to proceed?',
+                                                    buttons: [
+                                                        {
+                                                            text: 'No',
+                                                            role: 'cancel',
+                                                            handler: () => {
+                                                            },
+                                                        },
+                                                        {
+                                                         
+                                                            text: 'Yes',
+                                                            role: 'confirm',
+                                                            handler: () => {
+                                                                requestToDrive(item, (globalIndex + index));
+                                                            },
+                                                        },
+                                                    ],
+                                                    onDidDismiss: (e: CustomEvent) => null,
+                                                })
+                                            }
+                                             
+                                             >Send Match Request </IonButton> : null
+                                        }
+
+
+                                    </IonCardContent>
+                                    </IonCard>
+                                    ))
+                                ))
+                            }
+                        </div> : null
+                }
+                            
+                
+                {
                     sessionExists && displayType == "0" ?
-                        <IonCard /*className="myrides"*/>
+                        <IonCard className="myrides">
                             <IonCardContent>
                                 <h2>Active Rides</h2>
 
@@ -1570,6 +1747,7 @@ const AppFeed = () => {
                             </IonCardContent>
                         </IonCard> : null
                 }
+                
                 {
 
                     displayType == "0" && !userActivityFeedLoading && userActivityFeedData.length == 0 && sessionExists ?
@@ -1577,7 +1755,7 @@ const AppFeed = () => {
                             <IonCardContent>
                                 <IonLabel>You don't have any active rides at this moment!</IonLabel><br />
                                 <IonButton fill="outline" color="success" size="small" onClick={newRideClicked} className="filterBadge" >New Ride <IonIcon icon={addCircle}></IonIcon></IonButton>
-                                <IonButton fill="outline" color="success" size="small" onClick={() => { setDisplayType("1") }} className="filterBadge">People around Me</IonButton>
+                                {/* <IonButton fill="outline" color="success" size="small" onClick={() => { setDisplayType("1") }} className="filterBadge">People around Me</IonButton> */}
                             </IonCardContent>
                         </IonCard>
                         : null
@@ -1807,22 +1985,8 @@ const AppFeed = () => {
                             </IonCardContent>
                         </IonCard> : null
                 } */}
-{/* 
-                {
-                    sessionExists && displayType == "0" ?
-                        <IonCard className="myrides">
-                            <IonCardContent>
-                                <h2>Potential Matches</h2>
 
-                                <IonLabel className="centerLabel">
-                                    {
-                                        loadPotentialMatchSpinner ? <IonSpinner color="primary"></IonSpinner> : null
-                                    }
-                                </IonLabel>
-
-                            </IonCardContent>
-                        </IonCard> : null
-                } */}
+                
                 
                 {
                     displayType == "0" && sessionExists && historicalRides.length > 0?
@@ -1830,7 +1994,7 @@ const AppFeed = () => {
                         <>
                         <IonAccordionGroup>
       <IonAccordion >
-        <IonCard slot="header"/* className="myHistoricalRides"*/>
+        <IonCard slot="header" className="myHistoricalRides">
          <IonCardContent><h2>Ride History <IonIcon icon={chevronCollapse}></IonIcon></h2></IonCardContent>
         </IonCard>
         <div slot="content">
