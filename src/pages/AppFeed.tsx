@@ -1315,7 +1315,7 @@ const AppFeed = () => {
         setDisplayType(type);
     }
 
-    function requestToDrive(item: any, index: any) {
+    function sendMatchRequest(item: any, index: any, globalItem: any) {
         console.log('match req index', index);
         if (localStorage.getItem('session') == null) {
             setSessionExists(false);
@@ -1333,16 +1333,16 @@ const AppFeed = () => {
         const postRequestBody = {
             // userId: session.userId,
             departureTime: item.rideRequest.departureTime,
-            start_loc_lat: item.rideRequest.start_loc_lat,
-            start_loc_long: item.rideRequest.start_loc_long,
-            destination_loc_lat: item.rideRequest.destination_loc_lat,
-            destination_loc_long: item.rideRequest.destination_loc_long,
+            start_loc_lat: globalItem.oldRide.start_loc_lat,
+            start_loc_long: globalItem.oldRide.start_loc_long,
+            destination_loc_lat: globalItem.oldRide.destination_loc_lat,
+            destination_loc_long: globalItem.oldRide.destination_loc_long,
             seatCount: item.rideRequest.seatCount,
             driving: !item.rideRequest.driving,
             startAddress: item.rideRequest.startAddress,
-            destinationAddress: item.rideRequest.destinationAddress,
-            startAddressName: item.rideRequest.startAddressName,
-            destinationAddressName: item.rideRequest.destinationAddressName,
+            destinationAddress: globalItem.oldRide.destinationAddress,
+            startAddressName: globalItem.oldRide.startAddressName,
+            destinationAddressName: globalItem.oldRide.destinationAddressName,
             rideDistance: item.rideRequest.rideDistance,
             rideCost: null,
             roundTrip: item.rideRequest.roundTrip,
@@ -1383,6 +1383,7 @@ const AppFeed = () => {
                         arr.push(index);
                         setMatchSentForIndex(arr);
                         matchIndexArr.push(index);
+                        loadUserActivityFeed();
                     }).catch((reason: any) => {
                         setForceRideCreate(-1);
                         present({
@@ -1711,7 +1712,7 @@ const AppFeed = () => {
                                                             text: 'Yes',
                                                             role: 'confirm',
                                                             handler: () => {
-                                                                requestToDrive(item, (globalIndex + index));
+                                                                sendMatchRequest(item, (globalIndex + index), globalItem);
                                                             },
                                                         },
                                                     ],
@@ -1734,9 +1735,9 @@ const AppFeed = () => {
                 
                 {
                     sessionExists && displayType == "0" ?
-                        <IonCard className="myrides">
+                        <IonCard color="success">
                             <IonCardContent>
-                                <h2>Active Rides</h2>
+                                <IonLabel>My Active Rides</IonLabel>
 
                                 <IonLabel className="centerLabel">
                                     {
@@ -2246,7 +2247,7 @@ const AppFeed = () => {
                                                             text: 'Yes',
                                                             role: 'confirm',
                                                             handler: () => {
-                                                                requestToDrive(item, index);
+                                                                sendMatchRequest(item, index, null);
                                                             },
                                                         },
                                                     ],
