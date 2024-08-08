@@ -768,6 +768,16 @@ const AppFeed = () => {
 
     function init() {
         setFlipRiderDriver(false);
+        let urlParams = new URLSearchParams(window.location.href);
+        console.log('urlParams',urlParams.get('tog'));
+        if (urlParams.get('tog') !== null) {
+           let toggleParam = urlParams.get('tog') || '';
+           if (toggleParam == 'pm') {
+            setDisplayType("1");
+           }
+           
+
+        }
         // setDisplayType("0");
         const sessionObj = localStorage.getItem('session');
         if (sessionObj != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != null && JSON.parse(localStorage.getItem('session') || "").wagon_token != '') {
@@ -1586,7 +1596,7 @@ const AppFeed = () => {
                         : null
                 } */}
 
-                {
+                {/* {
                     displayType == "1" && !loadPotentialMatchSpinner && potentialMatches.length > 0 && sessionExists ?
                         <IonCard color="success">
                             <IonCardContent>
@@ -1600,13 +1610,27 @@ const AppFeed = () => {
 
                             </IonCardContent>
                         </IonCard> : null
+                } */}
+                {
+                    displayType == "1" && loadPotentialMatchSpinner? 
+                                    
+                    <IonLabel className="centerLabel">  <IonSpinner color="primary"></IonSpinner> </IonLabel>
+                                    
+                    : null
+
                 }
 
 {
                     displayType == "1" && !loadPotentialMatchSpinner && potentialMatches.length == 0 && sessionExists ?
                         <IonCard color="">
                             <IonCardContent>
+                                
                             <IonLabel className="cantFind">Currently, there are no potential matches. You'll receive an email once a suitable match is available.</IonLabel>
+                            <IonLabel className="centerLabel">
+                                    {
+                                        loadPotentialMatchSpinner ? <IonSpinner color="primary"></IonSpinner> : null
+                                    }
+                                </IonLabel>
 
                             </IonCardContent>
                         </IonCard> : null
@@ -1617,6 +1641,11 @@ const AppFeed = () => {
                         <IonCard>
                             <IonCardContent>
                                 <IonLabel className="cantFind">Based on your previous commute(s), the following ride(s) could be a good match for your office travel. Send a request to get matched.</IonLabel>
+                                <IonLabel className="centerLabel">
+                                    {
+                                        loadPotentialMatchSpinner ? <IonSpinner color="primary"></IonSpinner> : null
+                                    }
+                                </IonLabel>
 
                                 
 
