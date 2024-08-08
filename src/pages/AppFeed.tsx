@@ -61,7 +61,7 @@ import {
     IonRadio,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle, micCircle, atCircleOutline, carOutline, carSportSharp, send, calendarClear } from 'ionicons/icons';
+import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle, micCircle, atCircleOutline, carOutline, carSportSharp, send, calendarClear, cash } from 'ionicons/icons';
 import { Redirect, Route, Switch } from 'react-router';
 import App from '../App';
 import { useLocation, useHistory, HashRouter, BrowserRouter } from 'react-router-dom';
@@ -162,7 +162,10 @@ const AppFeed = () => {
     const [matchListEmpty, setMatchListEmpty] = useState(0);
     const [forceRideCreateIndex, setForceRideCreate] =  useState(-1);
     const [matchSentForIndex, setMatchSentForIndex]  =  useState<any>([]);
+    const [approvedMatchForIndex, setApprovedMatchForIndex]  =  useState<any>([]);
+    
     let matchIndexArr: any = [];
+    let matchApprovedIndexArr: any = [];
 
     const [findRideLoaderIndex, setFindRideLoaderIndex] = useState(-1);
     const [cancelRideModalOpen, setCancelRideModalOpen] = useState(false);
@@ -703,15 +706,21 @@ const AppFeed = () => {
     }
 
     async function loadPotentialMatches() {
-        
         const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/user/commute_match', {headers: { 'Authorization': globalSessionObj.wagon_token } });
         for (var i=0; i < getResponse.data.length; i++ ) {
             for (var k=0; k < getResponse.data[i].matchingRides.length; k++ ) {
                 let matchingRidesObj = getResponse.data[i].matchingRides[k];
                 for (var j=0; j < matchingRidesObj.requestStats.userAndRequestStatus.length; j++) {
                     if (getResponse.data[i].matchingRides[k].requestStats.userAndRequestStatus[j].user.id == JSON.parse(localStorage.getItem('session') || "").userId) {
-                        console.log('INDEX= ' + i);
-                        matchIndexArr.push(i +  k);
+                         // if the ride is in pending state
+                        if (getResponse.data[i].matchingRides[k].requestStats.userAndRequestStatus[j].status == 0) {
+                            matchIndexArr.push(i +  k);
+                        }
+                        // if the ride is approved
+                        if (getResponse.data[i].matchingRides[k].requestStats.userAndRequestStatus[j].status == 1) {
+                            matchApprovedIndexArr.push(i + k);
+                        }
+                       
                         
                     }
                 }
@@ -719,10 +728,10 @@ const AppFeed = () => {
         }
         console.log(matchIndexArr);
         setMatchSentForIndex(matchIndexArr);
+        setApprovedMatchForIndex (matchApprovedIndexArr);
         setPotentialMatches(getResponse.data);
         setLoadPotentialMatches(false)
         console.log('potential matches', getResponse.data);
-
     }
 
     async function loadUserActivityFeed() {
@@ -1005,6 +1014,10 @@ const AppFeed = () => {
         window.location.replace('/scc');
         // history.push('scc');
         //setRedirectToNewRide(true);
+    }
+
+    function driveAndEarn() {
+        window.location.replace('/drive');
     }
 
     async function findRecommendedRides(item: any, index: any) {
@@ -1535,7 +1548,8 @@ const AppFeed = () => {
                                     <IonButton size="small" onClick={menuClicked} color="medium" className="menuButton"><IonIcon icon={menuOutline}></IonIcon></IonButton>
 
 
-                                    <IonButton color="success" size="small" onClick={newRideClicked} className="filterButton">New Ride <IonIcon icon={addCircle}></IonIcon></IonButton>
+                                    <IonButton color="success" size="small" fill="outline" onClick={newRideClicked} className="filterButton">New Ride <IonIcon icon={addCircle}></IonIcon></IonButton>
+                                    <IonButton color="success" size="small" fill="outline"  onClick={driveAndEarn} className="filterButton">Drive & Earn <IonIcon icon={cash}></IonIcon></IonButton>
 
                                 </IonCardContent>
 
@@ -1543,7 +1557,7 @@ const AppFeed = () => {
                         : null
 
                 }
-                {/* {
+                {
 
                     sessionExists ?
                         <IonCard>
@@ -1553,14 +1567,14 @@ const AppFeed = () => {
                                         <IonLabel class="homeSegmentLabel">My Rides</IonLabel>
                                     </IonSegmentButton>
                                     <IonSegmentButton value="1">
-                                        <IonLabel class="homeSegmentLabel">People Around Me</IonLabel> 
+                                        <IonLabel class="homeSegmentLabel">Potential Matches</IonLabel> 
                                     </IonSegmentButton>
                                     
                                 </IonSegment>
                             </IonCardContent>
                         </IonCard> : null
 
-                } */}
+                }
 
 
 
@@ -1573,7 +1587,7 @@ const AppFeed = () => {
                 } */}
 
                 {
-                    displayType == "0" && !loadPotentialMatchSpinner && potentialMatches.length > 0 && sessionExists ?
+                    displayType == "1" && !loadPotentialMatchSpinner && potentialMatches.length > 0 && sessionExists ?
                         <IonCard color="success">
                             <IonCardContent>
                                 <IonLabel>Potential Matches</IonLabel>
@@ -1589,7 +1603,17 @@ const AppFeed = () => {
                 }
 
 {
-                    displayType == "0" && !loadPotentialMatchSpinner && potentialMatches.length > 0 && sessionExists ?
+                    displayType == "1" && !loadPotentialMatchSpinner && potentialMatches.length == 0 && sessionExists ?
+                        <IonCard color="">
+                            <IonCardContent>
+                            <IonLabel className="cantFind">Currently, there are no potential matches. You'll receive an email once a suitable match is available.</IonLabel>
+
+                            </IonCardContent>
+                        </IonCard> : null
+                }
+
+{
+                    displayType == "1" && !loadPotentialMatchSpinner && potentialMatches.length > 0 && sessionExists ?
                         <IonCard>
                             <IonCardContent>
                                 <IonLabel className="cantFind">Based on your previous commute(s), the following ride(s) could be a good match for your office travel. Send a request to get matched.</IonLabel>
@@ -1601,7 +1625,7 @@ const AppFeed = () => {
                 }
 
                 {
-                    displayType == "0" && sessionExists ?
+                    displayType == "1" && sessionExists ?
                         <div className="fixedheight">
                             {
                                 potentialMatches.map((globalItem, globalIndex) => (
@@ -1689,11 +1713,17 @@ const AppFeed = () => {
                                         {
                                             matchSentForIndex.includes(globalIndex + index) ? 
                                            <> <IonButton color="success" className="feedbackbutton"  disabled size="small" fill="outline">Match Request Sent <IonIcon icon={checkmarkCircle}></IonIcon></IonButton>
+                                            <IonButton size="small" fill="outline" onClick={() => toggleDisplayType("0")} className="feedbackbutton"  color="success">View Ride</IonButton>
+                                            </> : null
+                                        }
+                                        {
+                                            approvedMatchForIndex.includes(globalIndex + index) ?
+                                            <> <IonButton color="success" className="feedbackbutton"  disabled size="small" fill="outline">Match Request Approved <IonIcon icon={checkmarkCircle}></IonIcon></IonButton>
                                             </> : null
                                         }
                                         {
                                             // item.rideRequest.driving == false && 
-                                            !matchSentForIndex.includes(globalIndex + index) ? 
+                                            !matchSentForIndex.includes(globalIndex + index) && !approvedMatchForIndex.includes(globalIndex + index)? 
                                             forceRideCreateIndex == (globalIndex + index) ? <IonButton disabled color="success"  className="feedbackbutton" size="small" > {statusMessages} <IonIcon icon={car}></IonIcon><IonSpinner class="smallspinner" color="primary"></IonSpinner></IonButton>
                                             :
                                             <IonButton color="success"  className="feedbackbutton" size="small" 
@@ -1735,9 +1765,9 @@ const AppFeed = () => {
                 
                 {
                     sessionExists && displayType == "0" ?
-                        <IonCard color="success">
+                        <IonCard className="myHistoricalRides">
                             <IonCardContent>
-                                <IonLabel>My Active Rides</IonLabel>
+                                <h2>Active Rides</h2>
 
                                 <IonLabel className="centerLabel">
                                     {
@@ -2091,12 +2121,12 @@ const AppFeed = () => {
                
 
 
-                {sessionExists && displayType == "0" ? <><hr />
+                {/* {sessionExists && displayType == "0" ? <><hr />
                     <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr /></> : null
-                }
+                } */}
 
-                {
+                {/* {
                     sessionExists && displayType == "1" ?
                         <IonCard className="myrides">
                             <IonCardContent>
@@ -2111,8 +2141,8 @@ const AppFeed = () => {
                                 </IonLabel>
                             </IonCardContent>
                         </IonCard> : null
-                }
-                {
+                } */}
+                {/* {
                     displayType == "1" && !locationReceived && zipCodeFormVisible && feedData.length == 0 ?
                         <IonCard>
                             <IonCardContent >
@@ -2128,12 +2158,12 @@ const AppFeed = () => {
 
 
                         : null
-                }
+                } */}
 
 
 
 
-                {
+                {/* {
                     displayType == "1" ?
                         <div className="fixedheight">
 
@@ -2176,27 +2206,11 @@ const AppFeed = () => {
                                                     minute: '2-digit'
                                                 }
                                             )}
-                                        {/* {
-                                    item.rideRequest.roundTrip ?
-                                        <p className="feedDepartureTime">Tentative Return Time: {
-                                            new Date(item.rideRequest.returnTime).toLocaleString(
-                                                "en-US",
-                                                {
-                                                    month: "short",
-                                                    day: "2-digit",
-                                                    year: "numeric",
-                                                    hour: '2-digit',
-                                                    minute: '2-digit'
-                                                }
-                                            )}</p>
-                                        : null
-                                } */}
+                                        
                                         <br />
 
 
                                         <IonButton onClick={() => googleMapsAddressRedirection(item.rideRequest.startAddress, item.rideRequest.destinationAddress)} color='medium' className="feedaddressbuttons" size="small" fill="outline">{item.rideRequest.startAddressName == null ? item.rideRequest.startAddress : item.rideRequest.startAddress.includes(item.rideRequest.startAddressName) ? item.rideRequest.startAddress : (item.rideRequest.startAddressName + "," + item.rideRequest.startAddress.split(',').splice(item.rideRequest.startAddress.split(",").length - 3).join(',')).substring(0, 45).concat('..')}<IonIcon slot="end" size="small" icon={location}></IonIcon></IonButton>
-                                        {/* <br></br>
-                                <IonButton onClick={() => googleMapsAddressRedirection(item.rideRequest.startAddress, item.rideRequest.destinationAddress)} color="medium" className="feedaddressbuttons" size="small" fill="clear">To</IonButton><br></br> */}
                                         <br /><IonButton onClick={() => googleMapsAddressRedirection(item.rideRequest.startAddress, item.rideRequest.destinationAddress)} color="medium" className="feedaddressbuttons" size="small" fill="outline">{item.rideRequest.destinationAddressName == null ? item.rideRequest.destinationAddress : item.rideRequest.destinationAddress.includes(item.rideRequest.destinationAddressName) ? item.rideRequest.destinationAddress : (item.rideRequest.destinationAddressName + "," + item.rideRequest.destinationAddress.split(',').splice(item.rideRequest.destinationAddress.split(",").length - 3).join(',')).substring(0, 45).concat('..')}<IonIcon slot="end" size="small" icon={location}></IonIcon></IonButton>
 
                                         <hr />
@@ -2263,13 +2277,13 @@ const AppFeed = () => {
                                 </IonCard>
                             ))} </div>
                         : null
-                }
+                } */}
 
 
-                {displayType == "1" ? <><hr />
+                {/* {displayType == "1" ? <><hr />
                     <IonLabel className="footer">Copyright © 2024 Procsoft LLC.</IonLabel>
                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr /></> : null
-                }
+                } */}
                 {/* </IonList> */}
                 {/* <IonInfiniteScroll
                     onIonInfinite={(ev) => {
