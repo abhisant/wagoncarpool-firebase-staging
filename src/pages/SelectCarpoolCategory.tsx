@@ -404,7 +404,7 @@ const SelectCarpoolCategory = () => {
                                         localStorage.getItem('session') != null ? <>
                                     
                                         <IonButtons slot="end"><IonButton size="small" shape="round" onClick={() => { myRidesClicked() }} color="success" fill="outline" className="homePageLoginWithGoogle">My Rides </IonButton></IonButtons>
-                                        <IonButtons slot="end"><IonButton size="small"  shape="round"  onClick={driveAndEarn} color="success" fill="outline" className="homePageLoginWithGoogle">Drive & Earn</IonButton></IonButtons>
+                                        <IonButtons slot="end"><IonButton size="small"  shape="round"  onClick={driveAndEarn} color="success" fill="outline" className="homePageLoginWithGoogle">Drive & Earn <IonIcon className="homeButtonIcons" icon={cash}></IonIcon></IonButton></IonButtons>
                                         <IonButtons slot="start"><IonLabel className="homePageLoginWithGoogle"><img className="feedItemImg" src={JSON.parse(localStorage.getItem('session') || "").imageUrl == null ? "assets/img/avatar.svg" : JSON.parse(localStorage.getItem('session') || "").imageUrl} alt="" referrerPolicy='no-referrer' /> {JSON.parse(localStorage.getItem('session') || "").name} </IonLabel></IonButtons></> : null
                                         :
                                         loginLoading ?

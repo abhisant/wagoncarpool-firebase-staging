@@ -1548,8 +1548,8 @@ const AppFeed = () => {
                                     <IonButton size="small" onClick={menuClicked} color="medium" className="menuButton"><IonIcon icon={menuOutline}></IonIcon></IonButton>
 
 
-                                    <IonButton color="success" size="small" fill="outline" onClick={newRideClicked} className="filterButton">New Ride <IonIcon icon={addCircle}></IonIcon></IonButton>
-                                    <IonButton color="success" size="small" fill="outline"  onClick={driveAndEarn} className="filterButton">Drive & Earn <IonIcon icon={cash}></IonIcon></IonButton>
+                                    <IonButton color="success" size="small" shape="round" fill="outline" onClick={newRideClicked} className="filterButton">New Ride <IonIcon icon={addCircle}></IonIcon></IonButton>
+                                    <IonButton color="success" size="small" shape="round" fill="outline"  onClick={driveAndEarn} className="filterButton">Drive & Earn <IonIcon className="homeButtonIcons" icon={cash}></IonIcon></IonButton>
 
                                 </IonCardContent>
 
