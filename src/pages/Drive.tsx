@@ -599,15 +599,20 @@ const Drive = () => {
 
     async function loadFeed(lat: any, lng: any) {
         matchIndexArr = [];
-        // if (localStorage.getItem('session')  == null) {
-        //     setSessionExists(false);
-        //     return;
-        // }
-        // globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
-        // if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
-        //     setSessionExists(false);
-        //     return;
-        // }
+        let localSessionVariable = true;
+        if (localStorage.getItem('session')  == null) {
+            setSessionExists(false);
+            localSessionVariable = false;
+        }
+
+        if (localSessionVariable) {
+            globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
+            if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
+                setSessionExists(false);
+                localSessionVariable = false;
+            }
+        }
+       
         console.log("load feed triggered");
 
         console.log(lat);
@@ -622,10 +627,22 @@ const Drive = () => {
         }
 
         setFeedLoading(true);
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/ridersNearMe'
-            , { params: queryParams, 
-                // headers: { 'Authorization': globalSessionObj.wagon_token } 
-            });
+        let getResponse: any;
+        if (localSessionVariable) {
+            getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/ridersNearMe'
+                , {
+                    params: queryParams,
+                    headers: { 'Authorization': globalSessionObj.wagon_token }
+                });
+        } else {
+            getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/ridersNearMe'
+                , {
+                    params: queryParams,
+                    // headers: { 'Authorization': globalSessionObj.wagon_token } 
+                });
+        }
+
+        
         setZipCodeFormVisible(false);
         console.log(getResponse.data);
         setFeedData(getResponse.data);

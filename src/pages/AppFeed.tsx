@@ -648,7 +648,7 @@ const AppFeed = () => {
             const { lat, lng } = results[0].geometry.location;
             setCurrLat(lat);
             setCurrLon(lng);
-            loadFeed(lat, lng);
+            //loadFeed(lat, lng);
         }).catch((err) => {
             setIsInvalidZipCode(true);
             console.log(err);
@@ -667,9 +667,9 @@ const AppFeed = () => {
                 setCurrLon(lng);
                 setLocationReceived(true);
                 console.log('Current position:', lat + "," + lng);
-                loadFeed(lat, lng);
+                //loadFeed(lat, lng);
             } else {
-                loadFeed(currLat, currLon);
+                //loadFeed(currLat, currLon);
             }
 
         } catch (e: any) {
@@ -707,6 +707,7 @@ const AppFeed = () => {
 
     async function loadPotentialMatches() {
         matchIndexArr = [];
+        matchApprovedIndexArr = [];
         const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/user/commute_match', {headers: { 'Authorization': globalSessionObj.wagon_token } });
         // for (var i=0; i < getResponse.data.length; i++ ) {
         //     for (var k=0; k < getResponse.data[i].matchingRides.length; k++ ) {
@@ -728,8 +729,8 @@ const AppFeed = () => {
         //     }
         // }
         console.log(matchIndexArr);
-        // setMatchSentForIndex(matchIndexArr);
-        // setApprovedMatchForIndex (matchApprovedIndexArr);
+        setMatchSentForIndex(matchIndexArr);
+        setApprovedMatchForIndex (matchApprovedIndexArr);
         setPotentialMatches(getResponse.data);
         setLoadPotentialMatches(false)
         console.log('potential matches', getResponse.data);
