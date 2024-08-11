@@ -706,29 +706,30 @@ const AppFeed = () => {
     }
 
     async function loadPotentialMatches() {
+        matchIndexArr = [];
         const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/user/commute_match', {headers: { 'Authorization': globalSessionObj.wagon_token } });
-        for (var i=0; i < getResponse.data.length; i++ ) {
-            for (var k=0; k < getResponse.data[i].matchingRides.length; k++ ) {
-                let matchingRidesObj = getResponse.data[i].matchingRides[k];
-                for (var j=0; j < matchingRidesObj.requestStats.userAndRequestStatus.length; j++) {
-                    if (getResponse.data[i].matchingRides[k].requestStats.userAndRequestStatus[j].user.id == JSON.parse(localStorage.getItem('session') || "").userId) {
-                         // if the ride is in pending state
-                        if (getResponse.data[i].matchingRides[k].requestStats.userAndRequestStatus[j].status == 0) {
-                            matchIndexArr.push(i +  k);
-                        }
-                        // if the ride is approved
-                        if (getResponse.data[i].matchingRides[k].requestStats.userAndRequestStatus[j].status == 1) {
-                            matchApprovedIndexArr.push(i + k);
-                        }
+        // for (var i=0; i < getResponse.data.length; i++ ) {
+        //     for (var k=0; k < getResponse.data[i].matchingRides.length; k++ ) {
+        //         let matchingRidesObj = getResponse.data[i].matchingRides[k];
+        //         for (var j=0; j < matchingRidesObj.requestStats.userAndRequestStatus.length; j++) {
+        //             if (getResponse.data[i].matchingRides[k].requestStats.userAndRequestStatus[j].user.id == JSON.parse(localStorage.getItem('session') || "").userId) {
+        //                  // if the ride is in pending state
+        //                 if (getResponse.data[i].matchingRides[k].requestStats.userAndRequestStatus[j].status == 0) {
+        //                     matchIndexArr.push(i +  k);
+        //                 }
+        //                 // if the ride is approved
+        //                 if (getResponse.data[i].matchingRides[k].requestStats.userAndRequestStatus[j].status == 1) {
+        //                     matchApprovedIndexArr.push(i + k);
+        //                 }
                        
                         
-                    }
-                }
-            }
-        }
+        //             }
+        //         }
+        //     }
+        // }
         console.log(matchIndexArr);
-        setMatchSentForIndex(matchIndexArr);
-        setApprovedMatchForIndex (matchApprovedIndexArr);
+        // setMatchSentForIndex(matchIndexArr);
+        // setApprovedMatchForIndex (matchApprovedIndexArr);
         setPotentialMatches(getResponse.data);
         setLoadPotentialMatches(false)
         console.log('potential matches', getResponse.data);
@@ -1335,6 +1336,7 @@ const AppFeed = () => {
         getCurrentLocation();
         loadUserActivityFeed();
         loadHistoricalRides();
+        loadPotentialMatches();
         setDisplayType(type);
     }
 
