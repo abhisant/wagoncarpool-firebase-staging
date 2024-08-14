@@ -2040,11 +2040,11 @@ const Drive = () => {
                 } */}
 
                 {
-                    sessionExists && displayType == "1" ?
+                     displayType == "1" ?
                         <IonCard color="success">
                             <IonCardContent>
                                 {
-                                    sessionExists ? <IonLabel>Drive and get paid <IonIcon icon={cash}></IonIcon></IonLabel> : null
+                                    <IonLabel>Drive and get paid <IonIcon icon={cash}></IonIcon></IonLabel> 
                                 }
 
                                 <IonLabel className="centerLabel">
@@ -2056,12 +2056,12 @@ const Drive = () => {
                         </IonCard> : null
                 }
                  {
-                    sessionExists && displayType == "1" ?
+                    displayType == "1" ?
                         <IonCard >
                             <IonCardContent>
                                 {
-                                    sessionExists ? <> <IonLabel className="cantFind">Can't find what you need? Create a <a className="newRideHref" onClick={newRideClicked}>New Ride</a> as a Driver or Rider and get matched. </IonLabel>
-                                     </>: null
+                                    <> <IonLabel className="cantFind">Can't find what you need? Create a <a className="newRideHref" onClick={newRideClicked}>New Ride</a> as a Driver or Rider and get matched. </IonLabel>
+                                     </>
                                 }
 
                                 <IonLabel className="centerLabel">
