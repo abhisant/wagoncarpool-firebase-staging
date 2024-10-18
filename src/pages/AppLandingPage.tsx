@@ -43,6 +43,8 @@ import WhyWagonCarpool from './WhyWagonCarpool';
 import SupportDetails from './SupportDetails';
 import Careers from './Careers';
 import Drive from './Drive';
+import Intercity from './Intercity';
+import PotentialMatches from './PotentialMatches';
 
 function AppLandingPage() {
   let history = useHistory();
@@ -174,6 +176,7 @@ function AppLandingPage() {
           <Route path="/getRideFeedback" render={() => <GetRideFeedback />} exact={true} />
           <Route path="/carpoolForWork" render={() => <Work />} exact={true} />
           <Route path="/carpoolForAirport" render={() => <Airport />} exact={true} />
+          <Route path="/intercity" render={() => <Intercity />} exact={true} />
           <Route path="/carpoolForEvents?type=event" component={Events} exact={true}/>
           <Route path="/scc" render={() => <SelectCarpoolCategory />} exact={true} />
           <Route path="/messaging" render={() => <Messaging />} exact={true} />
@@ -185,6 +188,7 @@ function AppLandingPage() {
           <Route path="/careers" render={() => <Careers />} exact={true} />
           <Route path="/why-wagon-carpool" render={() => <WhyWagonCarpool />} exact={true} />
           <Route path="/support" render={() => <SupportDetails />} exact={true} />
+          <Route path="/potentialMatches" render={() => <PotentialMatches />} exact={true} />
           <Route path="/drive" render={() => <Drive />} exact={true} />
           <Route path="/blogDetail/:id" render={() => <BlogDetails />} />
         </IonRouterOutlet>

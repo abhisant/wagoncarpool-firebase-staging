@@ -61,7 +61,7 @@ import {
     IonRadio,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle, micCircle, atCircleOutline, carOutline, carSportSharp, send, calendarClear, cash } from 'ionicons/icons';
+import { addCircle, settings, home, search, location, locationSharp, locationOutline, menu, map, mapOutline, mapSharp, star, pin, pinOutline, close, closeCircle, closeOutline, closeCircleSharp, closeCircleOutline, menuSharp, filter, shieldCheckmark, shieldCheckmarkSharp, funnel, funnelSharp, funnelOutline, menuOutline, add, addCircleOutline, addCircleSharp, leafSharp, logOut, starOutline, information, informationCircle, informationOutline, informationCircleSharp, informationCircleOutline, informationSharp, statsChart, searchCircleSharp, searchCircleOutline, logoFacebook, car, expand, chevronBackCircle, chevronCollapse, chevronDownCircle, chevronCollapseOutline, chevronDownCircleOutline, checkbox, checkmark, checkmarkDone, checkmarkCircle, micCircle, atCircleOutline, carOutline, carSportSharp, send, calendarClear, cash, carSharp } from 'ionicons/icons';
 import { Redirect, Route, Switch } from 'react-router';
 import App from '../App';
 import { useLocation, useHistory, HashRouter, BrowserRouter } from 'react-router-dom';
@@ -84,7 +84,7 @@ import { PushNotifications } from '@capacitor/push-notifications';
 import { Capacitor } from '@capacitor/core';
 
 
-const AppFeed = () => {
+const PotentialMatches = () => {
     let userRequestArr = [];
     let history = useHistory();
     Geocode.setApiKey('AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY');
@@ -112,7 +112,7 @@ const AppFeed = () => {
     const [country] = useState("us");
     const [userActivityData, setUserActivityData] = useState<any>({});
     const [sessionExists, setSessionExists] = React.useState(true);
-    const [displayType, setDisplayType] = React.useState<any>("0");
+    const [displayType, setDisplayType] = React.useState<any>("1");
     const [userId, setUserId] = React.useState("0");
     const [invalidZipCode, setIsInvalidZipCode] = React.useState(false);
     const [loggedinUserId, setLoggedInUserId] = React.useState(0);
@@ -193,261 +193,6 @@ const AppFeed = () => {
     );
 
 
-    // async function submitRideRequestAndMatch() {
-    //     setErrorLogs('');
-    //     const session = JSON.parse(localStorage.getItem('session') || "");
-    //     console.log("From ");
-    //     console.log(fromLocation)
-
-    //     console.log("To ")
-    //     console.log(toLocation)
-
-    //     if (startAddress == '' || destinationAddress == '') {
-    //         setErrorLogs('Please select a valid "From" or "To" address');
-    //         return;
-    //     }
-
-
-    //     let results: any;
-    //     let distanceInMiles: any;
-    //     if (startAddress != '' && destinationAddress != '') {
-    //         const directionsService = new google.maps.DirectionsService()
-    //         results = await directionsService.route({
-    //             origin: startAddress,
-    //             destination: destinationAddress,
-    //             // eslint-disable-next-line no-undef
-    //             travelMode: google.maps.TravelMode.DRIVING,
-    //         })
-    //         console.log('rideDistance in miles', results?.routes[0]?.legs[0]?.distance?.text);
-
-    //         distanceInMiles = (0.000621371 * (results?.routes[0]?.legs[0]?.distance?.value || 0)).toFixed(1);
-    //         console.log('New Trip Drivable Distance In Miles', distanceInMiles);
-    //     }
-
-
-    //     // Calculate the detour
-    //     let totalMilesAfterPickupAndDropOff;
-    //     let detour: string;
-    //     if (matchObject?.rideRequest?.driving) {
-    //         // Calculate distance betwee matchObject startAddress and riders start address
-    //         // origin - matchObject startAddress
-    //         // destination - riders start address
-
-    //         const directionsService = new google.maps.DirectionsService();
-    //         const firstLeg = await directionsService.route({
-    //             origin: matchObject?.rideRequest?.startAddress,
-    //             destination: startAddress,
-    //             // eslint-disable-next-line no-undef
-    //             travelMode: google.maps.TravelMode.DRIVING,
-    //         })
-    //         console.log('origin: ', matchObject?.rideRequest?.startAddress)
-    //         console.log('destination: ', startAddress)
-    //         const firstLegMiles = (0.000621371 * (firstLeg?.routes[0]?.legs[0]?.distance?.value || 0)).toFixed(1);
-    //         console.log('firstleg', firstLegMiles);
-
-    //         // Drop to the riders destination address
-    //         const secondLeg = await directionsService.route({
-    //             origin: startAddress,
-    //             destination: destinationAddress,
-    //             // eslint-disable-next-line no-undef
-    //             travelMode: google.maps.TravelMode.DRIVING,
-    //         })
-    //         console.log('origin: ', startAddress)
-    //         console.log('destination: ', destinationAddress)
-
-    //         console.log('origin-name: ', startAddressName)
-    //         console.log('destination-name: ', destinationAddressName)
-    //         const secondLegMiles = (0.000621371 * (secondLeg?.routes[0]?.legs[0]?.distance?.value || 0)).toFixed(1);
-    //         console.log('secondLegMiles', secondLegMiles);
-
-
-    //         // Go to your final destination 
-    //         const thirdLeg = await directionsService.route({
-    //             origin: matchObject?.rideRequest?.destinationAddress,
-    //             destination: destinationAddress,
-    //             // eslint-disable-next-line no-undef
-    //             travelMode: google.maps.TravelMode.DRIVING,
-    //         })
-    //         console.log('origin: ', startAddress)
-    //         console.log('destination: ', destinationAddress)
-    //         const thirdLegMiles = (0.000621371 * (thirdLeg?.routes[0]?.legs[0]?.distance?.value || 0)).toFixed(1);
-    //         console.log('thirdLegMiles', thirdLegMiles);
-
-    //         totalMilesAfterPickupAndDropOff = parseFloat(firstLegMiles) + parseFloat(secondLegMiles) + parseFloat(thirdLegMiles);
-
-    //         const originalDistanceForDriver = await directionsService.route({
-    //             origin: matchObject?.rideRequest?.startAddress,
-    //             destination: matchObject?.rideRequest?.destinationAddress,
-    //             // eslint-disable-next-line no-undef
-    //             travelMode: google.maps.TravelMode.DRIVING,
-    //         })
-
-    //         const originalDistanceForDriverInMiles = (0.000621371 * (originalDistanceForDriver?.routes[0]?.legs[0]?.distance?.value || 0)).toFixed(1);
-    //         detour = (totalMilesAfterPickupAndDropOff - parseFloat(originalDistanceForDriverInMiles)).toFixed(1);
-
-
-    //     } else {
-    //         const directionsService = new google.maps.DirectionsService();
-    //         const firstLeg = await directionsService.route({
-    //             origin: startAddress,
-    //             destination: matchObject?.rideRequest?.startAddress,
-    //             // eslint-disable-next-line no-undef
-    //             travelMode: google.maps.TravelMode.DRIVING,
-    //         })
-    //         console.log('origin: ', startAddress)
-    //         console.log('destination: ', matchObject?.rideRequest?.startAddress)
-    //         const firstLegMiles = (0.000621371 * (firstLeg?.routes[0]?.legs[0]?.distance?.value || 0)).toFixed(1);
-    //         console.log('firstLegMiles', firstLegMiles);
-
-    //         // Drop to the riders destination address
-    //         const secondLeg = await directionsService.route({
-    //             origin: matchObject?.rideRequest?.startAddress,
-    //             destination: matchObject?.rideRequest?.destinationAddress,
-    //             // eslint-disable-next-line no-undef
-    //             travelMode: google.maps.TravelMode.DRIVING,
-    //         })
-    //         console.log('origin: ', matchObject?.rideRequest?.startAddress)
-    //         console.log('destination: ', matchObject?.rideRequest?.destinationAddress)
-    //         const secondLegMiles = (0.000621371 * (secondLeg?.routes[0]?.legs[0]?.distance?.value || 0)).toFixed(1);
-    //         console.log('secondLegMiles', secondLegMiles);
-
-
-    //         // Go to your final destination 
-    //         const thirdLeg = await directionsService.route({
-    //             origin: matchObject?.rideRequest?.destinationAddress,
-    //             destination: destinationAddress,
-    //             // eslint-disable-next-line no-undef
-    //             travelMode: google.maps.TravelMode.DRIVING,
-    //         })
-    //         console.log('origin: ', matchObject?.rideRequest?.destinationAddress)
-    //         console.log('destination: ', destinationAddress)
-    //         const thirdLegMiles = (0.000621371 * (thirdLeg?.routes[0]?.legs[0]?.distance?.value || 0)).toFixed(1);
-    //         console.log('thirdLegMiles', thirdLegMiles);
-
-    //         totalMilesAfterPickupAndDropOff = parseFloat(firstLegMiles) + parseFloat(secondLegMiles) + parseFloat(thirdLegMiles);
-    //         detour = (totalMilesAfterPickupAndDropOff - parseFloat(distanceInMiles)).toFixed(1);
-    //     }
-
-    //     console.log("Total Miles for Driver: ", totalMilesAfterPickupAndDropOff)
-
-    //     console.log('detour', detour);
-
-    //     // if (matchObject?.rideRequest?.driving) {
-    //     //     setErrorLogs('Driver would have to detour: ' +  detour + ' miles');
-    //     // } else {
-    //     //     setErrorLogs('You would have to detour: ' +  detour + ' miles');
-    //     // }
-
-    //     if (matchObject?.rideRequest?.driving) {
-    //         if (parseFloat(detour) > 4.0) {
-    //             setErrorLogs('The driver would have to take a big detour to pick you up. Please find a different match.');
-    //             return;
-    //         }
-    //     } else {
-    //         if (parseFloat(detour) > 4.0) {
-    //             setErrorLogs('You would have to take a big detour to pick the rider up. If you still want to pick the rider, choose your start and destination closer to the rider');
-    //             return;
-    //         }
-    //     }
-
-    //     setLoading(true);
-    //     let seatCount = 0;
-    //     if (seats == '' || seats == "0") {
-    //         seatCount = matchObject?.rideRequest?.seatCount - Number(matchObject?.requestStats.acceptedTotalSeatCount);
-    //     } else {
-    //         seatCount = Number(seats);
-    //     }
-
-    //     const postRequestBody = {
-    //         userId: session.userId,
-    //         departureTime: matchObject?.rideRequest?.departureTime,
-    //         start_loc_lat: fromLocation.latitude,
-    //         start_loc_long: fromLocation.longitude,
-    //         destination_loc_lat: toLocation.latitude,
-    //         destination_loc_long: toLocation.longitude,
-    //         seatCount: seatCount.toString(),
-    //         driving: !matchObject?.rideRequest?.driving,
-    //         startAddress: startAddress,
-    //         rideDistance: distanceInMiles,
-    //         destinationAddress: destinationAddress,
-    //         startAddressName: startAddressName,
-    //         destinationAddressName: destinationAddressName,
-    //         roundTrip: matchObject?.rideRequest?.roundTrip,
-    //         rideType: matchObject?.rideRequest?.rideType,
-    //         returnTime: matchObject?.rideRequest?.returnTime
-    //     };
-    //     console.log(postRequestBody);
-
-    //     axios.post(import.meta.env.VITE_APP_API + '/rides', postRequestBody)
-    //         .then(async (postResponse: AxiosResponse) => {
-    //             console.log(postResponse.data);
-
-    //             ReactGA.event({
-    //                 category: "RideCreated",
-    //                 action: "RideCreatedWhileMatch",
-    //                 label: "RideId: " + postResponse.data, // optional
-    //             });
-
-    //             ReactGA.event({
-    //                 category: "MatchRide",
-    //                 action: "MatchRequestSent",
-    //                 label: "requesterRideId: " + postResponse.data + '&requestedRideId: ' + matchObject?.rideRequest?.rideId, // optional
-    //             });
-
-    //             //requesterRideId - Logged in user
-    //             const postMatchBody = {
-    //                 requesterRideId: postResponse.data,
-    //                 requestedRideId: matchObject?.rideRequest?.rideId,
-    //                 detourInMiles: detour,
-    //                 status: 0
-    //             }
-
-    //             console.log('Match Body', postMatchBody);
-
-    //             axios.post(import.meta.env.VITE_APP_API + '/rides/match', postMatchBody).then(async (postMatchResponse: AxiosResponse) => {
-    //                 console.log(postMatchResponse);
-
-    //                 present({
-    //                     message: 'Request submitted successfully.',
-    //                     duration: 1000,
-    //                 });
-
-    //                 await delay(1000);
-    //                 setIsOpen(false);
-    //                 setRedirectToUserActivity(true);
-
-    //             }).catch((rideMatchPostError: AxiosError) => {
-    //                 setLoading(false);
-    //                 if (rideMatchPostError.response?.status === 404 || rideMatchPostError.response?.status === 400) {
-    //                     setErrorLogs('Looks like there was something bad with the request, please try again with a valid input!');
-    //                 } else if (rideMatchPostError.response?.status === 500) {
-    //                     setErrorLogs('Looks like we had something going bad with our server! Please try again in sometime!');
-    //                 } else {
-    //                     setErrorLogs('Looks like we have something unexpected going on! Please try again in sometime.');
-    //                 }
-    //             })
-
-    //         })
-    //         .catch((reason: AxiosError) => {
-    //             setLoading(false);
-    //             if (reason.response?.status === 404 || reason.response?.status === 400) {
-    //                 setErrorLogs('Looks like there was something bad with the request, please try again with a valid input!');
-    //             } else if (reason.response?.status === 500) {
-    //                 setErrorLogs('Looks like we had something going bad with our server! Please try again in sometime!');
-    //             } else {
-    //                 setErrorLogs('Looks like we have something unexpected going on! Please try again in sometime.');
-    //             }
-    //         })
-
-
-
-    //     //loadFeed(currLat, currLon);
-    // }
-
-    function setAvailableSeats(availableSeats: any) {
-        setSeats(availableSeats);
-    }
-
     const [locationReceived, setLocationReceived] = React.useState(true);
     const [zipCodeFormVisible, setZipCodeFormVisible] = React.useState(true);
     const [feedData, setFeedData] = React.useState<any[]>([]);
@@ -469,191 +214,10 @@ const AppFeed = () => {
         setCancelRideID(-1);
         setErrorLogs('');
 
-        // setFeedSelectionFilter("2");
-        // setFilterStartLatLong({ "latitude": 0, "longitude": 0 });
-        // setFilterDestinationLatLong({ "latitude": 0, "longitude": 0 });
-        // setFilterGender(false);
-        // setFilterDepartureDate("");
-        // inputFilterDestinationLocationRef.current.value = "";
-        // inputFilterStartLocationRef.current.value = "";
-        // dateFilter.current?.reset();
-
         setFilterModelOpen(false);
         setIsVerifyClicked(false);
         setMenuClicked(false);
     });
-
-    function modalClicked(item: any) {
-        // TODO:  Check whether a ride already exists
-        setErrorLogs('');
-        setIsOpen(true);
-        setMatchObject(item);
-        setStartAddress(item?.rideRequest?.startAddress);
-        setDestinationAddress(item?.rideRequest?.destinationAddress);
-        setStartAddressName(item?.rideRequest?.startAddressName != null ? item?.rideRequest?.startAddressName : null);
-        setDestinationAddressName(item?.rideRequest?.destinationAddressName != null ? item?.rideRequest?.destinationAddressName : null);
-        console.log(item);
-    }
-
-    function setDateFilter(departureDateFilter: any) {
-        setFilterDepartureDate(new Date(departureDateFilter).toISOString().toString());
-    }
-
-    const disablePastDates = (dateString: string) => {
-        const date = new Date(dateString);
-
-        date.setDate(date.getDate() + 2);
-        const currentDate = new Date();
-        return currentDate <= date;
-    }
-
-    async function loadFilteredFeed() {
-        var filterCount = 0;
-        console.log('feedSelectionFilter', feedSelectionFilter);
-        console.log('filterStartLatLong', filterStartLatLong);
-        console.log('filterDestinationLatLong', filterDestinationLatLong);
-        console.log('filterGender', filterGender);
-        console.log('filterDepartureDate', filterDepartureDate);
-        console.log('dest location', destLocationFilterText);
-        console.log('start location', startLocationFilterText);
-        let queryParams: any;
-        queryParams = {
-            locationLatitude: currLat,
-            locationLongitude: currLon,
-            radiusInMiles: 3,
-            pageNum: 0,
-            pageSize: 100
-        }
-
-        if (filterGender) {
-            filterCount++;
-            queryParams['gender'] = 'F';
-        }
-
-        if (startLocationFilterText != '') {
-            if (filterStartLatLong.latitude != 0 && filterStartLatLong.longitude != 0) {
-                filterCount++;
-                queryParams['locationLatitude'] = filterStartLatLong.latitude;
-                queryParams['locationLongitude'] = filterStartLatLong.longitude;
-            }
-        } else {
-            queryParams['locationLatitude'] = currLat;
-            queryParams['locationLongitude'] = currLon;
-        }
-
-        if (destLocationFilterText != '') {
-            if (filterDestinationLatLong.latitude != 0 && filterDestinationLatLong.longitude != 0) {
-                filterCount++;
-                queryParams['destLatitude'] = filterDestinationLatLong.latitude;
-                queryParams['destLongitude'] = filterDestinationLatLong.longitude;
-            }
-        }
-
-        if (feedSelectionFilter == "0") {
-            filterCount++;
-            queryParams['isDriving'] = false;
-        } else if (feedSelectionFilter == "1") {
-            filterCount++;
-            queryParams['isDriving'] = true;
-        }
-
-        // date
-        if (filterDepartureDate != '') {
-            filterCount++;
-            var filterDepartureDateInUTC = filterDepartureDate;
-            console.log(filterDepartureDateInUTC);
-
-            // yesterday
-            var filterDepartureDateInUTCObj = new Date(filterDepartureDateInUTC);
-            filterDepartureDateInUTCObj.setUTCHours(0, 0, 0, 0);
-
-            // yesterdays date
-            var after = new Date(filterDepartureDateInUTCObj.setDate(filterDepartureDateInUTCObj.getDate() - 1)).toISOString();
-            var before = new Date(filterDepartureDateInUTCObj.setDate(filterDepartureDateInUTCObj.getDate() + 2)).toISOString();
-            console.log('curr-iso-utc', filterDepartureDateInUTCObj.toISOString());
-            console.log('before', before);
-            console.log('after', after);
-            queryParams['before'] = before;
-            queryParams['after'] = after;
-        }
-
-        setFilterCount(filterCount);
-
-        console.log(queryParams);
-        setFeedLoading(true);
-
-        setFilterModelOpen(false);
-
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/find'
-            , { params: queryParams, headers: { 'Authorization': globalSessionObj.wagon_token } });
-
-        setZipCodeFormVisible(false);
-        console.log(getResponse.data);
-        setFeedData(getResponse.data);
-        setFeedLoading(false);
-    }
-
-    async function loadFeed(lat: any, lng: any) {
-        matchIndexArr = [];
-        if (localStorage.getItem('session')  == null) {
-            setSessionExists(false);
-            return;
-        }
-        globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
-        if (globalSessionObj== undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
-            setSessionExists(false);
-            return;
-        }
-        console.log("load feed triggered");
-
-        const session = JSON.parse(localStorage.getItem('session') || "");
-        console.log("AP FEED")
-        console.log(session.userId);
-        setLoggedInUserId(session.userId);
-        setUserGender(session.gender);
-        // const name = await storage.get('name');
-        console.log(lat);
-        console.log(lng);
-        const queryParams = {
-            locationLatitude: lat,
-            locationLongitude: lng,
-            radiusInMiles: 100,
-            pageNum: 0,
-            pageSize: 100
-        }
-
-        setFeedLoading(true);
-        const getResponse = await axios.get(import.meta.env.VITE_APP_API_V2 + '/rides/find'
-            , { params: queryParams, headers: { 'Authorization': globalSessionObj.wagon_token } });
-        setZipCodeFormVisible(false);
-        console.log(getResponse.data);
-        for (var i=0; i < getResponse.data.length; i++ ) {
-            for (var j=0; j < getResponse.data[i].requestStats.userAndRequestStatus.length; j++) {
-                if (getResponse.data[i].requestStats.userAndRequestStatus[j].user.id == JSON.parse(localStorage.getItem('session') || "").userId) {
-                    console.log('INDEX= ' + i);
-                    matchIndexArr.push(i);
-                    
-                }
-            }
-        }
-        console.log(matchIndexArr);
-        setMatchSentForIndex(matchIndexArr);
-        setFeedData(getResponse.data);
-        setFeedLoading(false);
-    }
-
-    function getLocationByZipCode() {
-        Geocode.fromAddress(zipCode).then(({ results }) => {
-            setIsInvalidZipCode(false);
-            const { lat, lng } = results[0].geometry.location;
-            setCurrLat(lat);
-            setCurrLon(lng);
-            //loadFeed(lat, lng);
-        }).catch((err) => {
-            setIsInvalidZipCode(true);
-            console.log(err);
-        });
-    }
 
     const getCurrentLocation = async () => {
         try {
@@ -667,9 +231,9 @@ const AppFeed = () => {
                 setCurrLon(lng);
                 setLocationReceived(true);
                 console.log('Current position:', lat + "," + lng);
-                loadFeed(lat, lng);
+                //loadFeed(lat, lng);
             } else {
-                loadFeed(currLat, currLon);
+                //loadFeed(currLat, currLon);
             }
 
         } catch (e: any) {
@@ -788,7 +352,7 @@ const AppFeed = () => {
                 .then(async (axiosResponse: AxiosResponse) => {
                     loadUserActivityFeed();
                     loadPotentialMatches();
-                    getCurrentLocation();
+                    //getCurrentLocation();
                     setUserId(JSON.parse(localStorage.getItem('session') || "").userId);
                     setSessionExists(true);
                     loadHistoricalRides();
@@ -806,22 +370,6 @@ const AppFeed = () => {
             localStorage.setItem("redirected_from", 'App');
             setSessionExists(false);
         }
-        // axios.get(import.meta.env.VITE_APP_API + '/feedback?user_id=' + session.userId)
-        //     .then((axiosResponse1: AxiosResponse) => {
-        //         console.log('feedback length', axiosResponse1.data.length);
-        //         if (axiosResponse1.data.length > 0) {
-        //             console.log('feedback length >0');
-        //             ReactGA.event({
-        //                 category: "feedback",
-        //                 action: "RedirectedToRideFeedback",
-        //             });
-        //             setRedirectToFeedBackURL(true);
-        //         } else {
-        //            // setfeedbackDetails(axiosResponse1.data);
-
-        //         }
-        //     });
-
     }
 
     useEffect(() => {
@@ -1028,8 +576,8 @@ const AppFeed = () => {
         //setRedirectToNewRide(true);
     }
 
-    function driveAndEarn() {
-        window.location.replace('/drive');
+    function goToMyRides() {
+        window.location.replace('/App');
     }
 
     async function findRecommendedRides(item: any, index: any) {
@@ -1462,122 +1010,6 @@ const AppFeed = () => {
         window.location.replace('/pendingRequests');
     }
 
-    function requestToDrive(item: any, index: any) {
-        if (localStorage.getItem('session') == null) {
-            setSessionExists(false);
-            return;
-        }
-
-        globalSessionObj = JSON.parse(localStorage.getItem('session') || "");
-        if (globalSessionObj == undefined || globalSessionObj.wagon_token == null || globalSessionObj.wagon_token == '') {
-            setSessionExists(false);
-            return;
-        }
-        setStatusMessages('Creating a ride...');
-        setForceRideCreate(index);
-        // Create a ride and match
-        const postRequestBody = {
-            // userId: session.userId,
-            departureTime: item.rideRequest.departureTime,
-            start_loc_lat: item.rideRequest.start_loc_lat,
-            start_loc_long: item.rideRequest.start_loc_long,
-            destination_loc_lat: item.rideRequest.destination_loc_lat,
-            destination_loc_long: item.rideRequest.destination_loc_long,
-            seatCount: item.rideRequest.seatCount,
-            driving: !item.rideRequest.driving,
-            startAddress: item.rideRequest.startAddress,
-            destinationAddress: item.rideRequest.destinationAddress,
-            startAddressName: item.rideRequest.startAddressName,
-            destinationAddressName: item.rideRequest.destinationAddressName,
-            rideDistance: item.rideRequest.rideDistance,
-            rideCost: null,
-            roundTrip: item.rideRequest.roundTrip,
-            rideType: item.rideRequest.rideType,
-            labelsCsv: 'drive-request',
-            returnTime: item.rideRequest.returnTime
-        };
-        console.log(postRequestBody);
-        ReactGA.event({
-            category: "request_to_drive_attempt",
-            action: "request_to_drive_attempt",
-        });
-        console.log(postRequestBody);
-        console.log(index);
-
-        axios.post(import.meta.env.VITE_APP_API_V2 + '/rides', postRequestBody, { headers: { 'Authorization': globalSessionObj.wagon_token } })
-            .then(async (postResponse: AxiosResponse) => {
-                setStatusMessages('Requesting a match');
-                ReactGA.event({
-                    category: "request_to_drive_success",
-                    action: "request_to_drive_success",
-                });
-                ReactGA.event({
-                    category: "request_to_drive_match_request",
-                    action: "request_to_drive_match_request",
-                });
-                const matchPostBody = {
-                    requesterRideId: postResponse.data,
-                    requestedRideId: item.rideRequest.rideId,
-                    detourInMiles: 2,
-                    status: 0
-                }
-                axios.post(import.meta.env.VITE_APP_API_V2 + '/rides/match', matchPostBody, { headers: { 'Authorization': globalSessionObj.wagon_token } })
-                    .then(async (matchResponse: AxiosResponse) => {
-                        setStatusMessages('Match Request Sent..');
-                        setForceRideCreate(-1);
-                        var arr = [...matchSentForIndex];
-                        arr.push(index);
-                        setMatchSentForIndex(arr);
-                        matchIndexArr.push(index);
-                    }).catch((reason: any) => {
-                        setForceRideCreate(-1);
-                        present({
-                            message: 'Unable to match, please try again later!',
-                            duration: 2000,
-                        });
-                    })
-            })
-            .catch((reason: any) => {
-                setForceRideCreate(-1);
-                ReactGA.event({
-                    category: "work_ride_create_failed" + "&status=" + reason.response?.status,
-                    action: "work_ride_create_failed" + "&status=" + reason.response?.status,
-                });
-                setLoading(false);
-                setStatusMessages('');
-                setForceRideCreate(-1);
-                if (reason.response?.status === 404 || reason.response?.status === 400) {
-                    if (reason.response?.data.errorCode == 508) {
-                        present({
-                            message: 'You have another ride that conflicts with this ride. Please cancel the existing ride or create a ride for some other day.',
-                            duration: 5000,
-                        });
-                        //setErrorLogs('You have another ride that conflicts with this ride. Please cancel the existing ride or create a ride for some other day.');
-                    } else {
-                        present({
-                            message: 'Looks like there was something bad with the request, please try again with a valid input!',
-                            duration: 2000,
-                        });
-                        // setErrorLogs('Looks like there was something bad with the request, please try again with a valid input!');
-                    }
-                } else if (reason.response?.status === 500) {
-                    present({
-                        message: 'Looks like there was something bad with the request, please try again with a valid input!',
-                        duration: 2000,
-                    });
-                    // setErrorLogs('Looks like we had something going bad with our server! Please try again in sometime!');
-                } else {
-                    present({
-                        message: 'Looks like there was something bad with the request, please try again with a valid input!',
-                        duration: 2000,
-                    });
-                    //setErrorLogs('Looks like we have something unexpected going on! Please try again in sometime.');
-                }
-            })
-
-    }
-
-
 
     return (
         <IonPage>
@@ -1674,11 +1106,11 @@ const AppFeed = () => {
                             <IonCard >
                                 <IonCardContent >
                                     
-                                    <IonButton size="small" onClick={menuClicked} color="medium" className="menuButton"><IonIcon icon={menuOutline}></IonIcon></IonButton>
+                                    {/* <IonButton size="small" onClick={menuClicked} color="medium" className="menuButton"><IonIcon icon={menuOutline}></IonIcon></IonButton> */}
 
 
                                     <IonButton color="success" size="small" shape="round" fill="outline" onClick={newRideClicked} className="filterButton">New Ride <IonIcon icon={addCircle}></IonIcon></IonButton>
-                                    <IonButton color="success" size="small" shape="round" fill="outline"  onClick={driveAndEarn} className="filterButton">Drive & Earn <IonIcon className="homeButtonIcons" icon={cash}></IonIcon></IonButton>
+                                    <IonButton color="success" size="small" shape="round" fill="outline"  onClick={goToMyRides} className="filterButton">My Rides <IonIcon className="homeButtonIcons" icon={carSharp}></IonIcon></IonButton>
 
                                 </IonCardContent>
 
@@ -1686,7 +1118,7 @@ const AppFeed = () => {
                         : null
 
                 }
-                {
+                {/* {
 
                     sessionExists ?
                         <IonCard>
@@ -1696,40 +1128,18 @@ const AppFeed = () => {
                                         <IonLabel class="homeSegmentLabel">My Rides</IonLabel>
                                     </IonSegmentButton>
                                     <IonSegmentButton value="1">
-                                        <IonLabel class="homeSegmentLabel">People Around Me</IonLabel> 
+                                        <IonLabel class="homeSegmentLabel">Potential Matches</IonLabel> 
                                     </IonSegmentButton>
                                     
                                 </IonSegment>
                             </IonCardContent>
                         </IonCard> : null
 
-                }
-
-
-
-                {/* {
-                    !feedLoading && feedData.length == 0 && !zipCodeFormVisible ?
-
-                        <div className="centerFeed"><IonCard>
-                            <IonCardContent ><IonLabel className="centerLabel">We don't have anything in the feed to show at this point of time. Please try again later.</IonLabel></IonCardContent></IonCard></div>
-                        : null
                 } */}
 
-                {/* {
-                    displayType == "1" && !loadPotentialMatchSpinner && potentialMatches.length > 0 && sessionExists ?
-                        <IonCard color="success">
-                            <IonCardContent>
-                                <IonLabel>Potential Matches</IonLabel>
 
-                                <IonLabel className="centerLabel">
-                                    {
-                                        loadPotentialMatchSpinner ? <IonSpinner color="primary"></IonSpinner> : null
-                                    }
-                                </IonLabel>
 
-                            </IonCardContent>
-                        </IonCard> : null
-                } */}
+              
                 {
                     displayType == "1" && loadPotentialMatchSpinner? 
                                     
@@ -1739,7 +1149,7 @@ const AppFeed = () => {
 
                 }
 
-                {/* {
+{
                     displayType == "1" && !loadPotentialMatchSpinner && potentialMatches.length == 0 && sessionExists ?
                         <IonCard color="">
                             <IonCardContent>
@@ -1753,9 +1163,9 @@ const AppFeed = () => {
 
                             </IonCardContent>
                         </IonCard> : null
-                } */}
+                }
 
-                {/* {
+{
                     displayType == "1" && !loadPotentialMatchSpinner && potentialMatches.length > 0 && sessionExists ?
                         <IonCard>
                             <IonCardContent>
@@ -1770,9 +1180,9 @@ const AppFeed = () => {
 
                             </IonCardContent>
                         </IonCard> : null
-                } */}
+                }
 
-                {/* {
+                {
                     displayType == "1" && sessionExists ?
                         <div className="fixedheight">
                             {
@@ -1814,7 +1224,21 @@ const AppFeed = () => {
                                                     minute: '2-digit'
                                                 }
                                             )}
-                                        
+                                        {/* {
+                                    item.rideRequest.roundTrip ?
+                                        <p className="feedDepartureTime">Tentative Return Time: {
+                                            new Date(item.rideRequest.returnTime).toLocaleString(
+                                                "en-US",
+                                                {
+                                                    month: "short",
+                                                    day: "2-digit",
+                                                    year: "numeric",
+                                                    hour: '2-digit',
+                                                    minute: '2-digit'
+                                                }
+                                            )}</p>
+                                        : null
+                                } */}
                                         <br />
 
 
@@ -1894,7 +1318,7 @@ const AppFeed = () => {
                                 ))
                             }
                         </div> : null
-                } */}
+                }
                             
                 
                 {
@@ -2260,7 +1684,7 @@ const AppFeed = () => {
                     <IonLabel className="footer"> support@wagoncarpool.com</IonLabel><hr /></> : null
                 } */}
 
-                {
+                {/* {
                     sessionExists && displayType == "1" ?
                         <IonCard className="myrides">
                             <IonCardContent>
@@ -2275,8 +1699,8 @@ const AppFeed = () => {
                                 </IonLabel>
                             </IonCardContent>
                         </IonCard> : null
-                }
-                {
+                } */}
+                {/* {
                     displayType == "1" && !locationReceived && zipCodeFormVisible && feedData.length == 0 ?
                         <IonCard>
                             <IonCardContent >
@@ -2292,12 +1716,12 @@ const AppFeed = () => {
 
 
                         : null
-                }
+                } */}
 
 
 
 
-                {
+                {/* {
                     displayType == "1" ?
                         <div className="fixedheight">
 
@@ -2395,7 +1819,7 @@ const AppFeed = () => {
                                                             text: 'Yes',
                                                             role: 'confirm',
                                                             handler: () => {
-                                                                requestToDrive(item, index);
+                                                                sendMatchRequest(item, index, null);
                                                             },
                                                         },
                                                     ],
@@ -2411,7 +1835,7 @@ const AppFeed = () => {
                                 </IonCard>
                             ))} </div>
                         : null
-                }
+                } */}
 
 
                 {/* {displayType == "1" ? <><hr />
@@ -2691,4 +2115,4 @@ const AppFeed = () => {
 
     );
 }
-export default AppFeed;
+export default PotentialMatches;

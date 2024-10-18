@@ -1534,6 +1534,9 @@ const Work = () => {
         } else if (category == 2) {
             window.location.replace('/carpoolForAirport');
         }
+        else if (category == 3) {
+            window.location.replace('/intercity');
+        }
     }
 
     function submitHomeWorkAddress() {
@@ -1739,6 +1742,9 @@ const Work = () => {
                                         </IonSegmentButton>
                                         <IonSegmentButton value="2">
                                             <IonLabel class="segmentLabel">Airport</IonLabel>
+                                        </IonSegmentButton>
+                                        <IonSegmentButton value="3">
+                                            <IonLabel class="segmentLabel">Long Distance</IonLabel>
                                         </IonSegmentButton>
                                     </IonSegment>
                                 </IonCardContent>

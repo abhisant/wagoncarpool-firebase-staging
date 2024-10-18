@@ -57,7 +57,7 @@ import InternalRouter from './pages/InternalRouter';
 
 setupIonicReact();
 axios.defaults.headers.common['X-API-KEY'] = import.meta.env.VITE_APP_API_KEY;
-const TRACKING_ID = "G-VSL6PJ86E9";
+const TRACKING_ID = "AW-16687193619";
 ReactGA.initialize([
   {
     trackingId: TRACKING_ID,
@@ -83,6 +83,7 @@ const App: React.FC = () => (
         <Route path="/userActivity" component={AppLandingPage} />
         <Route path="/messaging" component={AppLandingPage} />
         <Route path="/carpoolForEvents" component={AppLandingPage} />
+        <Route path="/intercity" component={AppLandingPage} />
         <Route path="/carpoolForWork" component={AppLandingPage} />
         <Route path="/carpoolForAirport" component={AppLandingPage} />
         <Route path="/scc" component={AppLandingPage} />
@@ -102,7 +103,8 @@ const App: React.FC = () => (
         <Route exact path="/support" component={AppLandingPage} />
         <Route exact path="/route" component={InternalRouter} />
         <Route exact path="/drive" component={AppLandingPage} />
-        <Route exact path="/why-wagon-carpool" component={AppLandingPage} />
+        <Route exact path="/drive" component={AppLandingPage} />
+        <Route exact path="/potentialMatches" component={AppLandingPage} />
         <Redirect exact from="/" to="/route" />
       </IonRouterOutlet>
     </IonReactRouter>

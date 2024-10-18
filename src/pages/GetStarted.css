@@ -149,6 +149,9 @@ ion-checkbox {
   margin-left: 10px;
   font-size: 12px;
 }
+.segmentLabel {
+  font-size: 10px;
+}
 
 .topSegmentLabel {
   font-size: 11px;

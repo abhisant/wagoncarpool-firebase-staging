@@ -21,7 +21,7 @@ import { PushNotifications } from '@capacitor/push-notifications';
 import { IonReactRouter } from '@ionic/react-router';
 import { h } from '@ionic/pwa-elements/dist/types/stencil-public-runtime';
 
-const Airport = () => {
+const Intercity = () => {
     let currAddress: any;
     Geocode.setApiKey('AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY');
     Geocode.setLanguage("en");
@@ -40,10 +40,10 @@ const Airport = () => {
     const [homeLatitude, setHomeLatitude] = useState(0);
     const [homeLongitude, setHomeLongitude] = useState(0);
 
-    const [airportAddress, setAirportAddress] = useState("");
-    const [airportAddressName, setAirportAddressName] = useState("");
-    const [airportLatitide, setAirportLatitude] = useState(0);
-    const [airportLongitude, setAirportLongitude] = useState(0);
+    const [destinationCityAddress, setDestinationCityAddress] = useState("");
+    const [destinationCityAddressName, setDestinationCityAddressName] = useState("");
+    const [destinationCityAddressLatitude, setDestinationCityLatitude] = useState(0);
+    const [destinationCityAddressLongitude, setDestinationCityLongitude] = useState(0);
 
     const [destinationAddress, setDestinationAddress] = useState("");
 
@@ -178,10 +178,10 @@ const Airport = () => {
         //                 setHomeLatitude(getResponse.data.homeLatitude);
         //                 setHomeLongitude(getResponse.data.homeLongitude);
 
-        //                 setAirportAddress(getResponse.data.officeAddress);
-        //                 setAirportAddressName(getResponse.data.officeAddressName);
-        //                 setAirportLatitude(getResponse.data.officeLatitude);
-        //                 setAirportLongitude(getResponse.data.officeLongitude);
+        //                 setDestinationCityAddress(getResponse.data.officeAddress);
+        //                 setDestinationCityAddressName(getResponse.data.officeAddressName);
+        //                 setDestinationCityLatitude(getResponse.data.officeLatitude);
+        //                 setDestinationCityLongitude(getResponse.data.officeLongitude);
 
         //                 setProfileHomeAddress(getResponse.data.homeAddress);
         //                 setProfileHomeLatitude(getResponse.data.homeLatitude);
@@ -402,17 +402,17 @@ const Airport = () => {
             })
     }
 
-    async function createRideForAirport() {
-        if (homeAddress === '' && airportAddress === '') {
-            setErrorLogs('Please Enter Pick Up and Airport Address');
+    async function createRideForIntercity() {
+        if (homeAddress === '' && destinationCityAddress === '') {
+            setErrorLogs('Please Enter Start Address');
             return;
         }
-        if (homeAddress === '' && airportAddress != '') {
-            setErrorLogs('Please Enter Pick Up address');
+        if (homeAddress === '' && destinationCityAddress != '') {
+            setErrorLogs('Please Enter Start address');
             return;
         }
-        if (homeAddress != '' && airportAddress === '') {
-            setErrorLogs('Please Enter Airport Address');
+        if (homeAddress != '' && destinationCityAddress === '') {
+            setErrorLogs('Please Enter Destination Address');
             return;
         }
         // console.log('globalSessionObj', globalSessionObj);
@@ -457,7 +457,7 @@ const Airport = () => {
                 const directionsService = new google.maps.DirectionsService()
                 results = await directionsService.route({
                     origin: homeAddress || '',
-                    destination: airportAddress || '',
+                    destination: destinationCityAddress || '',
                     travelMode: google.maps.TravelMode.DRIVING,
                 })
                 console.log('rideDistance in miles', results?.routes[0]?.legs[0]?.distance?.text);
@@ -465,12 +465,12 @@ const Airport = () => {
                 distanceInMiles = (0.000621371 * (results?.routes[0]?.legs[0]?.distance?.value || 0)).toFixed(1);
                 console.log('rideDistance in miles', distanceInMiles);
 
-                if (distanceInMiles > 100) {
+                if (distanceInMiles <= 80) {
                     ReactGA.event({
                         category: "airport_ridedistace_limit_exceeded",
                         action: "airport_ridedistace_limit_exceeded",
                     });
-                    setErrorLogs('Ride distance cannot be more than 100 miles.');
+                    setErrorLogs('Ride distance needs to be more than 80 miles.');
                     return;
                 }
                 setStatusMessages('Creating Ride...');
@@ -483,19 +483,19 @@ const Airport = () => {
                     departureTime: new Date(calendarDepartureTime).toISOString().toString(),
                     start_loc_lat: homeLatitude,
                     start_loc_long: homeLongitude,
-                    destination_loc_lat: airportLatitide,
-                    destination_loc_long: airportLongitude,
+                    destination_loc_lat: destinationCityAddressLatitude,
+                    destination_loc_long: destinationCityAddressLongitude,
                     seatCount: seats,
                     driving: isDriving === "0" ? false : true,
                     startAddress: homeAddress,
-                    destinationAddress: airportAddress,
+                    destinationAddress: destinationCityAddress,
                     startAddressName: homeAddress,
-                    destinationAddressName: airportAddressName,
+                    destinationAddressName: destinationCityAddressName,
                     rideDistance: distanceInMiles,
                     rideCost: null,
                     roundTrip: false,
-                    rideType: 3,
-                    labelsCsv: 'airport-drop-off',
+                    rideType: 4,
+                    labelsCsv: 'intercity',
                     returnTime:  0
                 };
                 console.log(postRequestBody);
@@ -1014,8 +1014,8 @@ const Airport = () => {
             rideId: rideId, 
             locationLatitude: homeLatitude,
             locationLongitude: homeLongitude,
-            destLatitude: airportLatitide,
-            destLongitude: airportLongitude,
+            destLatitude: destinationCityAddressLatitude,
+            destLongitude: destinationCityAddressLongitude,
             radiusInMiles: 5,
             pageNum: 0,
             seatCount: seats,
@@ -1141,11 +1141,11 @@ const Airport = () => {
         setDepartureWindow(2);
         // setHomeairportAddressExists(false);
         // setHomeAddress('');
-        // setAirportAddress('');
+        // setDestinationCityAddress('');
         // setHomeLatitude(0);
         // setHomeLongitude(0);
-        // setAirportLatitude(0);
-        // setAirportLongitude(0);
+        // setDestinationCityLatitude(0);
+        // setDestinationCityLongitude(0);
     }
 
     function rideCreationModal(item: any) {
@@ -1253,7 +1253,7 @@ const Airport = () => {
             }
             
             setSessionExists(true);
-            createRideForAirport();
+            createRideForIntercity();
             // sent visit count.
             let clientType = 'web';
 
@@ -1322,9 +1322,6 @@ const Airport = () => {
         } else if (category == 1) {
             window.location.replace('/carpoolForWork');
         }
-        else if (category == 3) {
-            window.location.replace('/intercity');
-        }
     }
 
     function submitHomeairportAddress() {
@@ -1334,10 +1331,10 @@ const Airport = () => {
             homeAddress: homeAddress,
             homeLatitude: homeLatitude,
             homeLongitude: homeLongitude,
-            officeAddress: airportAddress,
-            officeLatitude: airportLatitide,
-            officeLongitude: airportLongitude,
-            officeAddressName: airportAddressName,
+            officeAddress: destinationCityAddress,
+            officeLatitude: destinationCityAddressLatitude,
+            officeLongitude: destinationCityAddressLongitude,
+            officeAddressName: destinationCityAddressName,
         };
         console.log(postRequestBody);
         setStatusMessages('Saving Home and Work Location..');
@@ -1449,7 +1446,7 @@ const Airport = () => {
                                         <Autocomplete
                                             style={{ width: "100%" }}
                                             ref={inputairportAddressRef}
-                                            defaultValue={airportAddress}
+                                            defaultValue={destinationCityAddress}
                                             placeholder="Enter Your Work Address"
                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                             onPlaceSelected={(selected, a, c) => {
@@ -1458,10 +1455,10 @@ const Airport = () => {
                                                 console.log(selected.name);
                                                 console.log(c);
                                                 console.log(a);
-                                                setAirportAddress(selected.formatted_address || "");
-                                                setAirportAddressName(selected.name || "");
-                                                setAirportLatitude(selected.geometry?.location?.lat() || 0);
-                                                setAirportLongitude(selected.geometry?.location?.lng() || 0);
+                                                setDestinationCityAddress(selected.formatted_address || "");
+                                                setDestinationCityAddressName(selected.name || "");
+                                                setDestinationCityLatitude(selected.geometry?.location?.lat() || 0);
+                                                setDestinationCityLongitude(selected.geometry?.location?.lng() || 0);
                                             }}
                                             options={{
                                                 types: ["geocode", "establishment"],
@@ -1471,7 +1468,7 @@ const Airport = () => {
                                         />
                                         <hr />
                                         {
-                                            homeAddress != '' && airportAddress != '' && !loading ? <IonButton color="success" onClick={submitHomeairportAddress} size="small">Submit</IonButton> : loading ? <IonButton disabled color="success" size="small"> Submit <IonSpinner class="smallspinner" color="primary"></IonSpinner></IonButton> : <IonButton disabled color="success" size="small">Submit</IonButton>
+                                            homeAddress != '' && destinationCityAddress != '' && !loading ? <IonButton color="success" onClick={submitHomeairportAddress} size="small">Submit</IonButton> : loading ? <IonButton disabled color="success" size="small"> Submit <IonSpinner class="smallspinner" color="primary"></IonSpinner></IonButton> : <IonButton disabled color="success" size="small">Submit</IonButton>
                                         }
                                     </IonCardContent></IonCard>
                             </div>
@@ -1520,7 +1517,7 @@ const Airport = () => {
                                     <IonCardSubtitle>Carpooling For</IonCardSubtitle>
                                 </IonCardHeader>
                                 <IonCardContent >
-                                    <IonSegment mode="ios" value="2" onIonChange={e => setCarpoolCategory(e.detail.value)}>
+                                    <IonSegment mode="ios" value="3" onIonChange={e => setCarpoolCategory(e.detail.value)}>
                                         <IonSegmentButton value="0">
                                             <IonLabel class="segmentLabel">Events</IonLabel>
                                         </IonSegmentButton>
@@ -1605,24 +1602,24 @@ const Airport = () => {
 
                                     {
                                             <>
-                                                <IonLabel>Drop off Airport </IonLabel>
+                                                <IonLabel>Destination Address </IonLabel>
                                                 {
                                                    
                                                         <Autocomplete
                                                             style={{ width: "100%" }}
-                                                            placeholder="Enter the airport location"
+                                                            placeholder="Enter the destination address"
                                                             apiKey='AIzaSyAqRnDMSLMKycFik1KIQkGx1RJBPp9QqwY'
                                                             onPlaceSelected={(selected, a, c) => {
                                                                 setErrorLogs('');
-                                                                setAirportAddress((selected.formatted_address || ''));
-                                                                setAirportAddressName(selected.name || '');
-                                                                setAirportLatitude((selected.geometry?.location?.lat() || 0));
-                                                                setAirportLongitude((selected.geometry?.location?.lng() || 0));
+                                                                setDestinationCityAddress((selected.formatted_address || ''));
+                                                                setDestinationCityAddressName(selected.name || '');
+                                                                setDestinationCityLatitude((selected.geometry?.location?.lat() || 0));
+                                                                setDestinationCityLongitude((selected.geometry?.location?.lng() || 0));
                                                             }}
                                                             options={{
-                                                                types: ["airport"],
+                                                                types: ["geocode", "establishment"],
                                                                 componentRestrictions: { country },
-                                                                fields: ['formatted_address', 'geometry.location', 'name']
+                                                                fields: ['formatted_address', 'geometry.location', 'name', 'type']
                                                             }}
                                                         />
                                                 }
@@ -1718,7 +1715,7 @@ const Airport = () => {
                                     {
                                         !loading ?
                                             (
-                                                sessionExists ? checkboxEighteenYearsOld && errorLogs =='' ? <IonButton size="small" color="success" onClick={() => createRideForAirport()}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton> : <IonButton size="small" color="success" disabled onClick={() => createRideForAirport()}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton>
+                                                sessionExists ? checkboxEighteenYearsOld && errorLogs =='' ? <IonButton size="small" color="success" onClick={() => createRideForIntercity()}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton> : <IonButton size="small" color="success" disabled onClick={() => createRideForIntercity()}>{isDriving == "1" ? <>Offer a Ride</> : <>Request a Ride</>}</IonButton>
                                                     :
                                                     (
                                                         checkboxEighteenYearsOld || errorLogs != ''?
@@ -1882,4 +1879,4 @@ const Airport = () => {
     );
 };
 
-export default Airport;
+export default Intercity;

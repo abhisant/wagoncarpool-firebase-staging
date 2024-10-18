@@ -1198,6 +1198,9 @@ const Events = () => {
         } else if (category == 2) {
             window.location.replace('/carpoolForAirport');
         }
+        else if (category == 3) {
+            window.location.replace('/intercity');
+        }
     }
 
     function setTermToggleFunc(termToggle:any) {
@@ -1339,6 +1342,9 @@ const Events = () => {
                                                     <IonSegmentButton value="2">
                                                         <IonLabel class="segmentLabel">Airports</IonLabel>
                                                     </IonSegmentButton>
+                                                    <IonSegmentButton value="3">
+                                                     <IonLabel class="segmentLabel">Long Distance</IonLabel>
+                                        </IonSegmentButton>
                                                 </IonSegment>
                                 </IonCardContent>
                             </IonCard>

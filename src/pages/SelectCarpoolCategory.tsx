@@ -75,6 +75,15 @@ const SelectCarpoolCategory = () => {
         window.location.replace('/carpoolForEvents');
 
     }
+    function carpoolingForIntercity() {
+        ReactGA.event({
+            category: "UserSelectsCarpoolForIntercity",
+            action: "UserSelectsCarpoolForIntercity",
+        });
+        localStorage.setItem("carpool_category", 'events');
+        // history.push("/carpoolForEvents");
+        window.location.replace('/intercity');
+    }
 
     function loadFeedbackDetails() {
         if (localStorage.getItem('session') == null) {
@@ -478,9 +487,9 @@ const SelectCarpoolCategory = () => {
                                                 </div>
                                             </IonCol>
                                             <IonCol size="6" size-sm="3">
-                                                <div className="containerHome">
+                                                <div onClick={carpoolingForIntercity} className="containerHome">
                                                     <img className="actionImage" src="assets/img/intercity-art.jpeg"></img>
-                                                    <IonButton color="dark" fill="outline" disabled shape="round" size="small" className='actionButtonsHome'>Intercity Trips (Coming soon) </IonButton>
+                                                    <IonButton color="dark" fill="outline" shape="round" size="small" className='actionButtonsHome'>Long Distance Trips</IonButton>
                                                 </div>
                                             </IonCol>
                                         </IonRow>
