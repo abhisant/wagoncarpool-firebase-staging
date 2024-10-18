@@ -648,7 +648,7 @@ const AppFeed = () => {
             const { lat, lng } = results[0].geometry.location;
             setCurrLat(lat);
             setCurrLon(lng);
-            //loadFeed(lat, lng);
+            loadFeed(lat, lng);
         }).catch((err) => {
             setIsInvalidZipCode(true);
             console.log(err);
